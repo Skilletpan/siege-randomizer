@@ -31,21 +31,21 @@ const NAVIGATION_ITEMS = [
     title: 'Team Picker',
     props: {
       prependIcon: 'mdi-account-group',
-      to: 'teams'
+      to: 'under-construction'
     }
   },
   {
     title: 'Operator Picker',
     props: {
       prependIcon: 'mdi-account',
-      to: 'operators'
+      to: 'under-construction'
     }
   },
   {
     title: 'Lineup Picker',
     props: {
       prependIcon: 'mdi-account-group',
-      to: 'lineup'
+      to: 'under-construction'
     }
   },
   {
@@ -59,7 +59,7 @@ const NAVIGATION_ITEMS = [
     title: 'Strat Roulette',
     props: {
       prependIcon: 'mdi-strategy',
-      to: 'strats'
+      to: 'under-construction'
     }
   }
 ];

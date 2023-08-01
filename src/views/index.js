@@ -4,6 +4,7 @@ import MapPicker from './MapPicker';
 import OperatorPicker from './OperatorPicker';
 import StratPicker from './StratPicker';
 import TeamPicker from './TeamPicker';
+import UnderConstruction from './UnderConstruction';
 
 export {
   HomeView,
@@ -11,5 +12,6 @@ export {
   MapPicker,
   OperatorPicker,
   StratPicker,
-  TeamPicker
+  TeamPicker,
+  UnderConstruction
 };

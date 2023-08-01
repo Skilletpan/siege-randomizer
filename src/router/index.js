@@ -6,7 +6,8 @@ import {
   MapPicker,
   OperatorPicker,
   TeamPicker,
-  StratPicker
+  StratPicker,
+  UnderConstruction
 } from '@/views';
 
 const routes = [
@@ -39,6 +40,11 @@ const routes = [
     path: '/teams',
     name: 'team-picker',
     component: TeamPicker
+  },
+  {
+    path: '/under-construction',
+    name: 'under-construction',
+    component: UnderConstruction
   }
 ]
 
