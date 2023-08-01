@@ -1,5 +1,6 @@
 import MAPS from './maps.json';
 import OPERATORS from './operators.json';
+import STRATS from './strats.json';
 
 const MAPS_MAP = {};
 const PLAYLISTS = [];
@@ -29,6 +30,9 @@ OPERATORS.forEach((o) => {
 ROLES.sort();
 SQUADS.sort();
 
+const STRATS_MAP = {};
+STRATS.forEach((s) => { STRATS_MAP[s.title] = s });
+
 export {
   MAPS,
   MAPS_MAP,
@@ -36,5 +40,7 @@ export {
   OPERATORS_MAP,
   PLAYLISTS,
   ROLES,
-  SQUADS
+  SQUADS,
+  STRATS,
+  STRATS_MAP
 };

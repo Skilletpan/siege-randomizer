@@ -1,0 +1,17 @@
+[
+  {
+    "title": "Alternate Arms",
+    "description": "Switch the loadout of the operator you're playing (main gun, secondary gun, secondary gadget)",
+    "sides": ["ATT", "DEF"]
+  },
+  {
+    "title": "Shields only",
+    "description": "Only shield operators are allowed. Priority order: Montagne, Blitz, Fuze, Osa, Blackbeard",
+    "sides": ["ATT"]
+  },
+  {
+    "title": "G2 vs TT9",
+    "description": "Hands off the keyboard and mouse during prep phase. No movement allowed.",
+    "sides": ["DEF"]
+  }
+]
