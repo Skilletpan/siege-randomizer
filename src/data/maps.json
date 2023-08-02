@@ -64,6 +64,7 @@
     "name": "Consulate",
     "playlists": [
       "Casual",
+      "Competitive",
       "Free for All",
       "Ranked"
     ]
@@ -132,6 +133,7 @@
     "name": "Nighthaven Labs",
     "playlists": [
       "Casual",
+      "Competitive",
       "Deathmatch",
       "Free for All",
       "Headshots Only",
@@ -189,7 +191,6 @@
     "name": "Themepark",
     "playlists": [
       "Casual",
-      "Competitive",
       "Deathmatch",
       "Free for All",
       "Headshots Only",
@@ -208,7 +209,6 @@
     "name": "Villa",
     "playlists": [
       "Casual",
-      "Competitive",
       "Deathmatch",
       "Free for All",
       "Headshots Only",

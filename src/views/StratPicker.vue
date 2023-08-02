@@ -2,10 +2,9 @@
   <v-container>
     <v-row class="py-12" justify="center">
       <v-col cols="auto">
-        <strat-card />
-        {{ pickedStrat ? pickedStrat.title : 'None' }}
-        <v-btn text="Pick Attack Strat" @click="pickRandomStrat('ATT')" />
-        <v-btn text="Pick Defense Strat" @click="pickRandomStrat('DEF')" />
+        <strat-card :value="pickedStrat" />
+        <v-btn block class="mt-4" color="primary" text="Pick Attack Strat" @click="pickRandomStrat('ATT')" />
+        <v-btn block class="mt-4" color="primary" text="Pick Defense Strat" @click="pickRandomStrat('DEF')" />
       </v-col>
     </v-row>
   </v-container>
@@ -15,14 +14,19 @@
 import { ref } from 'vue';
 
 import { StratCard } from '@/components';
+import { pickRandom } from '@/composables/randomizer';
 import { STRATS } from '@/data';
 
-const pickedStrat = ref(0);
+// Define dynamic properties
+const pickedStrat = ref(null);
 
+/**
+ * Picks a random strategy from the pool.
+ * 
+ * @param {"ATT" | "DEF"} side The side to pick the strat for.
+ */
 function pickRandomStrat(side) {
   const pool = STRATS.filter((s) => s.sides.includes(side));
-
-  const randomIndex = Math.floor(Math.random() * pool.length);
-  pickedStrat.value = pool[randomIndex];
+  [pickedStrat.value] = pickRandom(pool);
 }
 </script>

@@ -2,16 +2,243 @@
   {
     "title": "Alternate Arms",
     "description": "Switch the loadout of the operator you're playing (main gun, secondary gun, secondary gadget)",
-    "sides": ["ATT", "DEF"]
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
   },
   {
     "title": "Shields only",
     "description": "Only shield operators are allowed. Priority order: Montagne, Blitz, Fuze, Osa, Blackbeard",
-    "sides": ["ATT"]
+    "sides": [
+      "ATT"
+    ]
   },
   {
     "title": "G2 vs TT9",
     "description": "Hands off the keyboard and mouse during prep phase. No movement allowed.",
-    "sides": ["DEF"]
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Handguns only",
+    "description": "Semi-automatic handguns only. No machine pistols.",
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Shotguns only",
+    "description": "Boom.",
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Year 1 Turtle",
+    "description": "You live in site. Every wall gets reinforced, every door and window barricaded and pray to the heavens that they don't bring Fuze. Bonus points for Pathfinder operators.",
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Not One Step Back!",
+    "description": "As soon as you spawn, you walk forward. You don't stop until you win.",
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "The Snake",
+    "description": "You can only move inside the building when prone.",
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "The Floor is Lava",
+    "description": "You must play from an elevated position. If on the ground, you must immediately search a new high ground and can only use knives.",
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Rooted",
+    "description": "Pick your spot. As soon as the preparation phase ends, you can not move away from there.",
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Doktor's Curse",
+    "description": "You can't use guns. Better make your traps and knives count.",
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Iron Sights only",
+    "description": "No scopes for you, only iron sights.",
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Splinter Cell",
+    "description": "You can only use supressed handguns.",
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "1vX",
+    "description": "Only one player can be active at a time. The others either hide (Defenders) or wait their turn outside the building (Attackers).",
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Speedrun",
+    "description": "Take the most direct route to site. No roam clearing.",
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Advent Calendar",
+    "description": "Everyone picks a window or door and spawnpeeks.",
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "One in the Chamber",
+    "description": "You may only shoot at enemies with one bullet in the chamber. Use reload cancel to empty your magazines.",
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Hot Breach",
+    "description": "Everyone bring breach charges, pick a window and at the same time hot breach into the building. E3-trailer re-enactment.",
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Hot Drop Retake",
+    "description": "All defenders wait on a hatch above site until defuser is planted, then hot drop the hatch and retake site.",
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Big Brother",
+    "description": "Pick as many cameras as possible (Black Eyes, Evil Eyes, Yokais, Bulletproofs...), place them all over site and then hide on the other side of the building. Watch their every step and make them know it by red pinging them.",
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Switcheroo",
+    "description": "Build a complete standard site setup. On the wrong site.",
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Grounded",
+    "description": "You are not allowed to rappel or vault. Take the stairs.",
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Blackout",
+    "description": "No electric gadgets allowed. There is no electricity. Defenders shoot all default cams, attackers keep their drones on spawn and destroy them before entering the building.",
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Parkour",
+    "description": "You can only change floors by rappelling or vaulting. Stairs don't exist for you.",
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Slow and Steady",
+    "description": "You must Alt-walk the entire round.",
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Pacifist",
+    "description": "Murder is evil. Win the round without killing anybody.",
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Noob Team",
+    "description": "Recruit only.",
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Supressive Fire",
+    "description": "LMG mounted. And loaded. And unloaded. On everything.",
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Wet Work",
+    "description": "Enter and exit the building only through bathrooms.",
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Privacy, Please!",
+    "description": "Every door and window gets barricaded. Every wall gets reinforced. No sightlines are created. Privacy is important. Bring Mute for EXTRA privacy from drones.",
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Spinbot",
+    "description": "Mouse sensitivity is over 9000! (or just 100)",
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Bravo Six, going dark!",
+    "description": "Set your game's brightness to 10.",
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "King's Guard",
+    "description": "One player is the king (aka Tachanka) while the rest is his guard. Protect the king. If he dies, commit sudoku or surrender yourself to the enemy.",
+    "sides": [
+      "DEF"
+    ]
   }
 ]

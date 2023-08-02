@@ -10,7 +10,7 @@
         <v-card title="Team Picker" to="under-construction" width="300" />
       </v-col>
       <v-col>
-        <v-card title="Operator Picker" to="under-construction" width="300" />
+        <v-card title="Operator Picker" to="operators" width="300" />
       </v-col>
       <v-col>
         <v-card title="Lineup Picker" to="under-construction" width="300" />
@@ -19,7 +19,7 @@
         <v-card title="Map Picker" to="maps" width="300" />
       </v-col>
       <v-col>
-        <v-card title="Strat Roulette" to="under-construction" width="300" />
+        <v-card title="Strat Roulette" to="strats" width="300" />
       </v-col>
     </v-row>
   </v-container>

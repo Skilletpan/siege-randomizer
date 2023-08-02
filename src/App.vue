@@ -38,7 +38,7 @@ const NAVIGATION_ITEMS = [
     title: 'Operator Picker',
     props: {
       prependIcon: 'mdi-account',
-      to: 'under-construction'
+      to: 'operators'
     }
   },
   {
@@ -59,7 +59,7 @@ const NAVIGATION_ITEMS = [
     title: 'Strat Roulette',
     props: {
       prependIcon: 'mdi-strategy',
-      to: 'under-construction'
+      to: 'strats'
     }
   }
 ];
