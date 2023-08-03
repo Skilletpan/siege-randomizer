@@ -1,11 +1,8 @@
-import { createRouter, createWebHistory } from 'vue-router'
+import { createRouter, createWebHistory } from 'vue-router';
 
 import {
-  HomeView,
-  LineupPicker,
   MapPicker,
   OperatorPicker,
-  TeamPicker,
   StratPicker,
   UnderConstruction
 } from '@/views';
@@ -13,13 +10,12 @@ import {
 const routes = [
   {
     path: '/',
-    name: 'home',
-    component: HomeView
+    redirect: '/maps'
   },
   {
-    path: '/lineup',
+    path: '/lineups',
     name: 'lineup-picker',
-    component: LineupPicker
+    component: UnderConstruction
   },
   {
     path: '/maps',
@@ -39,18 +35,13 @@ const routes = [
   {
     path: '/teams',
     name: 'team-picker',
-    component: TeamPicker
-  },
-  {
-    path: '/under-construction',
-    name: 'under-construction',
     component: UnderConstruction
   }
-]
+];
 
 const router = createRouter({
   history: createWebHistory(process.env.BASE_URL),
   routes
-})
+});
 
-export default router
+export default router;
