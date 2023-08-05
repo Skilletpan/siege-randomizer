@@ -1,226 +1,75 @@
 [
   {
-    "title": "Alternate Arms",
-    "description": "Switch the loadout of the operator you're playing (main gun, secondary gun, secondary gadget)",
-    "sides": [
-      "ATT",
-      "DEF"
-    ]
-  },
-  {
-    "title": "Shields only",
-    "description": "Only shield operators are allowed. Priority order: Montagne, Blitz, Fuze, Osa, Blackbeard",
-    "sides": [
-      "ATT"
-    ]
-  },
-  {
-    "title": "G2 vs TT9",
-    "description": "Hands off the keyboard and mouse during prep phase. No movement allowed.",
-    "sides": [
-      "DEF"
-    ]
-  },
-  {
-    "title": "Handguns only",
-    "description": "Semi-automatic handguns only. No machine pistols.",
-    "sides": [
-      "ATT",
-      "DEF"
-    ]
-  },
-  {
-    "title": "Shotguns only",
-    "description": "Boom.",
-    "sides": [
-      "ATT",
-      "DEF"
-    ]
-  },
-  {
-    "title": "Year 1 Turtle",
-    "description": "You live in site. Every wall gets reinforced, every door and window barricaded and pray to the heavens that they don't bring Fuze. Bonus points for Pathfinder operators.",
-    "sides": [
-      "DEF"
-    ]
-  },
-  {
-    "title": "Not One Step Back!",
-    "description": "As soon as you spawn, you walk forward. You don't stop until you win.",
-    "sides": [
-      "ATT"
-    ]
-  },
-  {
-    "title": "The Snake",
-    "description": "You can only move inside the building when prone.",
-    "sides": [
-      "ATT"
-    ]
-  },
-  {
-    "title": "The Floor is Lava",
-    "description": "You must play from an elevated position. If on the ground, you must immediately search a new high ground and can only use knives.",
-    "sides": [
-      "DEF"
-    ]
-  },
-  {
-    "title": "Rooted",
-    "description": "Pick your spot. As soon as the preparation phase ends, you can not move away from there.",
-    "sides": [
-      "DEF"
-    ]
-  },
-  {
-    "title": "Doktor's Curse",
-    "description": "You can't use guns. Better make your traps and knives count.",
-    "sides": [
-      "DEF"
-    ]
-  },
-  {
-    "title": "Iron Sights only",
-    "description": "No scopes for you, only iron sights.",
-    "sides": [
-      "ATT",
-      "DEF"
-    ]
-  },
-  {
-    "title": "Splinter Cell",
-    "description": "You can only use supressed handguns.",
-    "sides": [
-      "ATT",
-      "DEF"
-    ]
-  },
-  {
     "title": "1vX",
-    "description": "Only one player can be active at a time. The others either hide (Defenders) or wait their turn outside the building (Attackers).",
+    "description": "Clutch Masters",
+    "rules": [
+      "Only one player is active at a time.",
+      "Inactive players are not allowed to move, shoot, use cams etc.",
+      "Attackers: Inactive players wait their turn outside.",
+      "Defenders: Inactive players will find a hiding spot and wait their turn there."
+    ],
     "sides": [
       "ATT",
       "DEF"
-    ]
-  },
-  {
-    "title": "Speedrun",
-    "description": "Take the most direct route to site. No roam clearing.",
-    "sides": [
-      "ATT"
     ]
   },
   {
     "title": "Advent Calendar",
-    "description": "Everyone picks a window or door and spawnpeeks.",
+    "description": "Peekaboo!",
+    "rules": [
+      "Everyone picks a window or door and spawnpeeks."
+    ],
     "sides": [
       "DEF"
     ]
   },
   {
-    "title": "One in the Chamber",
-    "description": "You may only shoot at enemies with one bullet in the chamber. Use reload cancel to empty your magazines.",
+    "title": "Alternate Arms",
+    "description": "What even are these?",
+    "rules": [
+      "Set your main gun, handgun and secondary gadget to a different one than you have currently equipped."
+    ],
     "sides": [
       "ATT",
-      "DEF"
-    ]
-  },
-  {
-    "title": "Hot Breach",
-    "description": "Everyone bring breach charges, pick a window and at the same time hot breach into the building. E3-trailer re-enactment.",
-    "sides": [
-      "ATT"
-    ]
-  },
-  {
-    "title": "Hot Drop Retake",
-    "description": "All defenders wait on a hatch above site until defuser is planted, then hot drop the hatch and retake site.",
-    "sides": [
       "DEF"
     ]
   },
   {
     "title": "Big Brother",
-    "description": "Pick as many cameras as possible (Black Eyes, Evil Eyes, Yokais, Bulletproofs...), place them all over site and then hide on the other side of the building. Watch their every step and make them know it by red pinging them.",
+    "description": "They see everything",
+    "requiredOperators": [
+      "Echo",
+      "Maestro",
+      "Valkyrie"
+    ],
+    "rules": [
+      "Bring Echo, Maestro, Valkyrie and 2 operators with bulletproof cameras.",
+      "Place all your cameras on site.",
+      "Hide on the other side of the building and watch the enemy on cams.",
+      "Red ping the enemy all the time."
+    ],
     "sides": [
       "DEF"
-    ]
-  },
-  {
-    "title": "Switcheroo",
-    "description": "Build a complete standard site setup. On the wrong site.",
-    "sides": [
-      "DEF"
-    ]
-  },
-  {
-    "title": "Grounded",
-    "description": "You are not allowed to rappel or vault. Take the stairs.",
-    "sides": [
-      "ATT"
     ]
   },
   {
     "title": "Blackout",
-    "description": "No electric gadgets allowed. There is no electricity. Defenders shoot all default cams, attackers keep their drones on spawn and destroy them before entering the building.",
+    "description": "No recharging your phone",
+    "rules": [
+      "Don't bring any electric gadgets.",
+      "Attackers: Keep your drones at spawn and immediately shoot them when the action phase starts.",
+      "Defenders: Shoot all default cameras."
+    ],
     "sides": [
       "DEF"
     ]
   },
   {
-    "title": "Parkour",
-    "description": "You can only change floors by rappelling or vaulting. Stairs don't exist for you.",
-    "sides": [
-      "ATT"
-    ]
-  },
-  {
-    "title": "Slow and Steady",
-    "description": "You must Alt-walk the entire round.",
-    "sides": [
-      "ATT",
-      "DEF"
-    ]
-  },
-  {
-    "title": "Pacifist",
-    "description": "Murder is evil. Win the round without killing anybody.",
-    "sides": [
-      "ATT"
-    ]
-  },
-  {
-    "title": "Noob Team",
-    "description": "Recruit only.",
-    "sides": [
-      "ATT",
-      "DEF"
-    ]
-  },
-  {
-    "title": "Supressive Fire",
-    "description": "LMG mounted. And loaded. And unloaded. On everything.",
-    "sides": [
-      "ATT"
-    ]
-  },
-  {
-    "title": "Wet Work",
-    "description": "Enter and exit the building only through bathrooms.",
-    "sides": [
-      "ATT"
-    ]
-  },
-  {
-    "title": "Privacy, Please!",
-    "description": "Every door and window gets barricaded. Every wall gets reinforced. No sightlines are created. Privacy is important. Bring Mute for EXTRA privacy from drones.",
-    "sides": [
-      "DEF"
-    ]
-  },
-  {
-    "title": "Spinbot",
-    "description": "Mouse sensitivity is over 9000! (or just 100)",
+    "title": "Boomstick",
+    "description": "A deadly squad. Unless they're more than 5 meters away.",
+    "rules": [
+      "Only use shotguns."
+    ],
     "sides": [
       "ATT",
       "DEF"
@@ -228,7 +77,74 @@
   },
   {
     "title": "Bravo Six, going dark!",
-    "description": "Set your game's brightness to 10.",
+    "description": "Hope you brought night vision goggles.",
+    "rules": [
+      "Set your in-game brightness to 10."
+    ],
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Doktor's Curse",
+    "description": "The experiments are loose!",
+    "rules": [
+      "No guns allowed.",
+      "Make your traps and knives count."
+    ],
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "G2 vs TT9",
+    "description": "\"They can only drone us if we move!\" -Alemao, probably",
+    "rules": [
+      "Don't move during preparation phase. No walking, no turning, no reinforcing, no shooting drones."
+    ],
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Grounded",
+    "description": "Take the stairs",
+    "rules": [
+      "You are not allowed to rappel, vault or climb ladders."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Hot Breach",
+    "description": "E3 2014 called. It wants its Siege trailer back.",
+    "rules": [
+      "Everyone brings breach charges.",
+      "Everyone picks a window and hot-breaches into the building at the same time."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Hot Drop Retake",
+    "description": "Strike from above",
+    "rules": [
+      "Wait on a hatch above site until the objective is being taken or defused.",
+      "As soon as the objective is being taken or defused, hot-drop the hatch and retake site."
+    ],
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Iron Sights only",
+    "description": "What do you mean you can't see?",
+    "rules": [
+      "Unequip any sights on your guns."
+    ],
     "sides": [
       "ATT",
       "DEF"
@@ -236,7 +152,266 @@
   },
   {
     "title": "King's Guard",
-    "description": "One player is the king (aka Tachanka) while the rest is his guard. Protect the king. If he dies, commit sudoku or surrender yourself to the enemy.",
+    "description": "Rainbow Six: Secret Service",
+    "requiredOperators": [
+      "Tachanka"
+    ],
+    "rules": [
+      "Bring Tachanka.",
+      "Protect Tachanka at all costs.",
+      "If Tachanka dies, the rest commits sudoku or surrenders themselves to the enemy."
+    ],
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Lucky Luke",
+    "description": "Click faster than your shadow.",
+    "rules": [
+      "Only use handguns.",
+      "Machine pistols and secondary shotguns are disallowed.",
+      "Bonus points for Deagle and Revolver only."
+    ],
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "No backing off!",
+    "description": "My W key is stuck!",
+    "rules": [
+      "As soon as Action Phase starts, you hold W.",
+      "Don't let go of W until you win or die."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Noob Team",
+    "description": "They wear matching outfits!",
+    "rules": [
+      "Everyone picks Recruit.",
+      "Everyone picks the same loadout."
+    ],
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "One in the Chamber",
+    "description": "One tap",
+    "rules": [
+      "You may only shoot at enemies with one bullet in the chamber.",
+      "Use reload cancel to empty your magazines.",
+      "Shotguns are disallowed."
+    ],
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Pacifist",
+    "description": "Murder is evil.",
+    "rules": [
+      "You are not allowed to hurt the enemy.",
+      "Non-lethal gadgets are allowed (Airjab, EMP, Candela, Stun Grenades etc)."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Parkour",
+    "description": "Parkour!",
+    "rules": [
+      "You are not allowed to take stairs.",
+      "You can only change floors by rappelling or hatch dropping."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Phalanx",
+    "description": "The wall is moving!",
+    "requiredOperators": [
+      "Blackbeard",
+      "Blitz",
+      "Fuze",
+      "Montagne",
+      "Osa"
+    ],
+    "rules": [
+      "Bring Blackbeard, Blitz, Fuze (Shield), Montagne and Osa.",
+      "Blackbeard: Immediately attach your shields when you don't have one on your gun.",
+      "Osa: When moving you must hold a shield in front of your face.",
+      "Blackbeard & Osa: If you run out of shields, you have to play behind one of your teammates."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Privacy, Please!",
+    "description": "We are very shy.",
+    "requiredOperators": [
+      "Mute"
+    ],
+    "rules": [
+      "Bring Mute and use the jammers to prevent drones from entering.",
+      "Reinforce every outside wall of site.",
+      "Reinforce every door and window you pass.",
+      "Don't create sightlines.",
+      "Shoot every default camera.",
+      "Don't bring cameras."
+    ],
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Rooted",
+    "description": "Turret Mode engaged",
+    "rules": [
+      "Pick your spot. As soon as Action Phase starts, you are not allowed to move away."
+    ],
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Slow and Steady",
+    "description": "Very slow. Very very slow.",
+    "rules": [
+      "You can only move by Alt-walking."
+    ],
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Speedrun",
+    "description": "Rush B",
+    "rules": [
+      "Take the most direct route to site. No roam clearing."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Spinbot",
+    "description": "We don't have better aim, we have MORE aim!",
+    "rules": [
+      "Set either your in-game mouse sensitivity to 100 or your mouse DPI to the maximum."
+    ],
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Splinter Cell",
+    "description": "Pew.",
+    "requiredOperators": [
+      "Zero"
+    ],
+    "rules": [
+      "Only use silenced handguns.",
+      "Machine pistols and secondary shotguns are disallowed.",
+      "Attackers: Bring Zero. Everyone else follow his lead."
+    ],
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Spotted!",
+    "description": "You can't hide!",
+    "requiredOperators": [
+      "Dokkaebi",
+      "Grim",
+      "Jackal",
+      "Lion"
+    ],
+    "rules": [
+      "Bring Dokkaebi, Grim, Jackal and Lion.",
+      "Find the enemy."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Supressive Fire",
+    "description": "LMG mounted. And loaded. And unloaded. On everything.",
+    "rules": [
+      "Bring LMGs only.",
+      "As soon as you start shooting, you cannot stop until your magazine is empty."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Switcheroo",
+    "description": "The room is safe! What do you mean they planted?",
+    "rules": [
+      "Completely reinforce a different site on the map.",
+      "The other site can't share a room with the actual site (e.g. Kitchen / Dining and Kitchen / Meeting on Oregon)."
+    ],
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "The Floor is Lava",
+    "description": "Channel your inner Obi-Wan",
+    "rules": [
+      "As soon as Action Phase starts, you may only shoot from elevated positions.",
+      "You may only touch the lava to sprint directly to a new high ground."
+    ],
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "The Snake",
+    "description": "snek",
+    "rules": [
+      "Inside the building, you are only allowed to move while prone.",
+      "You may stand up to shoot, but need to go prone again to continue moving."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Wet Work",
+    "description": "Something smells here",
+    "rules": [
+      "You are only allowed to enter and exit the building through bathrooms."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Year 1 Turtle",
+    "description": "Site is Home. Site is Safe Space.",
+    "rules": [
+      "Bring only Pathfinder operators.",
+      "Reinforce every wall, door and window of site.",
+      "Sit in site for the entire round.",
+      "Pray they don't bring Fuze."
+    ],
     "sides": [
       "DEF"
     ]

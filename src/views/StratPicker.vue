@@ -26,7 +26,11 @@ const pickedStrat = ref(null);
  * @param {"ATT" | "DEF"} side The side to pick the strat for.
  */
 function pickRandomStrat(side) {
-  const pool = STRATS.filter((s) => s.sides.includes(side));
+  const pool = STRATS.filter((s) => {
+    if (pickedStrat.value && s.title === pickedStrat.value.title) return false;
+    return s.sides.includes(side);
+  });
+
   [pickedStrat.value] = pickRandom(pool);
 }
 </script>
