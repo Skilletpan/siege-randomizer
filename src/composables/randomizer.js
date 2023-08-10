@@ -11,6 +11,10 @@ export function pickRandom(pool, amount = 1, allowDuplicates = false) {
   const remainingItems = [...pool];
   const pickedItems = [];
 
+  // Return empty or single item list
+  if (remainingItems.length <= 1) return remainingItems;
+
+  // Randomly pick from remaining items
   while (pickedItems.length < amount && pool.length >= 0) {
     const index = Math.floor(Math.random() * remainingItems.length);
 
