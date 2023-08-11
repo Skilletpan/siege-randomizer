@@ -8,9 +8,11 @@
 
       <!-- Filters -->
       <v-col cols="3">
-        <v-select v-model="pickedPlaylist" hide-details :items="PLAYLISTS" label="Playlist" variant="solo-filled"
-          @update:model-value="clearPicks" />
-        <v-btn block class="mt-4" color="primary" :text="pickedMap ? 'Repick' : 'Randomize'" @click="pickMap" />
+        <v-card color="transparent" elevation="0" max-width="300">
+          <v-select v-model="pickedPlaylist" hide-details :items="PLAYLISTS" label="Playlist" variant="solo-filled"
+            @update:model-value="clearPicks" />
+          <v-btn block class="mt-4" color="primary" :text="pickedMap ? 'Repick' : 'Randomize'" @click="pickMap" />
+        </v-card>
       </v-col>
     </v-row>
 
