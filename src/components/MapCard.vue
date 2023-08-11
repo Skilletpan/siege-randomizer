@@ -1,34 +1,40 @@
 <template>
   <v-card variant="tonal" :width="big ? 500 : 300">
-    <v-img :alt="map.name" :src="image">
-      <v-skeleton-loader v-if="!value" type="image" />
-    </v-img>
-    <v-card-title class="text-center">{{ map.name }}</v-card-title>
-    <v-card-text v-if="detailed && false">
-      <strong>Playlists:</strong>
-      {{ map.playlists.join(' • ') }}
-    </v-card-text>
+    <v-img :alt="value.name" :aspect-ratio="16 / 9" :class="{ inactive }" :lazy-src="require('@/assets/maps/BANK.jpg')"
+      :src="image" />
+    <v-card-title :class="{ 'text-button': isEmptyRandomize, 'text-center': true, 'text-primary': isEmptyRandomize }">
+      {{ value.name }}
+    </v-card-title>
   </v-card>
 </template>
 
 <script setup>
 import { computed, defineProps } from 'vue';
-import { VSkeletonLoader } from 'vuetify/lib/labs/components.mjs';
 
 // Define input properties
 const props = defineProps({
   big: {
     type: Boolean
   },
-  detailed: {
+
+  inactive: {
     type: Boolean
   },
+
   value: {
+    default: () => ({ name: 'Randomize' }),
     type: Object
   }
 });
 
 // Define computed properties
-const map = computed(() => props.value || { key: 'NONE', name: 'None' });
-const image = computed(() => props.value ? require(`@/assets/maps/${map.value.key}.jpg`) : null);
+const image = computed(() => props.value.key ? require(`@/assets/maps/${props.value.key}.jpg`) : null);
+const isEmptyRandomize = computed(() => !props.value.key && props.big);
 </script>
+
+<style scoped>
+.inactive {
+  -webkit-filter: grayscale(100%);
+  filter: grayscale(100%);
+}
+</style>
