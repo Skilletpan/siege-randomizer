@@ -1,6 +1,6 @@
 <template>
   <v-card variant="tonal" :width="big ? 500 : 300">
-    <v-img :alt="value.name" :aspect-ratio="16 / 9" :class="{ inactive }" :lazy-src="require('@/assets/maps/BANK.jpg')"
+    <v-img :alt="value.name" :aspect-ratio="16 / 9" :class="{ inactive }" :lazy-src="require('@/assets/maps/OREGON.jpg')"
       :src="image" />
     <v-card-title :class="{ 'text-button': isEmptyRandomize, 'text-center': true, 'text-primary': isEmptyRandomize }">
       {{ value.name }}
