@@ -33,7 +33,7 @@ jobs:
         run: git add dist -f
       
       - name: Create build commit
-        run: git commit -m "${{ github.event[0].message }}"
+        run: git commit -m "${{ github.event.commits[0].message }}"
 
       - name: Create build directory subtree
         run: git subtree split --prefix dist -b gh-pages
