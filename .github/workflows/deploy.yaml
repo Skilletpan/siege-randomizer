@@ -1,0 +1,36 @@
+name: Deploy
+on:
+  push:
+    branches: [ master, develop ]
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Checkout master branch
+        run: git checkout master
+      
+      - name: Create builder branch
+        run: git checkout -b gh-pages-build
+      
+      - name: Build project
+        run: npm run build
+      
+      - name: Add build files
+        run: git add dist -f
+      
+      - name: Create build commit
+        run: git commit -m "{{ github.event[0].message }}"
+
+      - name: Create build directory subtree
+        run: git subtree split --prefix dist -b gh-pages
+      
+      - name: Push build directory to pages branch
+        run: git push -f origin gh-pages:pages
