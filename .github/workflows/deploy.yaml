@@ -1,9 +1,9 @@
 name: Deploy
 on:
   push:
-    branches: [ master, develop ]
+    branches: [ master ]
 jobs:
-  Deploy-App:
+  deploy-app:
     runs-on: ubuntu-latest
     steps:
       - name: Setup NodeJS
