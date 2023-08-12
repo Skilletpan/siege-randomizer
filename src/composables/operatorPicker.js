@@ -15,8 +15,6 @@ import { pickRandom } from "./randomizer";
  * @returns {Object[]} The picked operator(s).
  */
 export function pickRandomOperators(options = {}) {
-  console.debug(options);
-
   // Build operator pool from provided filter options.
   const pool = OPERATORS.filter((o) => {
     // Apply specified filters

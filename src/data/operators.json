@@ -1,5 +1,6 @@
 [
   {
+    "key": "ACE",
     "name": "Ace",
     "roles": [
       "Anti-Gadget",
@@ -10,6 +11,7 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "ALIBI",
     "name": "Alibi",
     "roles": [
       "Intel",
@@ -20,6 +22,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "AMARU",
     "name": "Amaru",
     "roles": [
       "Front Line",
@@ -30,6 +33,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "ARUNI",
     "name": "Aruni",
     "roles": [
       "Anti-Entry",
@@ -40,6 +44,7 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "ASH",
     "name": "Ash",
     "roles": [
       "Breach",
@@ -50,6 +55,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "AZAMI",
     "name": "Azami",
     "roles": [
       "Anti-Entry",
@@ -60,6 +66,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "BANDIT",
     "name": "Bandit",
     "roles": [
       "Anti-Entry",
@@ -70,6 +77,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "BLACKBEARD",
     "name": "Blackbeard",
     "roles": [
       "Support"
@@ -79,6 +87,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "BLITZ",
     "name": "Blitz",
     "roles": [
       "Front Line",
@@ -89,6 +98,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "BRAVA",
     "name": "Brava",
     "roles": [
       "Anti-Gadget",
@@ -99,6 +109,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "BUCK",
     "name": "Buck",
     "roles": [
       "Breach",
@@ -109,6 +120,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "CAPITAO",
     "name": "Capitão",
     "roles": [
       "Front Line",
@@ -119,6 +131,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "CASTLE",
     "name": "Castle",
     "roles": [
       "Anti-Entry",
@@ -129,6 +142,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "CAVEIRA",
     "name": "Caveira",
     "roles": [
       "Crowd Control",
@@ -139,6 +153,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "CLASH",
     "name": "Clash",
     "roles": [
       "Crowd Control",
@@ -149,6 +164,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "DOC",
     "name": "Doc",
     "roles": [
       "Support"
@@ -158,6 +174,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "DOKKAEBI",
     "name": "Dokkaebi",
     "roles": [
       "Intel",
@@ -168,6 +185,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "ECHO",
     "name": "Echo",
     "roles": [
       "Crowd Control",
@@ -178,6 +196,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "ELA",
     "name": "Ela",
     "roles": [
       "Crowd Control",
@@ -188,6 +207,7 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "FENRIR",
     "name": "Fenrir",
     "roles": [
       "Trapper"
@@ -197,6 +217,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "FINKA",
     "name": "Finka",
     "roles": [
       "Front Line",
@@ -207,6 +228,7 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "FLORES",
     "name": "Flores",
     "roles": [
       "Anti-Gadget",
@@ -217,6 +239,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "FROST",
     "name": "Frost",
     "roles": [
       "Anti-Entry",
@@ -227,6 +250,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "FUZE",
     "name": "Fuze",
     "roles": [
       "Anti-Gadget"
@@ -236,6 +260,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "GLAZ",
     "name": "Glaz",
     "roles": [
       "Intel",
@@ -246,6 +271,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "GOYO",
     "name": "Goyo",
     "roles": [
       "Anti-Entry",
@@ -256,6 +282,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "GRIDLOCK",
     "name": "Gridlock",
     "roles": [
       "Map Control",
@@ -266,6 +293,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "GRIM",
     "name": "Grim",
     "roles": [
       "Front Line",
@@ -276,6 +304,7 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "HIBANA",
     "name": "Hibana",
     "roles": [
       "Breach",
@@ -286,6 +315,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "IANA",
     "name": "Iana",
     "roles": [
       "Front Line",
@@ -296,6 +326,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "IQ",
     "name": "IQ",
     "roles": [
       "Intel",
@@ -306,6 +337,7 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "JACKAL",
     "name": "Jackal",
     "roles": [
       "Intel",
@@ -316,6 +348,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "JAGER",
     "name": "Jäger",
     "roles": [
       "Anti-Gadget",
@@ -326,6 +359,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "KAID",
     "name": "Kaid",
     "roles": [
       "Anti-Entry",
@@ -336,6 +370,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "KALI",
     "name": "Kali",
     "roles": [
       "Anti-Gadget",
@@ -346,6 +381,7 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "KAPKAN",
     "name": "Kapkan",
     "roles": [
       "Anti-Entry",
@@ -356,6 +392,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "LESION",
     "name": "Lesion",
     "roles": [
       "Anti-Entry",
@@ -366,6 +403,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "LION",
     "name": "Lion",
     "roles": [
       "Intel",
@@ -376,6 +414,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "MAESTRO",
     "name": "Maestro",
     "roles": [
       "Anti-Gadget",
@@ -386,6 +425,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "MAVERICK",
     "name": "Maverick",
     "roles": [
       "Breach",
@@ -396,6 +436,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "MELUSI",
     "name": "Melusi",
     "roles": [
       "Crowd Control",
@@ -406,6 +447,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "MIRA",
     "name": "Mira",
     "roles": [
       "Intel",
@@ -416,6 +458,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "MONTAGNE",
     "name": "Montagne",
     "roles": [
       "Intel",
@@ -426,6 +469,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "MOZZIE",
     "name": "Mozzie",
     "roles": [
       "Anti-Gadget",
@@ -436,6 +480,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "MUTE",
     "name": "Mute",
     "roles": [
       "Anti-Gadget",
@@ -446,6 +491,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "NOKK",
     "name": "Nøkk",
     "roles": [
       "Front Line",
@@ -456,6 +502,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "NOMAD",
     "name": "Nomad",
     "roles": [
       "Front Line",
@@ -466,6 +513,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "ORYX",
     "name": "Oryx",
     "roles": [
       "Support"
@@ -475,6 +523,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "OSA",
     "name": "Osa",
     "roles": [
       "Intel",
@@ -485,6 +534,7 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "PULSE",
     "name": "Pulse",
     "roles": [
       "Intel",
@@ -495,6 +545,7 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "ROOK",
     "name": "Rook",
     "roles": [
       "Support"
@@ -504,6 +555,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "SENS",
     "name": "Sens",
     "roles": [
       "Map Control",
@@ -514,6 +566,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "SLEDGE",
     "name": "Sledge",
     "roles": [
       "Anti-Gadget",
@@ -524,6 +577,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "SMOKE",
     "name": "Smoke",
     "roles": [
       "Anti-Entry",
@@ -534,6 +588,7 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "SOLIS",
     "name": "Solis",
     "roles": [
       "Intel",
@@ -544,6 +599,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "TACHANKA",
     "name": "Tachanka",
     "roles": [
       "Anti-Entry",
@@ -554,6 +610,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "THATCHER",
     "name": "Thatcher",
     "roles": [
       "Anti-Gadget",
@@ -564,6 +621,7 @@
     "squad": "Viperstrike"
   },
   {
+    "key": "THERMITE",
     "name": "Thermite",
     "roles": [
       "Breach",
@@ -574,6 +632,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "THORN",
     "name": "Thorn",
     "roles": [
       "Anti-Entry",
@@ -584,6 +643,7 @@
     "squad": "Redhammer"
   },
   {
+    "key": "THUNDERBIRD",
     "name": "Thunderbird",
     "roles": [
       "Support"
@@ -593,6 +653,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "TWITCH",
     "name": "Twitch",
     "roles": [
       "Anti-Gadget",
@@ -603,6 +664,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "VALKYRIE",
     "name": "Valkyrie",
     "roles": [
       "Intel",
@@ -613,6 +675,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "VIGIL",
     "name": "Vigil",
     "roles": [
       "Anti-Gadget",
@@ -623,6 +686,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "WAMAI",
     "name": "Wamai",
     "roles": [
       "Anti-Gadget",
@@ -633,6 +697,7 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "WARDEN",
     "name": "Warden",
     "roles": [
       "Anti-Gadget",
@@ -643,6 +708,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "YING",
     "name": "Ying",
     "roles": [
       "Front Line",
@@ -653,6 +719,7 @@
     "squad": "Wolfguard"
   },
   {
+    "key": "ZERO",
     "name": "Zero",
     "roles": [
       "Anti-Gadget",
@@ -663,6 +730,7 @@
     "squad": "Ghosteyes"
   },
   {
+    "key": "ZOFIA",
     "name": "Zofia",
     "roles": [
       "Anti-Gadget",

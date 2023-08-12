@@ -37,13 +37,13 @@ import { MapCard } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
 import { MAPS, PLAYLISTS } from '@/data';
 
-// Define computed properties
-const mapPool = computed(() => MAPS.filter((m) => m.playlists.includes(pickedPlaylist.value)));
-
 // Define dynamic properties
 const pickedPlaylist = ref(PLAYLISTS[0]);
 const pickedMap = ref(undefined);
 const disabledMaps = ref([]);
+
+// Define computed properties
+const mapPool = computed(() => MAPS.filter((m) => m.playlists.includes(pickedPlaylist.value)));
 
 /**
  * Clears the map pick and disabled maps.

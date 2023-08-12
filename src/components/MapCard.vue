@@ -1,5 +1,5 @@
 <template>
-  <v-card variant="tonal" :width="big ? 500 : 300">
+  <v-card :variant="inactive ? 'elevated' : 'tonal'" :width="big ? 500 : 300">
     <!-- Map Image -->
     <v-img :alt="value.name" :aspect-ratio="16 / 9" :class="{ inactive }" :lazy-src="PLACEHOLDER_MAP" :src="image" />
 
