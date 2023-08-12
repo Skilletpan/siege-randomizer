@@ -3,21 +3,21 @@ on:
   push:
     branches: [ master, develop ]
 jobs:
-  deploy:
+  Deploy App:
     runs-on: ubuntu-latest
     steps:
       - name: Setup NodeJS
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
-      
-      - name: Set git user
-        run: git config user.email "skilletpan.14@gmail.com" && git config user.name "Skilletpan"
 
       - name: Checkout repository
         uses: actions/checkout@v3
         with:
           ref: master
+      
+      - name: Set git user
+      run: git config user.email "skilletpan.14@gmail.com" && git config user.name "Skilletpan"
       
       - name: Install NPM packages
         run: npm install
