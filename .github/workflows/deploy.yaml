@@ -13,9 +13,8 @@ jobs:
 
       - name: Checkout repository
         uses: actions/checkout@v3
-
-      - name: Checkout master branch
-        run: git checkout master
+        with:
+          ref: master
       
       - name: Create builder branch
         run: git checkout -b gh-pages-build
