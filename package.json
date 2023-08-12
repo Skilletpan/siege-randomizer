@@ -5,10 +5,7 @@
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "predeploy": "npm run build",
-    "deploy": "git add dist -f && git commit -m \"DEPLOY_NAME\" && git subtree push --prefix dist origin pages",
-    "postdeploy": "git reset HEAD~"
+    "lint": "vue-cli-service lint"
   },
   "dependencies": {
     "@mdi/font": "5.9.55",
