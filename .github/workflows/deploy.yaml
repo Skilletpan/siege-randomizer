@@ -10,6 +10,9 @@ jobs:
         uses: actions/setup-node@v3
         with:
           node-version: 18.x
+      
+      - name: Set git user
+        run: git config user.email "skilletpan.14@gmail.com" && git config user.name "Skilletpan"
 
       - name: Checkout repository
         uses: actions/checkout@v3
@@ -29,7 +32,7 @@ jobs:
         run: git add dist -f
       
       - name: Create build commit
-        run: git commit -m "{{ github.event[0].message }}" --author="Skilletpan <skilletpan.14@gmail.com>"
+        run: git commit -m "{{ github.event[0].message }}"
 
       - name: Create build directory subtree
         run: git subtree split --prefix dist -b gh-pages
