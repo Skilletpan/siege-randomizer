@@ -54,9 +54,16 @@ const props = defineProps({
 });
 
 // Define computed properties
-const icon = computed(() => props.value.key ? require(`@/assets/icons/${props.value.key}.png`) : null);
-const portrait = computed(() => props.value.key ? require(`@/assets/portraits/${props.value.key}.png`) : null);
 const isEmptyRandomize = computed(() => !props.value.key && props.big);
+const icon = computed(() => props.value.key ? require(`@/assets/icons/${props.value.key}.png`) : null);
+const portrait = computed(() => {
+  // Return null if no operator is given
+  if (!props.value.key) return null;
+
+  // Return Ash easter egg portrait or normal operator portrait
+  if (props.value.key === 'ASH' && Math.floor(Math.random() * 50) === 0) return require('@/assets/portraits/ASH_2.png');
+  return require(`@/assets/portraits/${props.value.key}.png`);
+});
 </script>
 
 <style scoped>
