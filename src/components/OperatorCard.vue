@@ -60,8 +60,13 @@ const portrait = computed(() => {
   // Return null if no operator is given
   if (!props.value.key) return null;
 
-  // Return Ash easter egg portrait or normal operator portrait
-  if (props.value.key === 'ASH' && Math.floor(Math.random() * 50) === 0) return require('@/assets/portraits/ASH_2.png');
+  // Return easter egg portrait (1 in 50 chance)
+  const easterEggOperators = ['ASH'];
+  if (easterEggOperators.includes(props.value.key) && Math.floor(Math.random() * 50) === 0) {
+    return require(`@/assets/portraits/${props.value.key}_2.png`);
+  }
+
+  // Return normal operator portrait
   return require(`@/assets/portraits/${props.value.key}.png`);
 });
 </script>
