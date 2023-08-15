@@ -545,6 +545,16 @@
     "squad": "Nighthaven"
   },
   {
+    "key": "RAM",
+    "name": "Ram",
+    "roles": [
+      "Breach"
+    ],
+    "side": "ATT",
+    "speed": 1,
+    "squad": "Redhammer"
+  },
+  {
     "key": "ROOK",
     "name": "Rook",
     "roles": [
