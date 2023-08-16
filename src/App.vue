@@ -7,12 +7,9 @@
     <v-main>
       <router-view />
     </v-main>
-
-    <!-- Match Drawer -->
-    <match-drawer />
   </v-app>
 </template>
 
 <script setup>
-import { MatchDrawer, NavigationDrawer } from '@/components';
+import { NavigationDrawer } from '@/components';
 </script>
