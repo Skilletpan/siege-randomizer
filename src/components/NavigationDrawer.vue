@@ -1,53 +1,69 @@
 <template>
   <v-navigation-drawer :rail="!expanded">
-    <v-list nav>
-      <!-- Menu Icon and Page Title -->
-      <v-list-item prepend-icon="mdi-menu" @click="expanded = !expanded">
-        <v-list-item-title class="font-weight-bold text-body-1">Siege Randomizer</v-list-item-title>
-      </v-list-item>
-
-      <v-divider class="mb-1" />
-
-
-      <!-- Navigation Items -->
-      <v-list-item v-for="n in navigationItems" :key="n.title" :prepend-icon="n.prependIcon" :title="n.title"
-        :to="n.to" />
-    </v-list>
+    <v-list :items="navigationItems" nav />
   </v-navigation-drawer>
 </template>
 
 <script setup>
-import { ref } from 'vue';
-
-// Define static properties
-const navigationItems = [
-  {
-    title: 'Map Picker',
-    prependIcon: 'mdi-warehouse',
-    to: 'maps'
-  },
-  {
-    title: 'Team Picker',
-    prependIcon: 'mdi-account-group',
-    to: 'teams'
-  },
-  {
-    title: 'Operator Picker',
-    prependIcon: 'mdi-account',
-    to: 'operators'
-  },
-  {
-    title: 'Lineup Picker',
-    prependIcon: 'mdi-account-group',
-    to: 'lineups'
-  },
-  {
-    title: 'Strat Roulette',
-    prependIcon: 'mdi-strategy',
-    to: 'strats'
-  }
-];
+import { computed, ref } from 'vue';
 
 // Define dynamic properties
 const expanded = ref(true);
+
+// Define computed properties
+const navigationItems = computed(() => [
+  {
+    title: 'Siege Randomizer',
+    props: {
+      prependIcon: 'mdi-menu',
+      onClick: () => expanded.value = !expanded.value
+    }
+  },
+  {
+    type: 'divider',
+    props: {
+      class: 'mb-1'
+    }
+  },
+  {
+    title: 'Randomizers',
+    type: 'subheader',
+    expandedOnly: true
+  },
+  {
+    title: 'Maps',
+    props: {
+      prependIcon: 'mdi-warehouse',
+      to: 'maps'
+    }
+  },
+  {
+    title: 'Teams',
+    props: {
+      prependIcon: 'mdi-account-group',
+      to: 'teams'
+    }
+  },
+  {
+    title: 'Operators',
+    props: {
+      prependIcon: 'mdi-account',
+      to: 'operators'
+    }
+  },
+  {
+    title: 'Lineups',
+    props: {
+      prependIcon: 'mdi-account-group',
+      to: 'lineups'
+    }
+  },
+  {
+    title: 'Strats',
+    props: {
+      prependIcon: 'mdi-strategy',
+      to: 'strats'
+    }
+  }
+].filter((i) => i.expandedOnly ? expanded.value : true));
 </script>
