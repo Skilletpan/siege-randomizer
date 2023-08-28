@@ -44,12 +44,27 @@
       <v-col
         v-for="(s, index) in STRATS"
         :key="index"
-        cols="3"
+        cols="4"
       >
         <v-card
-          :title="s.title"
+          class="align-center d-flex"
           @click="previewDialog.strat = s; previewDialog.show = true;"
-        />
+        >
+          <!-- Strat Name and Description -->
+          <v-col class="pa-0">
+            <v-card-title class="align-center d-flex flex-nowrap pb-0">{{ s.title }}</v-card-title>
+            <v-card-subtitle class="mb-2">{{ s.description }}</v-card-subtitle>
+          </v-col>
+
+          <!-- Strat Side Icons -->
+          <v-col
+            v-for="si in s.sides"
+            :key="si"
+            cols="auto"
+          >
+            <v-icon :icon="si === 'ATT' ? 'mdi-sword-cross' : 'mdi-chess-rook'" />
+          </v-col>
+        </v-card>
       </v-col>
     </v-row>
   </v-container>
