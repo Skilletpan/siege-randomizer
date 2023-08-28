@@ -1,114 +1,115 @@
 <template>
-  <v-container>
-    <v-row class="py-12" align="end" justify="center">
-      <!-- Operator Card -->
-      <v-col cols="auto" offset="3">
-        <operator-card big :value="pickedOperator" @click="pickOperator" />
+  <v-container
+    v-bind="$attrs"
+    class="pt-12"
+  >
+    <v-row justify="center">
+      <!-- Operator Cards -->
+      <v-col
+        v-for="(o, index) in pickedOperators"
+        :key="`${o.key}_${index}`"
+        cols="auto"
+      >
+        <operator-card :value="o.key" />
       </v-col>
 
-      <!-- Filters -->
-      <v-col cols="3">
-        <v-card color="transparent" elevation="0" max-width="300">
-          <!-- Side -->
-          <v-radio-group v-model="pickedSide" inline hide-details @update:model-value="clearPicks">
-            <v-radio label="All" :value="null" />
-            <v-radio label="Attacker" value="ATT" />
-            <v-radio label="Defender" value="DEF" />
-          </v-radio-group>
+      <!-- Randomize Button -->
+      <v-col
+        align="center"
+        cols="12"
+      >
+        <v-btn
+          color="primary"
+          :disabled="!operatorPool.length"
+          icon="mdi-dice-multiple-outline"
+          size="x-large"
+          @click="pickOperator"
+        />
+      </v-col>
 
-          <!-- Speed -->
-          <v-select v-model="pickedSpeeds" class="mt-4" clearable hide-details :items="[1, 2, 3]" label="Speed" multiple
-            variant="solo-filled" @update:model-value="clearPicks" />
+      <!-- Operator Pool Title -->
+      <v-col
+        cols="12"
+        class="text-center"
+        tag="h2"
+      >
+        Operator Pool
+      </v-col>
 
-          <!-- Role -->
-          <v-select v-model="pickedRoles" class="mt-4" clearable hide-details :items="ROLES" label="Role" multiple
-            variant="solo-filled" @update:model-value="clearPicks" />
-
-          <!-- Squad -->
-          <v-select v-model="pickedSquads" class="mt-4" clearable hide-details :items="SQUADS" label="Squad" multiple
-            variant="solo-filled" @update:model-value="clearPicks" />
-
-          <!-- Randomize Button -->
-          <v-btn block class="mt-4" color="primary" :text="pickedOperator ? 'Repick' : 'Randomize'"
-            @click="pickOperator" />
+      <!-- Operator Pool -->
+      <v-col
+        v-for="o in operatorPool"
+        :key="o.key"
+        cols="2"
+      >
+        <v-card class="px-0">
+          <operator-item :value="o.key" />
         </v-card>
       </v-col>
     </v-row>
-
-    <!-- Operator Pool Title -->
-    <v-row justify="center">
-      <v-col cols="auto" class="text-center" tag="h2">Operator Pool</v-col>
-    </v-row>
-
-    <v-row justify="center">
-      <v-col v-for="o in operatorPool" :key="o.key" cols="auto">
-        <operator-card :inactive="disabledOperators.includes(o)" :value="o" @click="toggleInactive(o)" />
-      </v-col>
-    </v-row>
   </v-container>
+
+  <!-- Operator Filter Drawer -->
+  <operator-filter-drawer
+    v-model:disabledOperators="operatorFilters.disabled"
+    v-model:duplicates="operatorFilters.allowDuplicates"
+    v-model:picks="operatorFilters.picks"
+    v-model:roles="operatorFilters.roles"
+    v-model:sides="operatorFilters.sides"
+    v-model:speeds="operatorFilters.speeds"
+    v-model:squads="operatorFilters.squads"
+  />
 </template>
 
 <script setup>
 import { computed, ref } from 'vue';
 
-import { OperatorCard } from '@/components';
+import { OperatorCard, OperatorFilterDrawer, OperatorItem } from '@/components';
 import { pickRandomOperators } from '@/composables/operatorPicker';
-import { OPERATORS, ROLES, SQUADS } from '@/data';
+import { OPERATORS } from '@/data';
 
 // Define dynamic properties
-const pickedRoles = ref([]);
-const pickedSide = ref(null);
-const pickedSpeeds = ref([]);
-const pickedSquads = ref([]);
-const pickedOperator = ref(undefined);
-const disabledOperators = ref([]);
+const operatorFilters = ref({
+  allowDuplicates: false,
+  disabled: [],
+  picks: 1,
+  roles: [],
+  sides: ['ATT', 'DEF'],
+  speeds: [1, 2, 3],
+  squads: []
+});
+
+const pickedOperators = ref([]);
 
 // Define computed properties
 const operatorPool = computed(() => OPERATORS.filter((o) => {
   // Apply selected filters
-  if (pickedSide.value && pickedSide.value !== o.side) return false;
-  if (pickedRoles.value.length && pickedRoles.value.some((r) => !o.roles.includes(r))) return false;
-  if (pickedSpeeds.value.length && !pickedSpeeds.value.includes(o.speed)) return false;
-  if (pickedSquads.value.length && !pickedSquads.value.includes(o.squad)) return false;
+  if (operatorFilters.value.disabled.includes(o.key)) return false;
+  if (!operatorFilters.value.roles.every((r) => o.roles.includes(r))) return false;
+  if (!operatorFilters.value.sides.includes(o.side)) return false;
+  if (!operatorFilters.value.speeds.includes(o.speed)) return false;
+  if (operatorFilters.value.squads.length && !operatorFilters.value.squads.includes(o.squad)) return false;
 
   return true;
 }));
 
 /**
- * Clears the operator pick and disabled operators.
- */
-function clearPicks() {
-  pickedOperator.value = undefined;
-  disabledOperators.value = [];
-}
-
-/**
  * Picks a random operator from the operator pool.
  */
 function pickOperator() {
+  const { allowDuplicates, disabled, picks, roles, sides, speeds, squads } = operatorFilters.value;
+
   // Build filter object
-  const filters = { exclude: [...disabledOperators.value] };
-  if (pickedOperator.value) filters.exclude.push(pickedOperator.value);
-  if (pickedSide.value) filters.side = pickedSide.value;
-  if (pickedRoles.value.length) filters.roles = pickedRoles.value;
-  if (pickedSpeeds.value.length) filters.speeds = pickedSpeeds.value;
-  if (pickedSquads.value.length) filters.squads = pickedSquads.value;
+  const filters = { allowDuplicates, amount: picks, exclude: [...disabled] };
+
+  if (picks === 1 && pickedOperators.value.length === 1) filters.exclude.push(pickedOperators.value[0].key);
+  if (roles.length) filters.roles = roles;
+  if (sides.length) filters.sides = sides;
+  if (speeds.length) filters.speeds = speeds;
+  if (squads.length) filters.squads = squads;
 
   // Pick random operator
-  [pickedOperator.value] = pickRandomOperators(filters);
-}
-
-/**
- * Toggles the inactive status of an operator.
- * 
- * @param {String} key The key of the operator to toggle.
- */
-function toggleInactive(operator) {
-  // Find operator index
-  const operatorIndex = disabledOperators.value.indexOf(operator);
-
-  // Add or remove operator from list
-  if (operatorIndex === -1) disabledOperators.value.push(operator);
-  else disabledOperators.value.splice(operatorIndex, 1);
+  pickedOperators.value.length = 0;
+  pickedOperators.value = pickRandomOperators(filters);
 }
 </script>
