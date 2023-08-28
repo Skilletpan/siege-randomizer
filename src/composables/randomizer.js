@@ -8,12 +8,12 @@
  * @returns {any[]} The randomly picked item(s).
  */
 export function pickRandom(pool, amount = 1, allowDuplicates = false) {
+  // Return empty array if pool is empty
+  if (pool.length === 0) return [];
+
   const remainingItems = [...pool];
   const pickedItems = [];
-  const pickAmount = Math.min(amount, pool.length);
-
-  // Return empty or single item list
-  if (remainingItems.length <= 1) return remainingItems;
+  const pickAmount = allowDuplicates ? amount : Math.min(amount, pool.length);
 
   // Randomly pick from remaining items
   while (pickedItems.length < pickAmount && pool.length >= 0) {
