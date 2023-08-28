@@ -32,8 +32,22 @@
   {
     "title": "Alternate Arms",
     "description": "What even are these?",
+    "disallowedOperators": {
+      "ATT": [
+        "BLITZ",
+        "GLAZ",
+        "KALI",
+        "MONTAGNE"
+      ],
+      "DEF": [
+        "CLASH"
+      ]
+    },
     "rules": [
-      "Set your main gun, handgun and secondary gadget to a different one than you have currently equipped."
+      "Pick a random operator.",
+      "Equip a different main gun.",
+      "Equip a different secondary gun.",
+      "Equip a different secondary gadget."
     ],
     "sides": [
       "ATT",
@@ -63,6 +77,55 @@
   {
     "title": "Blackout",
     "description": "No recharging your phone",
+    "disallowedOperators": {
+      "ATT": [
+        "ACE",
+        "BLITZ",
+        "BRAVA",
+        "DOKKAEBI",
+        "FLORES",
+        "FUZE",
+        "GRIM",
+        "HIBANA",
+        "IANA",
+        "IQ",
+        "JACKAL",
+        "LION",
+        "NOKK",
+        "NOMAD",
+        "SENS",
+        "THERMITE",
+        "TWITCH",
+        "YING",
+        "ZERO"
+      ],
+      "DEF": [
+        "ALIBI",
+        "ARUNI",
+        "BANDIT",
+        "CLASH",
+        "ECHO",
+        "ELA",
+        "FENRIR",
+        "JAGER",
+        "KAID",
+        "KAPKAN",
+        "LESION",
+        "MAESTRO",
+        "MELUSI",
+        "MOZZIE",
+        "MUTE",
+        "PULSE",
+        "SMOKE",
+        "SOLIS",
+        "THORN",
+        "THUNDERBIRD",
+        "VALKYRIE",
+        "VIGIL",
+        "WAMAI",
+        "WARDEN"
+      ]
+    },
     "requiredOperators": {
       "ATT": [
         "THATCHER"
@@ -136,6 +199,11 @@
   {
     "title": "Grounded",
     "description": "Take the stairs",
+    "disallowedOperators": {
+      "ATT": [
+        "AMARU"
+      ]
+    },
     "rules": [
       "You are not allowed to rappel, vault or climb ladders."
     ],
@@ -179,6 +247,12 @@
   {
     "title": "Iron Sights only",
     "description": "What do you mean you can't see?",
+    "disallowedOperators": {
+      "ATT": [
+        "GLAZ",
+        "KALI"
+      ]
+    },
     "rules": [
       "Unequip any sights on your guns."
     ],
@@ -224,6 +298,17 @@
   {
     "title": "Might need this later",
     "description": "When did I get 250 health potions?",
+    "disallowedOperators": {
+      "DEF": [
+        "CAVEIRA",
+        "CLASH",
+        "ORYX",
+        "SOLIS",
+        "TACHANKA",
+        "VIGIL",
+        "WARDEN"
+      ]
+    },
     "rules": [
       "Bring a lot of utility.",
       "Don't utilize it."
@@ -258,6 +343,11 @@
   {
     "title": "One in the Chamber",
     "description": "One tap",
+    "disallowedOperators": {
+      "ATT": [
+        "KALI"
+      ]
+    },
     "rules": [
       "You may only shoot at enemies with one bullet in the chamber.",
       "Use reload cancel to empty your magazines.",
@@ -271,6 +361,11 @@
   {
     "title": "One in the Chamber (extreme)",
     "description": "One tap",
+    "disallowedOperators": {
+      "ATT": [
+        "KALI"
+      ]
+    },
     "rules": [
       "You may only shoot at enemies with one bullet in the chamber.",
       "Use reload cancel to empty your magazines.",
@@ -335,7 +430,12 @@
       {
         "side": "ATT",
         "operator": "OSA",
-        "value": "When moving you must hold a shield in front of your face. To shoot, you must place your shield down first and shoot from behind it."
+        "value": "When moving you must hold a shield in front of your face."
+      },
+      {
+        "side": "ATT",
+        "operator": "OSA",
+        "value": "To shoot, you must place your shield down first and shoot from behind it."
       },
       {
         "side": "ATT",
@@ -361,12 +461,31 @@
   {
     "title": "Privacy, Please!",
     "description": "We are very shy.",
+    "disallowedOperators": {
+      "DEF": [
+        "ECHO",
+        "MAESTRO",
+        "MIRA",
+        "VALKYRIE"
+      ]
+    },
     "requiredOperators": {
       "DEF": [
+        "MOZZIE",
         "MUTE"
       ]
     },
     "rules": [
+      {
+        "operator": "MOZZIE",
+        "side": "DEF",
+        "value": "Use your pests to prevent drones from entering."
+      },
+      {
+        "operator": "MOZZIE",
+        "side": "DEF",
+        "value": "Immediately shoot captured drones."
+      },
       {
         "operator": "MUTE",
         "side": "DEF",
@@ -447,6 +566,23 @@
     "sides": [
       "ATT",
       "DEF"
+    ]
+  },
+  {
+    "title": "Sniper Squad",
+    "description": "Snjept",
+    "requiredOperators": {
+      "ATT": [
+        "GLAZ",
+        "KALI"
+      ]
+    },
+    "rules": [
+      "Bring DMRs with 3x scopes.",
+      "Only use primary guns."
+    ],
+    "sides": [
+      "ATT"
     ]
   },
   {
@@ -561,10 +697,14 @@
   {
     "title": "Swiss Cheese",
     "description": "Punch holes. Punch holes everywhere.",
+    "disallowedOperators": {
+      "DEF": [
+        "ARUNI"
+      ]
+    },
     "rules": [
       "Make as many punch holes in reinforcable walls as possible.",
-      "Only shoot at people through punch holes.",
-      "Aruni is disallowed."
+      "Only shoot at people through punch holes."
     ],
     "sides": [
       "DEF"

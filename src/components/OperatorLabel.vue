@@ -1,5 +1,11 @@
 <template>
-  <v-chip class="font-weight-bold" label :prepend-avatar="icon" :text="operator.name" />
+  <v-chip
+    class="font-weight-bold"
+    :color="negative ? 'error' : null"
+    label
+    :prepend-avatar="icon"
+    :text="operator.name"
+  />
 </template>
 
 <script setup>
@@ -7,27 +13,28 @@ import { computed, defineProps } from 'vue';
 
 import { OPERATORS } from '@/data';
 
+// Define input properties
 const props = defineProps({
-  value: {
+  negative: {
+    default: false,
+    type: Boolean
+  },
+
+  operatorKey: {
     required: true,
-    type: [Object, String],
-    validator: (value) => {
-      if (typeof value === 'object') return true;
-      return OPERATORS.map((o) => o.key).includes(value);
-    }
+    type: String,
+    validator: (value) => OPERATORS.map((o) => o.key).includes(value)
   }
 });
 
-const icon = computed(() => require(`@/assets/icons/${operator.value.key}.png`));
+// Define dynamic properties
+/**
+ * Fetches the operator icon.
+ */
+const icon = computed(() => require(`@/assets/icons/${props.operatorKey}.png`));
 
-const operator = computed(() => {
-  if (typeof props.value === 'object') return props.value;
-  return OPERATORS.find((o) => o.key === props.value);
-});
+/**
+ * Fetches the operator data.
+ */
+const operator = computed(() => OPERATORS.find((o) => o.key === props.operatorKey));
 </script>
-
-<style scoped>
-.operator-label {
-  width: 120px;
-}
-</style>

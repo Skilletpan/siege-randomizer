@@ -1,13 +1,70 @@
 <template>
   <v-container>
-    <v-row class="py-12" justify="center">
-      <v-col cols="auto">
-        <strat-card :side="pickedSide" :value="pickedStrat" />
-        <v-btn block class="mt-4" color="primary" text="Pick Attack Strat" @click="pickRandomStrat('ATT')" />
-        <v-btn block class="mt-4" color="primary" text="Pick Defense Strat" @click="pickRandomStrat('DEF')" />
+    <v-row
+      class="py-12"
+      justify="center"
+    >
+      <!-- Picked Strat Card -->
+      <v-col
+        v-if="picks.strat"
+        cols="auto"
+      >
+        <strat-card
+          :side="picks.side"
+          :strat="picks.strat"
+        />
+      </v-col>
+
+      <!-- Randomize Buttons -->
+      <v-col
+        align="center"
+        cols="12"
+      >
+        <v-btn
+          v-for="s in ['ATT', 'DEF']"
+          :key="s"
+          class="mx-2"
+          color="primary"
+          :icon="s === 'ATT' ? 'mdi-sword-cross' : 'mdi-chess-rook'"
+          size="x-large"
+          @click="pickRandomStrat(s)"
+        />
+      </v-col>
+
+      <!-- Strat Pool Title -->
+      <v-col
+        class="text-center"
+        cols="12"
+        tag="h2"
+      >
+        Strat Pool
+      </v-col>
+
+      <!-- Strat Pool Cards -->
+      <v-col
+        v-for="(s, index) in STRATS"
+        :key="index"
+        cols="3"
+      >
+        <v-card
+          :title="s.title"
+          @click="previewDialog.strat = s; previewDialog.show = true;"
+        />
       </v-col>
     </v-row>
   </v-container>
+
+  <!-- Strat Preview Dialog -->
+  <v-dialog
+    v-model="previewDialog.show"
+    width="auto"
+  >
+    <strat-card
+      preview
+      :side="previewDialog.strat.sides[0]"
+      :strat="previewDialog.strat"
+    />
+  </v-dialog>
 </template>
 
 <script setup>
@@ -18,8 +75,15 @@ import { pickRandom } from '@/composables/randomizer';
 import { STRATS } from '@/data';
 
 // Define dynamic properties
-const pickedSide = ref(undefined);
-const pickedStrat = ref(undefined);
+const picks = ref({
+  side: null,
+  strat: null
+});
+
+const previewDialog = ref({
+  show: false,
+  strat: null
+});
 
 /**
  * Picks a random strategy from the pool.
@@ -27,15 +91,13 @@ const pickedStrat = ref(undefined);
  * @param {"ATT" | "DEF"} side The side to pick the strat for.
  */
 function pickRandomStrat(side) {
-  pickedSide.value = side;
+  picks.value.side = side;
 
   const pool = STRATS.filter((s) => {
-    return s.title === 'Santa Claus';
-
-    // if (pickedStrat.value && s.title === pickedStrat.value.title) return false;
-    // return s.sides.includes(side);
+    if (picks.value.strat && s.title === picks.value.strat.title) return false;
+    return s.sides.includes(side);
   });
 
-  [pickedStrat.value] = pickRandom(pool);
+  [picks.value.strat] = pickRandom(pool);
 }
 </script>
