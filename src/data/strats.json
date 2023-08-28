@@ -5,8 +5,14 @@
     "rules": [
       "Only one player is active at a time.",
       "Inactive players are not allowed to move, shoot, use cams etc.",
-      "Attackers: Inactive players wait their turn outside.",
-      "Defenders: Inactive players will find a hiding spot and wait their turn there."
+      {
+        "side": "ATT",
+        "value": "Inactive players wait their turn outside."
+      },
+      {
+        "side": "DEF",
+        "value": "Inactive players will find a hiding spot and wait their turn there."
+      }
     ],
     "sides": [
       "ATT",
@@ -37,11 +43,13 @@
   {
     "title": "Big Brother",
     "description": "They see everything",
-    "requiredOperators": [
-      "Echo",
-      "Maestro",
-      "Valkyrie"
-    ],
+    "requiredOperators": {
+      "DEF": [
+        "ECHO",
+        "MAESTRO",
+        "VALKYRIE"
+      ]
+    },
     "rules": [
       "Bring Echo, Maestro, Valkyrie and 2 operators with bulletproof cameras.",
       "Place all your cameras on site.",
@@ -140,6 +148,17 @@
     ]
   },
   {
+    "title": "Hurr!",
+    "description": "Huh?",
+    "rules": [
+      "You may only communicate with Minecraft villager noises."
+    ],
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
     "title": "Iron Sights only",
     "description": "What do you mean you can't see?",
     "rules": [
@@ -153,9 +172,11 @@
   {
     "title": "King's Guard",
     "description": "Rainbow Six: Secret Service",
-    "requiredOperators": [
-      "Tachanka"
-    ],
+    "requiredOperators": {
+      "DEF": [
+        "TACHANKA"
+      ]
+    },
     "rules": [
       "Bring Tachanka.",
       "Protect Tachanka at all costs.",
@@ -215,10 +236,24 @@
     ]
   },
   {
-    "title": "Pacifist",
-    "description": "Murder is evil.",
+    "title": "One in the Chamber (extreme)",
+    "description": "One tap",
     "rules": [
-      "You are not allowed to hurt the enemy.",
+      "You may only shoot at enemies with one bullet in the chamber.",
+      "Use reload cancel to empty your magazines.",
+      "You may only bring LMGs.",
+      "Secondary guns are disallowed."
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Pacifist",
+    "description": "No defenders were hurt during the production of this round.",
+    "rules": [
+      "Win the round without hurting any enemies.",
+      "Don't bring any lethal gadgets.",
       "Non-lethal gadgets are allowed (Airjab, EMP, Candela, Stun Grenades etc)."
     ],
     "sides": [
@@ -239,17 +274,27 @@
   {
     "title": "Phalanx",
     "description": "The wall is moving!",
-    "requiredOperators": [
-      "Blackbeard",
-      "Blitz",
-      "Fuze",
-      "Montagne",
-      "Osa"
-    ],
+    "requiredOperators": {
+      "ATT": [
+        "BLACKBEARD",
+        "BLITZ",
+        "FUZE",
+        "MONTAGNE",
+        "OSA"
+      ]
+    },
     "rules": [
       "Bring Blackbeard, Blitz, Fuze (Shield), Montagne and Osa.",
-      "Blackbeard: Immediately attach your shields when you don't have one on your gun.",
-      "Osa: When moving you must hold a shield in front of your face.",
+      {
+        "side": "ATT",
+        "operator": "BLACKBEARD",
+        "value": "Immediately attach your shields when you don't have one on your gun."
+      },
+      {
+        "side": "ATT",
+        "operator": "OSA",
+        "value": "When moving you must hold a shield in front of your face. To shoot, you must place your shield down first and shoot from behind it."
+      },
       "Blackbeard & Osa: If you run out of shields, you have to play behind one of your teammates."
     ],
     "sides": [
@@ -257,11 +302,24 @@
     ]
   },
   {
+    "title": "Polygot",
+    "description": "Tower of Babel",
+    "rules": [
+      "Everyone must speak in a different language."
+    ],
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
     "title": "Privacy, Please!",
     "description": "We are very shy.",
-    "requiredOperators": [
-      "Mute"
-    ],
+    "requiredOperators": {
+      "DEF": [
+        "MUTE"
+      ]
+    },
     "rules": [
       "Bring Mute and use the jammers to prevent drones from entering.",
       "Reinforce every outside wall of site.",
@@ -271,6 +329,17 @@
       "Don't bring cameras."
     ],
     "sides": [
+      "DEF"
+    ]
+  },
+  {
+    "title": "Red Light, Green Light",
+    "description": "Really takes the \"and\" out of \"Run and Gun\".",
+    "rules": [
+      "You may not shoot and move at the same time."
+    ],
+    "sides": [
+      "ATT",
       "DEF"
     ]
   },
@@ -285,10 +354,56 @@
     ]
   },
   {
+    "title": "Rush B",
+    "description": "Rush B",
+    "rules": [
+      "Rush B"
+    ],
+    "sides": [
+      "ATT"
+    ]
+  },
+  {
+    "title": "Santa Claus",
+    "description": "We come bearing gifts!",
+    "requiredOperators": {
+      "DEF": [
+        "ROOK",
+        "THUNDERBIRD"
+      ]
+    },
+    "rules": [
+      {
+        "side": "DEF",
+        "operator": "ROOK",
+        "value": "Place your Armor Plates outside the building for the attackers to take."
+      },
+      {
+        "side": "DEF",
+        "operator": "THUNDERBIRD",
+        "value": "Place your Kona Stations outside the building for the attackers to use."
+      }
+    ],
+    "sides": [
+      "DEF"
+    ]
+  },
+  {
     "title": "Slow and Steady",
     "description": "Very slow. Very very slow.",
     "rules": [
       "You can only move by Alt-walking."
+    ],
+    "sides": [
+      "ATT",
+      "DEF"
+    ]
+  },
+  {
+    "title": "Solo Queue Experience™",
+    "description": "Comms are toxic anyways.",
+    "rules": [
+      "No communication allowed. Mute yourself in-game and in Discord / TeamSpeak."
     ],
     "sides": [
       "ATT",
@@ -319,13 +434,18 @@
   {
     "title": "Splinter Cell",
     "description": "Pew.",
-    "requiredOperators": [
-      "Zero"
-    ],
+    "requiredOperators": {
+      "ATT": [
+        "ZERO"
+      ]
+    },
     "rules": [
       "Only use silenced handguns.",
       "Machine pistols and secondary shotguns are disallowed.",
-      "Attackers: Bring Zero. Everyone else follow his lead."
+      {
+        "side": "ATT",
+        "value": "Bring Zero. Everyone else follow his lead."
+      }
     ],
     "sides": [
       "ATT",
@@ -335,15 +455,36 @@
   {
     "title": "Spotted!",
     "description": "You can't hide!",
-    "requiredOperators": [
-      "Dokkaebi",
-      "Grim",
-      "Jackal",
-      "Lion"
-    ],
+    "requiredOperators": {
+      "ATT": [
+        "DOKKAEBI",
+        "GRIM",
+        "JACKAL",
+        "LION"
+      ]
+    },
     "rules": [
       "Bring Dokkaebi, Grim, Jackal and Lion.",
-      "Find the enemy."
+      {
+        "side": "ATT",
+        "operator": "DOKKAEBI",
+        "value": "Call them."
+      },
+      {
+        "side": "ATT",
+        "operator": "GRIM",
+        "value": "Bee them."
+      },
+      {
+        "side": "ATT",
+        "operator": "JACKAL",
+        "value": "Follow them."
+      },
+      {
+        "side": "ATT",
+        "operator": "LION",
+        "value": "Scan them."
+      }
     ],
     "sides": [
       "ATT"
@@ -358,6 +499,18 @@
     ],
     "sides": [
       "ATT"
+    ]
+  },
+  {
+    "title": "Swiss Cheese",
+    "description": "Punch holes. Punch holes everywhere.",
+    "rules": [
+      "Make as many punch holes in reinforcable walls as possible.",
+      "Only shoot at people through punch holes.",
+      "Aruni is disallowed."
+    ],
+    "sides": [
+      "DEF"
     ]
   },
   {
@@ -384,13 +537,24 @@
   },
   {
     "title": "The Snake",
-    "description": "snek",
+    "description": "snek 🐍",
     "rules": [
       "Inside the building, you are only allowed to move while prone.",
       "You may stand up to shoot, but need to go prone again to continue moving."
     ],
     "sides": [
       "ATT"
+    ]
+  },
+  {
+    "title": "Welcome!",
+    "description": "We've got nothing to hide.",
+    "rules": [
+      "You may not reinforce any walls or barricade any doors.",
+      "Fully open every reinforcable wall on and between sites."
+    ],
+    "sides": [
+      "DEF"
     ]
   },
   {
