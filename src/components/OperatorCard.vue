@@ -61,7 +61,7 @@ const portrait = computed(() => {
   if (!props.value.key) return null;
 
   // Return easter egg portrait (1 in 50 chance)
-  const easterEggOperators = ['ASH'];
+  const easterEggOperators = ['ASH', 'PULSE'];
   if (easterEggOperators.includes(props.value.key) && Math.floor(Math.random() * 50) === 0) {
     return require(`@/assets/portraits/${props.value.key}_2.png`);
   }
