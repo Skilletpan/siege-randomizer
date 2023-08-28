@@ -1,6 +1,9 @@
 <template>
   <v-navigation-drawer :rail="!expanded">
-    <v-list :items="navigationItems" nav />
+    <v-list
+      :items="navigationItems"
+      nav
+    />
   </v-navigation-drawer>
 </template>
 
@@ -49,13 +52,6 @@ const navigationItems = computed(() => [
     props: {
       prependIcon: 'mdi-account',
       to: 'operators'
-    }
-  },
-  {
-    title: 'Lineups',
-    props: {
-      prependIcon: 'mdi-account-group',
-      to: 'lineups'
     }
   },
   {
