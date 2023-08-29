@@ -49,7 +49,7 @@
             <v-avatar rounded="0">
               <v-img
                 v-if="r.operator"
-                :src="require(`@/assets/icons/${r.operator}.png`)"
+                :src="require(`@/assets/emblems/${r.operator}.png`)"
               />
               <v-icon
                 v-else
