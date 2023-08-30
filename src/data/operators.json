@@ -741,6 +741,16 @@
     "squad": "Redhammer"
   },
   {
+    "key": "RAM",
+    "name": "Ram",
+    "roles": [
+      "Breach"
+    ],
+    "side": "ATT",
+    "speed": 1,
+    "squad": "Redhammer"
+  },
+  {
     "key": "RECRUIT",
     "name": "Recruit",
     "roles": [],
