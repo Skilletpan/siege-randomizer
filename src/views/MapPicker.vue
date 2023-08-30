@@ -60,17 +60,18 @@
       </v-col>
     </v-row>
 
-    <!-- Map Pool Title -->
+    <!-- Map Pool -->
     <v-row justify="center">
+      <!-- Title -->
       <v-col
-        cols="auto"
         class="text-center"
+        cols="12"
         tag="h2"
-      >Map Pool</v-col>
-    </v-row>
+      >
+        Map Pool
+      </v-col>
 
-    <!-- Map Pool List -->
-    <v-row justify="center">
+      <!-- Map Cards -->
       <v-col
         v-for="m in mapPool"
         :key="m.key"
@@ -108,14 +109,6 @@ const mapPool = computed(() => {
 });
 
 const playlistPool = computed(() => [...PLAYLISTS, ...ARCADE_PLAYLISTS]);
-
-/**
- * Clears the map pick and disabled maps.
- */
-function clearPicks() {
-  mapFilters.value.disabled.length = 0;
-  mapFilters.value.playlist = null;
-}
 
 /**
  * Picks a random map from the map pool.
