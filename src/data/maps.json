@@ -3,89 +3,104 @@
     "key": "BANK",
     "name": "Bank",
     "playlists": [
-      "Casual",
       "Competitive",
-      "Ranked"
-    ]
-  },
-  {
-    "key": "BARTLETT_UNIVERSITY",
-    "name": "Bartlett University",
-    "playlists": []
+      "Ranked",
+      "Standard",
+      "Quick Match"
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "BORDER",
     "name": "Border",
     "playlists": [
-      "Casual",
       "Competitive",
-      "Ranked"
-    ]
+      "Ranked",
+      "Standard"
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "CHALET",
     "name": "Chalet",
     "playlists": [
-      "Casual",
       "Competitive",
-      "Ranked"
-    ]
+      "Ranked",
+      "Standard",
+      "Quick Match"
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "CLOSE_QUARTER",
     "name": "Close Quarter",
-    "playlists": [
-      "Deathmatch",
+    "playlists": [],
+    "arcadePlaylists": [
+      "Weapon Roulette",
       "Free for All",
-      "Golden Gun",
-      "Headshots Only"
+      "Deathmatch",
+      "Golden Gun"
     ]
   },
   {
     "key": "CLUB_HOUSE",
     "name": "Club House",
     "playlists": [
-      "Casual",
       "Competitive",
-      "Ranked"
-    ]
+      "Ranked",
+      "Quick Match"
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "COASTLINE",
     "name": "Coastline",
     "playlists": [
-      "Casual",
-      "Headshots Only",
-      "Ranked"
+      "Ranked",
+      "Standard",
+      "Quick Match"
+    ],
+    "arcadePlaylists": [
+      "Weapon Roulette",
+      "Deathmatch"
     ]
   },
   {
     "key": "CONSULATE",
     "name": "Consulate",
     "playlists": [
-      "Casual",
       "Competitive",
+      "Ranked",
+      "Standard",
+      "Quick Match"
+    ],
+    "arcadePlaylists": [
       "Free for All",
-      "Ranked"
+      "Deathmatch"
     ]
   },
   {
     "key": "EMERALD_PLAINS",
     "name": "Emerald Plains",
     "playlists": [
-      "Casual",
-      "Free for All",
-      "Golden Gun",
       "Ranked"
+    ],
+    "arcadePlaylists": [
+      "Free for All",
+      "Deathmatch",
+      "Golden Gun"
     ]
   },
   {
     "key": "FAVELA",
     "name": "Favela",
     "playlists": [
-      "Casual",
-      "Deathmatch",
+      "Quick Match"
+    ],
+    "arcadePlaylists": [
+      "Weapon Roulette",
       "Free for All",
+      "Deathmatch",
       "Golden Gun"
     ]
   },
@@ -93,14 +108,15 @@
     "key": "FORTRESS",
     "name": "Fortress",
     "playlists": [
-      "Casual"
-    ]
+      "Standard"
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "HEREFORD_BASE",
     "name": "Hereford Base",
-    "playlists": [
-      "Casual",
+    "playlists": [],
+    "arcadePlaylists": [
       "Snipers Only"
     ]
   },
@@ -108,118 +124,134 @@
     "key": "HOUSE",
     "name": "House",
     "playlists": [
-      "Casual"
-    ]
+      "Quick Match"
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "KAFE_DOSTOYEVSKY",
     "name": "Kafe Dostoyevsky",
     "playlists": [
-      "Casual",
       "Competitive",
-      "Ranked"
-    ]
+      "Ranked",
+      "Standard"
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "KANAL",
     "name": "Kanal",
     "playlists": [
-      "Casual",
       "Ranked"
-    ]
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "NIGHTHAVEN_LABS",
     "name": "Nighthaven Labs",
     "playlists": [
-      "Casual",
       "Competitive",
-      "Deathmatch",
+      "Ranked",
+      "Standard",
+      "Quick Match"
+    ],
+    "arcadePlaylists": [
+      "Weapon Roulette",
       "Free for All",
-      "Headshots Only",
-      "Ranked"
+      "Deathmatch"
     ]
   },
   {
     "key": "OREGON",
     "name": "Oregon",
     "playlists": [
-      "Casual",
       "Competitive",
-      "Ranked"
-    ]
+      "Ranked",
+      "Standard"
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "OUTBACK",
     "name": "Outback",
     "playlists": [
-      "Casual",
       "Ranked"
-    ]
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "PRESIDENTIAL_PLANE",
     "name": "Presidential Plane",
     "playlists": [
-      "Casual"
-    ]
+      "Standard"
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "SKYSCRAPER",
     "name": "Skyscraper",
     "playlists": [
-      "Casual",
       "Competitive",
-      "Deathmatch",
-      "Golden Gun",
       "Ranked"
+    ],
+    "arcadePlaylists": [
+      "Deathmatch",
+      "Golden Gun"
     ]
   },
   {
     "key": "STADIUM_BRAVO",
     "name": "Stadium Bravo",
     "playlists": [
-      "Casual",
-      "Deathmatch",
-      "Free for All",
-      "Golden Gun",
       "Ranked"
+    ],
+    "arcadePlaylists": [
+      "Weapon Roulette",
+      "Free for All",
+      "Deathmatch",
+      "Golden Gun"
     ]
   },
   {
-    "key": "THEMEPARK",
-    "name": "Themepark",
+    "key": "THEME_PARK",
+    "name": "Theme Park",
     "playlists": [
-      "Casual",
-      "Deathmatch",
-      "Free for All",
-      "Headshots Only",
       "Ranked"
+    ],
+    "arcadePlaylists": [
+      "Weapon Roulette",
+      "Free for All",
+      "Deathmatch"
     ]
   },
   {
     "key": "TOWER",
     "name": "Tower",
     "playlists": [
-      "Casual"
-    ]
+      "Quick Match"
+    ],
+    "arcadePlaylists": []
   },
   {
     "key": "VILLA",
     "name": "Villa",
     "playlists": [
-      "Casual",
-      "Deathmatch",
+      "Ranked",
+      "Standard",
+      "Quick Match"
+    ],
+    "arcadePlaylists": [
+      "Weapon Roulette",
       "Free for All",
-      "Headshots Only",
-      "Ranked"
+      "Deathmatch"
     ]
   },
   {
     "key": "YACHT",
     "name": "Yacht",
     "playlists": [
-      "Casual"
-    ]
+      "Standard"
+    ],
+    "arcadePlaylists": []
   }
 ]

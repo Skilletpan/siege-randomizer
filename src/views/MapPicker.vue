@@ -1,30 +1,87 @@
 <template>
   <v-container>
-    <v-row class="py-12" align="end" justify="center">
+    <v-row
+      class="py-12"
+      align="end"
+      justify="center"
+    >
       <!-- Map Card -->
-      <v-col cols="auto" offset="3">
-        <map-card big :value="pickedMap" @click="pickMap" />
+      <v-col
+        cols="auto"
+        offset="3"
+      >
+        <map-card
+          big
+          :value="pickedMap"
+          @click="pickMap"
+        />
       </v-col>
 
       <!-- Filters -->
       <v-col cols="3">
-        <v-card color="transparent" elevation="0" max-width="300">
-          <v-select v-model="pickedPlaylist" hide-details :items="PLAYLISTS" label="Playlist" variant="solo-filled"
-            @update:model-value="clearPicks" />
-          <v-btn block class="mt-4" color="primary" :text="pickedMap ? 'Repick' : 'Randomize'" @click="pickMap" />
+        <v-card
+          color="transparent"
+          elevation="0"
+          max-width="300"
+        >
+          <!-- Playlist Select -->
+          <v-select
+            v-model="mapFilters.playlist"
+            clearable
+            hide-details
+            :items="playlistPool"
+            label="Playlist"
+            variant="solo-filled"
+          >
+            <template v-slot:item="{ item, props }">
+              <!-- Default Playlists Subheader -->
+              <v-list-subheader v-if="PLAYLISTS.indexOf(item.title) === 0">Default Playlists</v-list-subheader>
+
+              <!-- Arcade Playlists Subheader -->
+              <template v-if="ARCADE_PLAYLISTS.indexOf(item.title) === 0">
+                <v-divider class="my-2" />
+                <v-list-subheader>Arcade Playlists</v-list-subheader>
+              </template>
+
+              <!-- Item -->
+              <v-list-item v-bind="props" />
+            </template>
+          </v-select>
+
+          <!-- Pick Button -->
+          <v-btn
+            block
+            class="mt-4"
+            color="primary"
+            :text="pickedMap ? 'Repick' : 'Randomize'"
+            @click="pickMap"
+          />
         </v-card>
       </v-col>
     </v-row>
 
-    <!-- Map Pool Title -->
+    <!-- Map Pool -->
     <v-row justify="center">
-      <v-col cols="auto" class="text-center" tag="h2">Map Pool</v-col>
-    </v-row>
+      <!-- Title -->
+      <v-col
+        class="text-center"
+        cols="12"
+        tag="h2"
+      >
+        Map Pool
+      </v-col>
 
-    <!-- Map Pool List -->
-    <v-row justify="center">
-      <v-col v-for="m in mapPool" :key="m.key" cols="auto">
-        <map-card :inactive="disabledMaps.includes(m.key)" :value="m" @click="toggleInactive(m.key)" />
+      <!-- Map Cards -->
+      <v-col
+        v-for="m in mapPool"
+        :key="m.key"
+        cols="auto"
+      >
+        <map-card
+          :inactive="mapFilters.disabled.includes(m.key)"
+          :value="m"
+          @click="toggleInactive(m.key)"
+        />
       </v-col>
     </v-row>
   </v-container>
@@ -35,23 +92,23 @@ import { computed, ref } from 'vue';
 
 import { MapCard } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
-import { MAPS, PLAYLISTS } from '@/data';
+import { ARCADE_PLAYLISTS, MAPS, PLAYLISTS } from '@/data';
 
 // Define dynamic properties
-const pickedPlaylist = ref(PLAYLISTS[0]);
 const pickedMap = ref(undefined);
-const disabledMaps = ref([]);
+
+const mapFilters = ref({
+  disabled: [],
+  playlist: null
+});
 
 // Define computed properties
-const mapPool = computed(() => MAPS.filter((m) => m.playlists.includes(pickedPlaylist.value)));
+const mapPool = computed(() => {
+  if (!mapFilters.value.playlist) return MAPS;
+  return MAPS.filter((m) => [...m.playlists, ...m.arcadePlaylists].includes(mapFilters.value.playlist));
+});
 
-/**
- * Clears the map pick and disabled maps.
- */
-function clearPicks() {
-  pickedMap.value = undefined;
-  disabledMaps.value = [];
-}
+const playlistPool = computed(() => [...PLAYLISTS, ...ARCADE_PLAYLISTS]);
 
 /**
  * Picks a random map from the map pool.
@@ -59,7 +116,7 @@ function clearPicks() {
 function pickMap() {
   const pool = mapPool.value.filter((m) => {
     if (pickedMap.value && m.key === pickedMap.value.key) return false;
-    return !disabledMaps.value.includes(m.key);
+    return !mapFilters.value.disabled.includes(m.key);
   });
 
   [pickedMap.value] = pickRandom(pool);
@@ -72,10 +129,10 @@ function pickMap() {
  */
 function toggleInactive(key) {
   // Find map index
-  const mapIndex = disabledMaps.value.indexOf(key);
+  const mapIndex = mapFilters.value.disabled.indexOf(key);
 
   // Add or remove map from list
-  if (mapIndex === -1) disabledMaps.value.push(key);
-  else disabledMaps.value.splice(mapIndex, 1);
+  if (mapIndex === -1) mapFilters.value.disabled.push(key);
+  else mapFilters.value.disabled.splice(mapIndex, 1);
 }
 </script>
