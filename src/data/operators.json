@@ -3,8 +3,8 @@
     "key": "SLEDGE",
     "name": "Sledge",
     "roles": [
-      "Anti-Gadget",
-      "Breach"
+      "Breach",
+      "Anti-Gadget"
     ],
     "side": "ATT",
     "speed": 1,
@@ -137,7 +137,7 @@
       "Support"
     ],
     "side": "ATT",
-    "speed": 2,
+    "speed": 3,
     "squad": "Ghosteyes"
   },
   {
@@ -274,8 +274,8 @@
     "key": "CAVEIRA",
     "name": "Caveira",
     "roles": [
-      "Crowd Control",
-      "Intel"
+      "Intel",
+      "Crowd Control"
     ],
     "side": "DEF",
     "speed": 3,
@@ -296,8 +296,8 @@
     "key": "ECHO",
     "name": "Echo",
     "roles": [
-      "Crowd Control",
-      "Intel"
+      "Intel",
+      "Crowd Control"
     ],
     "side": "DEF",
     "speed": 2,
@@ -351,8 +351,8 @@
     "key": "ZOFIA",
     "name": "Zofia",
     "roles": [
-      "Anti-Gadget",
-      "Breach"
+      "Breach",
+      "Anti-Gadget"
     ],
     "side": "ATT",
     "speed": 1,
@@ -450,8 +450,8 @@
     "key": "CLASH",
     "name": "Clash",
     "roles": [
-      "Crowd Control",
-      "Intel"
+      "Intel",
+      "Crowd Control"
     ],
     "side": "DEF",
     "speed": 1,
@@ -483,8 +483,8 @@
     "key": "GRIDLOCK",
     "name": "Gridlock",
     "roles": [
-      "Map Control",
-      "Support"
+      "Support",
+      "Map Control"
     ],
     "side": "ATT",
     "speed": 1,
@@ -592,8 +592,8 @@
     "key": "ACE",
     "name": "Ace",
     "roles": [
-      "Anti-Gadget",
-      "Breach"
+      "Breach",
+      "Anti-Gadget"
     ],
     "side": "ATT",
     "speed": 2,
@@ -603,8 +603,8 @@
     "key": "MELUSI",
     "name": "Melusi",
     "roles": [
-      "Crowd Control",
-      "Intel"
+      "Intel",
+      "Crowd Control"
     ],
     "side": "DEF",
     "speed": 1,
@@ -679,8 +679,8 @@
     "key": "SENS",
     "name": "Sens",
     "roles": [
-      "Map Control",
-      "Support"
+      "Support",
+      "Map Control"
     ],
     "side": "ATT",
     "speed": 3,
@@ -734,6 +734,7 @@
     "key": "FENRIR",
     "name": "Fenrir",
     "roles": [
+      "Crowd Control",
       "Trapper"
     ],
     "side": "DEF",
@@ -744,17 +745,25 @@
     "key": "RAM",
     "name": "Ram",
     "roles": [
-      "Breach"
+      "Breach",
+      "Anti-Gadget"
     ],
     "side": "ATT",
     "speed": 1,
     "squad": "Redhammer"
   },
   {
-    "key": "RECRUIT",
+    "key": "RECRUIT_ATT",
     "name": "Recruit",
     "roles": [],
-    "side": "REC",
+    "side": "ATT",
+    "speed": 2
+  },
+  {
+    "key": "RECRUIT_DEF",
+    "name": "Recruit",
+    "roles": [],
+    "side": "DEF",
     "speed": 2
   }
 ]

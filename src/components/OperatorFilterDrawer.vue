@@ -1,9 +1,34 @@
 <template>
   <v-navigation-drawer location="right">
-    <v-list lines="one">
-      <!-- Disabled Operators Select -->
-      <v-list-subheader title="Operator Filters" />
-      <v-list-item class="mb-2">
+    <v-list>
+      <!-- Presets Selector -->
+      <v-list-item>
+        <v-select
+          v-model="pickedPreset"
+          density="comfortable"
+          hide-details
+          :items="Object.keys(PRESETS)"
+          label="Preset"
+          variant="solo-filled"
+          @update:model-value="loadPreset"
+        >
+          <template v-slot:item="{ item, props }">
+            <v-list-item
+              v-bind="props"
+              lines="two"
+              :subtitle="PRESETS[item.value].modes"
+            />
+          </template>
+        </v-select>
+      </v-list-item>
+
+      <v-divider class="mt-2" />
+
+      <!-- Operator Pool Settings -->
+      <v-list-subheader title="Operator Pool" />
+
+      <!-- Banned Operators Selector -->
+      <v-list-item>
         <v-select
           clearable
           density="comfortable"
@@ -11,136 +36,98 @@
           :items="OPERATORS"
           item-title="name"
           item-value="key"
-          label="Disabled Operators"
-          :model-value="disabledOperators"
+          label="Banned Operators"
+          :model-value="bans"
           multiple
           placeholder="0 selected"
           variant="solo-filled"
-          @update:model-value="$emit('update:disabledOperators', $event)"
+          @update:model-value="$emit('update:bans', $event)"
         >
           <template v-slot:selection="{ index }">
-            <template v-if="index === 0">
-              {{ disabledOperators.length }} selected
-            </template>
+            <template v-if="index === 0">{{ bans.length }} selected</template>
           </template>
         </v-select>
       </v-list-item>
 
-      <v-divider />
-
-      <v-list-subheader title="Pick Count" />
-
-      <!-- Pick Slider -->
+      <!-- Recruit Switch -->
       <v-list-item>
-        <v-slider
-          hide-details
-          max="5"
-          min="1"
-          :model-value="picks"
-          show-ticks="always"
-          step="1"
-          @update:model-value="$emit('update:picks', $event)"
-        >
-          <template v-slot:prepend>1</template>
-          <template v-slot:append>5</template>
-        </v-slider>
-      </v-list-item>
-
-      <!-- Duplicate Pick Switch -->
-      <v-list-item :disabled="picks < 2">
         <v-switch
           density="comfortable"
           hide-details
           inset
-          label="Duplicate Picks"
-          :model-value="duplicates"
-          @update:model-value="$emit('update:duplicates', $event)"
+          label="Include Recruits"
+          :model-value="recruits"
+          @update:model-value="$emit('update:recruits', $event)"
         />
       </v-list-item>
 
       <v-divider />
 
-      <!-- Side Checkboxes -->
-      <v-list-subheader title="Side" />
-      <v-list-item
-        v-for="f in SIDE_FILTERS"
-        :key="f.value"
-      >
-        <v-checkbox
-          density="comfortable"
-          hide-details
-          :label="f.title"
-          :model-value="sides"
-          :value="f.value"
-          @update:model-value="$emit('update:sides', $event)"
-        />
-      </v-list-item>
-
-      <v-divider />
-
-      <!-- Speed Checkboxes -->
-      <v-list-subheader title="Speed" />
+      <!-- Speed & Health Checkboxes -->
+      <v-list-subheader title="Speed & Health" />
       <v-list-item
         v-for="s in 3"
         :key="s"
+        class="pl-3 py-0"
       >
         <v-checkbox
           density="comfortable"
           hide-details
-          :label="`${s} Speed | ${4 - s} Armor`"
-          :model-value="speeds"
+          :label="`${s} Speed | ${4 - s} Health`"
+          :model-value="speed"
           :value="s"
-          @update:model-value="$emit('update:speeds', $event)"
+          @update:model-value="$emit('update:speed', $event)"
         />
       </v-list-item>
 
       <v-divider />
 
-      <v-list-subheader title="Details" />
-
-      <!-- Roles Select -->
-      <v-list-item>
+      <!-- Role Selectors -->
+      <v-list-subheader title="Roles" />
+      <v-list-item
+        v-for="i in 2"
+        :key="i"
+      >
         <v-select
+          class="mb-2"
           clearable
           density="comfortable"
           hide-details
           :items="ROLES"
-          label="Roles"
-          :model-value="roles"
-          multiple
-          placeholder="0 selected"
+          label="Role"
+          :model-value="roles[i - 1]"
           variant="solo-filled"
-          @update:model-value="$emit('update:roles', $event)"
-        >
-          <template v-slot:selection="{ index }">
-            <template v-if="index === 0">
-              {{ roles.length }} selected
-            </template>
-          </template>
-        </v-select>
+          @update:model-value="$emit('update:roles', i === 1 ? [$event, roles[1]] : [roles[0], $event])"
+        />
       </v-list-item>
 
-      <!-- Squad Select -->
+      <!-- Reset Role Selectors Button -->
+      <v-list-item>
+        <v-btn
+          block
+          color="primary"
+          text="Reset Roles"
+          @click="$emit('update:roles', [null, null])"
+        />
+      </v-list-item>
+
+      <v-divider class="mt-2" />
+
+      <!-- Additional Settings -->
+      <v-list-subheader title="Other" />
+
+      <!-- Squad Selector -->
       <v-list-item>
         <v-select
-          class="mt-2"
           clearable
           density="comfortable"
           hide-details
           :items="SQUADS"
           label="Squad"
-          :model-value="squads"
-          multiple
-          placeholder="0 selected"
+          :model-value="squad"
           variant="solo-filled"
-          @update:model-value="$emit('update:squads', $event)"
-        >
-          <template v-slot:selection="{ index }">
-            <template v-if="index === 0">
-              {{ squads.length }} selected
-            </template>
-          </template>
-        </v-select>
+          @update:model-value="$emit('update:squad', $event)"
+        />
       </v-list-item>
 
       <!-- Reset Button -->
@@ -158,77 +145,103 @@
 </template>
 
 <script setup>
-import { defineEmits, defineProps } from 'vue';
+import { defineEmits, defineProps, ref } from 'vue';
 
 import { OPERATORS, ROLES, SQUADS } from '@/data';
 
 // Define static properties
-const SIDE_FILTERS = [
-  { title: 'Attackers', value: 'ATT' },
-  { title: 'Defenders', value: 'DEF' },
-  { title: 'Recruits', value: 'REC' }
-];
+const DEFAULT_PRESET = {
+  bans: [],
+  recruits: true,
+  roles: [null, null],
+  speed: [1, 2, 3],
+  squad: null
+};
 
+const PRESETS = {
+  Competitive: {
+    modes: 'Competitive, Ranked',
+    recruits: false
+  },
+  Casual: {
+    modes: 'Standard, Quick Match'
+  },
+  'Arcade 1': {
+    duplicates: true,
+    modes: 'Weapons Roulette, Golden Gun, Snipers Only'
+  },
+  'Arcade 2': {
+    bans: ['BLITZ', 'CLASH', 'MONTAGNE'],
+    duplicates: true,
+    modes: 'Free for All, Deathmatch'
+  }
+}
 
 // Define input properties
 defineProps({
-  disabledOperators: {
-    type: Array,
-    default: () => []
+  bans: {
+    default: () => [],
+    type: Array
   },
 
-  duplicates: {
-    type: Boolean,
-    default: false
-  },
-
-  picks: {
-    type: Number,
-    default: 1
+  recruits: {
+    default: true,
+    type: Boolean
   },
 
   roles: {
-    type: Array,
-    default: () => []
+    default: () => [null, null],
+    type: Array
   },
 
-  sides: {
-    type: Array,
-    default: () => ['ATT', 'DEF']
+  speed: {
+    default: () => [1, 2, 3],
+    type: Array
   },
 
-  speeds: {
-    type: Array,
-    default: () => [1, 2, 3]
-  },
-
-  squads: {
-    type: Array,
-    default: () => []
+  squad: {
+    default: null,
+    type: String
   }
 });
 
+// Define dynamic properties
+const pickedPreset = ref(null);
+
 // Define emits
 const emit = defineEmits([
-  'update:disabledOperators',
-  'update:duplicates',
-  'update:picks',
+  'update:bans',
+  'update:recruits',
   'update:roles',
-  'update:sides',
-  'update:speeds',
-  'update:squads'
+  'update:speed',
+  'update:squad'
 ]);
+
+/**
+ * Loads preset filter settings.
+ */
+function loadPreset() {
+  const { bans, recruits } = PRESETS[pickedPreset.value];
+
+  // Emit setting changes
+  emit('update:bans', bans || DEFAULT_PRESET.bans);
+  emit('update:recruits', recruits !== DEFAULT_PRESET.recruits ? recruits : DEFAULT_PRESET.recruits);
+  emit('update:roles', DEFAULT_PRESET.roles);
+  emit('update:speed', DEFAULT_PRESET.speed);
+  emit('update:squad', DEFAULT_PRESET.squad);
+}
 
 /**
  * Resets all filters to default values.
  */
 function resetFilters() {
-  emit('update:disabledOperators', []);
-  emit('update:duplicates', false);
-  emit('update:picks', 1);
-  emit('update:roles', []);
-  emit('update:sides', ['ATT', 'DEF']);
-  emit('update:speeds', [1, 2, 3]);
-  emit('update:squads', []);
+  pickedPreset.value = null;
+
+  // Emit setting changes
+  emit('update:bans', DEFAULT_PRESET.bans);
+  emit('update:recruits', DEFAULT_PRESET.recruits);
+  emit('update:roles', DEFAULT_PRESET.roles);
+  emit('update:speed', DEFAULT_PRESET.speed);
+  emit('update:squad', DEFAULT_PRESET.squad);
 }
 </script>

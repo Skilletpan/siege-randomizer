@@ -52,7 +52,7 @@
         >
           <!-- Strat Name and Description -->
           <v-col class="pa-0">
-            <v-card-title class="align-center d-flex flex-nowrap pb-0">{{ s.title }}</v-card-title>
+            <v-card-title class="pb-0">{{ s.title }}</v-card-title>
             <v-card-subtitle class="mb-2">{{ s.description }}</v-card-subtitle>
           </v-col>
 

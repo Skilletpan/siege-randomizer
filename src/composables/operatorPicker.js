@@ -26,7 +26,7 @@ export function pickRandomOperators(options = {}) {
     if (options.speeds && !options.speeds.includes(o.speed)) return false;
 
     return true;
-  });
+  }).map((o) => o.key);
 
   // Pick random operators from pool
   return pickRandom(pool, options.amount, options.allowDuplicates);
