@@ -4,13 +4,12 @@
       <!-- Presets Selector -->
       <v-list-item>
         <v-select
-          v-model="pickedPreset"
           density="comfortable"
           hide-details
           :items="Object.keys(PRESETS)"
           label="Preset"
           variant="solo-filled"
-          @update:model-value="loadPreset"
+          @update:model-value="loadPreset($event)"
         >
           <template v-slot:item="{ item, props }">
             <v-list-item
@@ -30,6 +29,7 @@
       <!-- Banned Operators Selector -->
       <v-list-item>
         <v-select
+          v-model="settings.bans"
           clearable
           density="comfortable"
           hide-details
@@ -37,14 +37,12 @@
           item-title="name"
           item-value="key"
           label="Banned Operators"
-          :model-value="bans"
           multiple
           placeholder="0 selected"
           variant="solo-filled"
-          @update:model-value="$emit('update:bans', $event)"
         >
           <template v-slot:selection="{ index }">
-            <template v-if="index === 0">{{ bans.length }} selected</template>
+            <template v-if="index === 0">{{ settings.bans.length }} selected</template>
           </template>
         </v-select>
       </v-list-item>
@@ -52,12 +50,26 @@
       <!-- Recruit Switch -->
       <v-list-item>
         <v-switch
+          v-model="settings.recruits"
           density="comfortable"
           hide-details
           inset
           label="Include Recruits"
-          :model-value="recruits"
-          @update:model-value="$emit('update:recruits', $event)"
+        />
+      </v-list-item>
+
+      <v-divider />
+
+      <!-- Duplicate Picks Switch -->
+      <v-list-subheader title="Picks" />
+      <v-list-item class="pt-0">
+        <v-switch
+          v-model="settings.duplicates"
+          density="comfortable"
+          hide-details
+          inset
+          label="Duplicate Picks"
+          @update:model-value="emit('update:duplicates', $event)"
         />
       </v-list-item>
 
@@ -71,12 +83,11 @@
         class="pl-3 py-0"
       >
         <v-checkbox
+          v-model="settings.speed"
           density="comfortable"
           hide-details
           :label="`${s} Speed | ${4 - s} Health`"
-          :model-value="speed"
           :value="s"
-          @update:model-value="$emit('update:speed', $event)"
         />
       </v-list-item>
 
@@ -89,15 +100,14 @@
         :key="i"
       >
         <v-select
+          v-model="settings.roles[i - 1]"
           class="mb-2"
           clearable
           density="comfortable"
           hide-details
           :items="ROLES"
           label="Role"
-          :model-value="roles[i - 1]"
           variant="solo-filled"
-          @update:model-value="$emit('update:roles', i === 1 ? [$event, roles[1]] : [roles[0], $event])"
         />
       </v-list-item>
 
@@ -107,7 +117,7 @@
           block
           color="primary"
           text="Reset Roles"
-          @click="$emit('update:roles', [null, null])"
+          @click="settings.roles = [null, null]"
         />
       </v-list-item>
 
@@ -119,14 +129,13 @@
       <!-- Squad Selector -->
       <v-list-item>
         <v-select
+          v-model="settings.squad"
           clearable
           density="comfortable"
           hide-details
           :items="SQUADS"
           label="Squad"
-          :model-value="squad"
           variant="solo-filled"
-          @update:model-value="$emit('update:squad', $event)"
         />
       </v-list-item>
 
@@ -137,7 +146,7 @@
           class="mt-2"
           color="primary"
           text="Reset Filters"
-          @click="resetFilters"
+          @click="loadPreset()"
         />
       </v-list-item>
     </v-list>
@@ -145,13 +154,14 @@
 </template>
 
 <script setup>
-import { defineEmits, defineProps, ref } from 'vue';
+import { computed, defineEmits, ref, watch } from 'vue';
 
 import { OPERATORS, ROLES, SQUADS } from '@/data';
 
 // Define static properties
 const DEFAULT_PRESET = {
   bans: [],
+  duplicates: false,
   recruits: true,
   roles: [null, null],
   speed: [1, 2, 3],
@@ -177,71 +187,44 @@ const PRESETS = {
   }
 }
 
-// Define input properties
-defineProps({
-  bans: {
-    default: () => [],
-    type: Array
-  },
-
-  recruits: {
-    default: true,
-    type: Boolean
-  },
-
-  roles: {
-    default: () => [null, null],
-    type: Array
-  },
-
-  speed: {
-    default: () => [1, 2, 3],
-    type: Array
-  },
-
-  squad: {
-    default: null,
-    type: String
-  }
-});
-
 // Define dynamic properties
-const pickedPreset = ref(null);
+const settings = ref({ ...DEFAULT_PRESET });
+
+// Define computed properties
+const operatorPool = computed(() => {
+  const { bans, recruits, roles, speed, squad } = settings.value;
+
+  // Apply set filters
+  return OPERATORS.filter((o) => {
+    if (bans.includes(o.key)) return false;                                         // Banned operators
+    if (!recruits && o.key.startsWith('RECRUIT')) return false;                     // Recruits
+    if (!speed.includes(o.speed)) return false;                                     // Operator speed
+    if (!roles.filter((r) => !!r).every((r) => o.roles.includes(r))) return false;  // Operator roles
+    if (squad && o.squad !== squad) return false;                                   // Squad
+    return true;
+  });
+});
 
 // Define emits
 const emit = defineEmits([
-  'update:bans',
-  'update:recruits',
-  'update:roles',
-  'update:speed',
-  'update:squad'
+  'update:duplicates',
+  'update:operators'
 ]);
+
+// Emit operator pool update
+watch(
+  operatorPool,
+  (newPool) => { emit('update:operators', newPool); },
+  { immediate: true }
+);
 
 /**
  * Loads preset filter settings.
+ * 
+ * @param {String} [preset] The preset to load. If omitted, default values are restored.
  */
-function loadPreset() {
-  const { bans, recruits } = PRESETS[pickedPreset.value];
-
-  // Emit setting changes
-  emit('update:bans', bans || DEFAULT_PRESET.bans);
-  emit('update:recruits', recruits !== DEFAULT_PRESET.recruits ? recruits : DEFAULT_PRESET.recruits);
-  emit('update:roles', DEFAULT_PRESET.roles);
-  emit('update:speed', DEFAULT_PRESET.speed);
-  emit('update:squad', DEFAULT_PRESET.squad);
-}
-
-/**
- * Resets all filters to default values.
- */
-function resetFilters() {
-  pickedPreset.value = null;
-
-  // Emit setting changes
-  emit('update:bans', DEFAULT_PRESET.bans);
-  emit('update:recruits', DEFAULT_PRESET.recruits);
-  emit('update:roles', DEFAULT_PRESET.roles);
-  emit('update:speed', DEFAULT_PRESET.speed);
-  emit('update:squad', DEFAULT_PRESET.squad);
+function loadPreset(preset = null) {
+  Object.assign(settings.value, DEFAULT_PRESET, PRESETS[preset]);
+  settings.value.roles = [null, null];
 }
 </script>

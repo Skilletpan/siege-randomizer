@@ -8,7 +8,7 @@
         cols="auto"
       >
         <operator-card
-          :operator-key="pickedOperators[i - 1] || null"
+          :operator-key="pickedOperators[i - 1]"
           :placeholder="i > pickedOperators.length"
         />
       </v-col>
@@ -43,16 +43,7 @@
             min="1"
             step="1"
           />
-
-          <v-switch
-            v-model="settings.duplicates"
-            hide-details
-            inset
-            label="Allow duplicate picks"
-          />
         </v-card>
-
-
       </v-col>
 
       <!-- Operator Pool Title -->
@@ -110,22 +101,19 @@
 
   <!-- Operator Filter Drawer -->
   <operator-filter-drawer
-    v-model:bans="settings.bans"
-    v-model:recruits="settings.recruits"
-    v-model:roles="settings.roles"
-    v-model:speed="settings.speed"
-    v-model:squad="settings.squad"
+    v-model:duplicates="settings.duplicates"
+    @update:operators="operatorPool = $event"
   />
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 
 import { OperatorCard, OperatorFilterDrawer, OperatorItem } from '@/components';
 import { loadEmblem } from '@/composables/imageLoader';
-import { pickRandomOperators } from '@/composables/operatorPicker';
-import { OPERATORS } from '@/data';
+import { pickRandom } from '@/composables/randomizer';
 
+// Define static properties
 const SIDE_BUTTONS = [
   { side: 'ATT', icon: 'mdi-sword-cross' },
   { side: null, icon: 'mdi-infinity' },
@@ -133,53 +121,12 @@ const SIDE_BUTTONS = [
 ];
 
 // Define dynamic properties
-const settings = ref({
-  bans: [],
-  duplicates: false,
-  picks: 1,
-  recruits: true,
-  roles: [null, null],
-  speed: [1, 2, 3],
-  squad: null
-});
-
+const operatorPool = ref([]);
 const pickedOperators = ref([]);
-
-// Define computed properties
-const operatorFilter = computed(() => {
-  // Load settings
-  const { bans, duplicates, picks, recruits, speed, squad } = settings.value;
-  const roles = settings.value.roles.filter((r) => !!r);
-
-  // Collect excluded operators
-  const excludedOperators = [...bans];
-  if (!recruits) excludedOperators.push('RECRUIT_ATT', 'RECRUIT_DEF');
-  if (picks === 1 && pickedOperators.value.length === 1) excludedOperators.push(pickedOperators.value[0]);
-
-  // Build filters
-  const filterOptions = {};
-  if (picks > 1) filterOptions.amount = picks;
-  if (duplicates) filterOptions.allowDuplicates = true;
-  if (excludedOperators.length) filterOptions.exclude = excludedOperators;
-  if (roles.length) filterOptions.roles = roles;
-  if (speed.length !== 3) filterOptions.speeds = speed;
-  if (squad) filterOptions.squads = [squad];
-  return filterOptions;
+const settings = ref({
+  duplicates: false,
+  picks: 1
 });
-
-const operatorPool = computed(() => OPERATORS.filter((o) => {
-  const { bans, recruits, speed, squad } = settings.value;
-  const roles = settings.value.roles.filter((r) => !!r);
-
-  // Apply selected filters
-  if (bans.includes(o.key)) return false;
-  if (!recruits && o.key.startsWith('RECRUIT')) return false;
-  if (!roles.every((r) => r ? o.roles.includes(r) : true)) return false;
-  if (!speed.includes(o.speed)) return false;
-  if (squad && o.squad !== squad) return false;
-
-  return true;
-}));
 
 /**
  * Picks a random operator from the operator pool.
@@ -187,12 +134,17 @@ const operatorPool = computed(() => OPERATORS.filter((o) => {
  * @param {"ATT" | "DEF"} [side=null] The side to pick the operator from.
  */
 function pickOperator(side = null) {
-  // Finalize filters
-  const filters = { ...operatorFilter.value };
-  if (side) filters.sides = [side];
+  const { duplicates, picks } = settings.value;
+
+  // Apply filters
+  const pool = operatorPool.value.filter((o) => {
+    if (side && o.side !== side) return false;
+    if (picks === 1 && pickedOperators.value.length === 1 && o.key === pickedOperators.value[0]) return false;
+    return true;
+  }).map((o) => o.key);
 
   // Pick random operator
   pickedOperators.value.length = 0;
-  pickedOperators.value = pickRandomOperators(filters);
+  pickedOperators.value = pickRandom(pool, picks, duplicates);
 }
 </script>
