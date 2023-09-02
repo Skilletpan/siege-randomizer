@@ -754,14 +754,14 @@
   },
   {
     "key": "RECRUIT_ATT",
-    "name": "Recruit",
+    "name": "Recruit (Attack)",
     "roles": [],
     "side": "ATT",
     "speed": 2
   },
   {
     "key": "RECRUIT_DEF",
-    "name": "Recruit",
+    "name": "Recruit (Defense)",
     "roles": [],
     "side": "DEF",
     "speed": 2

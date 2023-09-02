@@ -17,16 +17,17 @@ function setImageKey(operatorKey) {
  * 
  * Also has a 1 in 50 chance to load an alternate easter egg portrait.
  * 
- * @param {String} operatorKey The operator key to load the portrait for.
+ * @param {String}  operatorKey        The operator key to load the portrait for.
+ * @param {Boolean} [disableEasterEgg] Whether to disable easter egg portraits.
  * 
  * @returns The operator portrait.
  */
-export function loadPortrait(operatorKey) {
+export function loadPortrait(operatorKey, disableEasterEgg = false) {
   // Build image key
   const imageKey = setImageKey(operatorKey);
 
   // Try to return easter egg portrait
-  if (Math.floor(Math.random() * 50) === 0) {
+  if (!disableEasterEgg && Math.floor(Math.random() * 50) === 0) {
     try { return require(`@/assets/portraits/${imageKey}_2.png`); }
     catch (e) { console.debug(`${imageKey} does not have an easter egg portrait.`); }
   }
@@ -44,4 +45,15 @@ export function loadPortrait(operatorKey) {
  */
 export function loadEmblem(operatorKey) {
   return require(`@/assets/emblems/${setImageKey(operatorKey)}.png`);
+}
+
+/**
+ * Loads a squad emblem.
+ * 
+ * @param {String} squad The squad to load the emblem for.
+ * 
+ * @returns The squad emblem.
+ */
+export function loadSquadEmblem(squad) {
+  return require(`@/assets/squads/${squad.toUpperCase()}.png`);
 }

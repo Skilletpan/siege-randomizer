@@ -38,11 +38,19 @@
           item-value="key"
           label="Banned Operators"
           multiple
+          persistent-placeholder
           placeholder="0 selected"
           variant="solo-filled"
         >
           <template v-slot:selection="{ index }">
             <template v-if="index === 0">{{ settings.bans.length }} selected</template>
+          </template>
+
+          <template v-slot:item="{ item, props }">
+            <v-list-item
+              v-bind="props"
+              :prepend-avatar="loadEmblem(item.value)"
+            />
           </template>
         </v-select>
       </v-list-item>
@@ -136,7 +144,14 @@
           :items="SQUADS"
           label="Squad"
           variant="solo-filled"
-        />
+        >
+          <template v-slot:item="{ item, props }">
+            <v-list-item
+              v-bind="props"
+              :prepend-avatar="loadSquadEmblem(item.value)"
+            />
+          </template>
+        </v-select>
       </v-list-item>
 
       <!-- Reset Button -->
@@ -156,6 +171,7 @@
 <script setup>
 import { computed, defineEmits, ref, watch } from 'vue';
 
+import { loadEmblem, loadSquadEmblem } from '@/composables/imageLoader';
 import { OPERATORS, ROLES, SQUADS } from '@/data';
 
 // Define static properties

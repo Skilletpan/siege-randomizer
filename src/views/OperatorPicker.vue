@@ -7,9 +7,17 @@
         :key="`portrait_${i}`"
         cols="auto"
       >
+        <!-- Picked Operator Card -->
         <operator-card
+          v-if="pickedOperators[i - 1]"
           :operator-key="pickedOperators[i - 1]"
-          :placeholder="i > pickedOperators.length"
+          @click="previewDialog.operatorKey = pickedOperators[i - 1]; previewDialog.show = true;"
+        />
+
+        <!-- Placeholder Operator Card -->
+        <operator-card
+          v-else
+          placeholder
         />
       </v-col>
     </v-row>
@@ -56,13 +64,9 @@
         cols="3"
       >
         <v-card
-          v-if="false"
-          class="px-0"
+          class="align-center d-flex"
+          @click="previewDialog.operatorKey = o.key; previewDialog.show = true;"
         >
-          <operator-item :value="o.key" />
-        </v-card>
-
-        <v-card class="align-center d-flex">
           <v-col
             class="py-0"
             cols="auto"
@@ -98,6 +102,17 @@
     v-model:duplicates="settings.duplicates"
     @update:operators="operatorPool = $event"
   />
+
+  <!-- Operator Preview Dialog -->
+  <v-dialog
+    v-model="previewDialog.show"
+    width="auto"
+  >
+    <operator-card
+      detailed
+      :operator-key="previewDialog.operatorKey"
+    />
+  </v-dialog>
 </template>
 
 <script setup>
@@ -117,6 +132,12 @@ const SIDE_BUTTONS = [
 // Define dynamic properties
 const operatorPool = ref([]);
 const pickedOperators = ref([]);
+
+const previewDialog = ref({
+  operatorKey: null,
+  show: false
+});
+
 const settings = ref({
   duplicates: false,
   picks: 1

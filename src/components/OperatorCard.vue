@@ -1,84 +1,92 @@
 <template>
-  <v-card
-    variant="tonal"
-    width="250"
-  >
+  <v-card :width="detailed ? 300 : 250">
     <!-- Operator Portrait -->
     <v-img
-      :alt="placeholder ? 'Portrait placeholder' : `${operator.name} portrait`"
-      class="align-end d-flex portrait"
+      :alt="`${placeholder ? 'Placeholder' : operator.name} portrait`"
+      :aspect-ratio="3 / 5"
+      class="align-end portrait text-center"
       :class="{ placeholder }"
       cover
-      :lazy-src="RECRUIT_PORTRAIT"
-      ref="portrait"
-      :src="placeholder ? RECRUIT_PORTRAIT : loadPortrait(operatorKey)"
-      :style="{ backgroundImage: `url(${require(`@/assets/maps/${MAPS[BACKGROUND_IMAGE_INDEX].key}.jpg`)})` }"
+      :src="loadPortrait(operator.key, placeholder)"
+      :style="loadBackground()"
     >
-      <v-row
+      <!-- Operator Emblem -->
+      <v-avatar
         v-if="!placeholder"
-        align="center"
-        no-gutters
+        rounded="0"
+        size="80"
       >
-        <!-- Operator Emblem -->
-        <v-col
-          align="center"
-          cols="4"
-          offset="4"
-        >
-          <v-avatar
-            rounded="0"
-            size="80"
-          >
-            <v-img
-              :alt="`${operator.name} emblem`"
-              :src="loadEmblem(operatorKey)"
-            />
-          </v-avatar>
-        </v-col>
-
-        <!-- Operator Side Icon -->
-        <v-col
-          align="end"
-          cols="4"
-        >
-          <v-icon
-            class="mr-4"
-            :icon="operator.side === 'ATT' ? 'mdi-sword-cross' : 'mdi-chess-rook'"
-            size="x-large"
-          />
-        </v-col>
-      </v-row>
+        <v-img
+          :alt="`${operator.name} emblem`"
+          :src="loadEmblem(operator.key)"
+        />
+      </v-avatar>
     </v-img>
 
     <!-- Operator Name -->
-    <v-card-title class="text-center">
-      <template v-if="!placeholder">{{ operator.name }}</template>
-      <template v-else>None</template>
-    </v-card-title>
+    <v-card-title class="text-center">{{ placeholder ? '?' : operator.name }}</v-card-title>
 
-    <!-- Operator Roles -->
-    <v-card-subtitle
-      v-if="false"
-      class="pb-2 text-center"
-    >
-      <template v-if="!placeholder">{{ roles }}</template>
-      <template v-else>Randomize</template>
-    </v-card-subtitle>
+    <!-- Operator Details -->
+    <template v-if="!placeholder && detailed">
+      <v-divider />
+      <v-card-text>
+        <v-list
+          class="py-0"
+          density="comfortable"
+        >
+          <!-- Operator Roles -->
+          <template v-if="operator.roles.length">
+            <v-list-subheader title="Roles" />
+            <v-list-item :title="operator.roles.join(' • ') || 'None'" />
+          </template>
+
+          <!-- Operator Squad -->
+          <template v-if="operator.squad">
+            <v-list-subheader title="Squad" />
+            <v-list-item
+              :prepend-avatar="loadSquadEmblem(operator.squad)"
+              :title="operator.squad"
+            />
+          </template>
+
+          <!-- Operator Speed and Health -->
+          <v-list-subheader title="Speed and Health" />
+          <v-list-item
+            append-icon="mdi-hospital-box-outline"
+            prepend-icon="mdi-speedometer"
+          >
+            <v-list-item-title class="d-flex">
+              <v-radio
+                v-for="i in 4"
+                :key="i"
+                :color="i <= operator.speed ? 'green' : 'blue'"
+                density="compact"
+                hide-details
+                inline
+                :model-value="true"
+                readonly
+              />
+            </v-list-item-title>
+          </v-list-item>
+        </v-list>
+      </v-card-text>
+    </template>
   </v-card>
 </template>
 
 <script setup>
-import { computed, defineProps, onMounted, ref } from 'vue';
+import { computed, defineProps } from 'vue';
 
-import { loadEmblem, loadPortrait } from '@/composables/imageLoader';
+import { loadEmblem, loadPortrait, loadSquadEmblem } from '@/composables/imageLoader';
 import { MAPS, OPERATORS } from '@/data';
-
-// Define static properties
-const BACKGROUND_IMAGE_INDEX = Math.floor(Math.random() * MAPS.length);
-const RECRUIT_PORTRAIT = require('@/assets/portraits/RECRUIT.png');
 
 // Define input properties
 const props = defineProps({
+  detailed: {
+    default: false,
+    type: Boolean
+  },
+
   placeholder: {
     default: false,
     type: Boolean
@@ -90,34 +98,35 @@ const props = defineProps({
   }
 });
 
-const portrait = ref(null);
-
 // Define computed properties
-/**
- * Fetches the operator details from the operators list.
- */
-const operator = computed(() => OPERATORS.find((o) => o.key === props.operatorKey));
+const operator = computed(() => {
+  // Fetch random operator if placeholder
+  if (props.placeholder) return OPERATORS[Math.floor(Math.random() * OPERATORS.length)];
 
-/**
- * Builds the roles string.
- */
-const roles = computed(() => props.placeholder ? null : operator.value.roles.join(' • ') || 'None');
-
-onMounted(() => {
-  portrait.value.$el.classList.add('border');
-  portrait.value.$el.style.backgroundSize = 'cover';
+  // Fetch given operator by operator key
+  return OPERATORS.find((o) => o.key === props.operatorKey);
 });
+
+/**
+ * Loads a random map to display behind the operator.
+ */
+function loadBackground() {
+  if (props.placeholder) return null;
+
+  // Pick random map
+  const map = MAPS[Math.floor(Math.random() * MAPS.length)].key;
+  return { backgroundImage: `url(${require(`@/assets/maps/${map}.jpg`)})` };
+}
 </script>
 
 <style scoped>
-.portrait:not(.placeholder) {
-  /* background-color: lightskyblue; */
-  /* background-image: url("~@/assets/maps/BORDER.jpg"); */
-
-  background-size: cover;
+.placeholder {
+  filter: brightness(10%) grayscale(100%);
+  -webkit-filter: brightness(10%) grayscale(100%);
 }
 
-.placeholder {
-  filter: brightness(.1);
+.portrait {
+  background-position: center;
+  background-size: cover;
 }
 </style>
