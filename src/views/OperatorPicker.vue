@@ -15,15 +15,12 @@
     </v-row>
 
     <v-row justify="center">
-      <!-- Randomize Button -->
-      <v-col
-        align="center"
-        cols="12"
-      >
+      <v-col cols="auto">
+        <!-- Randomize Buttons -->
         <v-btn
           v-for="{ icon, side } in SIDE_BUTTONS"
           :key="`randomize_${side || 'ALL'}`"
-          class="mx-2"
+          class="mb-4 mx-2"
           color="primary"
           :disabled="!operatorPool.length"
           :icon="icon"
@@ -31,19 +28,16 @@
           @click="pickOperator(side)"
         />
 
-        <v-card
-          variant="plain"
-          width="250"
-        >
-          <v-slider
-            v-model="settings.picks"
-            hide-details
-            label="Pick Amount"
-            max="5"
-            min="1"
-            step="1"
-          />
-        </v-card>
+        <!-- Pick Amount Slider -->
+        <v-slider
+          v-model="settings.picks"
+          hide-details
+          label="Pick Amount"
+          max="5"
+          min="1"
+          show-ticks="always"
+          step="1"
+        />
       </v-col>
 
       <!-- Operator Pool Title -->
