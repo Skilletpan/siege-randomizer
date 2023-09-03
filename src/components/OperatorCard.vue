@@ -8,19 +8,15 @@
       :class="{ placeholder }"
       cover
       :src="loadPortrait(operator.key, placeholder)"
-      :style="loadBackground()"
+      :style="{ backgroundImage: loadBackgroundImage() }"
     >
       <!-- Operator Emblem -->
       <v-avatar
         v-if="!placeholder"
+        :image="loadEmblem(operator.key)"
         rounded="0"
         size="80"
-      >
-        <v-img
-          :alt="`${operator.name} emblem`"
-          :src="loadEmblem(operator.key)"
-        />
-      </v-avatar>
+      />
     </v-img>
 
     <!-- Operator Name -->
@@ -29,46 +25,67 @@
     <!-- Operator Details -->
     <template v-if="!placeholder && detailed">
       <v-divider />
-      <v-card-text>
-        <v-list
-          class="py-0"
-          density="comfortable"
+      <v-card-text class="pt-2 px-4">
+        <!-- Operator Speed and Health -->
+        <v-label
+          class="ml-4 text-caption"
+          text="Speed and Health"
+        />
+        <v-row
+          class="align-center justify-space-between mb-4 mt-2 px-4"
+          no-gutters
         >
-          <!-- Operator Roles -->
-          <template v-if="operator.roles.length">
-            <v-list-subheader title="Roles" />
-            <v-list-item :title="operator.roles.join(' • ') || 'None'" />
-          </template>
+          <v-icon
+            color="grey lighten-1"
+            icon="mdi-speedometer"
+          />
+          <v-radio
+            v-for="i in 4"
+            :key="i"
+            :color="i <= operator.speed ? 'green' : 'blue'"
+            density="compact"
+            hide-details
+            inline
+            :model-value="true"
+            readonly
+          />
+          <v-icon
+            color="grey lighten-1"
+            icon="mdi-hospital-box-outline"
+          />
+        </v-row>
 
-          <!-- Operator Squad -->
-          <template v-if="operator.squad">
-            <v-list-subheader title="Squad" />
-            <v-list-item
-              :prepend-avatar="loadSquadEmblem(operator.squad)"
-              :title="operator.squad"
+        <!-- Operator Roles -->
+        <v-text-field
+          v-if="operator.roles.length"
+          class="mb-4"
+          density="comfortable"
+          hide-details
+          label="Roles"
+          :model-value="operator.roles.join(' • ')"
+          readonly
+          variant="solo-filled"
+        />
+
+        <!-- Operator Squad -->
+        <v-text-field
+          v-if="operator.squad"
+          class="mb-4"
+          density="comfortable"
+          hide-details
+          label="Squad"
+          :model-value="operator.squad"
+          readonly
+          variant="solo-filled"
+        >
+          <!-- Squad Emblem -->
+          <template v-slot:append-inner>
+            <v-avatar
+              :image="loadSquadEmblem(operator.squad)"
+              rounded="0"
             />
           </template>
-
-          <!-- Operator Speed and Health -->
-          <v-list-subheader title="Speed and Health" />
-          <v-list-item
-            append-icon="mdi-hospital-box-outline"
-            prepend-icon="mdi-speedometer"
-          >
-            <v-list-item-title class="d-flex">
-              <v-radio
-                v-for="i in 4"
-                :key="i"
-                :color="i <= operator.speed ? 'green' : 'blue'"
-                density="compact"
-                hide-details
-                inline
-                :model-value="true"
-                readonly
-              />
-            </v-list-item-title>
-          </v-list-item>
-        </v-list>
+        </v-text-field>
       </v-card-text>
     </template>
   </v-card>
@@ -109,13 +126,15 @@ const operator = computed(() => {
 
 /**
  * Loads a random map to display behind the operator.
+ * 
+ * @returns {String} The CSS value for the picked background image.
  */
-function loadBackground() {
-  if (props.placeholder) return null;
+function loadBackgroundImage() {
+  if (props.placeholder) return 'none';
 
   // Pick random map
   const map = MAPS[Math.floor(Math.random() * MAPS.length)].key;
-  return { backgroundImage: `url(${require(`@/assets/maps/${map}.jpg`)})` };
+  return `url(${require(`@/assets/maps/${map}.jpg`)})`;
 }
 </script>
 

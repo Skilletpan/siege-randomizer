@@ -11,6 +11,7 @@
           variant="solo-filled"
           @update:model-value="loadPreset($event)"
         >
+          <!-- Preset Item -->
           <template v-slot:item="{ item, props }">
             <v-list-item
               v-bind="props"
@@ -40,14 +41,16 @@
           placeholder="0 selected"
           variant="solo-filled"
         >
+          <!-- Selection Display -->
           <template v-slot:selection="{ index }">
             <template v-if="index === 0">{{ settings.bans.length }} selected</template>
           </template>
 
+          <!-- Operator Item -->
           <template v-slot:item="{ item, props }">
             <v-list-item
               v-bind="props"
-              :prepend-avatar="loadEmblem(item.value)"
+              :append-avatar="loadEmblem(item.value)"
             />
           </template>
         </v-select>
@@ -130,10 +133,22 @@
           label="Squad"
           variant="solo-filled"
         >
+          <!-- Squad Emblem -->
+          <template
+            v-if="settings.squad"
+            v-slot:append-inner
+          >
+            <v-avatar
+              :image="loadSquadEmblem(settings.squad)"
+              rounded="0"
+            />
+          </template>
+
+          <!-- Squad Item -->
           <template v-slot:item="{ item, props }">
             <v-list-item
               v-bind="props"
-              :prepend-avatar="loadSquadEmblem(item.value)"
+              :append-avatar="loadSquadEmblem(item.value)"
             />
           </template>
         </v-select>
