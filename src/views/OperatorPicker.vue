@@ -1,6 +1,9 @@
 <template>
-  <v-container class="pt-12">
-    <v-row justify="center">
+  <v-container>
+    <v-row
+      class="pt-12"
+      justify="center"
+    >
       <!-- Operator Cards -->
       <v-col
         v-for="i in settings.picks"
@@ -11,7 +14,7 @@
         <operator-card
           v-if="pickedOperators[i - 1]"
           :operator-key="pickedOperators[i - 1]"
-          @click="previewDialog.operatorKey = pickedOperators[i - 1]; previewDialog.show = true;"
+          @click="previewOperator(pickedOperators[i - 1])"
         />
 
         <!-- Placeholder Operator Card -->
@@ -22,11 +25,15 @@
       </v-col>
     </v-row>
 
-    <v-row justify="center">
+    <!-- Actions -->
+    <v-row
+      class="pb-12"
+      justify="center"
+    >
       <v-col cols="auto">
         <!-- Randomize Buttons -->
         <v-btn
-          v-for="{ icon, side } in SIDE_BUTTONS"
+          v-for="{ icon, side } in SIDES"
           :key="`randomize_${side || 'ALL'}`"
           class="mb-4 mx-2"
           color="primary"
@@ -47,58 +54,70 @@
           step="1"
         />
       </v-col>
+    </v-row>
 
-      <!-- Operator Pool Title -->
-      <v-col
-        class="text-center"
-        cols="12"
-        tag="h2"
+    <!-- Operator Pool -->
+    <v-row>
+      <template
+        v-for="{ icon, side, sideName } in SIDES"
+        :key="side"
       >
-        Operator Pool
-      </v-col>
-
-      <!-- Operator Pool -->
-      <v-col
-        v-for="o in operatorPool"
-        :key="o.key"
-        cols="3"
-      >
-        <v-card
-          class="align-center d-flex"
-          @click="previewDialog.operatorKey = o.key; previewDialog.show = true;"
+        <v-col
+          v-if="side"
+          cols="6"
         >
-          <v-col
-            class="py-0"
-            cols="auto"
-          >
-            <v-avatar rounded="0">
-              <v-img
-                :alt="`${o.name} emblem`"
-                :src="loadEmblem(o.key)"
-              />
-            </v-avatar>
-          </v-col>
-          <v-col class="pa-0">
-            <v-card-title class="pb-0 text-center">{{ o.name }}</v-card-title>
-            <v-card-subtitle class="mb-2 text-center">{{ o.squad || 'None' }}</v-card-subtitle>
-          </v-col>
-          <v-col
-            class="py-0"
-            cols="auto"
-          >
+          <!-- Side Title -->
+          <h2 class="mb-4 text-center">
             <v-icon
-              class="mx-1"
-              :icon="o.side === 'ATT' ? 'mdi-sword-cross' : 'mdi-chess-rook'"
-              size="32"
+              :icon="icon"
+              start
             />
-          </v-col>
-        </v-card>
-      </v-col>
+            {{ sideName }}
+          </h2>
+
+          <!-- Operator Items -->
+          <v-row>
+            <v-col
+              v-for="{ key, name } in operatorPool.filter((o) => o.side === side)"
+              :key="key"
+              cols="6"
+            >
+              <!-- Operator Card -->
+              <v-hover v-slot="{ isHovering, props }">
+                <v-card
+                  v-bind="props"
+                  :prepend-avatar="loadEmblem(key)"
+                  :title="name"
+                  @click="previewOperator(key)"
+                >
+                  <!-- Ban Button -->
+                  <template v-slot:append>
+                    <v-btn
+                      v-show="isHovering"
+                      color="primary"
+                      variant="text"
+                      @click.stop="filterDrawer.addBan(key)"
+                    >
+                      Ban
+                    </v-btn>
+                  </template>
+                </v-card>
+              </v-hover>
+            </v-col>
+          </v-row>
+        </v-col>
+
+        <v-divider
+          v-else
+          vertical
+        />
+      </template>
     </v-row>
   </v-container>
 
   <!-- Operator Filter Drawer -->
   <operator-filter-drawer
+    ref="filterDrawer"
     v-model:duplicates="settings.duplicates"
     @update:operators="operatorPool = $event"
   />
@@ -118,26 +137,25 @@
 <script setup>
 import { ref } from 'vue';
 
-import { OperatorCard, OperatorFilterDrawer, OperatorItem } from '@/components';
+import { OperatorCard, OperatorFilterDrawer } from '@/components';
 import { loadEmblem } from '@/composables/imageLoader';
 import { pickRandom } from '@/composables/randomizer';
 
 // Define static properties
-const SIDE_BUTTONS = [
-  { side: 'ATT', icon: 'mdi-sword-cross' },
-  { side: null, icon: 'mdi-infinity' },
-  { side: 'DEF', icon: 'mdi-chess-rook' }
+const SIDES = [
+  { side: 'ATT', sideName: 'Attackers', icon: 'mdi-sword-cross' },
+  { icon: 'mdi-infinity' },
+  { side: 'DEF', sideName: 'Defenders', icon: 'mdi-chess-rook' }
 ];
 
 // Define dynamic properties
+const filterDrawer = ref(null);
 const operatorPool = ref([]);
 const pickedOperators = ref([]);
-
 const previewDialog = ref({
   operatorKey: null,
   show: false
 });
-
 const settings = ref({
   duplicates: false,
   picks: 1
@@ -161,5 +179,15 @@ function pickOperator(side = null) {
   // Pick random operator
   pickedOperators.value.length = 0;
   pickedOperators.value = pickRandom(pool, picks, duplicates);
+}
+
+/**
+ * Opens a preview dialog for the selected operator.
+ * 
+ * @param {String} operatorKey The key of the operator to preview.
+ */
+function previewOperator(operatorKey) {
+  previewDialog.value.operatorKey = operatorKey;
+  previewDialog.value.show = true;
 }
 </script>

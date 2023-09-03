@@ -23,14 +23,11 @@
 
       <v-divider class="mt-2" />
 
-      <!-- Operator Pool Settings -->
-      <v-list-subheader title="Operator Pool" />
-
       <!-- Banned Operators Selector -->
+      <v-list-subheader title="Bans" />
       <v-list-item>
         <v-select
           v-model="settings.bans"
-          class="mb-2"
           clearable
           density="comfortable"
           hide-details
@@ -56,7 +53,7 @@
         </v-select>
       </v-list-item>
 
-      <v-divider />
+      <v-divider class="mt-2" />
 
       <!-- Duplicate Picks Switch -->
       <v-list-subheader title="Picks" />
@@ -121,10 +118,8 @@
 
       <v-divider class="mt-2" />
 
-      <!-- Additional Settings -->
-      <v-list-subheader title="Other" />
-
       <!-- Squad Selector -->
+      <v-list-subheader title="Squad" />
       <v-list-item>
         <v-select
           v-model="settings.squad"
@@ -144,6 +139,8 @@
         </v-select>
       </v-list-item>
 
+      <v-divider class="mt-2" />
+
       <!-- Reset Button -->
       <v-list-item>
         <v-btn
@@ -159,7 +156,7 @@
 </template>
 
 <script setup>
-import { computed, defineEmits, ref, watch } from 'vue';
+import { computed, defineEmits, defineExpose, ref, watch } from 'vue';
 
 import { loadEmblem, loadSquadEmblem } from '@/composables/imageLoader';
 import { OPERATORS, ROLES, SQUADS } from '@/data';
@@ -193,7 +190,7 @@ const PRESETS = {
 }
 
 // Define dynamic properties
-const settings = ref({ ...DEFAULT_PRESET });
+const settings = ref(structuredClone(DEFAULT_PRESET));
 
 // Define computed properties
 const operatorPool = computed(() => {
@@ -223,12 +220,23 @@ watch(
 );
 
 /**
+ * Adds an operator to the ban list.
+ * 
+ * @param {String} operatorKey The operator key to add to the ban list.
+ */
+function addBan(operatorKey) {
+  settings.value.bans.push(operatorKey);
+}
+
+/**
  * Loads preset filter settings.
  * 
  * @param {String} [preset] The preset to load. If omitted, default values are restored.
  */
 function loadPreset(preset = null) {
-  Object.assign(settings.value, DEFAULT_PRESET, PRESETS[preset]);
-  settings.value.roles = [null, null];
+  Object.assign(settings.value, structuredClone(DEFAULT_PRESET), structuredClone(PRESETS[preset]));
 }
+
+// Expose the addBan function
+defineExpose({ addBan });
 </script>
