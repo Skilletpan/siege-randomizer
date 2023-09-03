@@ -30,6 +30,7 @@
       <v-list-item>
         <v-select
           v-model="settings.bans"
+          class="mb-2"
           clearable
           density="comfortable"
           hide-details
@@ -53,17 +54,6 @@
             />
           </template>
         </v-select>
-      </v-list-item>
-
-      <!-- Recruit Switch -->
-      <v-list-item>
-        <v-switch
-          v-model="settings.recruits"
-          density="comfortable"
-          hide-details
-          inset
-          label="Include Recruits"
-        />
       </v-list-item>
 
       <v-divider />
@@ -178,7 +168,6 @@ import { OPERATORS, ROLES, SQUADS } from '@/data';
 const DEFAULT_PRESET = {
   bans: [],
   duplicates: false,
-  recruits: true,
   roles: [null, null],
   speed: [1, 2, 3],
   squad: null
@@ -186,8 +175,8 @@ const DEFAULT_PRESET = {
 
 const PRESETS = {
   Competitive: {
-    modes: 'Competitive, Ranked',
-    recruits: false
+    bans: ['RECRUIT_ATT', 'RECRUIT_DEF'],
+    modes: 'Competitive, Ranked'
   },
   Casual: {
     modes: 'Standard, Quick Match'
@@ -208,12 +197,11 @@ const settings = ref({ ...DEFAULT_PRESET });
 
 // Define computed properties
 const operatorPool = computed(() => {
-  const { bans, recruits, roles, speed, squad } = settings.value;
+  const { bans, roles, speed, squad } = settings.value;
 
   // Apply set filters
   return OPERATORS.filter((o) => {
     if (bans.includes(o.key)) return false;                                         // Banned operators
-    if (!recruits && o.key.startsWith('RECRUIT')) return false;                     // Recruits
     if (!speed.includes(o.speed)) return false;                                     // Operator speed
     if (!roles.filter((r) => !!r).every((r) => o.roles.includes(r))) return false;  // Operator roles
     if (squad && o.squad !== squad) return false;                                   // Squad
