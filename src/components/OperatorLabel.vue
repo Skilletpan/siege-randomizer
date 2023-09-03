@@ -3,7 +3,7 @@
     class="font-weight-bold"
     :color="negative ? 'error' : null"
     label
-    :prepend-avatar="icon"
+    :prepend-avatar="loadEmblem(operator.key)"
     :text="operator.name"
   />
 </template>
@@ -11,6 +11,8 @@
 <script setup>
 import { computed, defineProps } from 'vue';
 
+
+import { loadEmblem } from '@/composables/imageLoader';
 import { OPERATORS } from '@/data';
 
 // Define input properties
@@ -28,11 +30,6 @@ const props = defineProps({
 });
 
 // Define dynamic properties
-/**
- * Fetches the operator icon.
- */
-const icon = computed(() => require(`@/assets/icons/${props.operatorKey}.png`));
-
 /**
  * Fetches the operator data.
  */

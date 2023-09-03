@@ -330,9 +330,33 @@
   {
     "title": "Noob Team",
     "description": "They wear matching outfits!",
+    "requiredOperators": {
+      "ATT": [
+        "RECRUIT_ATT",
+        "RECRUIT_ATT",
+        "RECRUIT_ATT",
+        "RECRUIT_ATT",
+        "RECRUIT_ATT"
+      ],
+      "DEF": [
+        "RECRUIT_DEF",
+        "RECRUIT_DEF",
+        "RECRUIT_DEF",
+        "RECRUIT_DEF",
+        "RECRUIT_DEF"
+      ]
+    },
     "rules": [
-      "Everyone picks Recruit.",
-      "Everyone picks the same loadout."
+      {
+        "operator": "RECRUIT_ATT",
+        "side": "ATT",
+        "value": "Everyone picks the same loadout."
+      },
+      {
+        "operator": "RECRUIT_DEF",
+        "side": "DEF",
+        "value": "Everyone picks the same loadout."
+      }
     ],
     "sides": [
       "ATT",

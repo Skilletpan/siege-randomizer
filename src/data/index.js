@@ -6,7 +6,7 @@ import STRATS from './strats.json';
 const PLAYLISTS = [...new Set([].concat(...MAPS.map((m) => m.playlists)))];
 const ARCADE_PLAYLISTS = [...new Set([].concat(...MAPS.map((m) => m.arcadePlaylists)))];
 const ROLES = [...new Set([].concat(...OPERATORS.map((o) => o.roles)))].sort();
-const SQUADS = [...new Set(OPERATORS.map((o) => o.squad))].sort();
+const SQUADS = [...new Set(OPERATORS.map((o) => o.squad))].filter((s) => !!s).sort();
 
 export {
   ARCADE_PLAYLISTS,
