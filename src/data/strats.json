@@ -332,28 +332,28 @@
     "description": "They wear matching outfits!",
     "requiredOperators": {
       "ATT": [
-        "RECRUIT",
-        "RECRUIT",
-        "RECRUIT",
-        "RECRUIT",
-        "RECRUIT"
+        "RECRUIT_ATT",
+        "RECRUIT_ATT",
+        "RECRUIT_ATT",
+        "RECRUIT_ATT",
+        "RECRUIT_ATT"
       ],
       "DEF": [
-        "RECRUIT",
-        "RECRUIT",
-        "RECRUIT",
-        "RECRUIT",
-        "RECRUIT"
+        "RECRUIT_DEF",
+        "RECRUIT_DEF",
+        "RECRUIT_DEF",
+        "RECRUIT_DEF",
+        "RECRUIT_DEF"
       ]
     },
     "rules": [
       {
-        "operator": "RECRUIT",
+        "operator": "RECRUIT_ATT",
         "side": "ATT",
         "value": "Everyone picks the same loadout."
       },
       {
-        "operator": "RECRUIT",
+        "operator": "RECRUIT_DEF",
         "side": "DEF",
         "value": "Everyone picks the same loadout."
       }
