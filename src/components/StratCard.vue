@@ -49,7 +49,7 @@
             <v-avatar rounded="0">
               <v-img
                 v-if="r.operator"
-                :src="require(`@/assets/icons/${r.operator}.png`)"
+                :src="loadEmblem(r.operator)"
               />
               <v-icon
                 v-else
@@ -82,6 +82,8 @@
 
 <script setup>
 import { computed, defineProps, ref } from 'vue';
+
+import { loadEmblem } from '@/composables/imageLoader';
 
 import OperatorLabel from './OperatorLabel';
 

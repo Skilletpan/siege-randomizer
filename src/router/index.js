@@ -13,11 +13,6 @@ const routes = [
     redirect: '/maps'
   },
   {
-    path: '/lineups',
-    name: 'lineup-picker',
-    component: UnderConstruction
-  },
-  {
     path: '/maps',
     name: 'map-picker',
     component: MapPicker

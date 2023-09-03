@@ -1,83 +1,151 @@
 <template>
-  <v-card :variant="inactive ? 'elevated' : 'tonal'" width="300">
+  <v-card :width="detailed ? 300 : 250">
     <!-- Operator Portrait -->
-    <v-img v-if="big" :alt="`${value.name} portrait`" :aspect-ratio="3 / 4.25"
-      class="d-flex align-end portrait text-center" cover :lazy-src="PLACEHOLDER_PORTRAIT" :src="portrait">
-
-      <!-- Operator Icon -->
-      <v-avatar rounded="0" size="80">
-        <v-img :alt="`${value.name} icon`" :src="icon" />
-      </v-avatar>
+    <v-img
+      :alt="`${placeholder ? 'Placeholder' : operator.name} portrait`"
+      :aspect-ratio="3 / 5"
+      class="align-end portrait text-center"
+      :class="{ placeholder }"
+      cover
+      :src="loadPortrait(operator.key, placeholder)"
+      :style="{ backgroundImage: loadBackgroundImage() }"
+    >
+      <!-- Operator Emblem -->
+      <v-avatar
+        v-if="!placeholder"
+        :image="loadEmblem(operator.key)"
+        rounded="0"
+        size="80"
+      />
     </v-img>
 
-    <div class="d-flex">
-      <v-col v-if="!big" cols="auto" class="pa-0">
-        <!-- Operator Icon -->
-        <v-avatar rounded="0" size="76">
-          <v-img :alt="`${value.name} icon`" :class="{ inactive }" :src="icon" />
-        </v-avatar>
-      </v-col>
+    <!-- Operator Name -->
+    <v-card-title class="text-center">{{ placeholder ? '?' : operator.name }}</v-card-title>
 
-      <v-col class="pa-0">
-        <!-- Operator Name -->
-        <v-card-title :class="['text-center', { 'text-button': isEmptyRandomize, 'text-primary': isEmptyRandomize }]">
-          {{ value.name }}
-        </v-card-title>
+    <!-- Operator Details -->
+    <template v-if="!placeholder && detailed">
+      <v-divider />
+      <v-card-text class="pt-2 px-4">
+        <!-- Operator Speed and Health -->
+        <v-label
+          class="ml-4 text-caption"
+          text="Speed and Health"
+        />
+        <v-row
+          class="align-center justify-space-between mb-4 mt-2 px-4"
+          no-gutters
+        >
+          <v-icon
+            color="grey lighten-1"
+            icon="mdi-speedometer"
+          />
+          <v-radio
+            v-for="i in 4"
+            :key="i"
+            :color="i <= operator.speed ? 'green' : 'blue'"
+            density="compact"
+            hide-details
+            inline
+            :model-value="true"
+            readonly
+          />
+          <v-icon
+            color="grey lighten-1"
+            icon="mdi-hospital-box-outline"
+          />
+        </v-row>
 
         <!-- Operator Roles -->
-        <v-card-subtitle v-if="value.key" class="pb-2 text-center">{{ value.roles.join(' • ') }}</v-card-subtitle>
-      </v-col>
-    </div>
+        <v-text-field
+          v-if="operator.roles.length"
+          class="mb-4"
+          density="comfortable"
+          hide-details
+          label="Roles"
+          :model-value="operator.roles.join(' • ')"
+          readonly
+          variant="solo-filled"
+        />
+
+        <!-- Operator Squad -->
+        <v-text-field
+          v-if="operator.squad"
+          class="mb-4"
+          density="comfortable"
+          hide-details
+          label="Squad"
+          :model-value="operator.squad"
+          readonly
+          variant="solo-filled"
+        >
+          <!-- Squad Emblem -->
+          <template v-slot:append-inner>
+            <v-avatar
+              :image="loadSquadEmblem(operator.squad)"
+              rounded="0"
+            />
+          </template>
+        </v-text-field>
+      </v-card-text>
+    </template>
   </v-card>
 </template>
 
 <script setup>
 import { computed, defineProps } from 'vue';
 
-// Define static properties
-const PLACEHOLDER_PORTRAIT = require('@/assets/portraits/ASH.png');
+import { loadEmblem, loadPortrait, loadSquadEmblem } from '@/composables/imageLoader';
+import { MAPS, OPERATORS } from '@/data';
 
 // Define input properties
 const props = defineProps({
-  big: {
+  detailed: {
+    default: false,
     type: Boolean
   },
 
-  inactive: {
+  placeholder: {
+    default: false,
     type: Boolean
   },
 
-  value: {
-    default: () => ({ name: 'Randomize' }),
-    type: Object
+  operatorKey: {
+    type: String,
+    validator: (v) => OPERATORS.map((o) => o.key).includes(v)
   }
 });
 
 // Define computed properties
-const isEmptyRandomize = computed(() => !props.value.key && props.big);
-const icon = computed(() => props.value.key ? require(`@/assets/icons/${props.value.key}.png`) : null);
-const portrait = computed(() => {
-  // Return null if no operator is given
-  if (!props.value.key) return null;
+const operator = computed(() => {
+  // Fetch random operator if placeholder
+  if (props.placeholder) return OPERATORS[Math.floor(Math.random() * OPERATORS.length)];
 
-  // Return easter egg portrait (1 in 50 chance)
-  const easterEggOperators = ['ASH', 'PULSE'];
-  if (easterEggOperators.includes(props.value.key) && Math.floor(Math.random() * 50) === 0) {
-    return require(`@/assets/portraits/${props.value.key}_2.png`);
-  }
-
-  // Return normal operator portrait
-  return require(`@/assets/portraits/${props.value.key}.png`);
+  // Fetch given operator by operator key
+  return OPERATORS.find((o) => o.key === props.operatorKey);
 });
+
+/**
+ * Loads a random map to display behind the operator.
+ * 
+ * @returns {String} The CSS value for the picked background image.
+ */
+function loadBackgroundImage() {
+  if (props.placeholder) return 'none';
+
+  // Pick random map
+  const map = MAPS[Math.floor(Math.random() * MAPS.length)].key;
+  return `url(${require(`@/assets/maps/${map}.jpg`)})`;
+}
 </script>
 
 <style scoped>
-.portrait {
-  background-color: skyblue;
+.placeholder {
+  filter: brightness(10%) grayscale(100%);
+  -webkit-filter: brightness(10%) grayscale(100%);
 }
 
-.inactive {
-  -webkit-filter: grayscale(100%);
-  filter: grayscale(100%);
+.portrait {
+  background-position: center;
+  background-size: cover;
 }
 </style>

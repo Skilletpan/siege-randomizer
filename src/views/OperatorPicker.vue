@@ -1,114 +1,193 @@
 <template>
   <v-container>
-    <v-row class="py-12" align="end" justify="center">
-      <!-- Operator Card -->
-      <v-col cols="auto" offset="3">
-        <operator-card big :value="pickedOperator" @click="pickOperator" />
-      </v-col>
+    <v-row
+      class="pt-12"
+      justify="center"
+    >
+      <!-- Operator Cards -->
+      <v-col
+        v-for="i in settings.picks"
+        :key="`portrait_${i}`"
+        cols="auto"
+      >
+        <!-- Picked Operator Card -->
+        <operator-card
+          v-if="pickedOperators[i - 1]"
+          :operator-key="pickedOperators[i - 1]"
+          @click="previewOperator(pickedOperators[i - 1])"
+        />
 
-      <!-- Filters -->
-      <v-col cols="3">
-        <v-card color="transparent" elevation="0" max-width="300">
-          <!-- Side -->
-          <v-radio-group v-model="pickedSide" inline hide-details @update:model-value="clearPicks">
-            <v-radio label="All" :value="null" />
-            <v-radio label="Attacker" value="ATT" />
-            <v-radio label="Defender" value="DEF" />
-          </v-radio-group>
-
-          <!-- Speed -->
-          <v-select v-model="pickedSpeeds" class="mt-4" clearable hide-details :items="[1, 2, 3]" label="Speed" multiple
-            variant="solo-filled" @update:model-value="clearPicks" />
-
-          <!-- Role -->
-          <v-select v-model="pickedRoles" class="mt-4" clearable hide-details :items="ROLES" label="Role" multiple
-            variant="solo-filled" @update:model-value="clearPicks" />
-
-          <!-- Squad -->
-          <v-select v-model="pickedSquads" class="mt-4" clearable hide-details :items="SQUADS" label="Squad" multiple
-            variant="solo-filled" @update:model-value="clearPicks" />
-
-          <!-- Randomize Button -->
-          <v-btn block class="mt-4" color="primary" :text="pickedOperator ? 'Repick' : 'Randomize'"
-            @click="pickOperator" />
-        </v-card>
+        <!-- Placeholder Operator Card -->
+        <operator-card
+          v-else
+          placeholder
+        />
       </v-col>
     </v-row>
 
-    <!-- Operator Pool Title -->
-    <v-row justify="center">
-      <v-col cols="auto" class="text-center" tag="h2">Operator Pool</v-col>
+    <!-- Actions -->
+    <v-row
+      class="pb-12"
+      justify="center"
+    >
+      <v-col cols="auto">
+        <!-- Randomize Buttons -->
+        <v-btn
+          v-for="{ icon, side } in SIDES"
+          :key="`randomize_${side || 'ALL'}`"
+          class="mb-4 mx-2"
+          color="primary"
+          :disabled="!operatorPool.length"
+          :icon="icon"
+          size="x-large"
+          @click="pickOperator(side)"
+        />
+
+        <!-- Pick Amount Slider -->
+        <v-slider
+          v-model="settings.picks"
+          hide-details
+          label="Pick Amount"
+          max="5"
+          min="1"
+          show-ticks="always"
+          step="1"
+        />
+      </v-col>
     </v-row>
 
-    <v-row justify="center">
-      <v-col v-for="o in operatorPool" :key="o.key" cols="auto">
-        <operator-card :inactive="disabledOperators.includes(o)" :value="o" @click="toggleInactive(o)" />
-      </v-col>
+    <!-- Operator Pool -->
+    <v-row>
+      <template
+        v-for="{ icon, side, sideName } in SIDES"
+        :key="side"
+      >
+        <v-col
+          v-if="side"
+          cols="6"
+        >
+          <!-- Side Title -->
+          <h2 class="mb-4 text-center">
+            <v-icon
+              :icon="icon"
+              start
+            />
+            {{ sideName }}
+          </h2>
+
+          <!-- Operator Items -->
+          <v-row>
+            <v-col
+              v-for="{ key, name } in operatorPool.filter((o) => o.side === side)"
+              :key="key"
+              cols="6"
+            >
+              <!-- Operator Card -->
+              <v-hover v-slot="{ isHovering, props }">
+                <v-card
+                  v-bind="props"
+                  :prepend-avatar="loadEmblem(key)"
+                  :title="name"
+                  @click="previewOperator(key)"
+                >
+                  <!-- Ban Button -->
+                  <template v-slot:append>
+                    <v-btn
+                      v-show="isHovering"
+                      color="primary"
+                      variant="text"
+                      @click.stop="filterDrawer.addBan(key)"
+                    >
+                      Ban
+                    </v-btn>
+                  </template>
+                </v-card>
+              </v-hover>
+            </v-col>
+          </v-row>
+        </v-col>
+
+        <v-divider
+          v-else
+          vertical
+        />
+      </template>
     </v-row>
   </v-container>
+
+  <!-- Operator Filter Drawer -->
+  <operator-filter-drawer
+    ref="filterDrawer"
+    v-model:duplicates="settings.duplicates"
+    @update:operators="operatorPool = $event"
+  />
+
+  <!-- Operator Preview Dialog -->
+  <v-dialog
+    v-model="previewDialog.show"
+    width="auto"
+  >
+    <operator-card
+      detailed
+      :operator-key="previewDialog.operatorKey"
+    />
+  </v-dialog>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { ref } from 'vue';
 
-import { OperatorCard } from '@/components';
-import { pickRandomOperators } from '@/composables/operatorPicker';
-import { OPERATORS, ROLES, SQUADS } from '@/data';
+import { OperatorCard, OperatorFilterDrawer } from '@/components';
+import { loadEmblem } from '@/composables/imageLoader';
+import { pickRandom } from '@/composables/randomizer';
+
+// Define static properties
+const SIDES = [
+  { side: 'ATT', sideName: 'Attackers', icon: 'mdi-sword-cross' },
+  { icon: 'mdi-infinity' },
+  { side: 'DEF', sideName: 'Defenders', icon: 'mdi-chess-rook' }
+];
 
 // Define dynamic properties
-const pickedRoles = ref([]);
-const pickedSide = ref(null);
-const pickedSpeeds = ref([]);
-const pickedSquads = ref([]);
-const pickedOperator = ref(undefined);
-const disabledOperators = ref([]);
-
-// Define computed properties
-const operatorPool = computed(() => OPERATORS.filter((o) => {
-  // Apply selected filters
-  if (pickedSide.value && pickedSide.value !== o.side) return false;
-  if (pickedRoles.value.length && pickedRoles.value.some((r) => !o.roles.includes(r))) return false;
-  if (pickedSpeeds.value.length && !pickedSpeeds.value.includes(o.speed)) return false;
-  if (pickedSquads.value.length && !pickedSquads.value.includes(o.squad)) return false;
-
-  return true;
-}));
-
-/**
- * Clears the operator pick and disabled operators.
- */
-function clearPicks() {
-  pickedOperator.value = undefined;
-  disabledOperators.value = [];
-}
+const filterDrawer = ref(null);
+const operatorPool = ref([]);
+const pickedOperators = ref([]);
+const previewDialog = ref({
+  operatorKey: null,
+  show: false
+});
+const settings = ref({
+  duplicates: false,
+  picks: 1
+});
 
 /**
  * Picks a random operator from the operator pool.
+ * 
+ * @param {"ATT" | "DEF"} [side=null] The side to pick the operator from.
  */
-function pickOperator() {
-  // Build filter object
-  const filters = { exclude: [...disabledOperators.value] };
-  if (pickedOperator.value) filters.exclude.push(pickedOperator.value);
-  if (pickedSide.value) filters.side = pickedSide.value;
-  if (pickedRoles.value.length) filters.roles = pickedRoles.value;
-  if (pickedSpeeds.value.length) filters.speeds = pickedSpeeds.value;
-  if (pickedSquads.value.length) filters.squads = pickedSquads.value;
+function pickOperator(side = null) {
+  const { duplicates, picks } = settings.value;
+
+  // Apply filters
+  const pool = operatorPool.value.filter((o) => {
+    if (side && o.side !== side) return false;
+    if (picks === 1 && pickedOperators.value.length === 1 && o.key === pickedOperators.value[0]) return false;
+    return true;
+  }).map((o) => o.key);
 
   // Pick random operator
-  [pickedOperator.value] = pickRandomOperators(filters);
+  pickedOperators.value.length = 0;
+  pickedOperators.value = pickRandom(pool, picks, duplicates);
 }
 
 /**
- * Toggles the inactive status of an operator.
+ * Opens a preview dialog for the selected operator.
  * 
- * @param {String} key The key of the operator to toggle.
+ * @param {String} operatorKey The key of the operator to preview.
  */
-function toggleInactive(operator) {
-  // Find operator index
-  const operatorIndex = disabledOperators.value.indexOf(operator);
-
-  // Add or remove operator from list
-  if (operatorIndex === -1) disabledOperators.value.push(operator);
-  else disabledOperators.value.splice(operatorIndex, 1);
+function previewOperator(operatorKey) {
+  previewDialog.value.operatorKey = operatorKey;
+  previewDialog.value.show = true;
 }
 </script>
