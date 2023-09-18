@@ -11,7 +11,6 @@
 <script setup>
 import { computed, defineProps } from 'vue';
 
-
 import { loadEmblem } from '@/composables/imageLoader';
 import { OPERATORS } from '@/data';
 
@@ -25,7 +24,7 @@ const props = defineProps({
   operatorKey: {
     required: true,
     type: String,
-    validator: (value) => OPERATORS.map((o) => o.key).includes(value)
+    validator: (v) => Object.keys(OPERATORS).includes(v)
   }
 });
 
@@ -33,5 +32,5 @@ const props = defineProps({
 /**
  * Fetches the operator data.
  */
-const operator = computed(() => OPERATORS.find((o) => o.key === props.operatorKey));
+const operator = computed(() => OPERATORS[props.operatorKey]);
 </script>

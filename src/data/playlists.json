@@ -1,0 +1,147 @@
+{
+  "COMPETITIVE": {
+    "name": "Competitive",
+    "maps": [
+      "BANK",
+      "BORDER",
+      "CHALET",
+      "CLUBHOUSE",
+      "CONSULATE",
+      "KAFE",
+      "NIGHTHAVEN",
+      "OREGON",
+      "SKYSCRAPER"
+    ]
+  },
+  "RANKED": {
+    "name": "Ranked",
+    "maps": [
+      "BANK",
+      "BORDER",
+      "CHALET",
+      "CLUBHOUSE",
+      "COASTLINE",
+      "CONSULATE",
+      "EMERALD",
+      "KAFE",
+      "KANAL",
+      "NIGHTHAVEN",
+      "OREGON",
+      "OUTBACK",
+      "SKYSCRAPER",
+      "STADIUM",
+      "THEMEPARK",
+      "VILLA"
+    ]
+  },
+  "STANDARD": {
+    "name": "Standard",
+    "maps": [
+      "BANK",
+      "BORDER",
+      "CHALET",
+      "COASTLINE",
+      "CONSULATE",
+      "FORTRESS",
+      "KAFE",
+      "NIGHTHAVEN",
+      "OREGON",
+      "PLANE",
+      "VILLA",
+      "YACHT"
+    ]
+  },
+  "QUICKMATCH": {
+    "name": "Quick Match",
+    "maps": [
+      "BANK",
+      "CHALET",
+      "CLUBHOUSE",
+      "COASTLINE",
+      "CONSULATE",
+      "FAVELA",
+      "HOUSE",
+      "NIGHTHAVEN",
+      "TOWER",
+      "VILLA"
+    ],
+    "modes": [
+      "BOMB",
+      "HOSTAGE",
+      "SECURE"
+    ]
+  },
+  "DEATHMATCH": {
+    "name": "Deathmatch",
+    "isArcade": true,
+    "maps": [
+      "CLOSEQUARTER",
+      "COASTLINE",
+      "CONSULATE",
+      "EMERALD",
+      "FAVELA",
+      "NIGHTHAVEN",
+      "SKYSCRAPER",
+      "STADIUM",
+      "THEMEPARK",
+      "VILLA"
+    ]
+  },
+  "F4A": {
+    "name": "Free for All",
+    "isArcade": true,
+    "maps": [
+      "CLOSEQUARTER",
+      "CONSULATE",
+      "EMERALD",
+      "FAVELA",
+      "NIGHTHAVEN",
+      "STADIUM",
+      "THEMEPARK",
+      "VILLA"
+    ]
+  },
+  "GOLDENGUN": {
+    "name": "Golden Gun",
+    "isArcade": true,
+    "maps": [
+      "CLOSEQUARTER",
+      "EMERALD",
+      "FAVELA",
+      "SKYSCRAPER",
+      "STADIUM"
+    ]
+  },
+  "HEADSHOTS": {
+    "name": "Headshots Only",
+    "isArcade": true,
+    "maps": [
+      "CLOSEQUARTER",
+      "COASTLINE",
+      "NIGHTHAVEN",
+      "THEMEPARK",
+      "VILLA"
+    ],
+    "disabled": true
+  },
+  "SNIPERS": {
+    "name": "Snipers Only",
+    "isArcade": true,
+    "maps": [
+      "HEREFORD"
+    ]
+  },
+  "ROULETTE": {
+    "name": "Weapon Roulette",
+    "isArcade": true,
+    "maps": [
+      "CLOSEQUARTER",
+      "COASTLINE",
+      "FAVELA",
+      "NIGHTHAVEN",
+      "STADIUM",
+      "THEMEPARK",
+      "VILLA"
+    ]
+  }
+}

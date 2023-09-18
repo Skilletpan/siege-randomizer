@@ -62,7 +62,7 @@
           density="comfortable"
           hide-details
           label="Roles"
-          :model-value="operator.roles.join(' • ')"
+          :model-value="roles"
           readonly
           variant="solo-filled"
         />
@@ -95,7 +95,7 @@
 import { computed, defineProps } from 'vue';
 
 import { loadEmblem, loadPortrait, loadSquadEmblem } from '@/composables/imageLoader';
-import { MAPS, OPERATORS } from '@/data';
+import { MAP_LIST, OPERATORS, OPERATOR_LIST, ROLES } from '@/data';
 
 // Define input properties
 const props = defineProps({
@@ -111,18 +111,20 @@ const props = defineProps({
 
   operatorKey: {
     type: String,
-    validator: (v) => OPERATORS.map((o) => o.key).includes(v)
+    validator: (v) => Object.keys(OPERATORS).includes(v)
   }
 });
 
 // Define computed properties
 const operator = computed(() => {
   // Fetch random operator if placeholder
-  if (props.placeholder) return OPERATORS[Math.floor(Math.random() * OPERATORS.length)];
+  if (props.placeholder) return OPERATOR_LIST[Math.floor(Math.random() * OPERATOR_LIST.length)];
 
   // Fetch given operator by operator key
-  return OPERATORS.find((o) => o.key === props.operatorKey);
+  return OPERATORS[props.operatorKey];
 });
+
+const roles = computed(() => operator.value.roles.map((r) => ROLES[r].name).join(' • '));
 
 /**
  * Loads a random map to display behind the operator.
@@ -133,7 +135,7 @@ function loadBackgroundImage() {
   if (props.placeholder) return 'none';
 
   // Pick random map
-  const map = MAPS[Math.floor(Math.random() * MAPS.length)].key;
+  const map = MAP_LIST[Math.floor(Math.random() * MAP_LIST.length)].key;
   return `url(${require(`@/assets/maps/${map}.jpg`)})`;
 }
 </script>
