@@ -1,14 +1,11 @@
 <template>
   <v-container>
-    <v-row
-      class="pt-12"
-      justify="center"
-    >
+    <v-row class="justify-center flex-nowrap pt-12">
       <!-- Operator Cards -->
       <v-col
         v-for="i in settings.picks"
         :key="`portrait_${i}`"
-        cols="auto"
+        style="max-width: calc(100% / 5);"
       >
         <!-- Picked Operator Card -->
         <operator-card

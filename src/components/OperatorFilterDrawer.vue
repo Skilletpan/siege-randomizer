@@ -178,7 +178,7 @@
 import { computed, defineEmits, defineExpose, ref, watch } from 'vue';
 
 import { loadEmblem, loadSquadEmblem } from '@/composables/imageLoader';
-import { OPERATORS, OPERATOR_LIST, ROLE_LIST, SQUADS, SQUAD_LIST } from '@/data';
+import { OPERATORS, OPERATOR_LIST, ROLE_LIST, SQUAD_LIST } from '@/data';
 
 // Define static properties
 const DEFAULT_PRESET = {
