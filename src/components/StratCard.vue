@@ -1,11 +1,15 @@
 <template>
-  <v-card width="800">
-    <!-- Strat Name and Description -->
-    <v-card-title class="pb-0">{{ strat.title }}</v-card-title>
-    <v-card-subtitle class="mb-2">{{ strat.description }}</v-card-subtitle>
+  <v-card
+    :subtitle="strat.description"
+    :title="strat.title"
+    width="800"
+  >
+    <template v-slot:append>
+      <v-icon :icon="SIDES[activeSide].icon" />
+    </template>
 
     <!-- Required Operators -->
-    <template v-if="requiredOperators">
+    <template v-if="requiredOperators.length">
       <v-divider />
       <v-card-subtitle class="mt-3">Required Operators</v-card-subtitle>
       <v-card-text class="pb-2 pl-3 pt-1">
@@ -19,7 +23,7 @@
     </template>
 
     <!-- Disallowed Operators -->
-    <template v-if="disallowedOperators">
+    <template v-if="disallowedOperators.length">
       <v-divider />
       <v-card-subtitle class="mt-3">Disallowed Operators</v-card-subtitle>
       <v-card-text class="pb-2 pl-3 pt-1">
@@ -39,21 +43,21 @@
     <v-card-text class="px-3 pt-2">
       <v-list class="pa-0">
         <v-list-item
-          v-for="(r, index) in rules"
+          v-for="({ value, operator }, index) in rules"
           :key="index"
           class="pl-0"
-          :title="r.value"
+          :title="value"
         >
           <!-- Icon or Operator Icon -->
           <template v-slot:prepend>
             <v-avatar rounded="0">
               <v-img
-                v-if="r.operator"
-                :src="loadEmblem(r.operator)"
+                v-if="operator"
+                :src="loadEmblem(operator)"
               />
               <v-icon
                 v-else
-                :icon="activeSide === 'ATT' ? 'mdi-sword-cross' : 'mdi-chess-rook'"
+                icon="mdi-account"
               />
             </v-avatar>
           </template>
@@ -62,18 +66,17 @@
     </v-card-text>
 
     <!-- Preview Actions -->
-    <template v-if="preview && strat.sides.length > 1">
+    <template v-if="preview && strat.side === SIDES.ALL.key">
       <v-divider />
       <v-card-actions>
         <v-spacer />
 
         <!-- Side Toggle -->
         <v-btn
-          v-if="strat.sides.length > 1"
           color="primary"
-          :prepend-icon="activeSide === 'ATT' ? 'mdi-chess-rook' : 'mdi-sword-cross'"
-          :text="`${activeSide === 'ATT' ? 'Defense' : 'Attack'} Version`"
-          @click="sideOverride = activeSide === 'ATT' ? 'DEF' : 'ATT'"
+          :prepend-icon="activeSide === SIDES.ATT.key ? SIDES.DEF.icon : SIDES.ATT.icon"
+          :text="`${activeSide === SIDES.ATT.key ? SIDES.DEF.name : SIDES.ATT.name} Version`"
+          @click="togglePreviewSide"
         />
       </v-card-actions>
     </template>
@@ -81,9 +84,10 @@
 </template>
 
 <script setup>
-import { computed, defineProps, ref } from 'vue';
+import { computed, defineProps, ref, watch } from 'vue';
 
 import { loadEmblem } from '@/composables/imageLoader';
+import { OPERATORS, SIDES } from '@/data';
 
 import OperatorLabel from './OperatorLabel';
 
@@ -95,9 +99,9 @@ const props = defineProps({
   },
 
   side: {
-    default: 'ATT',
+    default: null,
     type: String,
-    validator: (value) => ['ATT', 'DEF'].includes(value)
+    validator: (v) => ['ATT', 'DEF'].includes(v)
   },
 
   strat: {
@@ -107,38 +111,40 @@ const props = defineProps({
 });
 
 // Define dynamic properties
-const sideOverride = ref('ATT');
+const previewSide = ref(null);
 
 // Define computed properties
 /**
  * Computes which side version of the card is rendered.
  */
 const activeSide = computed(() => {
-  if (props.strat.sides.length === 1) return props.strat.sides[0];
-  return props.preview ? sideOverride.value : props.side;
+  if (props.preview) return previewSide.value;
+  return props.side;
 });
 
-/**
- * Reads the disallowed operators from the strat on the active side.
- */
 const disallowedOperators = computed(() => {
-  if (!props.strat.disallowedOperators || !props.strat.disallowedOperators[activeSide.value]) return null;
-  return props.strat.disallowedOperators[activeSide.value];
+  if (!props.strat.disallowedOperators) return [];
+  return props.strat.disallowedOperators.filter((o) => OPERATORS[o].side === activeSide.value);
 });
 
-/**
- * Reads the required operators from the strat on the active side.
- */
 const requiredOperators = computed(() => {
-  if (!props.strat.requiredOperators || !props.strat.requiredOperators[activeSide.value]) return null;
-  return props.strat.requiredOperators[activeSide.value];
+  if (!props.strat.requiredOperators) return [];
+  return props.strat.requiredOperators.filter((o) => OPERATORS[o].side === activeSide.value);
 });
 
-/**
- * Reads the rules from the strat on the active side.
- */
-const rules = computed(() => props.strat.rules
-  .filter((r) => typeof r === 'string' || r.side === activeSide.value)
-  .map((r) => typeof r === 'string' ? { value: r } : r)
+const rules = computed(() => {
+  return props.strat.rules.filter(({ side }) => side === activeSide.value || side === SIDES.ALL.key);
+});
+
+function togglePreviewSide() {
+  previewSide.value = previewSide.value === SIDES.ATT.key ? SIDES.DEF.key : SIDES.ATT.key;
+}
+
+watch(
+  props.strat,
+  (strat) => {
+    if (props.preview) previewSide.value = strat.side === SIDES.ALL.key ? SIDES.ATT.key : strat.side;
+  },
+  { immediate: true }
 );
 </script>

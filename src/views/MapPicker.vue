@@ -1,10 +1,6 @@
 <template>
   <v-container>
-    <v-row
-      class="py-12"
-      align="end"
-      justify="center"
-    >
+    <v-row class="align-end justify-center py-12">
       <!-- Map Card -->
       <v-col
         cols="auto"
@@ -12,8 +8,9 @@
       >
         <map-card
           big
-          :value="pickedMap"
-          @click="pickMap"
+          :map-key="pickedMap"
+          :placeholder="!pickedMap"
+          v-on="{ click: pickedMap ? () => { showPreview(pickedMap); } : null }"
         />
       </v-col>
 
@@ -29,16 +26,20 @@
             v-model="mapFilters.playlist"
             clearable
             hide-details
-            :items="playlistPool"
+            :items="PLAYLIST_LIST"
+            item-title="name"
+            item-value="key"
             label="Playlist"
+            persistent-placeholder
+            placeholder="All Maps"
             variant="solo-filled"
           >
-            <template v-slot:item="{ item, props }">
+            <template v-slot:item="{ index, props }">
               <!-- Default Playlists Subheader -->
-              <v-list-subheader v-if="PLAYLISTS.indexOf(item.title) === 0">Default Playlists</v-list-subheader>
+              <v-list-subheader v-if="index === 0">Default Playlists</v-list-subheader>
 
               <!-- Arcade Playlists Subheader -->
-              <template v-if="ARCADE_PLAYLISTS.indexOf(item.title) === 0">
+              <template v-if="index === PLAYLIST_LIST.findIndex((p) => p.isArcade)">
                 <v-divider class="my-2" />
                 <v-list-subheader>Arcade Playlists</v-list-subheader>
               </template>
@@ -79,12 +80,23 @@
       >
         <map-card
           :inactive="mapFilters.disabled.includes(m.key)"
-          :value="m"
-          @click="toggleInactive(m.key)"
+          :map-key="m.key"
+          @click="showPreview(m.key)"
         />
       </v-col>
     </v-row>
   </v-container>
+
+  <v-dialog
+    v-model="preview.show"
+    width="auto"
+  >
+    <map-card
+      big
+      detailed
+      :map-key="preview.mapKey"
+    />
+  </v-dialog>
 </template>
 
 <script setup>
@@ -92,47 +104,43 @@ import { computed, ref } from 'vue';
 
 import { MapCard } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
-import { ARCADE_PLAYLISTS, MAPS, PLAYLISTS } from '@/data';
+import { MAP_LIST, PLAYLISTS, PLAYLIST_LIST } from '@/data';
 
 // Define dynamic properties
-const pickedMap = ref(undefined);
+const pickedMap = ref(null);
 
 const mapFilters = ref({
   disabled: [],
   playlist: null
 });
 
-// Define computed properties
-const mapPool = computed(() => {
-  if (!mapFilters.value.playlist) return MAPS;
-  return MAPS.filter((m) => [...m.playlists, ...m.arcadePlaylists].includes(mapFilters.value.playlist));
+const preview = ref({
+  mapKey: null,
+  show: false
 });
 
-const playlistPool = computed(() => [...PLAYLISTS, ...ARCADE_PLAYLISTS]);
+// Define computed properties
+const mapPool = computed(() => {
+  if (!mapFilters.value.playlist) return MAP_LIST;
+  return MAP_LIST.filter((m) => PLAYLISTS[mapFilters.value.playlist].maps.includes(m.key));
+});
 
 /**
  * Picks a random map from the map pool.
  */
 function pickMap() {
-  const pool = mapPool.value.filter((m) => {
-    if (pickedMap.value && m.key === pickedMap.value.key) return false;
-    return !mapFilters.value.disabled.includes(m.key);
-  });
+  const pool = mapPool.value
+    .filter((m) => {
+      if (m.key === pickedMap.value) return false;
+      return !mapFilters.value.disabled.includes(m.key);
+    })
+    .map((m) => m.key);
 
   [pickedMap.value] = pickRandom(pool);
 }
 
-/**
- * Toggles the inactive status of a map.
- * 
- * @param {String} key The key of the map to toggle.
- */
-function toggleInactive(key) {
-  // Find map index
-  const mapIndex = mapFilters.value.disabled.indexOf(key);
-
-  // Add or remove map from list
-  if (mapIndex === -1) mapFilters.value.disabled.push(key);
-  else mapFilters.value.disabled.splice(mapIndex, 1);
+function showPreview(mapKey) {
+  preview.value.mapKey = mapKey;
+  preview.value.show = true;
 }
 </script>

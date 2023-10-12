@@ -10,13 +10,13 @@
         "value": "Inactive players wait their turn outside."
       },
       {
+        "side": "ATT",
+        "value": "Inactive players are allowed to \"Hero Drone\", but not drone ahead of the active player."
+      },
+      {
         "side": "DEF",
         "value": "Inactive players will find a hiding spot and wait their turn there."
       }
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
@@ -25,111 +25,109 @@
     "rules": [
       "Everyone picks a window or door and spawnpeeks."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "Alternate Arms",
     "description": "What even are these?",
-    "disallowedOperators": {
-      "ATT": [
-        "BLITZ",
-        "GLAZ",
-        "KALI",
-        "MONTAGNE"
-      ],
-      "DEF": [
-        "CLASH"
-      ]
-    },
+    "disallowedOperators": [
+      "MONTAGNE",
+      "GLAZ",
+      "BLITZ",
+      "CLASH",
+      "KALI"
+    ],
     "rules": [
       "Pick a random operator.",
       "Equip a different main gun.",
       "Equip a different secondary gun.",
       "Equip a different secondary gadget."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
+  },
+  {
+    "title": "Arnold Cut",
+    "description": "Hasta la Vista, Baby!",
+    "rules": [
+      "Everyone has to speak like Arnold Schwarzenegger."
+    ]
+  },
+  {
+    "title": "A Throwaway Joke",
+    "description": "And the kitchen sink!",
+    "rules": [
+      "Bring as many throwable primary and secondary gadgets as possible.",
+      "Shout \"YEET\" every time you throw one."
+    ],
+    "side": "DEF"
   },
   {
     "title": "Big Brother",
     "description": "They see everything",
-    "requiredOperators": {
-      "DEF": [
-        "ECHO",
-        "MAESTRO",
-        "VALKYRIE"
-      ]
-    },
+    "requiredOperators": [
+      "VALKYRIE",
+      "ECHO",
+      "MAESTRO",
+      "MOZZIE"
+    ],
     "rules": [
-      "Bring 2 operators with bulletproof cameras.",
+      "Remaining operator brings a bulletproof camera.",
       "Place all your cameras on site.",
       "Hide on the other side of the building and watch the enemy on cams.",
       "Red ping the enemy all the time."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "Blackout",
     "description": "No recharging your phone",
-    "disallowedOperators": {
-      "ATT": [
-        "ACE",
-        "BLITZ",
-        "BRAVA",
-        "DOKKAEBI",
-        "FLORES",
-        "FUZE",
-        "GRIM",
-        "HIBANA",
-        "IANA",
-        "IQ",
-        "JACKAL",
-        "LION",
-        "NOKK",
-        "NOMAD",
-        "SENS",
-        "THERMITE",
-        "TWITCH",
-        "YING",
-        "ZERO"
-      ],
-      "DEF": [
-        "ALIBI",
-        "ARUNI",
-        "BANDIT",
-        "CLASH",
-        "ECHO",
-        "ELA",
-        "FENRIR",
-        "JAGER",
-        "KAID",
-        "KAPKAN",
-        "MAESTRO",
-        "MELUSI",
-        "MOZZIE",
-        "MUTE",
-        "PULSE",
-        "SMOKE",
-        "SOLIS",
-        "THORN",
-        "THUNDERBIRD",
-        "VALKYRIE",
-        "VIGIL",
-        "WAMAI",
-        "WARDEN"
-      ]
-    },
-    "requiredOperators": {
-      "ATT": [
-        "THATCHER"
-      ]
-    },
+    "disallowedOperators": [
+      "SMOKE",
+      "MUTE",
+      "THERMITE",
+      "TWITCH",
+      "PULSE",
+      "FUZE",
+      "KAPKAN",
+      "BLITZ",
+      "IQ",
+      "JAGER",
+      "BANDIT",
+      "VALKYRIE",
+      "HIBANA",
+      "ECHO",
+      "JACKAL",
+      "YING",
+      "ELA",
+      "DOKKAEBI",
+      "VIGIL",
+      "LION",
+      "MAESTRO",
+      "ALIBI",
+      "CLASH",
+      "NOMAD",
+      "KAID",
+      "MOZZIE",
+      "NOKK",
+      "WARDEN",
+      "WAMAI",
+      "IANA",
+      "ACE",
+      "MELUSI",
+      "ZERO",
+      "ARUNI",
+      "FLORES",
+      "THUNDERBIRD",
+      "THORN",
+      "SENS",
+      "GRIM",
+      "SOLIS",
+      "BRAVA",
+      "FENRIR",
+      "RAM"
+    ],
+    "requiredOperators": [
+      "THATCHER"
+    ],
     "rules": [
       "Don't bring any electric gadgets.",
       {
@@ -138,17 +136,12 @@
       },
       {
         "operator": "THATCHER",
-        "side": "ATT",
         "value": "As soon as you see anything electrical, shoot or EMP it and say \"Focking laser sights.\""
       },
       {
         "side": "DEF",
         "value": "Shoot all default cameras during prep phase."
       }
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
@@ -157,10 +150,6 @@
     "rules": [
       "Only use shotguns.",
       "If possible, bring secondary shotguns as well."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
@@ -168,11 +157,33 @@
     "description": "Hope you brought night vision goggles.",
     "rules": [
       "Set your in-game brightness to 10."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
+  },
+  {
+    "title": "C5",
+    "description": "Can you die from explosions? You'll have to C4 yourself.",
+    "rules": [
+      "Try to kill all attackers with C4s from below site.",
+      "You are only allowed to start shooting at people when all C4s are gone."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Counter Strike",
+    "description": "You missed? Skill issue.",
+    "rules": [
+      "Hipfire only. There is no ADS button."
+    ]
+  },
+  {
+    "title": "Da Vinci Cannon",
+    "description": "You don't need good aim if you shoot everywhere at once.",
+    "rules": [
+      "Set your in-game mouse sensitivity to 100 and your mouse DPI to the maximum.",
+      "Bring only LMGs.",
+      "You may shoot only entire magazines at once."
+    ],
+    "side": "ATT"
   },
   {
     "title": "Doktor's Curse",
@@ -181,8 +192,38 @@
       "No guns allowed.",
       "Make your traps and knives count."
     ],
-    "sides": [
-      "DEF"
+    "side": "DEF"
+  },
+  {
+    "title": "Drone Strike",
+    "description": "\"Why do it yourself, when robots do it better?\" - Echo",
+    "requiredOperators": [
+      "TWITCH",
+      "FLORES",
+      "BRAVA",
+      "RAM"
+    ],
+    "rules": [
+      "Bring all of the drones.",
+      "You are only allowed to attack with your operators when all drones (normal drones or gadgets) are dead.",
+      "If they have Echo or Mozzie, don't destroy their drones."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "East Take",
+    "description": "EAST TAAAAAKE!",
+    "rules": [
+      "Take site from the east side."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Feel the Burn",
+    "description": "Physical health is important.",
+    "rules": [
+      "After every kill, do 3 push-ups.",
+      "When you die, do 10 push-ups."
     ]
   },
   {
@@ -191,24 +232,18 @@
     "rules": [
       "Don't move during preparation phase. No walking, no turning, no reinforcing, no shooting drones."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "Grounded",
     "description": "Take the stairs",
-    "disallowedOperators": {
-      "ATT": [
-        "AMARU"
-      ]
-    },
+    "disallowedOperators": [
+      "AMARU"
+    ],
     "rules": [
       "You are not allowed to rappel, vault or climb ladders."
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "Hot Breach",
@@ -217,69 +252,103 @@
       "Everyone brings breach charges.",
       "Everyone picks a window and hot-breaches into the building at the same time."
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "Hot Drop Retake",
     "description": "Strike from above",
+    "requiredOperators": [
+      "ARUNI"
+    ],
     "rules": [
       "Wait on a hatch above site until the objective is being taken or defused.",
       "As soon as the objective is being taken or defused, hot-drop the hatch and retake site."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "Hurr!",
     "description": "Huh?",
     "rules": [
       "You may only communicate with Minecraft villager noises."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
     "title": "Iron Sights only",
     "description": "What do you mean you can't see?",
-    "disallowedOperators": {
-      "ATT": [
-        "GLAZ",
-        "KALI"
-      ]
-    },
+    "disallowedOperators": [
+      "GLAZ",
+      "KALI"
+    ],
     "rules": [
       "Unequip any sights on your guns."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
     "title": "King's Guard",
     "description": "Rainbow Six: Secret Service",
-    "requiredOperators": {
-      "DEF": [
-        "TACHANKA"
-      ]
-    },
+    "requiredOperators": [
+      "TACHANKA"
+    ],
     "rules": [
       {
         "operator": "TACHANKA",
-        "side": "DEF",
         "value": "Survive."
       },
       "Protect Tachanka at all costs.",
       "If Tachanka dies, the rest commits sudoku or surrenders themselves to the enemy."
     ],
-    "sides": [
-      "DEF"
+    "side": "DEF"
+  },
+  {
+    "title": "Labyrinth",
+    "description": "Environmental destruction? What is that?",
+    "disallowedOperators": [
+      "SLEDGE",
+      "ASH",
+      "THERMITE",
+      "CASTLE",
+      "BUCK",
+      "HIBANA",
+      "ZOFIA",
+      "MAVERICK",
+      "ORYX",
+      "ACE",
+      "AZAMI",
+      "FLORES",
+      "RAM"
+    ],
+    "rules": [
+      "Treat the map \"as-is\". You are not allowed to create any additional pathways, sightlines etc.",
+      "You are allowed to use pathways created by the other team.",
+      {
+        "side": "ATT",
+        "value": "You are allowed to destroy barricades, but no walls or hatches."
+      },
+      {
+        "side": "DEF",
+        "value": "You are not allowed to barricade any windows or doors. Leave the natural pathways open."
+      },
+      {
+        "side": "DEF",
+        "value": "You are allowed to reinforce walls and hatches, but not destroy them."
+      }
     ]
+  },
+  {
+    "title": "Leaky Roof",
+    "description": "It's raining in here!",
+    "requiredOperators": [
+      "SLEDGE",
+      "ASH",
+      "BUCK",
+      "RAM"
+    ],
+    "rules": [
+      "Bring as much soft destruction as you can.",
+      "Destroy every desctructible floor above site."
+    ],
+    "side": "ATT"
   },
   {
     "title": "Lucky Luke",
@@ -288,33 +357,25 @@
       "Only use handguns.",
       "Machine pistols and secondary shotguns are disallowed.",
       "Bonus points for Deagle and Revolver only."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
     "title": "Might need this later",
     "description": "When did I get 250 health potions?",
-    "disallowedOperators": {
-      "DEF": [
-        "CAVEIRA",
-        "CLASH",
-        "ORYX",
-        "SOLIS",
-        "TACHANKA",
-        "VIGIL",
-        "WARDEN"
-      ]
-    },
+    "disallowedOperators": [
+      "TACHANKA",
+      "CAVEIRA",
+      "VIGIL",
+      "CLASH",
+      "WARDEN",
+      "ORYX",
+      "SOLIS"
+    ],
     "rules": [
       "Bring a lot of utility.",
       "Don't utilize it."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "No backing off!",
@@ -323,81 +384,42 @@
       "As soon as Action Phase starts, you hold W.",
       "Don't let go of W until you win or die."
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "Noob Team",
     "description": "They wear matching outfits!",
-    "requiredOperators": {
-      "ATT": [
-        "RECRUIT_ATT",
-        "RECRUIT_ATT",
-        "RECRUIT_ATT",
-        "RECRUIT_ATT",
-        "RECRUIT_ATT"
-      ],
-      "DEF": [
-        "RECRUIT_DEF",
-        "RECRUIT_DEF",
-        "RECRUIT_DEF",
-        "RECRUIT_DEF",
-        "RECRUIT_DEF"
-      ]
-    },
-    "rules": [
-      {
-        "operator": "RECRUIT_ATT",
-        "side": "ATT",
-        "value": "Everyone picks the same loadout."
-      },
-      {
-        "operator": "RECRUIT_DEF",
-        "side": "DEF",
-        "value": "Everyone picks the same loadout."
-      }
+    "requiredOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
     ],
-    "sides": [
-      "ATT",
-      "DEF"
+    "rules": [
+      "Everyone picks Recruit.",
+      "Everyone brings the same loadout."
     ]
   },
   {
     "title": "One in the Chamber",
     "description": "One tap",
-    "disallowedOperators": {
-      "ATT": [
-        "KALI"
-      ]
-    },
+    "disallowedOperators": [
+      "KALI"
+    ],
     "rules": [
       "You may only shoot at enemies with one bullet in the chamber.",
       "Use reload cancel to empty your magazines.",
       "Shotguns are disallowed."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
     "title": "One in the Chamber (extreme)",
     "description": "One tap",
-    "disallowedOperators": {
-      "ATT": [
-        "KALI"
-      ]
-    },
     "rules": [
       "You may only shoot at enemies with one bullet in the chamber.",
       "Use reload cancel to empty your magazines.",
       "You may only bring LMGs.",
       "Secondary guns are disallowed."
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "Pacifist",
@@ -407,9 +429,7 @@
       "Don't bring any lethal gadgets.",
       "Non-lethal gadgets are allowed (Airjab, EMP, Candela, Stun Grenades etc)."
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "Parkour",
@@ -418,121 +438,121 @@
       "You are not allowed to take stairs.",
       "You can only change floors by rappelling or hatch dropping."
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "Phalanx",
     "description": "The wall is moving!",
-    "requiredOperators": {
-      "ATT": [
-        "BLACKBEARD",
-        "BLITZ",
-        "FUZE",
-        "MONTAGNE",
-        "OSA"
-      ]
-    },
+    "requiredOperators": [
+      "MONTAGNE",
+      "FUZE",
+      "BLITZ",
+      "BLACKBEARD",
+      "OSA"
+    ],
     "rules": [
       {
-        "side": "ATT",
-        "operator": "BLACKBEARD",
-        "value": "Immediately attach your shields when you don't have one on your gun."
-      },
-      {
-        "side": "ATT",
-        "operator": "BLACKBEARD",
-        "value": "If you run out of shields, you have to play behind one of your teammates."
-      },
-      {
-        "side": "ATT",
         "operator": "FUZE",
         "value": "Make sure to bring your shield."
       },
       {
-        "side": "ATT",
+        "operator": "BLACKBEARD",
+        "value": "Immediately attach your shields when you don't have one on your gun."
+      },
+      {
+        "operator": "BLACKBEARD",
+        "value": "If you run out of shields, you have to play behind one of your teammates."
+      },
+      {
         "operator": "OSA",
         "value": "When moving you must hold a shield in front of your face."
       },
       {
-        "side": "ATT",
         "operator": "OSA",
         "value": "To shoot, you must place your shield down first and shoot from behind it."
       },
       {
-        "side": "ATT",
         "operator": "OSA",
         "value": "If you run out of shields, you have to play behind one of your teammates."
       }
     ],
-    "sides": [
-      "ATT"
+    "side": "ATT"
+  },
+  {
+    "title": "Pistol Round",
+    "description": "Anyone drop me a Deagle?",
+    "disallowedOperators": [
+      "MONTAGNE",
+      "BLITZ",
+      "DOKKAEBI",
+      "VIGIL",
+      "AMARU",
+      "KALI",
+      "SOLIS"
+    ],
+    "rules": [
+      "You are only allowed to use semi-automatic pistols.",
+      {
+        "side": "ATT",
+        "value": "Don't bring any shields."
+      }
     ]
   },
   {
-    "title": "Polygot",
+    "title": "Pokémon",
+    "description": "Gotta catch 'em all!",
+    "rules": [
+      "Only kill enemies with impact grenades."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Polyglot",
     "description": "Basically, EU servers.",
     "rules": [
       "Everyone must speak in a different language."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
     "title": "Privacy, Please!",
     "description": "We are very shy.",
-    "disallowedOperators": {
-      "DEF": [
-        "ECHO",
-        "MAESTRO",
-        "MIRA",
-        "VALKYRIE"
-      ]
-    },
-    "requiredOperators": {
-      "DEF": [
-        "MOZZIE",
-        "MUTE"
-      ]
-    },
+    "disallowedOperators": [
+      "VALKYRIE",
+      "ECHO",
+      "MIRA",
+      "MAESTRO"
+    ],
+    "requiredOperators": [
+      "MUTE",
+      "MOZZIE"
+    ],
     "rules": [
       {
+        "operator": "MUTE",
+        "value": "Use your jammers to prevent drones from entering."
+      },
+      {
         "operator": "MOZZIE",
-        "side": "DEF",
         "value": "Use your pests to prevent drones from entering."
       },
       {
         "operator": "MOZZIE",
-        "side": "DEF",
         "value": "Immediately shoot captured drones."
-      },
-      {
-        "operator": "MUTE",
-        "side": "DEF",
-        "value": "Use your jammers to prevent drones from entering."
       },
       "Reinforce every outside wall of site.",
       "Reinforce every door and window you pass.",
       "Don't create sightlines.",
+      "Deploy observation blockers everywhere.",
       "Shoot every default camera.",
       "Don't bring cameras."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "Red Light, Green Light",
     "description": "Really takes the \"and\" out of \"Run and Gun\".",
     "rules": [
       "You may not shoot and move at the same time."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
@@ -541,9 +561,7 @@
     "rules": [
       "Pick your spot. As soon as Action Phase starts, you are not allowed to move away."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "Rush B",
@@ -551,72 +569,52 @@
     "rules": [
       "Rush B"
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "Santa Claus",
     "description": "We come bearing gifts!",
-    "requiredOperators": {
-      "DEF": [
-        "ROOK",
-        "THUNDERBIRD"
-      ]
-    },
+    "requiredOperators": [
+      "ROOK",
+      "THUNDERBIRD"
+    ],
     "rules": [
       {
         "operator": "ROOK",
-        "side": "DEF",
         "value": "Place your Armor Plates outside the building for the attackers to take."
       },
       {
         "operator": "THUNDERBIRD",
-        "side": "DEF",
         "value": "Place your Kona Stations outside the building for the attackers to use."
       }
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "Slow and Steady",
     "description": "Very slow. Very very slow.",
     "rules": [
       "You can only move by Alt-walking."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
     "title": "Sniper Squad",
     "description": "Snjept",
-    "requiredOperators": {
-      "ATT": [
-        "GLAZ",
-        "KALI"
-      ]
-    },
+    "requiredOperators": [
+      "GLAZ",
+      "KALI"
+    ],
     "rules": [
       "Bring DMRs with 3x scopes.",
       "Only use primary guns."
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "The Solo Queue Experience™",
     "description": "Comms are toxic anyways.",
     "rules": [
       "No communication allowed. Mute yourself in-game and in Discord / TeamSpeak."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
@@ -627,29 +625,21 @@
       "Take the most direct route to site.",
       "No roam clearing."
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "Spinbot",
     "description": "We don't have better aim, we have MORE aim!",
     "rules": [
-      "Set either your in-game mouse sensitivity to 100 or your mouse DPI to the maximum."
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
+      "Set your in-game mouse sensitivity to 100 and your mouse DPI to the maximum."
     ]
   },
   {
     "title": "Splinter Cell",
     "description": "Pew.",
-    "requiredOperators": {
-      "ATT": [
-        "ZERO"
-      ]
-    },
+    "requiredOperators": [
+      "ZERO"
+    ],
     "rules": [
       "Only use silenced handguns.",
       "Machine pistols and secondary shotguns are disallowed.",
@@ -657,54 +647,41 @@
         "side": "ATT",
         "value": "Everyone follows Zero's lead."
       }
-    ],
-    "sides": [
-      "ATT",
-      "DEF"
     ]
   },
   {
     "title": "Spotted!",
     "description": "You can't hide!",
-    "requiredOperators": {
-      "ATT": [
-        "DOKKAEBI",
-        "GRIM",
-        "JACKAL",
-        "LION",
-        "ZERO"
-      ]
-    },
+    "requiredOperators": [
+      "JACKAL",
+      "DOKKAEBI",
+      "LION",
+      "ZERO",
+      "GRIM"
+    ],
     "rules": [
       {
-        "operator": "DOKKAEBI",
-        "side": "ATT",
-        "value": "Call them."
-      },
-      {
-        "operator": "GRIM",
-        "side": "ATT",
-        "value": "Bee them."
-      },
-      {
         "operator": "JACKAL",
-        "side": "ATT",
         "value": "Track them."
       },
       {
+        "operator": "DOKKAEBI",
+        "value": "Call them."
+      },
+      {
         "operator": "LION",
-        "side": "ATT",
         "value": "Scan them."
       },
       {
         "operator": "ZERO",
-        "side": "ATT",
         "value": "Ping them."
+      },
+      {
+        "operator": "GRIM",
+        "value": "Bee them."
       }
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "Supressive Fire",
@@ -713,25 +690,19 @@
       "Bring only LMGs.",
       "As soon as you start shooting, you cannot stop until your magazine is empty."
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "Swiss Cheese",
     "description": "Punch holes. Punch holes everywhere.",
-    "disallowedOperators": {
-      "DEF": [
-        "ARUNI"
-      ]
-    },
+    "disallowedOperators": [
+      "ARUNI"
+    ],
     "rules": [
       "Make as many punch holes in reinforcable walls as possible.",
       "Only shoot at people through punch holes."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "Switcheroo",
@@ -740,9 +711,7 @@
       "Completely reinforce a different site on the map.",
       "The other site can't share a room with the actual site (e.g. Kitchen / Dining and Kitchen / Meeting on Oregon)."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "The Floor is Lava",
@@ -751,9 +720,7 @@
       "As soon as Action Phase starts, you may only shoot from elevated positions.",
       "You may only touch the lava to sprint directly to a new high ground."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "The Snake",
@@ -762,8 +729,26 @@
       "Inside the building, you are only allowed to move while prone.",
       "You may stand up to shoot, but need to go prone again to continue moving."
     ],
-    "sides": [
-      "ATT"
+    "side": "ATT"
+  },
+  {
+    "title": "The Wimba Way",
+    "description": "ooo OOOOOOOOOOOOOOOOOH!",
+    "rules": [
+      "Sing \"In the Jungle\" during the entire round."
+    ]
+  },
+  {
+    "title": "Thin Air",
+    "description": "Dutch mountaineering",
+    "rules": [
+      {
+        "side": "ATT",
+        "value": "Roofs are off-limits."
+      },
+      "You are only allowed to prone on the top floor.",
+      "You are only allowed to crouch and prone on the second highest floor.",
+      "Any stance is allowed on lower floors."
     ]
   },
   {
@@ -773,9 +758,7 @@
       "You may not reinforce any walls or barricade any doors.",
       "Fully open every reinforcable wall on and between sites."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   },
   {
     "title": "Wet Work",
@@ -783,9 +766,7 @@
     "rules": [
       "You are only allowed to enter and exit the building through bathrooms."
     ],
-    "sides": [
-      "ATT"
-    ]
+    "side": "ATT"
   },
   {
     "title": "Year 1 Turtle",
@@ -796,8 +777,6 @@
       "Sit in site for the entire round.",
       "Pray they don't bring Fuze."
     ],
-    "sides": [
-      "DEF"
-    ]
+    "side": "DEF"
   }
 ]
