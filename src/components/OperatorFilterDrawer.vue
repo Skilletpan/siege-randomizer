@@ -4,10 +4,13 @@
       <!-- Presets Selector -->
       <v-list-item>
         <v-select
+          clearable
           density="comfortable"
           hide-details
           :items="Object.keys(PRESETS)"
           label="Preset"
+          persistent-placeholder
+          placeholder="Casual"
           variant="solo-filled"
           @update:model-value="loadPreset($event)"
         >
@@ -107,6 +110,8 @@
           item-title="name"
           item-value="key"
           label="Role"
+          persistent-placeholder
+          placeholder="Any"
           variant="solo-filled"
         />
       </v-list-item>
@@ -135,6 +140,8 @@
           item-title="name"
           item-value="key"
           label="Squad"
+          persistent-placeholder
+          placeholder="Any"
           variant="solo-filled"
         >
           <!-- Squad Emblem -->
@@ -192,10 +199,10 @@ const DEFAULT_PRESET = {
 const PRESETS = {
   Competitive: {
     bans: [OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
-    modes: 'Competitive, Ranked'
+    modes: 'Competitive, Ranked, Standard'
   },
   Casual: {
-    modes: 'Standard, Quick Match'
+    modes: 'Quick Match'
   },
   'Arcade 1': {
     bans: [OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
@@ -203,7 +210,7 @@ const PRESETS = {
     modes: 'Weapons Roulette, Golden Gun, Snipers Only'
   },
   'Arcade 2': {
-    bans: [OPERATORS.MONTAGNE.key, OPERATORS.BLITZ.key, OPERATORS.RECRUIT_ATT.key, OPERATORS.CLASH.key, OPERATORS.RECRUIT_DEF.key],
+    bans: [OPERATORS.MONTAGNE.key, OPERATORS.BLITZ.key, OPERATORS.CLASH.key, OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
     duplicates: true,
     modes: 'Free for All, Deathmatch'
   }
