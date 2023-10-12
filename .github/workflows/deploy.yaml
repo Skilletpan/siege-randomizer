@@ -1,33 +1,17 @@
-name: Deploy
+name: Deploy App
 on:
   push:
     branches: [ master ]
+  
+  pull_request:
+    branches: [ develop ]
+
 jobs:
-  deploy-app:
+  deploy:
     runs-on: ubuntu-latest
     steps:
-      - name: Setup NodeJS
-        uses: actions/setup-node@v3
-        with:
-          node-version: 18.x
-
-      - name: Checkout repository
-        uses: actions/checkout@v3
-        with:
-          ref: master
-          token: ${{ secrets.SIEGE_RANDOMIZER_DEPLOYMENT_ACTION }}
-      
-      - name: Set git user
-        run: git config user.email "skilletpan.14@gmail.com" && git config user.name "Skilletpan"
-      
-      - name: Install NPM packages
-        run: npm install
-      
-      - name: Create builder branch
-        run: git checkout -b gh-pages-build
-      
-      - name: Build project
-        run: npm run build
+      - name: Build App
+        uses: ./.github/workflows/build.yaml
       
       - name: Add build files
         run: git add dist -f
@@ -38,5 +22,5 @@ jobs:
       - name: Create build directory subtree
         run: git subtree split --prefix dist -b gh-pages
       
-      - name: Push build directory to pages branch
-        run: git push -f origin gh-pages:pages
+      # - name: Push build directory to pages branch
+      #   run: git push -f origin gh-pages:pages

@@ -4,5 +4,5 @@ on:
     branches: [ master, develop ]
 
 jobs:
-  build-app:
+  test-build:
     uses: ./.github/workflows/build.yaml
