@@ -6,6 +6,9 @@ on:
   pull_request:
     branches: [ develop ]
 
+permissions:
+  contents: write
+
 jobs:
   build:
     uses: ./.github/workflows/build.yaml
@@ -16,11 +19,15 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
+      - name: Set GIT credentials
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           branch: pages
-          token: ${{ github.token }}
       
       - name: Download build artifact
         uses: actions/download-artifact@v3
