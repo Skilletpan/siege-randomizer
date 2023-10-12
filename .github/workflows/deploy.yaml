@@ -19,15 +19,15 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Set GIT credentials
-        run: |
-          git config user.name github-actions
-          git config user.email github-actions@github.com
-
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
           branch: pages
+      
+      - name: Set GIT credentials
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
       
       - name: Download build artifact
         uses: actions/download-artifact@v3
