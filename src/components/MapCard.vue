@@ -15,12 +15,18 @@
     <!-- Map Name -->
     <v-card-title class="text-center">{{ placeholder ? '?' : map.name }}</v-card-title>
 
+    <!-- Map Details -->
     <template v-if="!placeholder && detailed">
       <v-divider />
       <v-card-text>
+        <!-- Playlists -->
+        <v-label
+          class="d-block mb-1 text-caption"
+          text="Playlists"
+        />
         <v-chip
           v-for="p in playlists"
-          class="ma-1"
+          class="mb-2 mr-2"
           :key="p.key"
           label
           :text="p.name"
@@ -81,4 +87,5 @@ const playlists = computed(() => PLAYLIST_LIST.filter((p) => p.maps.includes(pro
 .placeholder {
   filter: brightness(10%) grayscale(100%);
   -webkit-filter: brightness(10%) grayscale(100%);
-}</style>
+}
+</style>
