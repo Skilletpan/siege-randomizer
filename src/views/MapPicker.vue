@@ -143,18 +143,4 @@ function showPreview(mapKey) {
   preview.value.mapKey = mapKey;
   preview.value.show = true;
 }
-
-/**
- * Toggles the inactive status of a map.
- * 
- * @param {String} key The key of the map to toggle.
- */
-function toggleInactive(key) {
-  // Find map index
-  const mapIndex = mapFilters.value.disabled.indexOf(key);
-
-  // Add or remove map from list
-  if (mapIndex === -1) mapFilters.value.disabled.push(key);
-  else mapFilters.value.disabled.splice(mapIndex, 1);
-}
 </script>
