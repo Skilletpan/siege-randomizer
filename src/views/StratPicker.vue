@@ -1,36 +1,40 @@
 <template>
   <v-container>
     <v-row
-      class="py-12"
+      class="pt-12"
       justify="center"
     >
       <!-- Picked Strat Card -->
-      <v-col
-        v-if="picks.strat"
-        cols="auto"
-      >
+      <v-col cols="auto">
         <strat-card
+          v-if="picks.strat"
           :side="picks.side"
           :strat="picks.strat"
         />
       </v-col>
+    </v-row>
 
+    <!-- Actions -->
+    <v-row
+      class="pb-12"
+      justify="center"
+    >
       <!-- Randomize Buttons -->
-      <v-col
-        align="center"
-        cols="12"
-      >
+      <v-col cols="auto">
         <v-btn
-          v-for="s in ['ATT', 'DEF']"
-          :key="s"
+          v-for="{ sideKey, icon } in SIDE_LIST.filter((s) => !!s.sideKey)"
+          :key="sideKey"
           class="mx-2"
           color="primary"
-          :icon="s === 'ATT' ? 'mdi-sword-cross' : 'mdi-chess-rook'"
+          :icon="icon"
           size="x-large"
-          @click="pickRandomStrat(s)"
+          @click="pickRandomStrat(sideKey)"
         />
       </v-col>
+    </v-row>
 
+    <!-- Strat Pool -->
+    <v-row>
       <!-- Strat Pool Title -->
       <v-col
         class="text-center"
@@ -42,28 +46,17 @@
 
       <!-- Strat Pool Cards -->
       <v-col
-        v-for="(s, index) in STRATS"
+        v-for="(strat, index) in STRATS"
         :key="index"
-        cols="4"
+        cols="3"
       >
         <v-card
-          class="align-center d-flex"
-          @click="previewDialog.strat = s; previewDialog.show = true;"
+          :title="strat.title"
+          @click="previewDialog.strat = strat; previewDialog.show = true;"
         >
-          <!-- Strat Name and Description -->
-          <v-col class="pa-0">
-            <v-card-title class="pb-0">{{ s.title }}</v-card-title>
-            <v-card-subtitle class="mb-2">{{ s.description }}</v-card-subtitle>
-          </v-col>
-
-          <!-- Strat Side Icons -->
-          <v-col
-            v-for="si in s.sides"
-            :key="si"
-            cols="auto"
-          >
-            <v-icon :icon="si === 'ATT' ? 'mdi-sword-cross' : 'mdi-chess-rook'" />
-          </v-col>
+          <template v-slot:append>
+            <v-icon :icon="SIDES[strat.side].icon" />
+          </template>
         </v-card>
       </v-col>
     </v-row>
@@ -76,7 +69,6 @@
   >
     <strat-card
       preview
-      :side="previewDialog.strat.sides[0]"
       :strat="previewDialog.strat"
     />
   </v-dialog>
@@ -87,7 +79,7 @@ import { ref } from 'vue';
 
 import { StratCard } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
-import { STRATS } from '@/data';
+import { SIDES, SIDE_LIST, STRATS } from '@/data';
 
 // Define dynamic properties
 const picks = ref({
@@ -110,7 +102,7 @@ function pickRandomStrat(side) {
 
   const pool = STRATS.filter((s) => {
     if (picks.value.strat && s.title === picks.value.strat.title) return false;
-    return s.sides.includes(side);
+    return s.side === side || s.side === SIDES.ALL.key;
   });
 
   [picks.value.strat] = pickRandom(pool);

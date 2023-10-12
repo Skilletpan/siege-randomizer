@@ -23,6 +23,8 @@ function setImageKey(operatorKey) {
  * @returns The operator portrait.
  */
 export function loadPortrait(operatorKey, disableEasterEgg = false) {
+  if (!operatorKey) return null;
+
   // Build image key
   const imageKey = setImageKey(operatorKey);
 
@@ -44,7 +46,13 @@ export function loadPortrait(operatorKey, disableEasterEgg = false) {
  * @returns The operator emblem.
  */
 export function loadEmblem(operatorKey) {
+  if (!operatorKey) return null;
   return require(`@/assets/emblems/${setImageKey(operatorKey)}.png`);
+}
+
+export function loadMapPreview(mapKey) {
+  if (!mapKey) return null;
+  return require(`@/assets/maps/${mapKey}.jpg`);
 }
 
 /**
@@ -55,5 +63,6 @@ export function loadEmblem(operatorKey) {
  * @returns The squad emblem.
  */
 export function loadSquadEmblem(squad) {
+  if (!squad) return null;
   return require(`@/assets/squads/${squad.toUpperCase()}.png`);
 }

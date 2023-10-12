@@ -4,10 +4,13 @@
       <!-- Presets Selector -->
       <v-list-item>
         <v-select
+          clearable
           density="comfortable"
           hide-details
           :items="Object.keys(PRESETS)"
           label="Preset"
+          persistent-placeholder
+          placeholder="Casual"
           variant="solo-filled"
           @update:model-value="loadPreset($event)"
         >
@@ -32,7 +35,7 @@
           clearable
           density="comfortable"
           hide-details
-          :items="OPERATORS"
+          :items="OPERATOR_LIST"
           item-title="name"
           item-value="key"
           label="Banned Operators"
@@ -103,8 +106,12 @@
           clearable
           density="comfortable"
           hide-details
-          :items="ROLES"
+          :items="ROLE_LIST.filter((r) => r.key !== settings.roles[i % 2])"
+          item-title="name"
+          item-value="key"
           label="Role"
+          persistent-placeholder
+          placeholder="Any"
           variant="solo-filled"
         />
       </v-list-item>
@@ -129,8 +136,12 @@
           clearable
           density="comfortable"
           hide-details
-          :items="SQUADS"
+          :items="SQUAD_LIST"
+          item-title="name"
+          item-value="key"
           label="Squad"
+          persistent-placeholder
+          placeholder="Any"
           variant="solo-filled"
         >
           <!-- Squad Emblem -->
@@ -174,7 +185,7 @@
 import { computed, defineEmits, defineExpose, ref, watch } from 'vue';
 
 import { loadEmblem, loadSquadEmblem } from '@/composables/imageLoader';
-import { OPERATORS, ROLES, SQUADS } from '@/data';
+import { OPERATORS, OPERATOR_LIST, ROLE_LIST, SQUAD_LIST } from '@/data';
 
 // Define static properties
 const DEFAULT_PRESET = {
@@ -187,18 +198,19 @@ const DEFAULT_PRESET = {
 
 const PRESETS = {
   Competitive: {
-    bans: ['RECRUIT_ATT', 'RECRUIT_DEF'],
-    modes: 'Competitive, Ranked'
+    bans: [OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
+    modes: 'Competitive, Ranked, Standard'
   },
   Casual: {
-    modes: 'Standard, Quick Match'
+    modes: 'Quick Match'
   },
   'Arcade 1': {
+    bans: [OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
     duplicates: true,
     modes: 'Weapons Roulette, Golden Gun, Snipers Only'
   },
   'Arcade 2': {
-    bans: ['BLITZ', 'CLASH', 'MONTAGNE'],
+    bans: [OPERATORS.MONTAGNE.key, OPERATORS.BLITZ.key, OPERATORS.CLASH.key, OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
     duplicates: true,
     modes: 'Free for All, Deathmatch'
   }
@@ -211,14 +223,12 @@ const settings = ref(structuredClone(DEFAULT_PRESET));
 const operatorPool = computed(() => {
   const { bans, roles, speed, squad } = settings.value;
 
-  // Apply set filters
-  return OPERATORS.filter((o) => {
-    if (bans.includes(o.key)) return false;                                         // Banned operators
-    if (!speed.includes(o.speed)) return false;                                     // Operator speed
-    if (!roles.filter((r) => !!r).every((r) => o.roles.includes(r))) return false;  // Operator roles
-    if (squad && o.squad !== squad) return false;                                   // Squad
-    return true;
-  });
+  return OPERATOR_LIST.filter((o) => [
+    !bans.includes(o.key),                          // Bans
+    speed.includes(o.speed),                        // Speed
+    roles.every((r) => !r || o.roles.includes(r)),  // Roles
+    !squad || o.squad === squad                     // Squad
+  ].every((isTrue) => isTrue));
 });
 
 // Define emits

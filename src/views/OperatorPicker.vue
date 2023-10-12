@@ -1,46 +1,33 @@
 <template>
   <v-container>
-    <v-row
-      class="pt-12"
-      justify="center"
-    >
-      <!-- Operator Cards -->
+    <!-- Operator Cards -->
+    <v-row class="justify-center flex-nowrap pt-12">
       <v-col
         v-for="i in settings.picks"
         :key="`portrait_${i}`"
-        cols="auto"
+        class="operator-card"
       >
-        <!-- Picked Operator Card -->
         <operator-card
-          v-if="pickedOperators[i - 1]"
           :operator-key="pickedOperators[i - 1]"
+          :placeholder="!pickedOperators[i - 1]"
           @click="previewOperator(pickedOperators[i - 1])"
-        />
-
-        <!-- Placeholder Operator Card -->
-        <operator-card
-          v-else
-          placeholder
         />
       </v-col>
     </v-row>
 
     <!-- Actions -->
-    <v-row
-      class="pb-12"
-      justify="center"
-    >
+    <v-row class="justify-center pb-12">
       <v-col cols="auto">
         <!-- Randomize Buttons -->
         <v-btn
-          v-for="{ icon, side } in SIDES"
-          :key="`randomize_${side || 'ALL'}`"
+          v-for="{ key, icon, sideKey } in SIDE_LIST"
+          :key="`randomize_${key}`"
           class="mb-4 mx-2"
           color="primary"
           :disabled="!operatorPool.length"
           :icon="icon"
           size="x-large"
-          @click="pickOperator(side)"
+          @click="pickOperator(sideKey)"
         />
 
         <!-- Pick Amount Slider -->
@@ -59,26 +46,24 @@
     <!-- Operator Pool -->
     <v-row>
       <template
-        v-for="{ icon, side, sideName } in SIDES"
-        :key="side"
+        v-for="{ descriptor, icon, sideKey } in SIDE_LIST"
+        :key="sideKey"
       >
-        <v-col
-          v-if="side"
-          cols="6"
-        >
+        <v-col v-if="sideKey">
           <!-- Side Title -->
           <h2 class="mb-4 text-center">
             <v-icon
               :icon="icon"
+              size="small"
               start
             />
-            {{ sideName }}
+            {{ descriptor }}
           </h2>
 
           <!-- Operator Items -->
           <v-row>
             <v-col
-              v-for="{ key, name } in operatorPool.filter((o) => o.side === side)"
+              v-for="{ key, name } in operatorPool.filter((o) => o.side === sideKey)"
               :key="key"
               cols="6"
             >
@@ -140,13 +125,7 @@ import { ref } from 'vue';
 import { OperatorCard, OperatorFilterDrawer } from '@/components';
 import { loadEmblem } from '@/composables/imageLoader';
 import { pickRandom } from '@/composables/randomizer';
-
-// Define static properties
-const SIDES = [
-  { side: 'ATT', sideName: 'Attackers', icon: 'mdi-sword-cross' },
-  { icon: 'mdi-infinity' },
-  { side: 'DEF', sideName: 'Defenders', icon: 'mdi-chess-rook' }
-];
+import { SIDE_LIST } from '@/data';
 
 // Define dynamic properties
 const filterDrawer = ref(null);
@@ -170,11 +149,12 @@ function pickOperator(side = null) {
   const { duplicates, picks } = settings.value;
 
   // Apply filters
-  const pool = operatorPool.value.filter((o) => {
-    if (side && o.side !== side) return false;
-    if (picks === 1 && pickedOperators.value.length === 1 && o.key === pickedOperators.value[0]) return false;
-    return true;
-  }).map((o) => o.key);
+  const pool = operatorPool.value
+    .filter((o) => [
+      !side || o.side === side,
+      picks > 1 || pickedOperators.value.length !== 1 || o.key !== pickedOperators.value[0]
+    ].every((isTrue) => isTrue))
+    .map((o) => o.key);
 
   // Pick random operator
   pickedOperators.value.length = 0;
@@ -191,3 +171,9 @@ function previewOperator(operatorKey) {
   previewDialog.value.show = true;
 }
 </script>
+
+<style scoped>
+.operator-card {
+  max-width: calc(100% / 5);
+}
+</style>
