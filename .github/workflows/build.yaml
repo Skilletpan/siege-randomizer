@@ -1,6 +1,12 @@
 name: Build App
+
 on:
   workflow_call:
+    inputs:
+      create-build-artifact:
+        default: false
+        type: boolean
+
 env:
   UV_USE_IO_URING: 0
 
@@ -9,7 +15,7 @@ jobs:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout repository
-        uses: actions/checkout@v3
+        uses: actions/checkout@v4
         with:
           ref: ${{ github.ref }}
 
@@ -23,3 +29,11 @@ jobs:
 
       - name: Build project
         run: npm run build
+
+      - name: Create build artifact
+        if: ${{ inputs.create-build-artifact }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: siege-randomizer-build
+          path: dist
+          retention-days: 1

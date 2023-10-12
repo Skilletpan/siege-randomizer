@@ -7,20 +7,30 @@ on:
     branches: [ develop ]
 
 jobs:
+  build:
+    uses: ./.github/workflows/build.yaml
+    with:
+      create-build-artifact: true
+
   deploy:
+    needs: build
     runs-on: ubuntu-latest
     steps:
-      - name: Build App
-        uses: ./.github/workflows/build.yaml
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          branch: pages
+      
+      - name: Download build artifact
+        uses: actions/download-artifact@v3
+        with:
+          name: siege-randomizer-build
       
       - name: Add build files
-        run: git add dist -f
+        run: git add .
       
       - name: Create build commit
         run: git commit -m "${{ github.event.head_commit.message }}"
-
-      - name: Create build directory subtree
-        run: git subtree split --prefix dist -b gh-pages
       
       # - name: Push build directory to pages branch
       #   run: git push -f origin gh-pages:pages
