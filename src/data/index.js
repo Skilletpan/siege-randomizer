@@ -78,23 +78,23 @@ const stratList = STRATS.map((strat) => {
   const stratItem = { ...strat, side: strat.side || sides.ALL.key };
 
   stratItem.rules = strat.rules.map((rule) => {
-    const ruleItem = { side: rule.side || strat.side || sides.ALL.key, value: null };
+    const ruleItem = { side: null, value: null };
 
+    // Set rule value
     if (typeof rule === 'string') ruleItem.value = rule;
     else ruleItem.value = rule.value;
 
-    if (rule.operator) {
-      ruleItem.operator = rule.operator;
-      ruleItem.side = operators[rule.operator].side;
-    } else if (rule.side) {
-      ruleItem.side = rule.side;
-    }
+    // Set rule side and operator
+    if (rule.operator) ruleItem.operator = rule.operator, rule.side = operators[rule.operator].side;
+    else ruleItem.side = rule.side || strat.side || sides.ALL.key;
 
     return ruleItem;
   });
 
   return stratItem;
 });
+
+console.debug(stratList);
 
 export {
   maps as MAPS,

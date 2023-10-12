@@ -10,6 +10,10 @@
         "value": "Inactive players wait their turn outside."
       },
       {
+        "side": "ATT",
+        "value": "Inactive players are allowed to \"Hero Drone\", but not drone ahead of the active player."
+      },
+      {
         "side": "DEF",
         "value": "Inactive players will find a hiding spot and wait their turn there."
       }
@@ -41,15 +45,32 @@
     ]
   },
   {
+    "title": "Arnold Cut",
+    "description": "Hasta la Vista, Baby!",
+    "rules": [
+      "Everyone has to speak like Arnold Schwarzenegger."
+    ]
+  },
+  {
+    "title": "A Throwaway Joke",
+    "description": "And the kitchen sink!",
+    "rules": [
+      "Bring as many throwable primary and secondary gadgets as possible.",
+      "Shout \"YEET\" every time you throw one."
+    ],
+    "side": "DEF"
+  },
+  {
     "title": "Big Brother",
     "description": "They see everything",
     "requiredOperators": [
       "VALKYRIE",
       "ECHO",
-      "MAESTRO"
+      "MAESTRO",
+      "MOZZIE"
     ],
     "rules": [
-      "Bring 2 operators with bulletproof cameras.",
+      "Remaining operator brings a bulletproof camera.",
       "Place all your cameras on site.",
       "Hide on the other side of the building and watch the enemy on cams.",
       "Red ping the enemy all the time."
@@ -101,7 +122,8 @@
       "GRIM",
       "SOLIS",
       "BRAVA",
-      "FENRIR"
+      "FENRIR",
+      "RAM"
     ],
     "requiredOperators": [
       "THATCHER"
@@ -138,6 +160,32 @@
     ]
   },
   {
+    "title": "C5",
+    "description": "Can you die from explosions? You'll have to C4 yourself.",
+    "rules": [
+      "Try to kill all attackers with C4s from below site.",
+      "You are only allowed to start shooting at people when all C4s are gone."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Counter Strike",
+    "description": "You missed? Skill issue.",
+    "rules": [
+      "Hipfire only. There is no ADS button."
+    ]
+  },
+  {
+    "title": "Da Vinci Cannon",
+    "description": "You don't need good aim if you shoot everywhere at once.",
+    "rules": [
+      "Set your in-game mouse sensitivity to 100 and your mouse DPI to the maximum.",
+      "Bring only LMGs.",
+      "You may shoot only entire magazines at once."
+    ],
+    "side": "ATT"
+  },
+  {
     "title": "Doktor's Curse",
     "description": "The experiments are loose!",
     "rules": [
@@ -145,6 +193,38 @@
       "Make your traps and knives count."
     ],
     "side": "DEF"
+  },
+  {
+    "title": "Drone Strike",
+    "description": "\"Why do it yourself, when robots do it better?\" - Echo",
+    "requiredOperators": [
+      "TWITCH",
+      "FLORES",
+      "BRAVA",
+      "RAM"
+    ],
+    "rules": [
+      "Bring all of the drones.",
+      "You are only allowed to attack with your operators when all drones (normal drones or gadgets) are dead.",
+      "If they have Echo or Mozzie, don't destroy their drones."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "East Take",
+    "description": "EAST TAAAAAKE!",
+    "rules": [
+      "Take site from the east side."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Feel the Burn",
+    "description": "Physical health is important.",
+    "rules": [
+      "After every kill, do 3 push-ups.",
+      "When you die, do 10 push-ups."
+    ]
   },
   {
     "title": "G2 vs TT9",
@@ -221,6 +301,41 @@
     "side": "DEF"
   },
   {
+    "title": "Labyrinth",
+    "description": "Environmental destruction? What is that?",
+    "disallowedOperators": [
+      "SLEDGE",
+      "ASH",
+      "THERMITE",
+      "CASTLE",
+      "BUCK",
+      "HIBANA",
+      "ZOFIA",
+      "MAVERICK",
+      "ORYX",
+      "ACE",
+      "AZAMI",
+      "FLORES",
+      "RAM"
+    ],
+    "rules": [
+      "Treat the map \"as-is\". You are not allowed to create any additional pathways, sightlines etc.",
+      "You are allowed to use pathways created by the other team.",
+      {
+        "side": "ATT",
+        "value": "You are allowed to destroy barricades, but no walls or hatches."
+      },
+      {
+        "side": "DEF",
+        "value": "You are not allowed to barricade any windows or doors. Leave the natural pathways open."
+      },
+      {
+        "side": "DEF",
+        "value": "You are allowed to reinforce walls and hatches, but not destroy them."
+      }
+    ]
+  },
+  {
     "title": "Leaky Roof",
     "description": "It's raining in here!",
     "requiredOperators": [
@@ -276,25 +391,11 @@
     "description": "They wear matching outfits!",
     "requiredOperators": [
       "RECRUIT_ATT",
-      "RECRUIT_ATT",
-      "RECRUIT_ATT",
-      "RECRUIT_ATT",
-      "RECRUIT_ATT",
-      "RECRUIT_DEF",
-      "RECRUIT_DEF",
-      "RECRUIT_DEF",
-      "RECRUIT_DEF",
       "RECRUIT_DEF"
     ],
     "rules": [
-      {
-        "operator": "RECRUIT_ATT",
-        "value": "Everyone picks the same loadout."
-      },
-      {
-        "operator": "RECRUIT_DEF",
-        "value": "Everyone picks the same loadout."
-      }
+      "Everyone picks Recruit.",
+      "Everyone brings the same loadout."
     ]
   },
   {
@@ -378,7 +479,35 @@
     "side": "ATT"
   },
   {
-    "title": "Polygot",
+    "title": "Pistol Round",
+    "description": "Anyone drop me a Deagle?",
+    "disallowedOperators": [
+      "MONTAGNE",
+      "BLITZ",
+      "DOKKAEBI",
+      "VIGIL",
+      "AMARU",
+      "KALI",
+      "SOLIS"
+    ],
+    "rules": [
+      "You are only allowed to use semi-automatic pistols.",
+      {
+        "side": "ATT",
+        "value": "Don't bring any shields."
+      }
+    ]
+  },
+  {
+    "title": "Pokémon",
+    "description": "Gotta catch 'em all!",
+    "rules": [
+      "Only kill enemies with impact grenades."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Polyglot",
     "description": "Basically, EU servers.",
     "rules": [
       "Everyone must speak in a different language."
@@ -413,6 +542,7 @@
       "Reinforce every outside wall of site.",
       "Reinforce every door and window you pass.",
       "Don't create sightlines.",
+      "Deploy observation blockers everywhere.",
       "Shoot every default camera.",
       "Don't bring cameras."
     ],
@@ -501,7 +631,7 @@
     "title": "Spinbot",
     "description": "We don't have better aim, we have MORE aim!",
     "rules": [
-      "Set either your in-game mouse sensitivity to 100 or your mouse DPI to the maximum."
+      "Set your in-game mouse sensitivity to 100 and your mouse DPI to the maximum."
     ]
   },
   {
@@ -600,6 +730,26 @@
       "You may stand up to shoot, but need to go prone again to continue moving."
     ],
     "side": "ATT"
+  },
+  {
+    "title": "The Wimba Way",
+    "description": "ooo OOOOOOOOOOOOOOOOOH!",
+    "rules": [
+      "Sing \"In the Jungle\" during the entire round."
+    ]
+  },
+  {
+    "title": "Thin Air",
+    "description": "Dutch mountaineering",
+    "rules": [
+      {
+        "side": "ATT",
+        "value": "Roofs are off-limits."
+      },
+      "You are only allowed to prone on the top floor.",
+      "You are only allowed to crouch and prone on the second highest floor.",
+      "Any stance is allowed on lower floors."
+    ]
   },
   {
     "title": "Welcome!",

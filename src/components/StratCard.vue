@@ -43,21 +43,21 @@
     <v-card-text class="px-3 pt-2">
       <v-list class="pa-0">
         <v-list-item
-          v-for="(rule, index) in strat.rules.filter((r) => r.side === activeSide || r.side === SIDES.ALL.key)"
+          v-for="({ value, operator }, index) in rules"
           :key="index"
           class="pl-0"
-          :title="rule.value"
+          :title="value"
         >
           <!-- Icon or Operator Icon -->
           <template v-slot:prepend>
             <v-avatar rounded="0">
               <v-img
-                v-if="rule.operator"
-                :src="loadEmblem(rule.operator)"
+                v-if="operator"
+                :src="loadEmblem(operator)"
               />
               <v-icon
                 v-else
-                :icon="SIDES[rule.side].icon"
+                icon="mdi-account"
               />
             </v-avatar>
           </template>
@@ -132,9 +132,9 @@ const requiredOperators = computed(() => {
   return props.strat.requiredOperators.filter((o) => OPERATORS[o].side === activeSide.value);
 });
 
-// const rules = computed(() => {
-  
-// });
+const rules = computed(() => {
+  return props.strat.rules.filter(({ side }) => side === activeSide.value || side === SIDES.ALL.key);
+});
 
 function togglePreviewSide() {
   previewSide.value = previewSide.value === SIDES.ATT.key ? SIDES.DEF.key : SIDES.ATT.key;
