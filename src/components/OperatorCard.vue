@@ -1,5 +1,8 @@
 <template>
-  <v-card :width="detailed ? 300 : null">
+  <v-card
+    :disabled="placeholder"
+    :width="detailed ? 300 : null"
+  >
     <!-- Operator Portrait -->
     <v-img
       :alt="`${placeholder ? 'Placeholder' : operator.name} portrait`"

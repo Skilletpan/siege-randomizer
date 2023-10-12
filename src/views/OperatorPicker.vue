@@ -1,26 +1,22 @@
 <template>
   <v-container>
+    <!-- Operator Cards -->
     <v-row class="justify-center flex-nowrap pt-12">
-      <!-- Operator Cards -->
       <v-col
         v-for="i in settings.picks"
         :key="`portrait_${i}`"
-        style="max-width: calc(100% / 5);"
+        class="operator-card"
       >
-        <!-- Picked Operator Card -->
         <operator-card
           :operator-key="pickedOperators[i - 1]"
           :placeholder="!pickedOperators[i - 1]"
-          v-on="{ click: pickedOperators[i - 1] ? () => { previewOperator(pickedOperators[i - 1]); } : null }"
+          @click="previewOperator(pickedOperators[i - 1])"
         />
       </v-col>
     </v-row>
 
     <!-- Actions -->
-    <v-row
-      class="pb-12"
-      justify="center"
-    >
+    <v-row class="justify-center pb-12">
       <v-col cols="auto">
         <!-- Randomize Buttons -->
         <v-btn
@@ -175,3 +171,9 @@ function previewOperator(operatorKey) {
   previewDialog.value.show = true;
 }
 </script>
+
+<style scoped>
+.operator-card {
+  max-width: calc(100% / 5);
+}
+</style>
