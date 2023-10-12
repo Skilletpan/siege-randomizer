@@ -2,6 +2,8 @@ name: Build App
 on:
   pull_request:
     branches: [master, develop]
+env:
+  UV_USE_IO_URING: 0
 
 jobs:
   build:
