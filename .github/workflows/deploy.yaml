@@ -38,7 +38,8 @@ jobs:
         run: git add .
       
       - name: Create build commit
-        run: git commit -m "${{ github.event.head_commit.message }}"
+        # run: git commit -m "${{ github.event.head_commit.message }}"
+        run: git commit -m "Test"
       
       - name: Push build directory to pages branch
         run: git push -f origin pages:gh-pages
