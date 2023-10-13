@@ -44,4 +44,4 @@ jobs:
       - name: Push build directory to pages branch
         run: |
           git checkout -b gh-pages
-          git push -u
+          git push --set-upstream origin gh-pages
