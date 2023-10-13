@@ -22,7 +22,7 @@ jobs:
       - name: Checkout repository
         uses: actions/checkout@v4
         with:
-          branch: pages
+          ref: master
       
       - name: Set GIT credentials
         run: |
@@ -33,15 +33,17 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: siege-randomizer-build
+          path: dist
       
       - name: Add build files
-        run: git add .
+        run: git add dist -f
       
       - name: Create build commit
         # run: git commit -m "${{ github.event.head_commit.message }}"
         run: git commit -m "Test"
       
+      - name: Create subtree with build directory
+        run: git subtree split --prefix dist -b pages
+      
       - name: Push build directory to pages branch
-        run: |
-          git checkout -b gh-pages
-          git push --set-upstream origin gh-pages
+        run: git push -f
