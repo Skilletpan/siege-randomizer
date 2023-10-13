@@ -1,0 +1,39 @@
+name: Build App
+
+on:
+  workflow_call:
+    inputs:
+      create-build-artifact:
+        default: false
+        type: boolean
+
+env:
+  UV_USE_IO_URING: 0
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v4
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18.x
+      
+      - name: Install NodeJS packages
+        run: npm install
+
+      - name: Build project
+        run: npm run build
+
+      - name: Create build artifact
+        if: ${{ inputs.create-build-artifact }}
+        uses: actions/upload-artifact@v3
+        with:
+          name: siege-randomizer-build
+          path: dist
+          retention-days: 1
