@@ -85,7 +85,7 @@ const stratList = STRATS.map((strat) => {
     else ruleItem.value = rule.value;
 
     // Set rule side and operator
-    if (rule.operator) ruleItem.operator = rule.operator, rule.side = operators[rule.operator].side;
+    if (rule.operator) ruleItem.operator = rule.operator, ruleItem.side = operators[rule.operator].side;
     else ruleItem.side = rule.side || strat.side || sides.ALL.key;
 
     return ruleItem;
