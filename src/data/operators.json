@@ -622,6 +622,15 @@
       "speed": 2,
       "squad": "REDHAMMER"
     },
+    "TUBARAO": {
+      "name": "Tubarão",
+      "roles": [
+        "ANTIENTRY",
+        "ANTIGADGET"
+      ],
+      "speed": 2,
+      "squad": "WOLFGUARD"
+    },
     "RECRUIT_DEF": {
       "name": "Recruit (Defense)",
       "roles": [],
