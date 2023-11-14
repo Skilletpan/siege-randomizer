@@ -91,9 +91,9 @@
       "CONSULATE",
       "EMERALD",
       "FAVELA",
+      "LAIR",
       "NIGHTHAVEN",
       "SKYSCRAPER",
-      "STADIUM",
       "THEMEPARK",
       "VILLA"
     ]
@@ -106,8 +106,8 @@
       "CONSULATE",
       "EMERALD",
       "FAVELA",
+      "LAIR",
       "NIGHTHAVEN",
-      "STADIUM",
       "THEMEPARK",
       "VILLA"
     ]
@@ -119,6 +119,7 @@
       "CLOSEQUARTER",
       "EMERALD",
       "FAVELA",
+      "LAIR",
       "SKYSCRAPER",
       "STADIUM"
     ]
@@ -149,8 +150,8 @@
       "CLOSEQUARTER",
       "COASTLINE",
       "FAVELA",
+      "LAIR",
       "NIGHTHAVEN",
-      "STADIUM",
       "THEMEPARK",
       "VILLA"
     ]
