@@ -1,5 +1,6 @@
 <template>
   <v-app>
+    <v-app-bar v-if="false" class="text-center" title="Siege Randomizer" />
     <!-- Navigation Drawer -->
     <navigation-drawer />
 

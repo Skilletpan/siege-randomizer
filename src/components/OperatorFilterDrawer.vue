@@ -35,9 +35,9 @@
           clearable
           density="comfortable"
           hide-details
-          :items="OPERATOR_LIST"
+          :items="Operator.LIST"
           item-title="name"
-          item-value="key"
+          item-value="id"
           label="Banned Operators"
           multiple
           persistent-placeholder
@@ -53,10 +53,18 @@
           <template v-slot:item="{ item, props }">
             <v-list-item
               v-bind="props"
-              :append-avatar="loadEmblem(item.value)"
+              :append-avatar="Operator[item.value].emblem"
             />
           </template>
         </v-select>
+
+        <operator-search
+          hide-details
+          label="Banned Operators"
+          persistent-placeholder
+          placeholder="Search..."
+          variant="solo-filled"
+        />
       </v-list-item>
 
       <v-divider class="mt-2" />
@@ -106,9 +114,9 @@
           clearable
           density="comfortable"
           hide-details
-          :items="ROLE_LIST.filter((r) => r.key !== settings.roles[i % 2])"
+          :items="Role.LIST.filter((r) => r.id !== settings.roles[i % 2])"
           item-title="name"
-          item-value="key"
+          item-value="id"
           label="Role"
           persistent-placeholder
           placeholder="Any"
@@ -136,9 +144,9 @@
           clearable
           density="comfortable"
           hide-details
-          :items="SQUAD_LIST"
+          :items="Squad.LIST"
           item-title="name"
-          item-value="key"
+          item-value="id"
           label="Squad"
           persistent-placeholder
           placeholder="Any"
@@ -150,7 +158,7 @@
             v-slot:append-inner
           >
             <v-avatar
-              :image="loadSquadEmblem(settings.squad)"
+              :image="Squad[settings.squad].emblem"
               rounded="0"
             />
           </template>
@@ -159,7 +167,7 @@
           <template v-slot:item="{ item, props }">
             <v-list-item
               v-bind="props"
-              :append-avatar="loadSquadEmblem(item.value)"
+              :append-avatar="Squad[item.value].emblem"
             />
           </template>
         </v-select>
@@ -182,10 +190,10 @@
 </template>
 
 <script setup>
-import { computed, defineEmits, defineExpose, ref, watch } from 'vue';
+import { computed, ref } from 'vue';
 
-import { loadEmblem, loadSquadEmblem } from '@/composables/imageLoader';
-import { OPERATORS, OPERATOR_LIST, ROLE_LIST, SQUAD_LIST } from '@/data';
+import { OperatorSearch } from '@/components';
+import { Operator, Role, Squad } from '@/models';
 
 // Define static properties
 const DEFAULT_PRESET = {
@@ -198,19 +206,19 @@ const DEFAULT_PRESET = {
 
 const PRESETS = {
   Competitive: {
-    bans: [OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
+    bans: [Operator.RECRUIT_ATT.id, Operator.RECRUIT_DEF.id],
     modes: 'Competitive, Ranked, Standard'
   },
   Casual: {
     modes: 'Quick Match'
   },
   'Arcade 1': {
-    bans: [OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
+    bans: [Operator.RECRUIT_ATT.id, Operator.RECRUIT_DEF.id],
     duplicates: true,
     modes: 'Weapons Roulette, Golden Gun, Snipers Only'
   },
   'Arcade 2': {
-    bans: [OPERATORS.MONTAGNE.key, OPERATORS.BLITZ.key, OPERATORS.CLASH.key, OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
+    bans: [Operator.MONTAGNE.id, Operator.BLITZ.id, Operator.CLASH.id, Operator.RECRUIT_ATT.id, Operator.RECRUIT_DEF.id],
     duplicates: true,
     modes: 'Free for All, Deathmatch'
   }
@@ -223,26 +231,19 @@ const settings = ref(structuredClone(DEFAULT_PRESET));
 const operatorPool = computed(() => {
   const { bans, roles, speed, squad } = settings.value;
 
-  return OPERATOR_LIST.filter((o) => [
-    !bans.includes(o.key),                          // Bans
-    speed.includes(o.speed),                        // Speed
-    roles.every((r) => !r || o.roles.includes(r)),  // Roles
-    !squad || o.squad === squad                     // Squad
+  return Operator.LIST.filter((o) => [
+    !bans.includes(o.id),                          // Bans
+    speed.includes(o.speed),                       // Speed
+    roles.every((r) => !r || o.roles.includes(r)), // Roles
+    !squad || o.squad === squad                    // Squad
   ].every((isTrue) => isTrue));
 });
 
 // Define emits
+// eslint-disable-next-line
 const emit = defineEmits([
-  'update:duplicates',
-  'update:operators'
+  'update:duplicates'
 ]);
-
-// Emit operator pool update
-watch(
-  operatorPool,
-  (newPool) => { emit('update:operators', newPool); },
-  { immediate: true }
-);
 
 /**
  * Adds an operator to the ban list.
@@ -263,5 +264,6 @@ function loadPreset(preset = null) {
 }
 
 // Expose the addBan function
-defineExpose({ addBan });
+// eslint-disable-next-line
+defineExpose({ addBan, operatorPool });
 </script>

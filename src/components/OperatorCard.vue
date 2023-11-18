@@ -9,20 +9,20 @@
       :aspect-ratio="3 / 5"
       :class="['align-end portrait text-center', { placeholder }]"
       cover
-      :src="loadPortrait(operator.key, placeholder)"
+      :src="placeholder ? operator.portrait : operator.easterEggPortrait"
       :style="{ backgroundImage: loadBackgroundImage() }"
     >
       <!-- Operator Emblem -->
       <v-avatar
         v-if="!placeholder"
-        :image="loadEmblem(operator.key)"
+        :image="operator.emblem"
         rounded="0"
         size="80"
       />
     </v-img>
 
     <!-- Operator Name -->
-    <v-card-title class="text-center">{{ operator.name }}</v-card-title>
+    <v-card-title class="text-center">{{ placeholder ? '?' : operator.name }}</v-card-title>
 
     <!-- Operator Details -->
     <template v-if="!placeholder && detailed">
@@ -59,12 +59,12 @@
         </v-row>
 
         <!-- Roles -->
-        <template v-if="operator.roles">
+        <template v-if="operator.roles.length">
           <v-label
             class="d-block mt-3 text-caption"
             text="Roles"
           />
-          {{ operator.roles }}
+          {{ operator.rolesString }}
         </template>
 
         <!-- Squad -->
@@ -85,7 +85,7 @@
             cols="auto"
           >
             <v-avatar
-              :image="loadSquadEmblem(operator.squad.key)"
+              :image="operator.squad.emblem"
               rounded="0"
               size="small"
             />
@@ -97,12 +97,12 @@
 </template>
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { computed } from 'vue';
 
-import { loadEmblem, loadPortrait, loadSquadEmblem } from '@/composables/imageLoader';
-import { MAP_LIST, OPERATORS, ROLES, SQUADS } from '@/data';
+import { Map, Operator } from '@/models';
 
 // Define input properties
+// eslint-disable-next-line
 const props = defineProps({
   detailed: {
     default: false,
@@ -116,24 +116,29 @@ const props = defineProps({
 
   operatorKey: {
     type: String,
-    validator: (v) => Object.keys(OPERATORS).includes(v)
+    validator: (v) => Object.keys(Operator).includes(v)
   }
 });
 
 // Define computed properties
+
+/** @type {import('vue').ComputedRef<Operator>} */
 const operator = computed(() => {
-  // Fetch operator
-  const operator = { name: '?', ...OPERATORS[props.operatorKey] };
+  if (props.operatorKey) return Operator[props.operatorKey];
+  return Operator.LIST[Math.floor(Math.random() * Operator.LIST.length)];
 
-  // Map additional properties
-  if (!props.placeholder) {
-    operator.roles = operator.roles.map((r) => ROLES[r].name).join(' • ');
-    operator.squad = SQUADS[operator.squad];
-  } else {
-    operator.key = Object.keys(OPERATORS)[Math.floor(Math.random() * Object.keys(OPERATORS).length)];
-  }
+  // // Fetch operator
+  // const operator = { name: '?', ...OPERATORS[props.operatorKey] };
 
-  return operator;
+  // // Map additional properties
+  // if (!props.placeholder) {
+  //   operator.roles = operator.roles.map((r) => ROLES[r].name).join(' • ');
+  //   operator.squad = SQUADS[operator.squad];
+  // } else {
+  //   operator.key = OPERATORS.LIST[Math.floor(Math.random() * OPERATORS.LIST.length)].key;
+  // }
+
+  // return operator;
 });
 
 /**
@@ -145,8 +150,8 @@ function loadBackgroundImage() {
   if (props.placeholder) return 'none';
 
   // Pick random map
-  const map = MAP_LIST[Math.floor(Math.random() * MAP_LIST.length)].key;
-  return `url(${require(`@/assets/maps/${map}.jpg`)})`;
+  const map = Map.pickRandomMap();
+  return `url(${map.thumbnail})`;
 }
 </script>
 

@@ -1,0 +1,23 @@
+{
+  "COMMUNICATION": {
+    "name": "Communication Restrictions"
+  },
+  "LINEUP": {
+    "name": "Lineup Requirements"
+  },
+  "LOADOUT": {
+    "name": "Loadout Requirements"
+  },
+  "MOVEMENT": {
+    "name": "Movement Restrictions"
+  },
+  "REALLIFE": {
+    "name": "Real Life Impact"
+  },
+  "SETTINGS": {
+    "name": "Setting Changes"
+  },
+  "STRATEGY": {
+    "name": "Strategy Requirements"
+  }
+}

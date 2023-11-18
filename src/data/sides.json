@@ -1,16 +1,19 @@
 {
   "ATT": {
     "name": "Attack",
-    "descriptor": "Attackers",
+    "descriptor": "Attacker",
+    "color": "attacker",
     "icon": "mdi-sword-cross"
   },
   "ALL": {
     "name": "All",
+    "color": "generic",
     "icon": "mdi-infinity"
   },
   "DEF": {
     "name": "Defense",
-    "descriptor": "Defenders",
+    "descriptor": "Defender",
+    "color": "defender",
     "icon": "mdi-chess-rook"
   }
 }

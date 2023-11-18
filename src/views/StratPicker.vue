@@ -8,8 +8,8 @@
       <v-col cols="auto">
         <strat-card
           v-if="picks.strat"
-          :side="picks.side"
-          :strat="picks.strat"
+          :side-key="picks.side"
+          :strat-id="picks.strat"
         />
       </v-col>
     </v-row>
@@ -22,45 +22,69 @@
       <!-- Randomize Buttons -->
       <v-col cols="auto">
         <v-btn
-          v-for="{ sideKey, icon } in SIDE_LIST.filter((s) => !!s.sideKey)"
-          :key="sideKey"
+          v-for="side in Side.SIDES"
+          :key="side.key"
           class="mx-2"
-          color="primary"
-          :icon="icon"
+          :color="side.color"
+          :icon="side.icon"
           size="x-large"
-          @click="pickRandomStrat(sideKey)"
+          @click="pickRandomStrat(side)"
         />
       </v-col>
     </v-row>
 
     <!-- Strat Pool -->
     <v-row>
-      <!-- Strat Pool Title -->
-      <v-col
-        class="text-center"
-        cols="12"
-        tag="h2"
-      >
-        Strat Pool
-      </v-col>
+      <v-col cols="12">
+        <v-card variant="elevated">
+          <v-toolbar
+            class="text-center"
+            :color="Side[poolDisplaySide].color"
+            extension-height="72"
+            title="Strat Pool"
+          >
+            <template v-slot:extension>
+              <v-tabs
+                v-model="poolDisplaySide"
+                grow
+              >
+                <v-tab
+                  v-for="side in Side.LIST"
+                  :key="side.key"
+                  :value="side.key"
+                  stacked
+                  width="300"
+                >
+                  <v-icon :icon="side.icon" />
+                  {{ side.title }}
+                </v-tab>
+              </v-tabs>
+            </template>
+          </v-toolbar>
 
-      <!-- Strat Pool Cards -->
-      <v-col
-        v-for="(strat, index) in STRATS"
-        :key="index"
-        cols="3"
-      >
-        <v-card
-          :title="strat.title"
-          @click="previewDialog.strat = strat; previewDialog.show = true;"
-        >
-          <template v-slot:append>
-            <v-icon :icon="SIDES[strat.side].icon" />
-          </template>
+          <v-card-text class="d-flex flex-wrap">
+            <v-col
+              v-for="(strat, index) in displayedStratPool"
+              :key="index"
+              cols="3"
+            >
+              <v-card
+                :color="strat.side.color"
+                :title="strat.title"
+                @click="previewDialog.strat = strat.id; previewDialog.show = true;"
+              >
+                <template v-slot:append>
+                  <v-icon :icon="strat.side.icon" />
+                </template>
+              </v-card>
+            </v-col>
+          </v-card-text>
         </v-card>
       </v-col>
     </v-row>
   </v-container>
+
+  <strat-filter-drawer ref="filterDrawer" />
 
   <!-- Strat Preview Dialog -->
   <v-dialog
@@ -69,17 +93,17 @@
   >
     <strat-card
       preview
-      :strat="previewDialog.strat"
+      :strat-id="previewDialog.strat"
     />
   </v-dialog>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
-import { StratCard } from '@/components';
+import { StratCard, StratFilterDrawer } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
-import { SIDES, SIDE_LIST, STRATS } from '@/data';
+import { Side } from '@/models';
 
 // Define dynamic properties
 const picks = ref({
@@ -87,24 +111,42 @@ const picks = ref({
   strat: null
 });
 
+/** @type {import('vue').Ref<String>} */
+const poolDisplaySide = ref(Side.ALL.key);
+
 const previewDialog = ref({
   show: false,
   strat: null
 });
 
+const filterDrawer = ref(null);
+
+/** @type {import('vue').ComputedRef<import('@/models/Strategy').default[]>} */
+const stratPool = computed(() => {
+  if (filterDrawer.value) return filterDrawer.value.stratPool;
+  return [];
+});
+
+const displayedStratPool = computed(() => stratPool.value.filter((s) => Side[poolDisplaySide.value].includes(s.side)));
+
 /**
  * Picks a random strategy from the pool.
  * 
- * @param {"ATT" | "DEF"} side The side to pick the strat for.
+ * @param {Side} side The side to pick the strat for.
  */
 function pickRandomStrat(side) {
-  picks.value.side = side;
+  picks.value.side = side.key;
 
-  const pool = STRATS.filter((s) => {
-    if (picks.value.strat && s.title === picks.value.strat.title) return false;
-    return s.side === side || s.side === SIDES.ALL.key;
+  const pool = stratPool.value.filter((s) => {
+    if (!s.side.includes(side)) return false;
+    if (s === picks.value.strat) return false;
+
+    return true;
   });
 
-  [picks.value.strat] = pickRandom(pool);
+  const pick = pickRandom(pool);
+  console.debug(pick);
+
+  picks.value.strat = pick[0].id;
 }
 </script>

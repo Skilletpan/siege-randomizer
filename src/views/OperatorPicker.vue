@@ -8,9 +8,14 @@
         class="operator-card"
       >
         <operator-card
+          v-if="pickedOperators[i - 1]"
           :operator-key="pickedOperators[i - 1]"
-          :placeholder="!pickedOperators[i - 1]"
           @click="previewOperator(pickedOperators[i - 1])"
+        />
+
+        <operator-card
+          v-else
+          placeholder
         />
       </v-col>
     </v-row>
@@ -20,14 +25,14 @@
       <v-col cols="auto">
         <!-- Randomize Buttons -->
         <v-btn
-          v-for="{ key, icon, sideKey } in SIDE_LIST"
-          :key="`randomize_${key}`"
+          v-for="side in Side.LIST"
+          :key="`randomize_${side.key}`"
           class="mb-4 mx-2"
-          color="primary"
+          :color="side.color"
           :disabled="!operatorPool.length"
-          :icon="icon"
+          :icon="side.icon"
           size="x-large"
-          @click="pickOperator(sideKey)"
+          @click="pickOperator(side)"
         />
 
         <!-- Pick Amount Slider -->
@@ -46,34 +51,34 @@
     <!-- Operator Pool -->
     <v-row>
       <template
-        v-for="{ descriptor, icon, sideKey } in SIDE_LIST"
-        :key="sideKey"
+        v-for="side in Side.SIDES"
+        :key="side.key"
       >
-        <v-col v-if="sideKey">
+        <v-col>
           <!-- Side Title -->
           <h2 class="mb-4 text-center">
             <v-icon
-              :icon="icon"
+              :icon="side.icon"
               size="small"
               start
             />
-            {{ descriptor }}
+            {{ side.title }}
           </h2>
 
           <!-- Operator Items -->
           <v-row>
             <v-col
-              v-for="{ key, name } in operatorPool.filter((o) => o.side === sideKey)"
-              :key="key"
+              v-for="operator in operatorPool.filter((o) => o.side === side)"
+              :key="operator.id"
               cols="6"
             >
               <!-- Operator Card -->
               <v-hover v-slot="{ isHovering, props }">
                 <v-card
                   v-bind="props"
-                  :prepend-avatar="loadEmblem(key)"
-                  :title="name"
-                  @click="previewOperator(key)"
+                  :prepend-avatar="operator.emblem"
+                  :title="operator.name"
+                  @click="previewOperator(operator.id)"
                 >
                   <!-- Ban Button -->
                   <template v-slot:append>
@@ -81,7 +86,7 @@
                       v-show="isHovering"
                       color="primary"
                       variant="text"
-                      @click.stop="filterDrawer.addBan(key)"
+                      @click.stop="filterDrawer.addBan(operator.id)"
                     >
                       Ban
                     </v-btn>
@@ -92,10 +97,10 @@
           </v-row>
         </v-col>
 
-        <v-divider
+        <!-- <v-divider
           v-else
           vertical
-        />
+        /> -->
       </template>
     </v-row>
   </v-container>
@@ -104,7 +109,6 @@
   <operator-filter-drawer
     ref="filterDrawer"
     v-model:duplicates="settings.duplicates"
-    @update:operators="operatorPool = $event"
   />
 
   <!-- Operator Preview Dialog -->
@@ -120,16 +124,20 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { OperatorCard, OperatorFilterDrawer } from '@/components';
-import { loadEmblem } from '@/composables/imageLoader';
 import { pickRandom } from '@/composables/randomizer';
-import { SIDE_LIST } from '@/data';
+import { Side } from '@/models';
 
 // Define dynamic properties
 const filterDrawer = ref(null);
-const operatorPool = ref([]);
+
+/**
+ * The operators that have been picked by the randomizer.
+ * 
+ * @type {import('vue').Ref<import('@/models').Operator[]>}
+ */
 const pickedOperators = ref([]);
 const previewDialog = ref({
   operatorKey: null,
@@ -141,24 +149,32 @@ const settings = ref({
 });
 
 /**
+ * The pool to pick operators from.
+ * @type {import('vue').ComputedRef<import('@/models').Operator[]>}
+ */
+const operatorPool = computed(() => {
+  if (filterDrawer.value) return filterDrawer.value.operatorPool;
+  return [];
+})
+
+/**
  * Picks a random operator from the operator pool.
  * 
- * @param {"ATT" | "DEF"} [side=null] The side to pick the operator from.
+ * @param {Side} side The side to pick the operator from.
  */
-function pickOperator(side = null) {
+function pickOperator(side) {
   const { duplicates, picks } = settings.value;
 
   // Apply filters
   const pool = operatorPool.value
     .filter((o) => [
-      !side || o.side === side,
+      side === Side.ALL || o.side === side,
       picks > 1 || pickedOperators.value.length !== 1 || o.key !== pickedOperators.value[0]
     ].every((isTrue) => isTrue))
-    .map((o) => o.key);
 
   // Pick random operator
   pickedOperators.value.length = 0;
-  pickedOperators.value = pickRandom(pool, picks, duplicates);
+  pickedOperators.value = pickRandom(pool, picks, duplicates).map((o) => o.id);
 }
 
 /**

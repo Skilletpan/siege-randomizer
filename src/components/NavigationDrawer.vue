@@ -4,11 +4,32 @@
       :items="navigationItems"
       nav
     />
+
+    <v-select
+      v-model="currentTheme"
+      class="px-2"
+      density="comfortable"
+      :items="themes"
+      label="Theme"
+      prepend-inner-icon="mdi-palette-swatch"
+      variant="solo-filled"
+      @update:model-value="theme.global.name.value = $event"
+    />
   </v-navigation-drawer>
 </template>
 
 <script setup>
 import { computed, ref } from 'vue';
+import { useTheme } from 'vuetify';
+
+const theme = useTheme();
+const themes = [
+  { title: 'Default', value: 'default' },
+  { title: 'Dark', value: 'dark' },
+  { title: 'Beautiful', value: 'cancer' }
+];
+
+const currentTheme = ref(themes[0].value);
 
 // Define dynamic properties
 const expanded = ref(true);

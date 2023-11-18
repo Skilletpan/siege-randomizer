@@ -1,20 +1,21 @@
 <template>
   <v-chip
+    v-bind="$props"
     class="font-weight-bold"
     :color="negative ? 'error' : null"
     label
-    :prepend-avatar="loadEmblem(operator.key)"
+    :prepend-avatar="operator.emblem"
     :text="operator.name"
   />
 </template>
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { computed } from 'vue';
 
-import { loadEmblem } from '@/composables/imageLoader';
-import { OPERATORS } from '@/data';
+import { Operator } from '@/models';
 
 // Define input properties
+// eslint-disable-next-line
 const props = defineProps({
   negative: {
     default: false,
@@ -24,13 +25,11 @@ const props = defineProps({
   operatorKey: {
     required: true,
     type: String,
-    validator: (v) => Object.keys(OPERATORS).includes(v)
+    validator: (v) => Object.keys(Operator).includes(v)
   }
 });
 
 // Define dynamic properties
-/**
- * Fetches the operator data.
- */
-const operator = computed(() => OPERATORS[props.operatorKey]);
+/** @type {import('vue').ComputedRef<Operator>} */
+const operator = computed(() => Operator[props.operatorKey]);
 </script>

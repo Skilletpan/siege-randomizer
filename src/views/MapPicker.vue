@@ -26,9 +26,9 @@
             v-model="mapFilters.playlist"
             clearable
             hide-details
-            :items="PLAYLIST_LIST"
+            :items="Playlist.LIST"
             item-title="name"
-            item-value="key"
+            item-value="id"
             label="Playlist"
             persistent-placeholder
             placeholder="All Maps"
@@ -39,7 +39,7 @@
               <v-list-subheader v-if="index === 0">Default Playlists</v-list-subheader>
 
               <!-- Arcade Playlists Subheader -->
-              <template v-if="index === PLAYLIST_LIST.findIndex((p) => p.isArcade)">
+              <template v-if="index === Playlist.LIST.findIndex((p) => p.isArcade)">
                 <v-divider class="my-2" />
                 <v-list-subheader>Arcade Playlists</v-list-subheader>
               </template>
@@ -79,9 +79,9 @@
         cols="auto"
       >
         <map-card
-          :inactive="mapFilters.disabled.includes(m.key)"
-          :map-key="m.key"
-          @click="showPreview(m.key)"
+          :inactive="mapFilters.disabled.includes(m.id)"
+          :map-key="m.id"
+          @click="showPreview(m.id)"
         />
       </v-col>
     </v-row>
@@ -104,7 +104,7 @@ import { computed, ref } from 'vue';
 
 import { MapCard } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
-import { MAP_LIST, PLAYLISTS, PLAYLIST_LIST } from '@/data';
+import { Map, Playlist } from '@/models';
 
 // Define dynamic properties
 const pickedMap = ref(null);
@@ -121,8 +121,8 @@ const preview = ref({
 
 // Define computed properties
 const mapPool = computed(() => {
-  if (!mapFilters.value.playlist) return MAP_LIST;
-  return MAP_LIST.filter((m) => PLAYLISTS[mapFilters.value.playlist].maps.includes(m.key));
+  if (!mapFilters.value.playlist) return Map.LIST;
+  return Playlist[mapFilters.value.playlist].maps;
 });
 
 /**

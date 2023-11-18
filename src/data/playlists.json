@@ -1,6 +1,11 @@
 {
   "COMPETITIVE": {
     "name": "Competitive",
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
+    ],
+    "canBanOperators": true,
     "maps": [
       "BANK",
       "BORDER",
@@ -15,6 +20,11 @@
   },
   "RANKED": {
     "name": "Ranked",
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
+    ],
+    "canBanOperators": true,
     "maps": [
       "BANK",
       "BORDER",
@@ -36,6 +46,10 @@
   },
   "STANDARD": {
     "name": "Standard",
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
+    ],
     "maps": [
       "BANK",
       "BORDER",
@@ -73,6 +87,13 @@
   },
   "DEATHMATCH": {
     "name": "Deathmatch",
+    "bannedOperators": [
+      "MONTAGNE",
+      "BLITZ",
+      "CLASH",
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
+    ],
     "isArcade": true,
     "maps": [
       "CLOSEQUARTER",
@@ -89,6 +110,13 @@
   },
   "F4A": {
     "name": "Free for All",
+    "bannedOperators": [
+      "MONTAGNE",
+      "BLITZ",
+      "CLASH",
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
+    ],
     "isArcade": true,
     "maps": [
       "CLOSEQUARTER",
@@ -103,6 +131,10 @@
   },
   "GOLDENGUN": {
     "name": "Golden Gun",
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
+    ],
     "isArcade": true,
     "maps": [
       "CLOSEQUARTER",
@@ -114,6 +146,10 @@
   },
   "HEADSHOTS": {
     "name": "Headshots Only",
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
+    ],
     "isArcade": true,
     "maps": [
       "CLOSEQUARTER",
@@ -126,6 +162,10 @@
   },
   "SNIPERS": {
     "name": "Snipers Only",
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
+    ],
     "isArcade": true,
     "maps": [
       "HEREFORD"
@@ -133,6 +173,10 @@
   },
   "ROULETTE": {
     "name": "Weapon Roulette",
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
+    ],
     "isArcade": true,
     "maps": [
       "CLOSEQUARTER",

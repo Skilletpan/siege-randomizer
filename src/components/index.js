@@ -4,7 +4,9 @@ import NavigationDrawer from './NavigationDrawer';
 import OperatorCard from './OperatorCard';
 import OperatorFilterDrawer from './OperatorFilterDrawer';
 import OperatorLabel from './OperatorLabel';
+import OperatorSearch from './OperatorSearch';
 import StratCard from './StratCard';
+import StratFilterDrawer from './StratFilterDrawer';
 
 export {
   MapCard,
@@ -13,5 +15,7 @@ export {
   OperatorCard,
   OperatorFilterDrawer,
   OperatorLabel,
-  StratCard
+  OperatorSearch,
+  StratCard,
+  StratFilterDrawer
 };

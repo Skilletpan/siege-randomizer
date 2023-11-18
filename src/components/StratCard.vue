@@ -1,38 +1,49 @@
 <template>
   <v-card
-    :subtitle="strat.description"
-    :title="strat.title"
+    :append-icon="displaySide.icon"
+    :subtitle="strategy.tagline"
+    :title="strategy.title"
     width="800"
   >
-    <template v-slot:append>
-      <v-icon :icon="SIDES[activeSide].icon" />
-    </template>
-
     <!-- Required Operators -->
-    <template v-if="requiredOperators.length">
+    <template v-if="strategy.getRequiredOperators(displaySide).length">
       <v-divider />
       <v-card-subtitle class="mt-3">Required Operators</v-card-subtitle>
       <v-card-text class="pb-2 pl-3 pt-1">
         <operator-label
-          v-for="o in requiredOperators"
-          :key="o"
+          v-for="{ id } in strategy.getRequiredOperators(displaySide)"
+          :key="id"
           class="ma-1"
-          :operator-key="o"
+          :operator-key="id"
+        />
+      </v-card-text>
+    </template>
+
+    <!-- Allowed Operators -->
+    <template v-if="strategy.getAllowedOperators(displaySide).length">
+      <v-divider />
+      <v-card-subtitle class="mt-3">Allowed Operators</v-card-subtitle>
+      <v-card-text class="pb-2 pl-3 pt-1">
+        <operator-label
+          v-for="{ id } in strategy.getAllowedOperators(displaySide)"
+          :key="id"
+          class="ma-1"
+          :operator-key="id"
         />
       </v-card-text>
     </template>
 
     <!-- Disallowed Operators -->
-    <template v-if="disallowedOperators.length">
+    <template v-if="strategy.getDisallowedOperators(displaySide).length">
       <v-divider />
       <v-card-subtitle class="mt-3">Disallowed Operators</v-card-subtitle>
       <v-card-text class="pb-2 pl-3 pt-1">
         <operator-label
-          v-for="o in disallowedOperators"
-          :key="o"
+          v-for="{ id } in strategy.getDisallowedOperators(displaySide)"
+          :key="id"
           class="ma-1"
           negative
-          :operator-key="o"
+          :operator-key="id"
         />
       </v-card-text>
     </template>
@@ -43,17 +54,17 @@
     <v-card-text class="px-3 pt-2">
       <v-list class="pa-0">
         <v-list-item
-          v-for="({ value, operator }, index) in rules"
+          v-for="({ text, operator }, index) in strategy.getRules(displaySide)"
           :key="index"
           class="pl-0"
-          :title="value"
+          :title="text"
         >
           <!-- Icon or Operator Icon -->
           <template v-slot:prepend>
             <v-avatar rounded="0">
               <v-img
                 v-if="operator"
-                :src="loadEmblem(operator)"
+                :src="operator.emblem"
               />
               <v-icon
                 v-else
@@ -66,7 +77,7 @@
     </v-card-text>
 
     <!-- Preview Actions -->
-    <template v-if="preview && strat.side === SIDES.ALL.key">
+    <template v-if="preview && strategy.side === Side.ALL">
       <v-divider />
       <v-card-actions>
         <v-spacer />
@@ -74,9 +85,9 @@
         <!-- Side Toggle -->
         <v-btn
           color="primary"
-          :prepend-icon="activeSide === SIDES.ATT.key ? SIDES.DEF.icon : SIDES.ATT.icon"
-          :text="`${activeSide === SIDES.ATT.key ? SIDES.DEF.name : SIDES.ATT.name} Version`"
-          @click="togglePreviewSide"
+          :prepend-icon="displaySide.oppositeSide.icon"
+          :text="`${displaySide.oppositeSide.title} Version`"
+          @click="displayKey = displaySide.oppositeSide.key"
         />
       </v-card-actions>
     </template>
@@ -84,66 +95,47 @@
 </template>
 
 <script setup>
-import { computed, defineProps, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
-import { loadEmblem } from '@/composables/imageLoader';
-import { OPERATORS, SIDES } from '@/data';
+import { Side, Strategy } from '@/models';
 
 import OperatorLabel from './OperatorLabel';
 
 // Define input properties
+// eslint-disable-next-line
 const props = defineProps({
   preview: {
     default: false,
     type: Boolean
   },
 
-  side: {
-    default: null,
+  sideKey: {
+    default: Side.ATT.key,
     type: String,
-    validator: (v) => ['ATT', 'DEF'].includes(v)
+    validator: (v) => [Side.ATT.key, Side.DEF.key].includes(v)
   },
 
-  strat: {
+  stratId: {
     required: true,
-    type: Object
+    type: Number
   }
 });
 
-// Define dynamic properties
-const previewSide = ref(null);
+/** @type {import('vue').Ref<String>} */
+const displayKey = ref(Side.ATT.key);
+
+/** @type {import('vue').ComputedRef<Side>} */
+const displaySide = computed(() => Side[displayKey.value]);
 
 // Define computed properties
-/**
- * Computes which side version of the card is rendered.
- */
-const activeSide = computed(() => {
-  if (props.preview) return previewSide.value;
-  return props.side;
-});
-
-const disallowedOperators = computed(() => {
-  if (!props.strat.disallowedOperators) return [];
-  return props.strat.disallowedOperators.filter((o) => OPERATORS[o].side === activeSide.value);
-});
-
-const requiredOperators = computed(() => {
-  if (!props.strat.requiredOperators) return [];
-  return props.strat.requiredOperators.filter((o) => OPERATORS[o].side === activeSide.value);
-});
-
-const rules = computed(() => {
-  return props.strat.rules.filter(({ side }) => side === activeSide.value || side === SIDES.ALL.key);
-});
-
-function togglePreviewSide() {
-  previewSide.value = previewSide.value === SIDES.ATT.key ? SIDES.DEF.key : SIDES.ATT.key;
-}
+/** @type {import('vue').ComputedRef<Strategy>} */
+const strategy = computed(() => Strategy[props.stratId]);
 
 watch(
-  props.strat,
-  (strat) => {
-    if (props.preview) previewSide.value = strat.side === SIDES.ALL.key ? SIDES.ATT.key : strat.side;
+  strategy,
+  (s) => {
+    if (props.preview) displayKey.value = s.side === Side.ALL ? Side.ATT.key : s.side.key;
+    else displayKey.value = props.sideKey;
   },
   { immediate: true }
 );

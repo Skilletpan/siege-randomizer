@@ -1,15 +1,12 @@
 <template>
-  <v-card
-    color="grey-darken-4"
-    :width="big ? 500 : 300"
-  >
+  <v-card :width="big ? 500 : 300">
     <!-- Map Image -->
     <v-img
       :alt="map.name"
       :aspect-ratio="16 / 9"
       :class="{ inactive, placeholder }"
       cover
-      :src="loadMapPreview(placeholder ? map.key : mapKey)"
+      :src="map.thumbnail"
     />
 
     <!-- Map Name -->
@@ -25,7 +22,7 @@
           text="Playlists"
         />
         <v-chip
-          v-for="p in playlists"
+          v-for="p in map.playlists"
           class="mb-2 mr-2"
           :key="p.key"
           label
@@ -37,12 +34,12 @@
 </template>
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { computed } from 'vue';
 
-import { loadMapPreview } from '@/composables/imageLoader';
-import { MAPS, MAP_LIST, PLAYLIST_LIST } from '@/data';
+import { Map } from '@/models';
 
 // Define input properties
+// eslint-disable-next-line
 const props = defineProps({
   big: {
     type: Boolean
@@ -60,7 +57,7 @@ const props = defineProps({
   mapKey: {
     default: null,
     type: String,
-    validator: (v) => Object.keys(MAPS).includes(v)
+    validator: (v) => Object.keys(Map).includes(v)
   },
 
   placeholder: {
@@ -70,12 +67,11 @@ const props = defineProps({
 });
 
 // Define computed properties
+/** @type {import('vue').ComputedRef<Map>} */
 const map = computed(() => {
-  if (!props.mapKey) return MAP_LIST[Math.floor(Math.random() * MAP_LIST.length)];
-  return MAPS[props.mapKey];
+  if (!props.mapKey) return Map.LIST[Math.floor(Math.random() * Map.LIST.length)];
+  return Map[props.mapKey];
 });
-
-const playlists = computed(() => PLAYLIST_LIST.filter((p) => p.maps.includes(props.mapKey)));
 </script>
 
 <style scoped>
