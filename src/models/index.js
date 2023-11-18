@@ -1,3 +1,4 @@
+import Gadget from './Gadget';
 import Map from './Map';
 import Operator from './Operator';
 import Playlist from './Playlist';
@@ -8,6 +9,7 @@ import Strategy from './Strategy';
 import StrategyTag from './StragegyTag';
 
 export {
+  Gadget,
   Map,
   Operator,
   Playlist,

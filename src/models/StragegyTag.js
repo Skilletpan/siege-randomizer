@@ -3,9 +3,6 @@ import TAGS from '@/data/tags.json';
 import Strategy from './Strategy';
 
 export default class StrategyTag {
-  #id;
-  #name;
-
   static {
     // Build strategy tag instances from raw data
     Object.entries(TAGS).forEach(([id, tag]) => {
@@ -27,6 +24,10 @@ export default class StrategyTag {
       StrategyTag.LIST
     );
   }
+
+  // Instance properties
+  #id;
+  #name;
 
   /**
    * Creates a new Strategy Tag instance.

@@ -1,11 +1,6 @@
 import SIDES from '@/data/sides.json';
 
 export default class Side {
-  #key;
-  #title;
-  #icon;
-  #color;
-
   static {
     // Build side instances from raw data
     Object.entries(SIDES).forEach(([key, side]) => {
@@ -26,6 +21,12 @@ export default class Side {
       Side.LIST
     );
   }
+
+  // Instance properties
+  #key;
+  #title;
+  #icon;
+  #color;
 
   /**
    * Creates new Side instance.

@@ -1,0 +1,47 @@
+{
+  "BARBED": {
+    "name": "Barbed Wire"
+  },
+  "BEEPER": {
+    "name": "Proximity Alarm"
+  },
+  "BLOCKER": {
+    "name": "Observation Blocker"
+  },
+  "BREACH": {
+    "name": "Breach Charge"
+  },
+  "C4": {
+    "name": "Nitro Cell",
+    "isLethal": true
+  },
+  "CAMERA": {
+    "name": "Bulletproof Camera"
+  },
+  "CLAYMORE": {
+    "name": "Claymore",
+    "isLethal": true
+  },
+  "EMP": {
+    "name": "Impact EMP Grenade"
+  },
+  "FRAG": {
+    "name": "Frag Grenade",
+    "isLethal": true
+  },
+  "HARDBREACH": {
+    "name": "Hard Breach Charge"
+  },
+  "IMPACT": {
+    "name": "Impact Grenade"
+  },
+  "SHIELD": {
+    "name": "Deployable Shield"
+  },
+  "SMOKE": {
+    "name": "Smoke Grenade"
+  },
+  "STUN": {
+    "name": "Stun Grenade"
+  }
+}

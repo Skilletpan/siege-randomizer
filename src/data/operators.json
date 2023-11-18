@@ -2,6 +2,11 @@
   "ATT": {
     "SLEDGE": {
       "name": "Sledge",
+      "gadgets": [
+        "FRAG",
+        "STUN",
+        "EMP"
+      ],
       "roles": [
         "BREACH",
         "ANTIGADGET"
@@ -11,6 +16,10 @@
     },
     "THATCHER": {
       "name": "Thatcher",
+      "gadgets": [
+        "BREACH",
+        "CLAYMORE"
+      ],
       "roles": [
         "ANTIGADGET",
         "SUPPORT"
@@ -20,6 +29,10 @@
     },
     "ASH": {
       "name": "Ash",
+      "gadgets": [
+        "BREACH",
+        "CLAYMORE"
+      ],
       "roles": [
         "BREACH",
         "FRONTLINE"
@@ -29,6 +42,10 @@
     },
     "THERMITE": {
       "name": "Thermite",
+      "gadgets": [
+        "SMOKE",
+        "STUN"
+      ],
       "roles": [
         "BREACH",
         "SUPPORT"
@@ -38,6 +55,10 @@
     },
     "TWITCH": {
       "name": "Twitch",
+      "gadgets": [
+        "CLAYMORE",
+        "SMOKE"
+      ],
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -47,6 +68,11 @@
     },
     "MONTAGNE": {
       "name": "Montagne",
+      "gadgets": [
+        "HARDBREACH",
+        "SMOKE",
+        "EMP"
+      ],
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -56,6 +82,11 @@
     },
     "GLAZ": {
       "name": "Glaz",
+      "gadgets": [
+        "SMOKE",
+        "FRAG",
+        "CLAYMORE"
+      ],
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -65,6 +96,11 @@
     },
     "FUZE": {
       "name": "Fuze",
+      "gadgets": [
+        "BREACH",
+        "HARDBREACH",
+        "SMOKE"
+      ],
       "roles": [
         "ANTIGADGET"
       ],
@@ -73,6 +109,10 @@
     },
     "BLITZ": {
       "name": "Blitz",
+      "gadgets": [
+        "SMOKE",
+        "BREACH"
+      ],
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -82,6 +122,10 @@
     },
     "IQ": {
       "name": "IQ",
+      "gadgets": [
+        "BREACH",
+        "CLAYMORE"
+      ],
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -91,6 +135,10 @@
     },
     "BUCK": {
       "name": "Buck",
+      "gadgets": [
+        "STUN",
+        "HARDBREACH"
+      ],
       "roles": [
         "BREACH",
         "SUPPORT"
@@ -100,6 +148,11 @@
     },
     "BLACKBEARD": {
       "name": "Blackbeard",
+      "gadgets": [
+        "CLAYMORE",
+        "STUN",
+        "EMP"
+      ],
       "roles": [
         "SUPPORT"
       ],
@@ -108,6 +161,10 @@
     },
     "CAPITAO": {
       "name": "Capitão",
+      "gadgets": [
+        "CLAYMORE",
+        "HARDBREACH"
+      ],
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -117,6 +174,10 @@
     },
     "HIBANA": {
       "name": "Hibana",
+      "gadgets": [
+        "STUN",
+        "BREACH"
+      ],
       "roles": [
         "BREACH",
         "FRONTLINE"
@@ -126,6 +187,10 @@
     },
     "JACKAL": {
       "name": "Jackal",
+      "gadgets": [
+        "CLAYMORE",
+        "SMOKE"
+      ],
       "roles": [
         "INTEL",
         "MAPCONTROL"
@@ -135,6 +200,10 @@
     },
     "YING": {
       "name": "Ying",
+      "gadgets": [
+        "HARDBREACH",
+        "SMOKE"
+      ],
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -144,6 +213,10 @@
     },
     "ZOFIA": {
       "name": "Zofia",
+      "gadgets": [
+        "BREACH",
+        "CLAYMORE"
+      ],
       "roles": [
         "BREACH",
         "ANTIGADGET"
@@ -153,6 +226,11 @@
     },
     "DOKKAEBI": {
       "name": "Dokkaebi",
+      "gadgets": [
+        "SMOKE",
+        "STUN",
+        "EMP"
+      ],
       "roles": [
         "INTEL",
         "MAPCONTROL"
@@ -162,6 +240,11 @@
     },
     "LION": {
       "name": "Lion",
+      "gadgets": [
+        "STUN",
+        "CLAYMORE",
+        "EMP"
+      ],
       "roles": [
         "INTEL",
         "MAPCONTROL"
@@ -171,6 +254,11 @@
     },
     "FINKA": {
       "name": "Finka",
+      "gadgets": [
+        "SMOKE",
+        "STUN",
+        "FRAG"
+      ],
       "roles": [
         "FRONTLINE",
         "SUPPORT"
@@ -180,6 +268,10 @@
     },
     "MAVERICK": {
       "name": "Maverick",
+      "gadgets": [
+        "STUN",
+        "CLAYMORE"
+      ],
       "roles": [
         "BREACH",
         "FRONTLINE"
@@ -189,6 +281,10 @@
     },
     "NOMAD": {
       "name": "Nomad",
+      "gadgets": [
+        "STUN",
+        "BREACH"
+      ],
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -198,6 +294,11 @@
     },
     "GRIDLOCK": {
       "name": "Gridlock",
+      "gadgets": [
+        "SMOKE",
+        "EMP",
+        "FRAG"
+      ],
       "roles": [
         "SUPPORT",
         "MAPCONTROL"
@@ -207,6 +308,11 @@
     },
     "NOKK": {
       "name": "Nøkk",
+      "gadgets": [
+        "FRAG",
+        "HARDBREACH",
+        "EMP"
+      ],
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -216,6 +322,10 @@
     },
     "AMARU": {
       "name": "Amaru",
+      "gadgets": [
+        "HARDBREACH",
+        "STUN"
+      ],
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -225,6 +335,10 @@
     },
     "KALI": {
       "name": "Kali",
+      "gadgets": [
+        "CLAYMORE",
+        "BREACH"
+      ],
       "roles": [
         "ANTIGADGET",
         "SUPPORT"
@@ -234,6 +348,10 @@
     },
     "IANA": {
       "name": "Iana",
+      "gadgets": [
+        "STUN",
+        "SMOKE"
+      ],
       "roles": [
         "FRONTLINE",
         "INTEL"
@@ -243,6 +361,10 @@
     },
     "ACE": {
       "name": "Ace",
+      "gadgets": [
+        "BREACH",
+        "CLAYMORE"
+      ],
       "roles": [
         "BREACH",
         "ANTIGADGET"
@@ -252,6 +374,10 @@
     },
     "ZERO": {
       "name": "Zero",
+      "gadgets": [
+        "HARDBREACH",
+        "CLAYMORE"
+      ],
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -261,6 +387,10 @@
     },
     "FLORES": {
       "name": "Flores",
+      "gadgets": [
+        "STUN",
+        "CLAYMORE"
+      ],
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -270,6 +400,11 @@
     },
     "OSA": {
       "name": "Osa",
+      "gadgets": [
+        "SMOKE",
+        "CLAYMORE",
+        "EMP"
+      ],
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -279,6 +414,10 @@
     },
     "SENS": {
       "name": "Sens",
+      "gadgets": [
+        "HARDBREACH",
+        "CLAYMORE"
+      ],
       "roles": [
         "SUPPORT",
         "MAPCONTROL"
@@ -288,6 +427,11 @@
     },
     "GRIM": {
       "name": "Grim",
+      "gadgets": [
+        "BREACH",
+        "CLAYMORE",
+        "HARDBREACH"
+      ],
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -297,6 +441,10 @@
     },
     "BRAVA": {
       "name": "Brava",
+      "gadgets": [
+        "SMOKE",
+        "CLAYMORE"
+      ],
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -306,6 +454,10 @@
     },
     "RAM": {
       "name": "Ram",
+      "gadgets": [
+        "STUN",
+        "SMOKE"
+      ],
       "roles": [
         "BREACH",
         "ANTIGADGET"
@@ -315,13 +467,28 @@
     },
     "RECRUIT_ATT": {
       "name": "Recruit (Attack)",
-      "roles": [],
+      "gadgets": [
+        "FRAG",
+        "SMOKE",
+        "EMP",
+        "HARDBREACH",
+        "BREACH",
+        "STUN",
+        "CLAYMORE"
+      ],
+      "roles": [
+        "SUPPORT"
+      ],
       "speed": 2
     }
   },
   "DEF": {
     "SMOKE": {
       "name": "Smoke",
+      "gadgets": [
+        "BARBED",
+        "BEEPER"
+      ],
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -331,6 +498,10 @@
     },
     "MUTE": {
       "name": "Mute",
+      "gadgets": [
+        "C4",
+        "CAMERA"
+      ],
       "roles": [
         "ANTIGADGET",
         "CROWDCONTROL"
@@ -340,6 +511,10 @@
     },
     "CASTLE": {
       "name": "Castle",
+      "gadgets": [
+        "CAMERA",
+        "BEEPER"
+      ],
       "roles": [
         "ANTIENTRY",
         "SUPPORT"
@@ -349,6 +524,11 @@
     },
     "PULSE": {
       "name": "Pulse",
+      "gadgets": [
+        "C4",
+        "SHIELD",
+        "BLOCKER"
+      ],
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -358,6 +538,10 @@
     },
     "DOC": {
       "name": "Doc",
+      "gadgets": [
+        "CAMERA",
+        "BARBED"
+      ],
       "roles": [
         "SUPPORT"
       ],
@@ -366,6 +550,11 @@
     },
     "ROOK": {
       "name": "Rook",
+      "gadgets": [
+        "BEEPER",
+        "IMPACT",
+        "BLOCKER"
+      ],
       "roles": [
         "SUPPORT"
       ],
@@ -374,6 +563,10 @@
     },
     "KAPKAN": {
       "name": "Kapkan",
+      "gadgets": [
+        "IMPACT",
+        "C4"
+      ],
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -383,6 +576,11 @@
     },
     "TACHANKA": {
       "name": "Tachanka",
+      "gadgets": [
+        "BARBED",
+        "SHIELD",
+        "BEEPER"
+      ],
       "roles": [
         "ANTIENTRY",
         "CROWDCONTROL"
@@ -392,6 +590,10 @@
     },
     "JAGER": {
       "name": "Jäger",
+      "gadgets": [
+        "CAMERA",
+        "BLOCKER"
+      ],
       "roles": [
         "ANTIGADGET",
         "SUPPORT"
@@ -401,6 +603,10 @@
     },
     "BANDIT": {
       "name": "Bandit",
+      "gadgets": [
+        "BARBED",
+        "C4"
+      ],
       "roles": [
         "ANTIENTRY",
         "ANTIGADGET"
@@ -410,6 +616,10 @@
     },
     "FROST": {
       "name": "Frost",
+      "gadgets": [
+        "CAMERA",
+        "SHIELD"
+      ],
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -419,6 +629,10 @@
     },
     "VALKYRIE": {
       "name": "Valkyrie",
+      "gadgets": [
+        "IMPACT",
+        "C4"
+      ],
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -428,6 +642,11 @@
     },
     "CAVEIRA": {
       "name": "Caveira",
+      "gadgets": [
+        "IMPACT",
+        "BEEPER",
+        "BLOCKER"
+      ],
       "roles": [
         "INTEL",
         "CROWDCONTROL"
@@ -437,6 +656,10 @@
     },
     "ECHO": {
       "name": "Echo",
+      "gadgets": [
+        "IMPACT",
+        "SHIELD"
+      ],
       "roles": [
         "INTEL",
         "CROWDCONTROL"
@@ -446,6 +669,10 @@
     },
     "MIRA": {
       "name": "Mira",
+      "gadgets": [
+        "BEEPER",
+        "C4"
+      ],
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -455,6 +682,10 @@
     },
     "LESION": {
       "name": "Lesion",
+      "gadgets": [
+        "IMPACT",
+        "CAMERA"
+      ],
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -464,6 +695,11 @@
     },
     "ELA": {
       "name": "Ela",
+      "gadgets": [
+        "BARBED",
+        "SHIELD",
+        "BLOCKER"
+      ],
       "roles": [
         "CROWDCONTROL",
         "TRAPPER"
@@ -473,6 +709,10 @@
     },
     "VIGIL": {
       "name": "Vigil",
+      "gadgets": [
+        "CAMERA",
+        "IMPACT"
+      ],
       "roles": [
         "ANTIGADGET",
         "CROWDCONTROL"
@@ -482,6 +722,11 @@
     },
     "MAESTRO": {
       "name": "Maestro",
+      "gadgets": [
+        "BARBED",
+        "IMPACT",
+        "BLOCKER"
+      ],
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -491,6 +736,10 @@
     },
     "ALIBI": {
       "name": "Alibi",
+      "gadgets": [
+        "BEEPER",
+        "BLOCKER"
+      ],
       "roles": [
         "INTEL",
         "TRAPPER"
@@ -500,6 +749,11 @@
     },
     "CLASH": {
       "name": "Clash",
+      "gadgets": [
+        "BARBED",
+        "IMPACT",
+        "SHIELD"
+      ],
       "roles": [
         "INTEL",
         "CROWDCONTROL"
@@ -509,6 +763,11 @@
     },
     "KAID": {
       "name": "Kaid",
+      "gadgets": [
+        "C4",
+        "BARBED",
+        "BLOCKER"
+      ],
       "roles": [
         "ANTIENTRY",
         "ANTIGADGET"
@@ -518,6 +777,10 @@
     },
     "MOZZIE": {
       "name": "Mozzie",
+      "gadgets": [
+        "BARBED",
+        "C4"
+      ],
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -527,6 +790,11 @@
     },
     "WARDEN": {
       "name": "Warden",
+      "gadgets": [
+        "SHIELD",
+        "C4",
+        "BLOCKER"
+      ],
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -536,6 +804,11 @@
     },
     "GOYO": {
       "name": "Goyo",
+      "gadgets": [
+        "BEEPER",
+        "CAMERA",
+        "IMPACT"
+      ],
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -545,6 +818,10 @@
     },
     "WAMAI": {
       "name": "Wamai",
+      "gadgets": [
+        "IMPACT",
+        "BEEPER"
+      ],
       "roles": [
         "ANTIGADGET",
         "TRAPPER"
@@ -554,6 +831,10 @@
     },
     "ORYX": {
       "name": "Oryx",
+      "gadgets": [
+        "BARBED",
+        "BEEPER"
+      ],
       "roles": [
         "SUPPORT"
       ],
@@ -562,6 +843,10 @@
     },
     "MELUSI": {
       "name": "Melusi",
+      "gadgets": [
+        "CAMERA",
+        "IMPACT"
+      ],
       "roles": [
         "INTEL",
         "CROWDCONTROL"
@@ -571,6 +856,10 @@
     },
     "ARUNI": {
       "name": "Aruni",
+      "gadgets": [
+        "BARBED",
+        "CAMERA"
+      ],
       "roles": [
         "ANTIENTRY",
         "ANTIGADGET"
@@ -580,6 +869,10 @@
     },
     "THUNDERBIRD": {
       "name": "Thunderbird",
+      "gadgets": [
+        "BARBED",
+        "CAMERA"
+      ],
       "roles": [
         "SUPPORT"
       ],
@@ -588,6 +881,10 @@
     },
     "THORN": {
       "name": "Thorn",
+      "gadgets": [
+        "SHIELD",
+        "BARBED"
+      ],
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -597,6 +894,10 @@
     },
     "AZAMI": {
       "name": "Azami",
+      "gadgets": [
+        "BARBED",
+        "IMPACT"
+      ],
       "roles": [
         "ANTIENTRY",
         "SUPPORT"
@@ -606,6 +907,10 @@
     },
     "SOLIS": {
       "name": "Solis",
+      "gadgets": [
+        "IMPACT",
+        "CAMERA"
+      ],
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -615,6 +920,10 @@
     },
     "FENRIR": {
       "name": "Fenrir",
+      "gadgets": [
+        "CAMERA",
+        "BARBED"
+      ],
       "roles": [
         "CROWDCONTROL",
         "TRAPPER"
@@ -624,7 +933,18 @@
     },
     "RECRUIT_DEF": {
       "name": "Recruit (Defense)",
-      "roles": [],
+      "gadgets": [
+        "C4",
+        "IMPACT",
+        "BEEPER",
+        "CAMERA",
+        "BARBED",
+        "SHIELD",
+        "BLOCKER"
+      ],
+      "roles": [
+        "SUPPORT"
+      ],
       "speed": 2
     }
   }

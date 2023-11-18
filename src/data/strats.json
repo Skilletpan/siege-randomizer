@@ -102,20 +102,11 @@
       "MAESTRO",
       "MOZZIE"
     ],
-    "allowedOperators": [
-      "MUTE",
-      "DOC",
-      "JAGER",
-      "FROST",
-      "LESION",
-      "VIGIL",
-      "GOYO",
-      "MELUSI",
-      "ARUNI",
-      "THUNDERBIRD",
-      "SOLIS",
-      "FENRIR"
-    ],
+    "allowedOperators": {
+      "gadgets": [
+        "CAMERA"
+      ]
+    },
     "side": "DEF",
     "tags": [
       "LOADOUT",
@@ -226,17 +217,11 @@
       "Try to kill all attackers with C4s from below site.",
       "You are only allowed to start shooting at people when all C4s are gone."
     ],
-    "allowedOperators": [
-      "MUTE",
-      "PULSE",
-      "KAPKAN",
-      "BANDIT",
-      "VALKYRIE",
-      "MIRA",
-      "KAID",
-      "MOZZIE",
-      "WARDEN"
-    ],
+    "allowedOperators": {
+      "gadgets": [
+        "C4"
+      ]
+    },
     "side": "DEF",
     "tags": [
       "LOADOUT",
@@ -378,19 +363,11 @@
       "Everyone brings breach charges.",
       "Everyone picks a window and hot-breaches into the building at the same time."
     ],
-    "allowedOperators": [
-      "THATCHER",
-      "ASH",
-      "FUZE",
-      "BLITZ",
-      "IQ",
-      "HIBANA",
-      "ZOFIA",
-      "NOMAD",
-      "KALI",
-      "ACE",
-      "GRIM"
-    ],
+    "allowedOperators": {
+      "gadgets": [
+        "BREACH"
+      ]
+    },
     "side": "ATT",
     "tags": [
       "STRATEGY"
@@ -513,19 +490,11 @@
       "BUCK",
       "RAM"
     ],
-    "allowedOperators": [
-      "THATCHER",
-      "FUZE",
-      "BLITZ",
-      "IQ",
-      "HIBANA",
-      "ZOFIA",
-      "NOMAD",
-      "KALI",
-      "ACE",
-      "FLORES",
-      "GRIM"
-    ],
+    "allowedOperators": {
+      "gadgets": [
+        "BREACH"
+      ]
+    },
     "side": "ATT",
     "tags": [
       "LINEUP",
@@ -720,22 +689,11 @@
     "rules": [
       "Only kill enemies with impact grenades."
     ],
-    "allowedOperators": [
-      "ROOK",
-      "KAPKAN",
-      "VALKYRIE",
-      "CAVEIRA",
-      "ECHO",
-      "LESION",
-      "VIGIL",
-      "MAESTRO",
-      "CLASH",
-      "GOYO",
-      "WAMAI",
-      "MELUSI",
-      "AZAMI",
-      "SOLIS"
-    ],
+    "allowedOperators": {
+      "gadgets": [
+        "IMPACT"
+      ]
+    },
     "side": "DEF",
     "tags": [
       "LOADOUT",
@@ -835,7 +793,8 @@
       {
         "operator": "THUNDERBIRD",
         "text": "Place your Kona Stations outside the building for the attackers to use."
-      }
+      },
+      "Let the attackers take their armors and heals. Don't camp it and kill them."
     ],
     "requiredOperators": [
       "ROOK",

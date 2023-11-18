@@ -4,13 +4,6 @@ import Map from './Map';
 import Operator from './Operator';
 
 export default class Playlist {
-  #id;
-  #name;
-  #maps;
-  #isArcade;
-  #bannedOperators = [];
-  #canBanOperators;
-
   static {
     // Build playlist instances from raw data
     Object.entries(PLAYLISTS).forEach(([id, playlist]) => {
@@ -36,6 +29,14 @@ export default class Playlist {
       Playlist.LIST
     );
   }
+
+  // Instance properties
+  #id;
+  #name;
+  #maps;
+  #isArcade;
+  #bannedOperators = [];
+  #canBanOperators;
 
   /**
    * Creates new Playlist instance.

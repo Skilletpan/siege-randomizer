@@ -1,21 +1,11 @@
 import OPERATORS from '@/data/operators.json';
 
+import Gadget from './Gadget';
 import Role from './Role';
 import Side from './Side';
 import Squad from './Squad';
 
 export default class Operator {
-  #id;
-  #name;
-  #roles = [];
-  #side;
-  #speed;
-  #squad;
-
-  #portrait;
-  #emblem;
-  #easterEggs = [];
-
   static {
     // Build operator instances from raw data
     Object.entries(OPERATORS).forEach(([side, operators]) => {
@@ -27,6 +17,7 @@ export default class Operator {
         this[id] = new Operator({
           id,
           name: operator.name,
+          gadgets: operator.gadgets,
           roles: operator.roles,
           side,
           speed: operator.speed,
@@ -44,20 +35,35 @@ export default class Operator {
     );
   }
 
+  // Instance properties
+  #id;
+  #name;
+  #gadgets = [];
+  #roles = [];
+  #side;
+  #speed;
+  #squad;
+
+  #portrait;
+  #emblem;
+  #easterEggs = [];
+
   /**
    * Creates a new Operator instance.
    * 
    * @param {Object}   operator         The raw operator data.
    * @param {String}   operator.id      The ID of the operator.
    * @param {String}   operator.name    The name of the operator.
+   * @param {String}   operator.gadgets The gadgets of the operator.
    * @param {String[]} operator.roles   The role(s) of the operator.
    * @param {String}   operator.side    The side of the operator.
    * @param {Number}   operator.speed   The speed of the operator.
-   * @param {String}   [operator.squad] The squad of the operator.
+   * @param {?String}  [operator.squad] The squad of the operator.
    */
   constructor(operator) {
     this.#id = operator.id;
     this.#name = operator.name;
+    this.#gadgets.push(...operator.gadgets);
     this.#roles.push(...operator.roles);
     this.#side = operator.side;
     this.#speed = operator.speed;
@@ -85,6 +91,9 @@ export default class Operator {
 
   /** @returns {Side} The side of the operator. */
   get side() { return Side[this.#side]; }
+
+  /** @returns {Gadget[]} The gadgets of the operator. */
+  get gadgets() { return this.#gadgets.map((gadget) => Gadget[gadget]); }
 
   /** @returns {Number} The speed of the operator. */
   get speed() { return this.#speed; }
@@ -123,26 +132,35 @@ export default class Operator {
   /**
    * Get operators by details.
    * 
-   * @param {Object}          details          The details to filter operators by.
-   * @param {Number}          [details.speed]  The speed of the operator.
-   * @param {Number}          [details.health] The health of the operator.
-   * @param {Side|String}     [details.side]   The side of the operator.
-   * @param {Role[]|String[]} [details.roles]  The roles of the operator.
-   * @param {Squad|String}    [details.squad]  The squad of the operator.
+   * @param {Object}            details           The details to filter operators by.
+   * @param {Number|Number[]}   [details.speed]   The speed of the operator.
+   * @param {Number|Number[]}   [details.health]  The health of the operator.
+   * @param {Side|String}       [details.side]    The side of the operator.
+   * @param {Gadget[]|String[]} [details.gadgets] The gadgets of the operator.
+   * @param {Role[]|String[]}   [details.roles]   The roles of the operator.
+   * @param {Squad|String}      [details.squad]   The squad of the operator.
    * 
    * @returns {Operator[]} The operators that match the provided details.
    */
   static getOperators(details) {
-    const { speed, health, side, roles, squad } = details;
+    const { speed, health, side, gadgets, roles, squad } = details;
 
     const si = side ? (typeof side === 'string' ? Side[side] : side) : null;
+    const ga = gadgets ? (gadgets.map((g) => typeof g === 'string' ? Gadget[g] : g)) : null;
     const ro = roles ? (roles.map((r) => typeof r === 'string' ? Role[r] : r)) : null;
     const sq = squad ? (typeof squad === 'string' ? Squad[squad] : squad) : null;
 
     return Operator.LIST.filter((o) => {
-      if (speed && o.speed !== speed) return false;
-      if (health && o.health !== health) return false;
+      if (Array.isArray(speed)) {
+        if (!speed.includes(o.speed)) return false;
+      } else if (speed && o.speed !== speed) return false;
+
+      if (Array.isArray(health)) {
+        if (!health.includes(o.health)) return false;
+      } else if (health && o.health !== health) return false;
+
       if (side && o.side !== si) return false;
+      if (gadgets && !ga.every((g) => o.gadgets.includes(g))) return false;
       if (roles && !ro.every((r) => o.roles.includes(r))) return false;
       if (squad && o.squad !== sq) return false;
 

@@ -3,9 +3,6 @@ import MAPS from '@/data/maps.json';
 import Playlist from './Playlist';
 
 export default class Map {
-  #id;
-  #name;
-
   static {
     // Build map instances from raw data
     Object.entries(MAPS).forEach(([id, map]) => {
@@ -27,6 +24,10 @@ export default class Map {
       Map.LIST
     );
   }
+
+  // Instance properties
+  #id;
+  #name;
 
   /**
    * Creates a new Map instance.

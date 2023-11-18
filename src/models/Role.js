@@ -3,9 +3,6 @@ import ROLES from '@/data/roles.json';
 import Operator from './Operator';
 
 export default class Role {
-  #id;
-  #name;
-
   static {
     // Build role instances from raw data
     Object.entries(ROLES).forEach(([id, role]) => {
@@ -28,6 +25,10 @@ export default class Role {
     );
   }
 
+  // Instance properties
+  #id;
+  #name;
+
   /**
    * Creates a new Role instance.
    * 
@@ -47,7 +48,7 @@ export default class Role {
   get name() { return this.#name; }
 
   /** @returns {Operator[]} The operators fulfilling this role. */
-  get operators() { return Operator.LIST.filter((operator) => operator.roles.includes(this)); }
+  get operators() { return Operator.getOperators({ roles: [this] }); }
 
   /** @returns {Role[]} A list of all roles. */
   static get LIST() { return Object.values(this); }

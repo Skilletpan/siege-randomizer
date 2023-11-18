@@ -3,9 +3,6 @@ import SQUADS from '@/data/squads.json';
 import Operator from './Operator';
 
 export default class Squad {
-  #id;
-  #name;
-
   static {
     // Build squad instances from raw data
     Object.entries(SQUADS).forEach(([id, squad]) => {
@@ -28,6 +25,10 @@ export default class Squad {
     );
   }
 
+  // Instance properties
+  #id;
+  #name;
+
   /**
    * Creates a new Squad instance.
    * 
@@ -47,7 +48,7 @@ export default class Squad {
   get name() { return this.#name; }
 
   /** @returns {Operator[]} The members of the squad. */
-  get members() { return Operator.LIST.filter((o) => o.squad === this); }
+  get members() { return Operator.getOperators({ squad: this }); }
 
   /** @returns {String} The emblem of the squad. */
   get emblem() { return require(`@/assets/squads/${this.#id}.png`); }

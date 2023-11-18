@@ -38,21 +38,6 @@ class Rule {
 }
 
 export default class Strategy {
-  #id;
-  #title;
-  #tagline;
-  #rules = [];
-  #side;
-  #tags = [];
-
-  #requiredOperators = [];
-
-  #allowedOperators = [];
-  #allowedOperatorsFilter;
-
-  #disallowedOperators = [];
-  #disallowedOperatorsFilter;
-
   static {
     // Build strategy instances from raw data
     STRATS.forEach((strat, index) => {
@@ -81,6 +66,22 @@ export default class Strategy {
       Strategy.LIST
     );
   }
+
+  // Instance properties
+  #id;
+  #title;
+  #tagline;
+  #rules = [];
+  #side;
+  #tags = [];
+
+  #requiredOperators = [];
+
+  #allowedOperators = [];
+  #allowedOperatorsFilter;
+
+  #disallowedOperators = [];
+  #disallowedOperatorsFilter;
 
   /**
    * Creates a new Strategy instance.
@@ -162,7 +163,11 @@ export default class Strategy {
    * @returns {Operator[]} The allowed operators for this side of the strategy.
    */
   getAllowedOperators(side) {
-    if (this.#allowedOperatorsFilter) return Operator.getOperators({ ...this.#allowedOperatorsFilter, side });
+    if (this.#allowedOperatorsFilter) {
+      return Operator
+        .getOperators({ ...this.#allowedOperatorsFilter, side })
+        .filter((o) => !this.requiredOperators.includes(o) && !this.#disallowedOperators.includes(o.key));
+    }
     return this.#allowedOperators.map((o) => Operator[o]).filter((o) => o.side.includes(side));
   }
 
