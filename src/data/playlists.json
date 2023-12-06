@@ -25,11 +25,11 @@
       "EMERALD",
       "KAFE",
       "KANAL",
+      "LAIR",
       "NIGHTHAVEN",
       "OREGON",
       "OUTBACK",
       "SKYSCRAPER",
-      "STADIUM",
       "THEMEPARK",
       "VILLA"
     ]
@@ -40,15 +40,19 @@
       "BANK",
       "BORDER",
       "CHALET",
+      "CLUBHOUSE",
       "COASTLINE",
       "CONSULATE",
-      "FORTRESS",
+      "EMERALD",
       "KAFE",
+      "KANAL",
+      "LAIR",
       "NIGHTHAVEN",
       "OREGON",
-      "PLANE",
-      "VILLA",
-      "YACHT"
+      "OUTBACK",
+      "SKYSCRAPER",
+      "THEMEPARK",
+      "VILLA"
     ]
   },
   "QUICKMATCH": {
@@ -59,11 +63,18 @@
       "CLUBHOUSE",
       "COASTLINE",
       "CONSULATE",
+      "EMERALD",
       "FAVELA",
+      "FORTRESS",
+      "HEREFORD",
       "HOUSE",
+      "LAIR",
       "NIGHTHAVEN",
+      "PLANE",
+      "STADIUM",
       "TOWER",
-      "VILLA"
+      "VILLA",
+      "YACHT"
     ],
     "modes": [
       "BOMB",
@@ -80,9 +91,9 @@
       "CONSULATE",
       "EMERALD",
       "FAVELA",
+      "LAIR",
       "NIGHTHAVEN",
       "SKYSCRAPER",
-      "STADIUM",
       "THEMEPARK",
       "VILLA"
     ]
@@ -95,8 +106,8 @@
       "CONSULATE",
       "EMERALD",
       "FAVELA",
+      "LAIR",
       "NIGHTHAVEN",
-      "STADIUM",
       "THEMEPARK",
       "VILLA"
     ]
@@ -108,6 +119,7 @@
       "CLOSEQUARTER",
       "EMERALD",
       "FAVELA",
+      "LAIR",
       "SKYSCRAPER",
       "STADIUM"
     ]
@@ -138,8 +150,8 @@
       "CLOSEQUARTER",
       "COASTLINE",
       "FAVELA",
+      "LAIR",
       "NIGHTHAVEN",
-      "STADIUM",
       "THEMEPARK",
       "VILLA"
     ]
