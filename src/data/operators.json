@@ -315,7 +315,9 @@
     },
     "RECRUIT_ATT": {
       "name": "Recruit (Attack)",
-      "roles": [],
+      "roles": [
+        "SUPPORT"
+      ],
       "speed": 2
     }
   },
@@ -622,9 +624,20 @@
       "speed": 2,
       "squad": "REDHAMMER"
     },
+    "TUBARAO": {
+      "name": "Tubarão",
+      "roles": [
+        "ANTIGADGET",
+        "CROWDCONTROL"
+      ],
+      "speed": 2,
+      "squad": "WOLFGUARD"
+    },
     "RECRUIT_DEF": {
       "name": "Recruit (Defense)",
-      "roles": [],
+      "roles": [
+        "SUPPORT"
+      ],
       "speed": 2
     }
   }
