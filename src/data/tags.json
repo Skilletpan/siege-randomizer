@@ -1,23 +1,9 @@
 {
-  "COMMUNICATION": {
-    "name": "Communication Restrictions"
-  },
-  "LINEUP": {
-    "name": "Lineup Requirements"
-  },
-  "LOADOUT": {
-    "name": "Loadout Requirements"
-  },
-  "MOVEMENT": {
-    "name": "Movement Restrictions"
-  },
-  "REALLIFE": {
-    "name": "Real Life Impact"
-  },
-  "SETTINGS": {
-    "name": "Setting Changes"
-  },
-  "STRATEGY": {
-    "name": "Strategy Requirements"
-  }
+  "COMMUNICATION": "Communication Restrictions",
+  "LINEUP": "Lineup Requirements",
+  "LOADOUT": "Loadout Requirements",
+  "MOVEMENT": "Movement Restrictions",
+  "REALLIFE": "Real Life Impact",
+  "SETTINGS": "Setting Changes",
+  "STRATEGY": "Strategy Requirements"
 }

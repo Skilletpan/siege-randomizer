@@ -1,6 +1,137 @@
 <template>
-  <v-navigation-drawer location="right">
-    <v-list>
+  <v-navigation-drawer
+    class="pa-3"
+    location="right"
+    width="350"
+  >
+    <!-- Match Settings Section -->
+    <v-label class="mb-3 text-caption">Match Settings</v-label>
+
+    <!-- Playlist -->
+    <v-select
+      v-model="rawSettings.playlist"
+      class="mb-3"
+      clearable
+      density="comfortable"
+      hide-details
+      :items="Playlist.LIST"
+      item-title="name"
+      item-value="id"
+      label="Playlist"
+      persistent-placeholder
+      placeholder="None"
+      variant="solo-filled"
+    />
+
+    <!-- Duplicate Picks -->
+    <v-switch
+      v-model="rawSettings.duplicates"
+      density="compact"
+      :disabled="!!rawSettings.playlist"
+      :hide-details="!rawSettings.playlist"
+      hint="Set by Playlist"
+      inset
+      :persistent-hint="!!rawSettings.playlist"
+      label="Duplicate Picks"
+      v-bind="rawSettings.playlist ? { modelValue: settings2.playlist.isArcade } : null"
+    />
+
+    <v-divider class="my-3" />
+
+    <!-- Operator Details Section -->
+    <v-label class="mb-3 text-caption">Operator Details</v-label>
+
+    <!-- Roles -->
+    <v-autocomplete
+      class="mb-3"
+      density="comfortable"
+      hide-details
+      :items="Role.LIST"
+      item-title="name"
+      item-value="id"
+      label="Roles"
+      persistent-placeholder
+      placeholder="Search..."
+      variant="solo-filled"
+      @update:model-value="rawSettings.roles.push($event);"
+    />
+
+    <v-list
+      v-if="rawSettings.roles.length"
+      class="mb-2 py-0"
+      density="comfortable"
+      variant="flat"
+    >
+      <template
+        v-for="(role, index) in settings2.roles"
+        :key="role.id"
+      >
+        <v-hover v-slot="{ isHovering, props }">
+          <v-list-item
+            v-bind="props"
+            :append-icon="isHovering ? 'mdi-delete' : null"
+            :title="role.name"
+            @click="rawSettings.roles.splice(index, 1)"
+          />
+        </v-hover>
+      </template>
+    </v-list>
+
+    <!-- Squad -->
+    <v-autocomplete
+      density="comfortable"
+      hide-details
+      :items="Squad.LIST"
+      item-title="name"
+      item-value="id"
+      label="Squad"
+      persistent-placeholder
+      placeholder="Search..."
+      variant="solo-filled"
+    />
+
+    <v-divider class="my-3" />
+
+    <!-- Loadout Section -->
+    <v-label class="mb-3 text-caption">Loadout</v-label>
+
+    <!-- Gadgets -->
+    <v-autocomplete
+      class="mb-3"
+      density="comfortable"
+      hide-details
+      :items="Gadget.LIST"
+      item-title="name"
+      item-value="id"
+      label="Gadgets"
+      persistent-placeholder
+      placeholder="Search..."
+      variant="solo-filled"
+      @update:model-value="rawSettings.gadgets.push($event);"
+    />
+
+    <v-list
+      v-if="rawSettings.gadgets.length"
+      class="mb-2 py-0"
+      density="comfortable"
+      variant="flat"
+    >
+      <template
+        v-for="(gadget, index) in settings2.gadgets"
+        :key="gadget.id"
+      >
+        <v-hover v-slot="{ isHovering, props }">
+          <v-list-item
+            v-bind="props"
+            :append-icon="isHovering ? 'mdi-delete' : null"
+            :title="gadget.name"
+            @click="rawSettings.gadgets.splice(index, 1)"
+          />
+        </v-hover>
+      </template>
+    </v-list>
+
+    <v-list v-if="false">
       <!-- Presets Selector -->
       <v-list-item>
         <v-select
@@ -92,7 +223,7 @@
         class="pl-3 py-0"
       >
         <v-checkbox
-          v-model="settings.speed"
+          v-model="rawSettings.speeds"
           density="comfortable"
           hide-details
           :label="`${s} Speed | ${4 - s} Health`"
@@ -109,12 +240,12 @@
         :key="i"
       >
         <v-select
-          v-model="settings.roles[i - 1]"
+          v-model="rawSettings.roles[i - 1]"
           class="mb-2"
           clearable
           density="comfortable"
           hide-details
-          :items="Role.LIST.filter((r) => r.id !== settings.roles[i % 2])"
+          :items="Role.LIST.filter((r) => r.id !== rawSettings.roles[i % 2])"
           item-title="name"
           item-value="id"
           label="Role"
@@ -130,7 +261,7 @@
           block
           color="primary"
           text="Reset Roles"
-          @click="settings.roles = [null, null]"
+          @click="rawSettings.roles = [null, null]"
         />
       </v-list-item>
 
@@ -140,7 +271,7 @@
       <v-list-subheader title="Squad" />
       <v-list-item>
         <v-select
-          v-model="settings.squad"
+          v-model="rawSettings.squad"
           clearable
           density="comfortable"
           hide-details
@@ -193,7 +324,7 @@
 import { computed, ref } from 'vue';
 
 import { OperatorSearch } from '@/components';
-import { Operator, Role, Squad } from '@/models';
+import { Gadget, Operator, Playlist, Role, Squad } from '@/models';
 
 // Define static properties
 const DEFAULT_PRESET = {
@@ -224,19 +355,48 @@ const PRESETS = {
   }
 }
 
+const rawSettings = ref({
+  playlist: null,
+  bans: [],
+  duplicates: false,
+  gadgets: [],
+  speeds: [1, 2, 3],
+  roles: [],
+  squad: null
+});
+
+const settings2 = computed(() => {
+  const { playlist, bans, duplicates, gadgets, speeds, roles, squad } = rawSettings.value;
+
+  return {
+    playlist: Playlist[playlist] || null,
+    bans: bans.map((o) => Operator[o]),
+    allBans: [].concat(
+      Playlist[playlist]?.bannedOperators || [],
+      bans.map((o) => Operator[o])
+    ),
+    duplicates,
+    speeds,
+    roles: roles.filter((r) => !!r).map((r) => Role[r]),
+    squad: Squad[squad] || null,
+    gadgets: gadgets.map((g) => Gadget[g]),
+  }
+});
+
 // Define dynamic properties
 const settings = ref(structuredClone(DEFAULT_PRESET));
 
 // Define computed properties
 const operatorPool = computed(() => {
-  const { bans, roles, speed, squad } = settings.value;
+  const { bans, roles, speeds, squad, gadgets } = settings2.value;
 
-  return Operator.LIST.filter((o) => [
-    !bans.includes(o.id),                          // Bans
-    speed.includes(o.speed),                       // Speed
-    roles.every((r) => !r || o.roles.includes(r)), // Roles
-    !squad || o.squad === squad                    // Squad
-  ].every((isTrue) => isTrue));
+  const filters = {};
+  if (roles.length) filters.roles = [...roles];
+  if (speeds.length) filters.speed = [...speeds];
+  if (squad) filters.squad = squad;
+  if (gadgets.length) filters.gadgets = [...gadgets];
+
+  return Operator.getOperators(filters).filter((o) => !bans.includes(o.id));
 });
 
 // Define emits

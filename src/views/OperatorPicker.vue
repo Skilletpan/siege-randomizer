@@ -1,7 +1,30 @@
 <template>
   <v-container>
     <!-- Operator Cards -->
-    <v-row class="justify-center flex-nowrap pt-12">
+    <v-row class="justify-center">
+      <v-col
+        v-for="i in settings.picks"
+        :key="i"
+        class="operator-card"
+      >
+        <operator-card2
+          v-if="pickedOperators[i - 1]"
+          detailed
+          :operator-id="pickedOperators[i - 1]"
+          portrait
+        />
+
+        <operator-card2
+          v-else
+          placeholder
+        />
+      </v-col>
+    </v-row>
+
+    <v-row
+      v-if="false"
+      class="justify-center flex-nowrap pt-12"
+    >
       <v-col
         v-for="i in settings.picks"
         :key="`portrait_${i}`"
@@ -50,6 +73,50 @@
 
     <!-- Operator Pool -->
     <v-row>
+      <v-col cols="12">
+        <v-card variant="elevated">
+          <v-toolbar
+            class="text-center"
+            :color="Side.ALL.color"
+            extension-height="72"
+            title="Operator Pool"
+          >
+            <template v-slot:extension>
+              <v-tabs grow>
+                <v-tab
+                  v-for="side in Side.LIST"
+                  :key="side.key"
+                  stacked
+                  width="300"
+                >
+                  <v-icon :icon="side.icon" />
+                  {{ side.title }}
+                </v-tab>
+              </v-tabs>
+            </template>
+          </v-toolbar>
+
+          <v-card-text class="d-flex flex-wrap">
+            <v-col
+              v-for="operator in operatorPool"
+              :key="operator.id"
+              cols="3"
+            >
+              <v-card
+                :append-icon="operator.side.icon"
+                :color="operator.side.color"
+                :prepend-avatar="operator.emblem"
+                :title="operator.name"
+                @click="previewOperator(operator.id)"
+              />
+            </v-col>
+          </v-card-text>
+        </v-card>
+      </v-col>
+    </v-row>
+
+    <!-- Operator Pool -->
+    <v-row v-if="false">
       <template
         v-for="side in Side.SIDES"
         :key="side.key"
@@ -126,7 +193,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 
-import { OperatorCard, OperatorFilterDrawer } from '@/components';
+import { OperatorCard, OperatorCard2, OperatorFilterDrawer } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
 import { Side } from '@/models';
 
@@ -145,7 +212,7 @@ const previewDialog = ref({
 });
 const settings = ref({
   duplicates: false,
-  picks: 1
+  picks: 5
 });
 
 /**
@@ -191,5 +258,4 @@ function previewOperator(operatorKey) {
 <style scoped>
 .operator-card {
   max-width: calc(100% / 5);
-}
-</style>
+}</style>

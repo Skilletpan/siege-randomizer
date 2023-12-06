@@ -1,9 +1,9 @@
-import SIDES from '@/data/sides.json';
-
 export default class Side {
   static {
+    const rawSides = require('@/data/sides.json');
+
     // Build side instances from raw data
-    Object.entries(SIDES).forEach(([key, side]) => {
+    Object.entries(rawSides).forEach(([key, side]) => {
       // Create side instance
       this[key] = new Side({
         key,
@@ -14,11 +14,11 @@ export default class Side {
     });
 
     // Freeze operator object
-    Object.freeze(Side);
+    Object.freeze(this);
 
     console.debug(
       'Sides imported:',
-      Side.LIST
+      this.LIST
     );
   }
 
@@ -32,9 +32,9 @@ export default class Side {
    * Creates new Side instance.
    * 
    * @param {Object}  side       The raw side data.
-   * @param {String}  side.title The title of the side.
-   * @param {String}  side.icon  The icon key of the side.
-   * @param {?String} side.color The color key of the side.
+   * @param {string}  side.title The title of the side.
+   * @param {string}  side.icon  The icon key of the side.
+   * @param {?string} side.color The color key of the side.
    */
   constructor(side) {
     this.#key = side.key;
@@ -43,16 +43,16 @@ export default class Side {
     this.#color = side.color;
   }
 
-  /** @returns {String} The key of the side. */
+  /** @returns {string} The key of the side. */
   get key() { return this.#key; }
 
-  /** @returns {String} The title of the side. */
+  /** @returns {string} The title of the side. */
   get title() { return this.#title; }
 
-  /** @returns {String} The icon key of the side. */
+  /** @returns {string} The icon key of the side. */
   get icon() { return this.#icon; }
 
-  /** @returns {String} The color key of the side. */
+  /** @returns {string} The color key of the side. */
   get color() { return this.#color; }
 
   /** @returns {Side} The opposite side of this side. */
@@ -72,16 +72,16 @@ export default class Side {
   /**
    * @param {Side|String} side The side or side key to check.
    * 
-   * @returns {Boolean}
+   * @returns {boolean}
    */
   includes(side) {
     const s = typeof side === 'string' ? Side[side] : side;
     return this === Side.ALL || s === Side.ALL || this === s;
   }
 
-  /** @returns {Side[]} A list of all sides. */
+  /** @returns {Array<Side>} A list of all sides. */
   static get LIST() { return Object.values(this); }
 
-  /** @returns {Side[]} The two sides. */
+  /** @returns {Array<Side>} The two sides. */
   static get SIDES() { return [Side.ATT, Side.DEF]; }
 }

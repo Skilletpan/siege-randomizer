@@ -1,47 +1,86 @@
 {
   "BARBED": {
-    "name": "Barbed Wire"
+    "name": "Barbed Wire",
+    "amount": 2,
+    "isDeployable": true
   },
   "BEEPER": {
-    "name": "Proximity Alarm"
+    "name": "Proximity Alarm",
+    "amount": 2,
+    "isDeployable": true,
+    "isElectrical": true,
+    "isThrowable": true
   },
   "BLOCKER": {
-    "name": "Observation Blocker"
+    "name": "Observation Blocker",
+    "amount": 3,
+    "isDeployable": true,
+    "isElectrical": true
   },
   "BREACH": {
-    "name": "Breach Charge"
+    "name": "Breach Charge",
+    "amount": 3,
+    "isDeployable": true,
+    "isElectrical": true,
+    "isLethal": true
   },
   "C4": {
     "name": "Nitro Cell",
-    "isLethal": true
+    "amount": 1,
+    "isDeployable": true,
+    "isElectrical": true,
+    "isLethal": true,
+    "isThrowable": true
   },
   "CAMERA": {
-    "name": "Bulletproof Camera"
+    "name": "Bulletproof Camera",
+    "amount": 1,
+    "isDeployable": true,
+    "isElectrical": true
   },
   "CLAYMORE": {
     "name": "Claymore",
+    "amount": 2,
+    "isDeployable": true,
+    "isElectrical": true,
     "isLethal": true
   },
   "EMP": {
-    "name": "Impact EMP Grenade"
+    "name": "Impact EMP Grenade",
+    "amount": 2,
+    "isThrowable": true
   },
   "FRAG": {
     "name": "Frag Grenade",
-    "isLethal": true
+    "amount": 2,
+    "isLethal": true,
+    "isThrowable": true
   },
   "HARDBREACH": {
-    "name": "Hard Breach Charge"
+    "name": "Hard Breach Charge",
+    "amount": 2,
+    "isElectrical": true,
+    "isLethal": true
   },
   "IMPACT": {
-    "name": "Impact Grenade"
+    "name": "Impact Grenade",
+    "amount": 2,
+    "isLethal": true,
+    "isThrowable": true
   },
   "SHIELD": {
-    "name": "Deployable Shield"
+    "name": "Deployable Shield",
+    "amount": 1,
+    "isDeployable": true
   },
   "SMOKE": {
-    "name": "Smoke Grenade"
+    "name": "Smoke Grenade",
+    "amount": 2,
+    "isThrowable": true
   },
   "STUN": {
-    "name": "Stun Grenade"
+    "name": "Stun Grenade",
+    "amount": 3,
+    "isThrowable": true
   }
 }

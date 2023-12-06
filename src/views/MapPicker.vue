@@ -79,9 +79,9 @@
         cols="auto"
       >
         <map-card
-          :inactive="mapFilters.disabled.includes(m.id)"
-          :map-key="m.id"
-          @click="showPreview(m.id)"
+          :inactive="mapFilters.disabled.includes(m.key)"
+          :map-key="m.key"
+          @click="showPreview(m.key)"
         />
       </v-col>
     </v-row>

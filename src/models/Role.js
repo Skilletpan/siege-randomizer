@@ -1,27 +1,24 @@
-import ROLES from '@/data/roles.json';
-
 import Operator from './Operator';
 
 export default class Role {
   static {
-    // Build role instances from raw data
-    Object.entries(ROLES).forEach(([id, role]) => {
-      // Ignore disabled roles
-      if (role.disabled) return;
+    const rawRoles = require('@/data/roles.json');
 
+    // Build role instances from raw data
+    Object.entries(rawRoles).forEach(([id, role]) => {
       // Create role instance
       this[id] = new Role({
         id,
-        name: role.name
+        name: role
       });
     });
 
     // Freeze role object
-    Object.freeze(Role);
+    Object.freeze(this);
 
     console.debug(
       'Roles imported:',
-      Role.LIST
+      this.LIST
     );
   }
 
@@ -33,23 +30,23 @@ export default class Role {
    * Creates a new Role instance.
    * 
    * @param {Object} role      The raw role data.
-   * @param {String} role.id   The ID of the role.
-   * @param {String} role.name The name of the role.
+   * @param {string} role.id   The ID of the role.
+   * @param {string} role.name The name of the role.
    */
   constructor(role) {
     this.#id = role.id;
     this.#name = role.name;
   }
 
-  /** @returns {String} The ID of the role. */
+  /** @returns {string} The ID of the role. */
   get id() { return this.#id; }
 
-  /** @returns {String} The name of the role. */
+  /** @returns {string} The name of the role. */
   get name() { return this.#name; }
 
-  /** @returns {Operator[]} The operators fulfilling this role. */
+  /** @returns {Array<Operator>} The operators fulfilling this role. */
   get operators() { return Operator.getOperators({ roles: [this] }); }
 
-  /** @returns {Role[]} A list of all roles. */
+  /** @returns {Array<Role>} A list of all roles. */
   static get LIST() { return Object.values(this); }
 }

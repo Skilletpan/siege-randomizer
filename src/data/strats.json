@@ -171,30 +171,11 @@
       "Only use shotguns.",
       "If possible, bring secondary shotguns as well."
     ],
-    "allowedOperators": [
-      "SLEDGE",
-      "THATCHER",
-      "THERMITE",
-      "TWITCH",
-      "BUCK",
-      "HIBANA",
-      "JACKAL",
-      "YING",
-      "DOKKAEBI",
-      "LION",
-      "FINKA",
-      "NOKK",
-      "AMARU",
-      "ACE",
-      "GRIM"
-    ],
-    "disallowedOperators": [
-      "TACHANKA",
-      "CLASH",
-      "MOZZIE",
-      "WAMAI",
-      "ARUNI"
-    ],
+    "allowedOperators": {
+      "weapons": [
+        "SG"
+      ]
+    },
     "tags": [
       "LOADOUT"
     ]
@@ -246,17 +227,12 @@
       "Bring only LMGs.",
       "You may shoot only entire magazines at once."
     ],
-    "allowedOperators": [
-      "IQ",
-      "FUZE",
-      "CAPITAO",
-      "YING",
-      "ZOFIA",
-      "FINKA",
-      "GRIDLOCK",
-      "AMARU",
-      "RAM"
-    ],
+    "allowedOperators": {
+      "side": "ATT",
+      "weapons": [
+        "LMG"
+      ]
+    },
     "side": "ATT",
     "tags": [
       "LOADOUT",
@@ -510,16 +486,12 @@
       "Machine pistols, secondary shotguns and shields are disallowed.",
       "Bonus points for Deagle and Revolver only."
     ],
-    "disallowedOperators": [
-      "MONTAGNE",
-      "BLITZ",
-      "DOKKAEBI",
-      "VIGIL",
-      "CLASH",
-      "AMARU",
-      "KALI",
-      "SOLIS"
-    ],
+    "allowedOperators": {
+      "weapons": [
+        "DE",
+        "REV"
+      ]
+    },
     "tags": [
       "LOADOUT"
     ]
@@ -598,17 +570,12 @@
       "You may only bring LMGs.",
       "Secondary guns are disallowed."
     ],
-    "allowedOperators": [
-      "IQ",
-      "FUZE",
-      "CAPITAO",
-      "YING",
-      "ZOFIA",
-      "FINKA",
-      "GRIDLOCK",
-      "AMARU",
-      "RAM"
-    ],
+    "allowedOperators": {
+      "side": "ATT",
+      "weapons": [
+        "LMG"
+      ]
+    },
     "side": "ATT",
     "tags": [
       "STRATEGY"
@@ -828,17 +795,11 @@
       "GLAZ",
       "KALI"
     ],
-    "allowedOperators": [
-      "TWITCH",
-      "BUCK",
-      "BLACKBEARD",
-      "DOKKAEBI",
-      "LION",
-      "MAVERICK",
-      "FLORES",
-      "SENS",
-      "BRAVA"
-    ],
+    "allowedOperators": {
+      "weapons": [
+        "DMR"
+      ]
+    },
     "side": "ATT",
     "tags": [
       "LINEUP",
@@ -903,6 +864,12 @@
       "CAVEIRA",
       "ZERO"
     ],
+    "allowedOperators": {
+      "weapons": [
+        "DE",
+        "HG"
+      ]
+    },
     "tags": [
       "LINEUP",
       "LOADOUT",
@@ -954,17 +921,12 @@
       "Bring only LMGs.",
       "As soon as you start shooting, you cannot stop until your magazine is empty."
     ],
-    "allowedOperators": [
-      "IQ",
-      "FUZE",
-      "CAPITAO",
-      "YING",
-      "ZOFIA",
-      "FINKA",
-      "GRIDLOCK",
-      "AMARU",
-      "RAM"
-    ],
+    "allowedOperators": {
+      "side": "ATT",
+      "weapons": [
+        "LMG"
+      ]
+    },
     "side": "ATT",
     "tags": [
       "LOADOUT",
@@ -1016,7 +978,7 @@
     "rules": [
       {
         "operator": "BLACKBEARD",
-        "text": "You are the head of thee snake and lead the way."
+        "text": "You are the head of the snake and lead the way."
       },
       "Inside the building, you are only allowed to move while prone.",
       "You may stand up to shoot, but need to go prone again to continue moving."
@@ -1115,18 +1077,26 @@
   {
     "title": "Biene Maja",
     "tagline": "The hive is coming!",
-    "requiredOperators": [
-      "GRIM"
-    ],
     "rules": [
       "Only bring operators with yellow icons.",
       "Everyone follows Grim's lead.",
       "Sing \"Biene Maja\" for the duration of the round."
     ],
     "side": "ATT",
+    "requiredOperators": [
+      "GRIM"
+    ],
+    "allowedOperators": [
+      "BLITZ",
+      "IQ",
+      "BLACKBEARD",
+      "LION",
+      "FINKA",
+      "OSA"
+    ],
     "tags": [
-      "LINEUP",
-      "STRATEGY"
+      "COMMUNICATION",
+      "LINEUP"
     ]
   },
   {

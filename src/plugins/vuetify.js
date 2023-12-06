@@ -10,7 +10,11 @@ const cancer = {
   colors: {
     background: '#FFFDE7',
     surface: '#76FF03',
-    secondary: '#9575CD'
+    primary: 'AB47BC',
+    secondary: '#9575CD',
+    generic: '#006064',
+    attacker: '#FFF176',
+    defender: '#3E2723'
   }
 }
 

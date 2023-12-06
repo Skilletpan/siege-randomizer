@@ -22,7 +22,12 @@
     </v-img>
 
     <!-- Operator Name -->
-    <v-card-title class="text-center">{{ placeholder ? '?' : operator.name }}</v-card-title>
+    <v-card-title
+      class="text-center"
+      :color="!placeholder ? operator.side.color : null"
+    >
+      {{ placeholder ? '?' : operator.name }}
+    </v-card-title>
 
     <!-- Operator Details -->
     <template v-if="!placeholder && detailed">
@@ -57,6 +62,23 @@
             icon="mdi-hospital-box-outline"
           />
         </v-row>
+
+        <!-- Gadgets -->
+        <template v-if="operator.gadgets.length">
+          <v-label
+            class="d-block mt-3 text-caption"
+            text="Gadgets"
+          />
+          <v-chip-group>
+            <v-chip
+              v-for="{ id, name } in operator.gadgets"
+              :key="id"
+              label
+              size="small"
+              :text="name"
+            />
+          </v-chip-group>
+        </template>
 
         <!-- Roles -->
         <template v-if="operator.roles.length">

@@ -57,7 +57,7 @@ const props = defineProps({
   mapKey: {
     default: null,
     type: String,
-    validator: (v) => Object.keys(Map).includes(v)
+    validator: (v) => !!Map[v]
   },
 
   placeholder: {
