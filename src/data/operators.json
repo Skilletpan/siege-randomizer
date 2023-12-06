@@ -221,7 +221,8 @@
         ],
         "gadgets": [
           "BREACH",
-          "CLAYMORE"
+          "CLAYMORE",
+          "FRAG"
         ]
       }
     },
@@ -267,7 +268,7 @@
         "gadgets": [
           "CLAYMORE",
           "STUN",
-          "EMP"
+          "FRAG"
         ]
       }
     },
@@ -290,7 +291,8 @@
         ],
         "gadgets": [
           "CLAYMORE",
-          "HARDBREACH"
+          "HARDBREACH",
+          "EMP"
         ]
       }
     },
@@ -425,13 +427,12 @@
         ],
         "secondary": [
           "REV",
-          "HG",
-          "GON"
+          "HG"
         ],
         "gadgets": [
           "STUN",
           "CLAYMORE",
-          "EMP"
+          "FRAG"
         ]
       }
     },
@@ -704,8 +705,8 @@
           "HG"
         ],
         "gadgets": [
-          "SMOKE",
           "CLAYMORE",
+          "FRAG",
           "EMP"
         ]
       }
@@ -724,12 +725,12 @@
           "DMR"
         ],
         "secondary": [
-          "HG",
-          "GON"
+          "HG"
         ],
         "gadgets": [
           "HARDBREACH",
-          "CLAYMORE"
+          "CLAYMORE",
+          "FRAG"
         ]
       }
     },
@@ -751,7 +752,7 @@
           "BAI"
         ],
         "gadgets": [
-          "BREACH",
+          "EMP",
           "CLAYMORE",
           "HARDBREACH"
         ]
@@ -1369,7 +1370,7 @@
       "squad": "GHOSTEYES",
       "loadout": {
         "primary": [
-          "SSG",
+          "SG",
           "SMG"
         ],
         "secondary": [
@@ -1614,7 +1615,20 @@
         "CROWDCONTROL"
       ],
       "speed": 2,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "DMR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "C4",
+          "BEEPER"
+        ]
+      }
     },
     "RECRUIT_DEF": {
       "name": "Recruit (Defense)",
