@@ -1607,6 +1607,15 @@
         ]
       }
     },
+    "TUBARAO": {
+      "name": "Tubarão",
+      "roles": [
+        "ANTIGADGET",
+        "CROWDCONTROL"
+      ],
+      "speed": 2,
+      "squad": "WOLFGUARD"
+    },
     "RECRUIT_DEF": {
       "name": "Recruit (Defense)",
       "roles": [
