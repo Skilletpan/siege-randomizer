@@ -36,50 +36,30 @@
     <!-- Strat Pool -->
     <v-row>
       <v-col cols="12">
-        <v-card variant="elevated">
-          <v-toolbar
-            class="text-center"
-            :color="Side[poolDisplaySide].color"
-            extension-height="72"
-            title="Strat Pool"
-          >
-            <template v-slot:extension>
-              <v-tabs
-                v-model="poolDisplaySide"
-                grow
+        <side-pool
+          :items="stratPool"
+          title="Strat Pool"
+        >
+          <template v-slot="{ items }">
+            <v-card-text class="d-flex flex-wrap">
+              <v-col
+                v-for="strat in items"
+                :key="strat.id"
+                cols="3"
               >
-                <v-tab
-                  v-for="side in Side.LIST"
-                  :key="side.key"
-                  :value="side.key"
-                  stacked
-                  width="300"
+                <v-card
+                  :color="strat.side.color"
+                  :title="strat.title"
+                  @click="previewDialog.strat = strat.id; previewDialog.show = true;"
                 >
-                  <v-icon :icon="side.icon" />
-                  {{ side.title }}
-                </v-tab>
-              </v-tabs>
-            </template>
-          </v-toolbar>
-
-          <v-card-text class="d-flex flex-wrap">
-            <v-col
-              v-for="(strat, index) in displayedStratPool"
-              :key="index"
-              cols="3"
-            >
-              <v-card
-                :color="strat.side.color"
-                :title="strat.title"
-                @click="previewDialog.strat = strat.id; previewDialog.show = true;"
-              >
-                <template v-slot:append>
-                  <v-icon :icon="strat.side.icon" />
-                </template>
-              </v-card>
-            </v-col>
-          </v-card-text>
-        </v-card>
+                  <template v-slot:append>
+                    <v-icon :icon="strat.side.icon" />
+                  </template>
+                </v-card>
+              </v-col>
+            </v-card-text>
+          </template>
+        </side-pool>
       </v-col>
     </v-row>
   </v-container>
@@ -101,7 +81,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 
-import { StratCard, StratFilterDrawer } from '@/components';
+import { SidePool, StratCard, StratFilterDrawer } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
 import { Side } from '@/models';
 
@@ -110,9 +90,6 @@ const picks = ref({
   side: null,
   strat: null
 });
-
-/** @type {import('vue').Ref<String>} */
-const poolDisplaySide = ref(Side.ALL.key);
 
 const previewDialog = ref({
   show: false,
@@ -126,8 +103,6 @@ const stratPool = computed(() => {
   if (filterDrawer.value) return filterDrawer.value.stratPool;
   return [];
 });
-
-const displayedStratPool = computed(() => stratPool.value.filter((s) => Side[poolDisplaySide.value].includes(s.side)));
 
 /**
  * Picks a random strategy from the pool.

@@ -7,14 +7,13 @@
         :key="i"
         class="operator-card"
       >
-        <operator-card2
+        <operator-card
           v-if="pickedOperators[i - 1]"
-          detailed
           :operator-id="pickedOperators[i - 1]"
           portrait
         />
 
-        <operator-card2
+        <operator-card
           v-else
           placeholder
         />
@@ -74,101 +73,28 @@
     <!-- Operator Pool -->
     <v-row>
       <v-col cols="12">
-        <v-card variant="elevated">
-          <v-toolbar
-            class="text-center"
-            :color="Side.ALL.color"
-            extension-height="72"
-            title="Operator Pool"
-          >
-            <template v-slot:extension>
-              <v-tabs grow>
-                <v-tab
-                  v-for="side in Side.LIST"
-                  :key="side.key"
-                  stacked
-                  width="300"
-                >
-                  <v-icon :icon="side.icon" />
-                  {{ side.title }}
-                </v-tab>
-              </v-tabs>
-            </template>
-          </v-toolbar>
+        <side-pool
+          :items="operatorPool"
+          title="Operator Pool"
+        >
+          <template v-slot="{ items }">
+            <v-card-text class="d-flex flex-wrap">
+              <v-col
+                v-for="operator in items"
+                :key="operator.key"
+                cols="3"
+              >
+                <operator-card
+                  colored
+                  :operator-key="operator.key"
+                  @click="previewOperator(operator.key)"
+                />
+              </v-col>
+            </v-card-text>
 
-          <v-card-text class="d-flex flex-wrap">
-            <v-col
-              v-for="operator in operatorPool"
-              :key="operator.id"
-              cols="3"
-            >
-              <v-card
-                :append-icon="operator.side.icon"
-                :color="operator.side.color"
-                :prepend-avatar="operator.emblem"
-                :title="operator.name"
-                @click="previewOperator(operator.id)"
-              />
-            </v-col>
-          </v-card-text>
-        </v-card>
+          </template>
+        </side-pool>
       </v-col>
-    </v-row>
-
-    <!-- Operator Pool -->
-    <v-row v-if="false">
-      <template
-        v-for="side in Side.SIDES"
-        :key="side.key"
-      >
-        <v-col>
-          <!-- Side Title -->
-          <h2 class="mb-4 text-center">
-            <v-icon
-              :icon="side.icon"
-              size="small"
-              start
-            />
-            {{ side.title }}
-          </h2>
-
-          <!-- Operator Items -->
-          <v-row>
-            <v-col
-              v-for="operator in operatorPool.filter((o) => o.side === side)"
-              :key="operator.id"
-              cols="6"
-            >
-              <!-- Operator Card -->
-              <v-hover v-slot="{ isHovering, props }">
-                <v-card
-                  v-bind="props"
-                  :prepend-avatar="operator.emblem"
-                  :title="operator.name"
-                  @click="previewOperator(operator.id)"
-                >
-                  <!-- Ban Button -->
-                  <template v-slot:append>
-                    <v-btn
-                      v-show="isHovering"
-                      color="primary"
-                      variant="text"
-                      @click.stop="filterDrawer.addBan(operator.id)"
-                    >
-                      Ban
-                    </v-btn>
-                  </template>
-                </v-card>
-              </v-hover>
-            </v-col>
-          </v-row>
-        </v-col>
-
-        <!-- <v-divider
-          v-else
-          vertical
-        /> -->
-      </template>
     </v-row>
   </v-container>
 
@@ -181,11 +107,12 @@
   <!-- Operator Preview Dialog -->
   <v-dialog
     v-model="previewDialog.show"
-    width="auto"
+    width="300"
   >
     <operator-card
       detailed
       :operator-key="previewDialog.operatorKey"
+      portrait
     />
   </v-dialog>
 </template>
@@ -193,7 +120,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 
-import { OperatorCard, OperatorCard2, OperatorFilterDrawer } from '@/components';
+import { OperatorCard, OperatorFilterDrawer, SidePool } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
 import { Side } from '@/models';
 

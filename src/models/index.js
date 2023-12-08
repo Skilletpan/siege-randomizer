@@ -1,5 +1,6 @@
 import Gadget from './Gadget';
 import Map from './Map';
+import { Model, ListModel, MapModel } from './Model';
 import Operator from './Operator';
 import Playlist from './Playlist';
 import Role from './Role';
@@ -10,7 +11,10 @@ import StrategyTag from './StragegyTag';
 
 export {
   Gadget,
+  ListModel,
   Map,
+  MapModel,
+  Model,
   Operator,
   Playlist,
   Role,

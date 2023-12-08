@@ -1,4 +1,4 @@
-class Model extends Object {
+export class Model extends Object {
   static get LIST() { throw new Error('This function was not implemented!'); }
 
   /**
@@ -16,10 +16,10 @@ class Model extends Object {
 
 export class ListModel extends Model {
   // Static properties
-  /** @type {typeof ListModel[]} */
+  /** @type {ListModel[]} */
   static _list;
 
-  /** @returns {typeof ListModel[]} The list of model items. */
+  /** @returns {ListModel[]} The list of model items. */
   static get LIST() { return Array.from(this._list); }
 
   // Instance properties
@@ -52,10 +52,13 @@ export class ListModel extends Model {
 
 export class MapModel extends Model {
   // Static properties
-  /** @type {Map<string, typeof MapModel>} */
+  /** @type {Map<string, MapModel>} */
   static _map;
 
-  /** @returns {typeof MapModel[]} The list of model items. */
+  /** @returns {string[]} The keys of the model items. */
+  static get KEYS() { return Array.from(this._map.keys()); }
+
+  /** @returns {MapModel[]} The list of model items. */
   static get LIST() { return Array.from(this._map.values()); }
 
   // Instance properties
