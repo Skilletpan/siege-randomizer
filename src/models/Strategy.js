@@ -82,7 +82,7 @@ export default class Strategy extends ListModel {
    * @param {?string[]|Object}  rawStrategy.disallowedOperators The IDs of the operators disallowed by the strategy.
    */
   constructor(rawStrategy) {
-    super(rawStrategy, Strategy);
+    super(rawStrategy.id, Strategy);
 
     // Set instance properties
     this.#title = rawStrategy.title;
