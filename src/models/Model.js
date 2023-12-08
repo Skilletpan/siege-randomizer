@@ -1,94 +1,94 @@
-/** @type {{ [x: string]: typeof Model[] }} */
-const store = {};
-
-export class Model extends Object {
-  static _className = 'model';
-
-  // Instance properties
-  #id;
-  #name;
+class Model extends Object {
+  static get LIST() { throw new Error('This function was not implemented!'); }
 
   /**
-   * Creates a new Model Item instance.
+   * Picks a random item from the model item list or a custom pool.
    * 
-   * @param {Object} param0      The raw item data.
-   * @param {number} param0.id   The ID of the item.
-   * @param {string} param0.name The name of the item.
-   */
-  constructor({ id, name }, className) {
-    super();
-
-    // Set instance properties
-    this.#id = id;
-    this.#name = name;
-
-    // Add item to list
-    if (!store[className]) store[className] = [];
-    if (!store[className].includes(this)) store[className].push(this);
-  }
-
-  /** @returns {number} The ID of the item. */
-  get id() { return this.#id; }
-
-  /** @returns {string} The name of the item. */
-  get name() { return this.#name; }
-
-  /** @returns {typeof Model[]} A list of all items. */
-  static get LIST() { return store[this._className]; }
-
-  /**
-   * Picks a random item from the model item list or a provided pool.
+   * @param {any[]} [customPool] The pool to pick an item from.
    * 
-   * @param {Model[]} [customPool] A pool of items to pick from.
-   * 
-   * @returns {Model} The randomly picked item.
+   * @returns {any} The item that was picked from the pool.
    */
   static pickRandom(customPool = null) {
     const pool = customPool || this.LIST;
     return pool[Math.floor(Math.random() * pool.length)];
   }
+}
 
-  // Override basic object functions
-  toString() { return `[${this.#id}] ${this.#name}`; }
+export class ListModel extends Model {
+  // Static properties
+  /** @type {typeof ListModel[]} */
+  static _list;
+
+  /** @returns {typeof ListModel[]} The list of model items. */
+  static get LIST() { return Array.from(this._list); }
+
+  // Instance properties
+  /** @type {number} */
+  #id;
+
+  /**
+   * Creates a new instance of the model.
+   * 
+   * @param {number}           id       The ID of the model item.
+   * @param {typeof ListModel} subclass The subclass of the model item.
+   */
+  constructor(id, subclass) {
+    super();
+
+    // Set instance properties
+    this.#id = id;
+
+    // Add model item to list
+    if (!subclass._list) subclass._list = [];
+    subclass._list.push(this);
+  }
+
+  /** @returns {number} The ID of the model item. */
+  get id() { return this.#id; }
+
+  // Override Object functions
   valueOf() { return this.#id; }
 }
 
-export class MappedModel extends Model {
+export class MapModel extends Model {
+  // Static properties
+  /** @type {Map<string, typeof MapModel>} */
+  static _map;
+
+  /** @returns {typeof MapModel[]} The list of model items. */
+  static get LIST() { return Array.from(this._map.values()); }
+
   // Instance properties
+  /** @type {string} */
   #key;
 
   /**
-   * Creates a new Model Item instance.
+   * Creates a new instance of the model.
    * 
-   * @param {Object} param0      The raw item data.
-   * @param {number} param0.id   The ID of the item.
-   * @param {string} param0.key  The key of the item.
-   * @param {string} param0.name The name of the item.
-   * @param {string} className   The name of the class in the store.
+   * @param {string}          key      The key of the model item.
+   * @param {typeof MapModel} subclass The subclass of the model item.
    */
-  constructor({ id, key, name }, className) {
-    super({ id, name }, className);
+  constructor(key, subclass) {
+    super();
 
     // Set instance properties
     this.#key = key;
 
-    // MappedModel._addGetter(key);
-  }
+    // Add model item to map
+    if (!subclass._map) subclass._map = new Map();
+    subclass._map.set(key, this);
 
-  /** @returns {string} The key of the item. */
-  get key() { return this.#key; }
-
-  /**
-   * Adds a getter for an item.
-   * 
-   * @param {typeof MappedModel} target The subclass to add the getter on.
-   * @param {string}             key    The key of the item.
-   */
-  static _addGetter(target, key) {
+    // Add getter for the model item
     Object.defineProperty(
-      target,
+      subclass,
       key,
-      { get() { return store[this._className].find((i) => i.key === key); } }
+      { get() { return subclass._map.get(key); } }
     );
   }
+
+  /** @returns {string} The key of the model item. */
+  get key() { return this.#key; }
+
+  // Override Object functions
+  valueOf() { return this.#key; }
 }

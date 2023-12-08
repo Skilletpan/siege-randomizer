@@ -1,59 +1,48 @@
+import { MapModel } from './Model';
 import Operator from './Operator';
 
-export default class Squad {
+export default class Squad extends MapModel {
   static {
     const rawSquads = require('@/data/squads.json');
 
     // Build squad instances from raw data
-    Object.entries(rawSquads).forEach(([id, squad]) => {
+    Object.entries(rawSquads).forEach(([key, squad]) => {
       // Create squad instance
-      this[id] = new Squad({
-        id,
-        name: squad
-      });
+      new Squad({ key, name: squad });
     });
 
-    // Freeze squad object
-    Object.freeze(this);
-
-    console.debug(
-      'Squads imported:',
-      this.LIST
-    );
+    console.debug('Squads imported:', Squad.LIST);
   }
 
   // Instance properties
-  #id;
   #name;
-
   #emblem;
 
   /**
    * Creates a new Squad instance.
    * 
-   * @param {Object} squad      The raw squad data.
-   * @param {string} squad.id   The id of the squad.
-   * @param {string} squad.name The name of the squad.
+   * @param {Object} rawSquad      The raw squad data.
+   * @param {string} rawSquad.key  The key of the squad.
+   * @param {string} rawSquad.name The name of the squad.
    */
-  constructor(squad) {
-    this.#id = squad.id;
-    this.#name = squad.name;
+  constructor(rawSquad) {
+    super(rawSquad.key, Squad);
 
-    this.#emblem = require(`@/assets/squads/${squad.id}.png`)
+    // Set instance properties
+    this.#name = rawSquad.name;
   }
-
-  /** @returns {string} The ID of the squad. */
-  get id() { return this.#id; }
 
   /** @returns {string} The name of the squad. */
   get name() { return this.#name; }
 
-  /** @returns {Array<Operator>} The members of the squad. */
+  /** @returns {Operator[]} The members of the squad. */
   get members() { return Operator.getOperators({ squad: this }); }
 
   /** @returns {string} The emblem of the squad. */
-  get emblem() { return this.#emblem; }
+  get emblem() {
+    // Loads the emblem on first call
+    if (!this.#emblem) this.#emblem = require(`@/assets/squads/${this.key}.png`);
 
-  /** @returns {Array<Squad>} A list of all squads. */
-  static get LIST() { return Object.values(this); }
+    return this.#emblem;
+  }
 }

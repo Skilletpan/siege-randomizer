@@ -1,53 +1,43 @@
-export default class Side {
+import { MapModel } from './Model';
+
+export default class Side extends MapModel {
   static {
     const rawSides = require('@/data/sides.json');
 
     // Build side instances from raw data
     Object.entries(rawSides).forEach(([key, side]) => {
       // Create side instance
-      this[key] = new Side({
-        key,
-        title: side.name,
-        icon: side.icon,
-        color: side.color
-      });
+      new Side({ key, ...side });
     });
 
-    // Freeze operator object
-    Object.freeze(this);
-
-    console.debug(
-      'Sides imported:',
-      this.LIST
-    );
+    console.debug('Sides imported:', Side.LIST);
   }
 
   // Instance properties
-  #key;
-  #title;
+  #name;
   #icon;
   #color;
 
   /**
    * Creates new Side instance.
    * 
-   * @param {Object}  side       The raw side data.
-   * @param {string}  side.title The title of the side.
-   * @param {string}  side.icon  The icon key of the side.
-   * @param {?string} side.color The color key of the side.
+   * @param {Object}  rawSide       The raw side data.
+   * @param {string}  rawSide.key   The key of the side.
+   * @param {string}  rawSide.name  The title of the side.
+   * @param {string}  rawSide.icon  The icon key of the side.
+   * @param {?string} rawSide.color The color key of the side.
    */
-  constructor(side) {
-    this.#key = side.key;
-    this.#title = side.title;
-    this.#icon = side.icon;
-    this.#color = side.color;
+  constructor(rawSide) {
+    super(rawSide.key, Side);
+
+    // Set instance properties
+    this.#name = rawSide.name;
+    this.#icon = rawSide.icon;
+    this.#color = rawSide.color;
   }
 
-  /** @returns {string} The key of the side. */
-  get key() { return this.#key; }
-
-  /** @returns {string} The title of the side. */
-  get title() { return this.#title; }
+  /** @returns {string} The name of the side. */
+  get name() { return this.#name; }
 
   /** @returns {string} The icon key of the side. */
   get icon() { return this.#icon; }
@@ -69,19 +59,34 @@ export default class Side {
     }
   }
 
+  /** @returns {Side[]} The two sides. */
+  static get SIDES() { return [Side.ATT, Side.DEF]; }
+
   /**
-   * @param {Side|String} side The side or side key to check.
+   * Parses an input to a side instance.
    * 
-   * @returns {boolean}
+   * @param {Side|string} side The input to parse the side from.
+   * 
+   * @returns {Side} The side object parsed from the value.
    */
-  includes(side) {
-    const s = typeof side === 'string' ? Side[side] : side;
-    return this === Side.ALL || s === Side.ALL || this === s;
+  static valueOf(side) {
+    if (side instanceof Side) return side;
+    if (Side[side.toUpperCase()]) return Side[side.toUpperCase()];
+
+    throw new Error(`Value ${side} can't be parsed to Side instance!`);
   }
 
-  /** @returns {Array<Side>} A list of all sides. */
-  static get LIST() { return Object.values(this); }
+  /**
+   * Checks whether a given side is included in this side.
+   * 
+   * @param {Side|String} side The side or side key to check.
+   * 
+   * @returns {boolean} Whether the side is included.
+   */
+  includes(side) {
+    const s = Side.valueOf(side);
 
-  /** @returns {Array<Side>} The two sides. */
-  static get SIDES() { return [Side.ATT, Side.DEF]; }
+    if (this === Side.ALL) return true;
+    return this === s;
+  }
 }

@@ -1,3 +1,4 @@
+import { ListModel } from './Model';
 import Operator from './Operator';
 import Side from './Side';
 import StrategyTag from './StragegyTag';
@@ -35,7 +36,7 @@ class Rule {
   }
 }
 
-export default class Strategy {
+export default class Strategy extends ListModel {
   static {
     const rawStrategies = require('@/data/strats.json');
 
@@ -45,30 +46,13 @@ export default class Strategy {
       if (strat.disabled) return;
 
       // Create strategy instance
-      this[index] = new Strategy({
-        id: index,
-        title: strat.title,
-        tagline: strat.tagline,
-        rules: strat.rules,
-        side: strat.side,
-        tags: strat.tags,
-        requiredOperators: strat.requiredOperators || [],
-        allowedOperators: strat.allowedOperators || [],
-        disallowedOperators: strat.disallowedOperators || []
-      });
+      new Strategy({ id: index, ...strat });
     });
 
-    // Freeze strategy object
-    Object.freeze(this);
-
-    console.debug(
-      'Strategies imported:',
-      this.LIST
-    );
+    console.debug('Strategies imported:', Strategy.LIST);
   }
 
   // Instance properties
-  #id;
   #title;
   #tagline;
   #rules = [];
@@ -86,37 +70,36 @@ export default class Strategy {
   /**
    * Creates a new Strategy instance.
    * 
-   * @param {Object}               strategy                     The raw strategy data.
-   * @param {number}               strategy.id                  The ID of the strategy.
-   * @param {string}               strategy.title               The title of the strategy.
-   * @param {string}               strategy.tagline             The tagline of the strategy.
-   * @param {Array<Object|string>} strategy.rules               The rules of the strategy.
-   * @param {?string}              strategy.side                The side key of the strategy.
-   * @param {Array<string>}        strategy.tags                The IDs of the tags of the strategy.
-   * @param {Array<string>}        strategy.requiredOperators   The IDs of the operators required by the strategy.
-   * @param {Array<string>|Object} strategy.allowedOperators    The IDs of the operators allowed by the strategy.
-   * @param {Array<string>|Object} strategy.disallowedOperators The IDs of the operators disallowed by the strategy.
+   * @param {Object}            rawStrategy                     The raw strategy data.
+   * @param {number}            rawStrategy.id                  The ID of the strategy.
+   * @param {string}            rawStrategy.title               The title of the strategy.
+   * @param {string}            rawStrategy.tagline             The tagline of the strategy.
+   * @param {(Object|string)[]} rawStrategy.rules               The rules of the strategy.
+   * @param {?string}           rawStrategy.side                The side key of the strategy.
+   * @param {string[]}          rawStrategy.tags                The IDs of the tags of the strategy.
+   * @param {?string[]}         rawStrategy.requiredOperators   The IDs of the operators required by the strategy.
+   * @param {?string[]|Object}  rawStrategy.allowedOperators    The IDs of the operators allowed by the strategy.
+   * @param {?string[]|Object}  rawStrategy.disallowedOperators The IDs of the operators disallowed by the strategy.
    */
-  constructor(strategy) {
-    this.#id = strategy.id;
-    this.#title = strategy.title;
-    this.#tagline = strategy.tagline;
-    this.#side = strategy.side || Side.ALL.key;
+  constructor(rawStrategy) {
+    super(rawStrategy, Strategy);
 
-    this.#rules.push(...strategy.rules.map((r) => new Rule(r)));
-    this.#tags.push(...strategy.tags);
+    // Set instance properties
+    this.#title = rawStrategy.title;
+    this.#tagline = rawStrategy.tagline;
+    this.#side = rawStrategy.side || Side.ALL.key;
 
-    this.#requiredOperators.push(...strategy.requiredOperators);
+    this.#rules.push(...rawStrategy.rules.map((r) => new Rule(r)));
+    this.#tags.push(...rawStrategy.tags);
 
-    if (Array.isArray(strategy.allowedOperators)) this.#allowedOperators.push(...strategy.allowedOperators);
-    else this.#allowedOperatorsFilter = strategy.allowedOperators;
+    this.#requiredOperators.push(...(rawStrategy.requiredOperators) || []);
 
-    if (Array.isArray(strategy.disallowedOperators)) this.#disallowedOperators.push(...strategy.disallowedOperators);
-    else this.#disallowedOperatorsFilter = strategy.disallowedOperators;
+    if (Array.isArray(rawStrategy.allowedOperators)) this.#allowedOperators.push(...rawStrategy.allowedOperators);
+    else this.#allowedOperatorsFilter = rawStrategy.allowedOperators;
+
+    if (Array.isArray(rawStrategy.disallowedOperators)) this.#disallowedOperators.push(...rawStrategy.disallowedOperators);
+    else this.#disallowedOperatorsFilter = rawStrategy.disallowedOperators;
   }
-
-  /** @returns {number} The ID of the strategy. */
-  get id() { return this.#id; }
 
   /** @returns {string} The title of the strategy. */
   get title() { return this.#title; }
@@ -125,23 +108,20 @@ export default class Strategy {
   get tagline() { return this.#tagline; }
 
   /** @returns {Side} The side of the strategy. */
-  get side() { return Side[this.#side]; }
+  get side() { return Side.valueOf(this.#side); }
 
-  /** @returns {Array<Operator>} The operators required by this strategy. */
+  /** @returns {Operator[]} The operators required by this strategy. */
   get requiredOperators() { return this.#requiredOperators.map((o) => Operator[o]); }
 
-  /** @returns {Array<StrategyTag>} The tags of the strategy. */
+  /** @returns {StrategyTag[]} The tags of the strategy. */
   get tags() { return this.#tags.map((tag) => StrategyTag[tag]); }
-
-  /** @returns {Array<Strategy>} A list of all strategies. */
-  static get LIST() { return Object.values(this).sort((s1, s2) => s1.title.localeCompare(s2.title)); }
 
   /**
    * Gets the rules of the strategy for the given side.
    * 
    * @param {Side|string} side The side or side key to get the rules for.
    * 
-   * @returns {Array<Rule>} The rules for this side of the strategy.
+   * @returns {Rule[]} The rules for this side of the strategy.
    */
   getRules(side) { return this.#rules.filter((r) => r.side.includes(side)); }
 
@@ -150,7 +130,7 @@ export default class Strategy {
    * 
    * @param {Side|string} side The side or side key to get the required operators for.
    * 
-   * @returns {Array<Operator>} The required operators for this side of the strategy.
+   * @returns {Operator[]} The required operators for this side of the strategy.
    */
   getRequiredOperators(side) {
     return this.#requiredOperators.map((o) => Operator[o]).filter((o) => o.side.includes(side));
@@ -161,7 +141,7 @@ export default class Strategy {
    * 
    * @param {Side|string} side The side or side key to get the allowed operators for.
    * 
-   * @returns {Array<Operator>} The allowed operators for this side of the strategy.
+   * @returns {Operator[]} The allowed operators for this side of the strategy.
    */
   getAllowedOperators(side) {
     if (this.#allowedOperatorsFilter) {
@@ -177,7 +157,7 @@ export default class Strategy {
    * 
    * @param {Side|string} side The side or side key to get the disallowed operators for.
    * 
-   * @returns {Array<Operator>} The disallowed operators for this side of the strategy.
+   * @returns {Operator[]} The disallowed operators for this side of the strategy.
    */
   getDisallowedOperators(side) {
     if (this.#disallowedOperatorsFilter) return Operator.getOperators({ ...this.#disallowedOperatorsFilter, side });
