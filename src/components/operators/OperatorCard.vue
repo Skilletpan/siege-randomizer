@@ -1,38 +1,15 @@
 <template>
-  <!-- Placeholder Card -->
   <v-card
-    v-if="props.placeholder"
-    max-width="300"
-    variant="elevated"
-  >
-    <!-- Portrait Silhouette -->
-    <v-img
-      alt="Placeholder portrait"
-      :aspect-ratio="3 / 5"
-      class="placeholder"
-      cover
-      :src="operator.portrait"
-    />
-
-    <!-- Name Placeholder -->
-    <v-card-title class="font-weight-medium text-center">?</v-card-title>
-  </v-card>
-
-  <!-- Operator Card -->
-  <v-card
-    v-else
-    :color="props.colored ? operator.side.color : null"
-    max-width="300"
+    :color="!props.placeholder && props.colored ? operator.side.color : null"
     variant="elevated"
   >
     <!-- Portrait -->
     <v-img
-      v-if="props.portrait"
+      v-if="!props.placeholder && props.portrait"
       :alt="`${operator.name} portrait`"
       :aspect-ratio="3 / 5"
       class="align-end portrait text-center"
       cover
-      :lazy-src="Operator.RECRUIT_ATT.portrait"
       :src="operator.easterEggPortrait"
       :style="{ backgroundImage: `url(${randomMap.thumbnail})` }"
     >
@@ -45,12 +22,21 @@
       />
     </v-img>
 
-    <!-- Emblem and Name -->
+    <!-- Placeholder Portrait -->
+    <v-img
+      v-else-if="props.placeholder"
+      alt="Placeholder portrait"
+      :aspect-ratio="3 / 5"
+      class="placeholder"
+      cover
+      :src="operator.portrait"
+    />
+
     <v-card-item>
       <!-- Emblem -->
       <template
         v-slot:prepend
-        v-if="!props.portrait"
+        v-if="!props.placeholder && !props.portrait"
       >
         <v-avatar
           :image="operator.emblem"
@@ -59,8 +45,8 @@
       </template>
 
       <!-- Name -->
-      <v-card-title :class="{ 'font-weight-medium text-center text-uppercase': props.portrait }">
-        {{ operator.name }}
+      <v-card-title :class="{ 'font-weight-medium text-center text-uppercase': props.placeholder || props.portrait }">
+        {{ props.placeholder ? '?' : operator.name }}
       </v-card-title>
     </v-card-item>
 
@@ -198,9 +184,9 @@ const TABS = ['Details', 'Loadout'];
 // eslint-disable-next-line
 const props = defineProps({
   /** The ID of the operator to show in the card. */
-  operatorId: {
+  operatorKey: {
     type: String,
-    validator: (v) => Object.keys(Operator).includes(v)
+    validator: (v) => Operator.KEYS.includes(v)
   },
 
   /** Whether to apply the side color of the operator to the card. */
@@ -239,8 +225,8 @@ const tab = ref(TABS[0]);
  * @type {import('vue').ComputedRef<Operator>}
  */
 const operator = computed(() => {
-  if (props.operatorId) return Operator[props.operatorId];
-  return Operator.pickRandomOperator();
+  if (props.operatorKey) return Operator[props.operatorKey];
+  return Operator.pickRandom();
 });
 
 /**
