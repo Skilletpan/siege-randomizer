@@ -1,6 +1,7 @@
 import { MapModel } from './Model';
 
 export default class Weapon extends MapModel {
+  // Static properties
   static {
     const rawWeapons = require('@/data/weapons.json');
 
@@ -12,6 +13,18 @@ export default class Weapon extends MapModel {
 
     console.debug('Weapons imported:', Weapon.LIST);
   }
+
+  /** @returns {Weapon[]} A list of all weapons. */
+  static get LIST() { return super.LIST; }
+
+  /**
+   * Parses an input to a Weapon instance.
+   * 
+   * @param {Weapon | string} weapon The input to parse.
+   * 
+   * @returns {Weapon} The weapon derived from the input.
+   */
+  static valueOf(weapon) { return super.valueOf(weapon); }
 
   // Instance properties
   #name;

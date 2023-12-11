@@ -3,6 +3,7 @@ import { MapModel } from './Model';
 import Operator from './Operator';
 
 export default class Playlist extends MapModel {
+  // Static properties
   static {
     const rawPlaylists = require('@/data/playlists.json');
 
@@ -17,6 +18,18 @@ export default class Playlist extends MapModel {
 
     console.debug('Playlists imported:', Playlist.LIST);
   }
+
+  /** @returns {Playlist[]} A list of all playlists. */
+  static get LIST() { return super.LIST; }
+
+  /**
+   * Parses an input to a Playlist instance.
+   * 
+   * @param {Playlist | string} playlist The input to parse.
+   * 
+   * @returns {Playlist} The playlist derived from the input.
+   */
+  static valueOf(playlist) { return super.valueOf(playlist); }
 
   // Instance properties
   #name;
@@ -51,13 +64,13 @@ export default class Playlist extends MapModel {
   get name() { return this.#name; }
 
   /** @returns {Map[]} The maps included in the playlist. */
-  get maps() { return this.#maps.map((map) => Map[map]); }
+  get maps() { return Map.LIST.filter((map) => this.#maps.includes(map.key)); }
 
   /** @returns {boolean} Whether this playlist is an arcade playlist. */
   get isArcade() { return this.#isArcade; }
 
   /** @returns {Operator[]} The operators banned from this playlist. */
-  get bannedOperators() { return this.#bannedOperators.map((operator) => Operator[operator]); }
+  get bannedOperators() { return Operator.LIST.filter((operator) => this.#bannedOperators.includes(operator.key)); }
 
   /** @returns {boolean} Whether players can ban operators in this playlist. */
   get canBanOperators() { return this.#canBanOperators; }

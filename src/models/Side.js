@@ -1,6 +1,7 @@
 import { MapModel } from './Model';
 
 export default class Side extends MapModel {
+  // Static properties
   static {
     const rawSides = require('@/data/sides.json');
 
@@ -12,6 +13,21 @@ export default class Side extends MapModel {
 
     console.debug('Sides imported:', Side.LIST);
   }
+
+  /** @returns {Side[]} A list of all sides. */
+  static get LIST() { return super.LIST; }
+
+  /** @returns {Side[]} The two distinct sides. */
+  static get SIDES() { return Side.ALL.included; }
+
+  /**
+   * Parses an input to a Side instance.
+   * 
+   * @param {Side | string} side The input to parse.
+   * 
+   * @returns {Side} The side derived from the input.
+   */
+  static valueOf(side) { return super.valueOf(side); }
 
   // Instance properties
   #name;
@@ -45,41 +61,25 @@ export default class Side extends MapModel {
   /** @returns {string} The color key of the side. */
   get color() { return this.#color; }
 
-  /** @returns {Side} The opposite side of this side. */
-  get oppositeSide() {
-    switch (this) {
-      case Side.ATT:
-        return Side.DEF;
-
-      case Side.DEF:
-        return Side.ATT;
-
-      default:
-        return Side.ALL;
-    }
+  /** @returns {Side[]} The sides that are included in this sides. */
+  get included() {
+    const sides = [];
+    if (this === Side.ATT || this === Side.ALL) sides.push(Side.ATT);
+    if (this === Side.DEF || this === Side.ALL) sides.push(Side.DEF);
+    return sides;
   }
 
-  /** @returns {Side[]} The two sides. */
-  static get SIDES() { return [Side.ATT, Side.DEF]; }
-
-  /**
-   * Parses an input to a side instance.
-   * 
-   * @param {Side|string} side The input to parse the side from.
-   * 
-   * @returns {Side} The side object parsed from the value.
-   */
-  static valueOf(side) {
-    if (side instanceof Side) return side;
-    if (Side[side.toUpperCase()]) return Side[side.toUpperCase()];
-
-    throw new Error(`Value ${side} can't be parsed to Side instance!`);
+  /** @returns {Side} The opposite side of this side. */
+  get opposite() {
+    if (this === Side.ATT) return Side.DEF;
+    if (this === Side.DEF) return Side.ATT;
+    return Side.ALL;
   }
 
   /**
    * Checks whether a given side is included in this side.
    * 
-   * @param {Side|String} side The side or side key to check.
+   * @param {Side | String} side The side or side key to check.
    * 
    * @returns {boolean} Whether the side is included.
    */
@@ -89,4 +89,13 @@ export default class Side extends MapModel {
     if (this === Side.ALL) return true;
     return this === s;
   }
+
+  /**
+   * Checks whether a given side overlaps with this side.
+   * 
+   * @param {Side | side} side The side or side key to check.
+   * 
+   * @returns {boolean} Whether the sides overlap.
+   */
+  overlaps(side) { return this.includes(side) || Side.valueOf(side).includes(this); }
 }

@@ -2,6 +2,7 @@ import { MapModel } from './Model';
 import Operator from './Operator';
 
 export default class Squad extends MapModel {
+  // Static properties
   static {
     const rawSquads = require('@/data/squads.json');
 
@@ -13,6 +14,18 @@ export default class Squad extends MapModel {
 
     console.debug('Squads imported:', Squad.LIST);
   }
+
+  /** @returns {Squad[]} A list of all squads. */
+  static get LIST() { return super.LIST; }
+
+  /**
+   * Parses an input to a Squad instance.
+   * 
+   * @param {Squad | string} squad The input to parse.
+   * 
+   * @returns {Squad} The squad derived from the input.
+   */
+  static valueOf(squad) { return super.valueOf(squad); }
 
   // Instance properties
   #name;

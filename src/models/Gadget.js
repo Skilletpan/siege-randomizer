@@ -2,6 +2,7 @@ import { MapModel } from './Model';
 import Operator from './Operator';
 
 export default class Gadget extends MapModel {
+  // Static properties
   static {
     const rawGadgets = require('@/data/gadgets.json');
 
@@ -13,6 +14,18 @@ export default class Gadget extends MapModel {
 
     console.debug('Gadgets imported:', Gadget.LIST);
   }
+
+  /** @returns {Gadget[]} A list of all gadgets. */
+  static get LIST() { return super.LIST; }
+
+  /**
+   * Parses an input to a Gadget instance.
+   * 
+   * @param {Gadget | string} gadget The input to parse.
+   * 
+   * @returns {Gadget} The gadget derived from the input.
+   */
+  static valueOf(gadget) { return super.valueOf(gadget); }
 
   // Instance properties
   #name;
@@ -44,7 +57,7 @@ export default class Gadget extends MapModel {
   }
 
   /** @returns {string} The name of the gadget. */
-  get key() { return this.#name; }
+  get name() { return this.#name; }
 
   /** @returns {boolean} Whether the gadget is deployable. */
   get isDeployable() { return this.#isDeployable; }
@@ -59,5 +72,5 @@ export default class Gadget extends MapModel {
   get isThrowable() { return this.#isThrowable; }
 
   /** @returns {Operator[]} The operators who use this gadget. */
-  get operators() { return Operator.getOperators({ gadgets: [this] }); }
+  get operators() { return Operator.getOperators({ loadoutFilters: [{ gadget: [this] }] }) }
 }

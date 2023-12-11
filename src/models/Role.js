@@ -2,6 +2,7 @@ import { MapModel } from './Model';
 import Operator from './Operator';
 
 export default class Role extends MapModel {
+  // Static properties
   static {
     const rawRoles = require('@/data/roles.json');
 
@@ -13,6 +14,18 @@ export default class Role extends MapModel {
 
     console.debug('Roles imported:', Role.LIST);
   }
+
+  /** @returns {Role[]} A list of all roles. */
+  static get LIST() { return super.LIST; }
+
+  /**
+   * Parses an input to a Role instance.
+   * 
+   * @param {Role | string} role The input to parse.
+   * 
+   * @returns {Role} The role derived from the input.
+   */
+  static valueOf(role) { return super.valueOf(role); }
 
   // Instance properties
   #name;

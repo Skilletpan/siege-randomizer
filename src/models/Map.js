@@ -2,6 +2,7 @@ import { MapModel } from './Model';
 import Playlist from './Playlist';
 
 export default class Map extends MapModel {
+  // Static properties
   static {
     const rawMaps = require('@/data/maps.json');
 
@@ -16,6 +17,18 @@ export default class Map extends MapModel {
 
     console.debug('Maps imported:', Map.LIST);
   }
+
+  /** @returns {Map[]} A list of all maps. */
+  static get LIST() { return super.LIST; }
+
+  /**
+   * Parses an input to a Map instance.
+   * 
+   * @param {Map | string} map The input to parse.
+   * 
+   * @returns {Map} The map derived from the input.
+   */
+  static valueOf(map) { return super.valueOf(map); }
 
   // Instance properties
   #name;

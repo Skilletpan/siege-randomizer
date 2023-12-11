@@ -2,6 +2,7 @@ import { MapModel } from './Model';
 import Strategy from './Strategy';
 
 export default class StrategyTag extends MapModel {
+  // Static properties
   static {
     const rawStrategyTags = require('@/data/tags.json');
 
@@ -13,6 +14,18 @@ export default class StrategyTag extends MapModel {
 
     console.debug('Strategy Tags imported:', StrategyTag.LIST);
   }
+
+  /** @returns {StrategyTag[]} A list of all strategy tags. */
+  static get LIST() { return super.LIST; }
+
+  /**
+   * Parses an input to a Strategy Tag instance.
+   * 
+   * @param {StrategyTag | string} tag The input to parse.
+   * 
+   * @returns {StrategyTag} The strategy tag derived from the input.
+   */
+  static valueOf(tag) { return super.valueOf(tag); }
 
   // Instance properties
   #name;

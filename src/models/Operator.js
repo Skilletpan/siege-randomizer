@@ -7,6 +7,7 @@ import Squad from './Squad';
 import Weapon from './Weapon';
 
 export default class Operator extends MapModel {
+  // Static properties
   static {
     const rawOperators = require('@/data/operators.json');
 
@@ -23,6 +24,18 @@ export default class Operator extends MapModel {
 
     console.debug('Operators imported:', Operator.LIST);
   }
+
+  /** @returns {Operator[]} A list of all operators. */
+  static get LIST() { return super.LIST; }
+
+  /**
+   * Parses an input to a Operator instance.
+   * 
+   * @param {Operator | string} operator The input to parse.
+   * 
+   * @returns {Operator} The operator derived from the input.
+   */
+  static valueOf(operator) { return super.valueOf(operator); }
 
   // Instance properties
   #name;
@@ -78,7 +91,7 @@ export default class Operator extends MapModel {
   get health() { return 4 - this.#speed; }
 
   /** @returns {Role[]} The role(s) of the operator. */
-  get roles() { return this.#roles.map((role) => Role[role]); }
+  get roles() { return Role.LIST.filter((role) => this.#roles.includes(role.key)); }
 
   /** @returns {Squad} The squad of the operator. */
   get squad() { return Squad[this.#squad] || null; }
@@ -90,7 +103,6 @@ export default class Operator extends MapModel {
   get emblem() {
     // Loads the emblem on first call
     if (!this.#emblem) this.#emblem = require(`@/assets/emblems/${this.#imageKey}.png`);
-
     return this.#emblem;
   }
 
@@ -98,7 +110,6 @@ export default class Operator extends MapModel {
   get portrait() {
     // Loads the portrait on first call
     if (!this.#portrait) this.#portrait = require(`@/assets/portraits/${this.#imageKey}.png`);
-
     return this.#portrait;
   }
 
@@ -125,55 +136,72 @@ export default class Operator extends MapModel {
   }
 
   /**
-   * Get operators by details.
-   * 
-   * @param {Object}            details           The details to filter operators by.
-   * @param {number|number[]}   [details.speed]   The speed the operator should have.
-   * @param {number|number[]}   [details.health]  The health the operator should have.
-   * @param {Side|string}       [details.side]    The side the operator should be from.
-   * @param {(Role|string)[]}   [details.roles]   The roles the operator should fulfill.
-   * @param {Squad|string}      [details.squad]   The squad the operator should be part of.
-   * @param {(Weapon|string)[]} [details.weapons] The weapons the operator should have.
-   * @param {(Gadget|string)[]} [details.gadgets] The gadgets the operator should have.
-   * 
-   * @returns {Operator[]} The operators that match the provided details.
+   * @typedef LoadoutFilter
+   * @type {Object}
+   * @prop {?Weapon[]|string[]} [primary]
+   * @prop {?Weapon[]|string[]} [secondary]
+   * @prop {?Gadget[]|string[]} [gadget]
+   * @prop {'every'|'some'}     [method='some']
+   * @prop {?boolean}           [negative=false]
    */
-  static getOperators(details) {
-    const { speed, health, side, roles, squad, weapons, gadgets } = details;
 
-    // Map keys to instances
-    const si = side ? (typeof side === 'string' ? Side[side] : side) : null;
-    const ro = roles ? (roles.map((r) => typeof r === 'string' ? Role[r] : r)) : null;
-    const sq = squad ? (typeof squad === 'string' ? Squad[squad] : squad) : null;
-    const we = weapons ? (weapons.map((w) => typeof w === 'string' ? Weapon[w] : w)) : null;
-    const ga = gadgets ? (gadgets.map((g) => typeof g === 'string' ? Gadget[g] : g)) : null;
+  /**
+   * 
+   * @param {Object}          filters 
+   * @param {number[]}        [filters.speed]
+   * @param {number[]}        [filters.health]
+   * @param {Side|string}     [filters.side]
+   * @param {Role[]|string[]} [filters.role]
+   * @param {Squad|string}    [filters.squad]
+   * @param {LoadoutFilter[]} [filters.loadoutFilters]
+   * @param {Operator[]}      [pool]
+   */
+  static getOperators(filters, pool = Operator.LIST) {
+    const parsedFilters = {};
 
-    // Return filtered operator list
-    return Operator.LIST.filter((o) => {
-      // Filter by speed
-      if (Array.isArray(speed)) {
-        if (!speed.includes(o.speed)) return false;
-      } else if (speed && o.speed !== speed) return false;
+    // Parse simple filter values
+    if (filters.speed?.length) parsedFilters.speed = filters.speed;
+    if (filters.health?.length) parsedFilters.health = filters.health;
+    if (filters.side) parsedFilters.side = Side.valueOf(filters.side);
+    if (filters.role?.length) parsedFilters.role = filters.role.map((r) => Role.valueOf(r));
+    if (filters.squad) parsedFilters.squad = Squad.valueOf(filters.squad);
 
-      // Filter by health
-      if (Array.isArray(health)) {
-        if (!health.includes(o.health)) return false;
-      } else if (health && o.health !== health) return false;
+    // Parse loadout filters
+    if (filters.loadoutFilters?.length) parsedFilters.loadoutFilters = filters.loadoutFilters.map((l) => {
+      const parsedLoadoutFilter = { method: l.method || 'some', negative: Boolean(l.negative) };
 
-      // Filter by side
-      if (side && o.side !== si) return false;
+      if (l.primary?.length) parsedLoadoutFilter.primary = l.primary.map((p) => Weapon.valueOf(p));
+      if (l.secondary?.length) parsedLoadoutFilter.secondary = l.secondary.map((s) => Weapon.valueOf(s));
+      if (l.gadget?.length) parsedLoadoutFilter.gadget = l.gadget.map((g) => Gadget.valueOf(g));
 
-      // Filter by roles
-      if (roles && !ro.every((r) => o.roles.includes(r))) return false;
+      return parsedLoadoutFilter;
+    });
 
-      // Filter by squad
-      if (squad && o.squad !== sq) return false;
+    // Filter operators
+    return pool.filter((o) => {
+      const { speed, health, side, role, squad, loadoutFilters } = parsedFilters;
 
-      // Filter by weapon
-      if (weapons && !we.some((w) => o.loadout.hasWeapon(w))) return false;
+      // Filter by simple values
+      if (speed && !speed.includes(o.speed)) return false;
+      if (health && !health.includes(o.health)) return false;
+      if (side && o.side !== side) return false;
+      if (role && !role.every((r) => o.roles.includes(r))) return false;
+      if (squad && o.squad !== squad) return false;
 
-      // Filter by gadgets
-      if (gadgets && !ga.some((g) => o.loadout.hasGadget(g))) return false;
+      // Filter by loadout filters
+      if (loadoutFilters && !loadoutFilters.every((l) => {
+        const { primary, secondary, gadget, method, negative } = l;
+        const checks = [];
+
+        // Check for loadout items
+        if (primary) checks.push(primary[method]((p) => o.loadout.primaryWeapons.includes(p)));
+        if (secondary) checks.push(secondary[method]((s) => o.loadout.secondaryWeapons.includes(s)));
+        if (gadget) checks.push(gadget[method]((g) => o.loadout.gadgets.includes(g)));
+
+        // Return verdict
+        if (negative) return !checks.some((c) => c);
+        return checks[method]((c) => c);
+      })) return false;
 
       return true;
     });
