@@ -7,15 +7,15 @@
     ],
     "canBanOperators": true,
     "maps": [
-      "BANK",
-      "BORDER",
-      "CHALET",
+      "OREGON",
       "CLUBHOUSE",
       "CONSULATE",
+      "BANK",
+      "CHALET",
       "KAFE",
-      "NIGHTHAVEN",
-      "OREGON",
-      "SKYSCRAPER"
+      "BORDER",
+      "SKYSCRAPER",
+      "NIGHTHAVEN"
     ]
   },
   "RANKED": {
@@ -26,22 +26,22 @@
     ],
     "canBanOperators": true,
     "maps": [
-      "BANK",
-      "BORDER",
-      "CHALET",
-      "CLUBHOUSE",
-      "COASTLINE",
-      "CONSULATE",
-      "EMERALD",
-      "KAFE",
-      "KANAL",
-      "LAIR",
-      "NIGHTHAVEN",
       "OREGON",
-      "OUTBACK",
+      "CLUBHOUSE",
+      "CONSULATE",
+      "BANK",
+      "KANAL",
+      "CHALET",
+      "KAFE",
+      "BORDER",
       "SKYSCRAPER",
+      "COASTLINE",
       "THEMEPARK",
-      "VILLA"
+      "VILLA",
+      "OUTBACK",
+      "EMERALD",
+      "NIGHTHAVEN",
+      "LAIR"
     ]
   },
   "STANDARD": {
@@ -51,44 +51,44 @@
       "RECRUIT_DEF"
     ],
     "maps": [
-      "BANK",
-      "BORDER",
-      "CHALET",
-      "CLUBHOUSE",
-      "COASTLINE",
-      "CONSULATE",
-      "EMERALD",
-      "KAFE",
-      "KANAL",
-      "LAIR",
-      "NIGHTHAVEN",
       "OREGON",
-      "OUTBACK",
+      "CLUBHOUSE",
+      "CONSULATE",
+      "BANK",
+      "KANAL",
+      "CHALET",
+      "KAFE",
+      "BORDER",
       "SKYSCRAPER",
+      "COASTLINE",
       "THEMEPARK",
-      "VILLA"
+      "VILLA",
+      "OUTBACK",
+      "EMERALD",
+      "NIGHTHAVEN",
+      "LAIR"
     ]
   },
   "QUICKMATCH": {
     "name": "Quick Match",
     "maps": [
+      "HOUSE",
+      "HEREFORD",
+      "CLUBHOUSE",
+      "PLANE",
+      "CONSULATE",
       "BANK",
       "CHALET",
-      "CLUBHOUSE",
-      "COASTLINE",
-      "CONSULATE",
-      "EMERALD",
+      "YACHT",
       "FAVELA",
-      "FORTRESS",
-      "HEREFORD",
-      "HOUSE",
-      "LAIR",
-      "NIGHTHAVEN",
-      "PLANE",
-      "STADIUM",
+      "COASTLINE",
       "TOWER",
       "VILLA",
-      "YACHT"
+      "FORTRESS",
+      "EMERALD",
+      "STADIUM",
+      "NIGHTHAVEN",
+      "LAIR"
     ],
     "modes": [
       "BOMB",
@@ -107,16 +107,16 @@
     ],
     "isArcade": true,
     "maps": [
-      "CLOSEQUARTER",
-      "COASTLINE",
       "CONSULATE",
-      "EMERALD",
       "FAVELA",
-      "LAIR",
-      "NIGHTHAVEN",
       "SKYSCRAPER",
+      "COASTLINE",
       "THEMEPARK",
-      "VILLA"
+      "VILLA",
+      "EMERALD",
+      "NIGHTHAVEN",
+      "LAIR",
+      "CLOSEQUARTER"
     ]
   },
   "F4A": {
@@ -130,14 +130,14 @@
     ],
     "isArcade": true,
     "maps": [
-      "CLOSEQUARTER",
       "CONSULATE",
-      "EMERALD",
       "FAVELA",
-      "LAIR",
-      "NIGHTHAVEN",
       "THEMEPARK",
-      "VILLA"
+      "VILLA",
+      "EMERALD",
+      "NIGHTHAVEN",
+      "LAIR",
+      "CLOSEQUARTER"
     ]
   },
   "GOLDENGUN": {
@@ -148,12 +148,12 @@
     ],
     "isArcade": true,
     "maps": [
-      "CLOSEQUARTER",
-      "EMERALD",
       "FAVELA",
-      "LAIR",
       "SKYSCRAPER",
-      "STADIUM"
+      "EMERALD",
+      "STADIUM",
+      "LAIR",
+      "CLOSEQUARTER"
     ]
   },
   "HEADSHOTS": {
@@ -164,11 +164,11 @@
     ],
     "isArcade": true,
     "maps": [
-      "CLOSEQUARTER",
       "COASTLINE",
-      "NIGHTHAVEN",
       "THEMEPARK",
-      "VILLA"
+      "VILLA",
+      "NIGHTHAVEN",
+      "CLOSEQUARTER"
     ],
     "disabled": true
   },
@@ -191,13 +191,13 @@
     ],
     "isArcade": true,
     "maps": [
-      "CLOSEQUARTER",
-      "COASTLINE",
       "FAVELA",
-      "LAIR",
-      "NIGHTHAVEN",
+      "COASTLINE",
       "THEMEPARK",
-      "VILLA"
+      "VILLA",
+      "NIGHTHAVEN",
+      "LAIR",
+      "CLOSEQUARTER"
     ]
   }
 }
