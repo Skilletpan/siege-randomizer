@@ -8,6 +8,7 @@ import Side from './Side';
 import Squad from './Squad';
 import Strategy from './Strategy';
 import StrategyTag from './StragegyTag';
+import Weapon from './Weapon';
 
 export {
   Gadget,
@@ -21,5 +22,6 @@ export {
   Side,
   Squad,
   Strategy,
-  StrategyTag
+  StrategyTag,
+  Weapon
 }
