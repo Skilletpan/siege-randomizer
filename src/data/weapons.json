@@ -1,16 +1,56 @@
 {
-  "AR": "Assault Rifle",
-  "BAI": "Bailiff",
-  "DE": "Desert Eagle",
-  "DMR": "Marksman Rifle",
-  "GON": "Gonne-6",
-  "HG": "Handgun",
-  "LMG": "Light Machine Gun",
-  "PDW": "Personal Defense Weapon",
-  "REV": "Revolver",
-  "SG": "Shotgun",
-  "SH": "Shield",
-  "SMG": "Submachine Gun",
-  "SR": "Sniper Rifle",
-  "SSG": "Slug Shotgun"
+  "AR": {
+    "name": "Assault Rifle",
+    "slot": "primary"
+  },
+  "BAI": {
+    "name": "Bailiff",
+    "slot": "secondary"
+  },
+  "DE": {
+    "name": "Desert Eagle",
+    "slot": "secondary"
+  },
+  "DMR": {
+    "name": "Marksman Rifle",
+    "slot": "primary"
+  },
+  "GON": {
+    "name": "Gonne-6",
+    "slot": "secondary"
+  },
+  "HG": {
+    "name": "Handgun",
+    "slot": "secondary"
+  },
+  "LMG": {
+    "name": "Light Machine Gun",
+    "slot": "primary"
+  },
+  "PDW": {
+    "name": "Personal Defense Weapon",
+    "slot": "primary"
+  },
+  "REV": {
+    "name": "Revolver",
+    "slot": "secondary"
+  },
+  "SG": {
+    "name": "Shotgun"
+  },
+  "SH": {
+    "name": "Shield",
+    "slot": "primary"
+  },
+  "SMG": {
+    "name": "Submachine Gun"
+  },
+  "SR": {
+    "name": "Sniper Rifle",
+    "slot": "primary"
+  },
+  "SSG": {
+    "name": "Slug Shotgun",
+    "slot": "primary"
+  }
 }
