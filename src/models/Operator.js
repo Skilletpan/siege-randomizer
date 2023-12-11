@@ -136,32 +136,34 @@ export default class Operator extends MapModel {
   }
 
   /**
-   * @typedef LoadoutFilter
+   * @typedef LoadoutFilter The loadout filter object.
    * @type {Object}
-   * @prop {?Weapon[]|string[]} [primary]
-   * @prop {?Weapon[]|string[]} [secondary]
-   * @prop {?Gadget[]|string[]} [gadget]
-   * @prop {'every'|'some'}     [method='some']
-   * @prop {?boolean}           [negative=false]
+   * @prop {?Weapon[]|string[]} [primary]        The (keys of the) primary weapons the operators must have.
+   * @prop {?Weapon[]|string[]} [secondary]      The (keys of the) secondary weapons the operators must have.
+   * @prop {?Gadget[]|string[]} [gadget]         The (keys of the) gadgets the operator must have.
+   * @prop {'every'|'some'}     [method='some']  Whether the operators must fulfill some or every requirement.
+   * @prop {?boolean}           [negative=false] Whether the operator must not fulfill the given requirements.
    */
 
   /**
+   * Finds all operators that match the provided filters.
    * 
-   * @param {Object}          filters 
-   * @param {number[]}        [filters.speed]
-   * @param {number[]}        [filters.health]
-   * @param {Side|string}     [filters.side]
-   * @param {Role[]|string[]} [filters.role]
-   * @param {Squad|string}    [filters.squad]
-   * @param {LoadoutFilter[]} [filters.loadoutFilters]
-   * @param {Operator[]}      [pool]
+   * @param {Object}              filters                  The filter object.
+   * @param {Operator[]|string[]} [filters.bans]           The (keys of the) operators that are banned.
+   * @param {number[]}            [filters.speed]          The speed value(s) the operators can have.
+   * @param {number[]}            [filters.health]         The health value(s) the operators can have.
+   * @param {Side|string}         [filters.side]           The (key of the) side the operators belong to.
+   * @param {Role[]|string[]}     [filters.role]           The (keys of the) roles the operators must fulfill.
+   * @param {Squad|string}        [filters.squad]          The squad the operators must be part of.
+   * @param {LoadoutFilter[]}     [filters.loadoutFilters] The loadout items the operators must have.
+   * @param {Operator[]}          [pool]                   A pre-defined operator pool.
+   * 
+   * @returns {Operator[]} The operators that match the criteria.
    */
   static getOperators(filters, pool = Operator.LIST) {
     const parsedFilters = {};
 
     // Parse simple filter values
-    if (filters.speed?.length) parsedFilters.speed = filters.speed;
-    if (filters.health?.length) parsedFilters.health = filters.health;
     if (filters.side) parsedFilters.side = Side.valueOf(filters.side);
     if (filters.role?.length) parsedFilters.role = filters.role.map((r) => Role.valueOf(r));
     if (filters.squad) parsedFilters.squad = Squad.valueOf(filters.squad);
@@ -177,13 +179,15 @@ export default class Operator extends MapModel {
       return parsedLoadoutFilter;
     });
 
+    // The final filter values
+    const { speed, health } = filters;
+    const { side, role, squad, loadoutFilters } = parsedFilters;
+
     // Filter operators
     return pool.filter((o) => {
-      const { speed, health, side, role, squad, loadoutFilters } = parsedFilters;
-
       // Filter by simple values
-      if (speed && !speed.includes(o.speed)) return false;
-      if (health && !health.includes(o.health)) return false;
+      if (speed?.length && !speed.includes(o.speed)) return false;
+      if (health?.length && !health.includes(o.health)) return false;
       if (side && o.side !== side) return false;
       if (role && !role.every((r) => o.roles.includes(r))) return false;
       if (squad && o.squad !== squad) return false;
