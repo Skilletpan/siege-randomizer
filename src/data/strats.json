@@ -102,9 +102,14 @@
       "MAESTRO",
       "MOZZIE"
     ],
-    "allowedOperators": {
-      "gadgets": [
-        "CAMERA"
+    "operatorFilter": {
+      "side": "DEF",
+      "loadoutFilters": [
+        {
+          "gadget": [
+            "CAMERA"
+          ]
+        }
       ]
     },
     "side": "DEF",
@@ -171,9 +176,16 @@
       "Only use shotguns.",
       "If possible, bring secondary shotguns as well."
     ],
-    "allowedOperators": {
-      "weapons": [
-        "SG"
+    "operatorFilter": {
+      "loadoutFilters": [
+        {
+          "primary": [
+            "SG"
+          ],
+          "secondary": [
+            "SG"
+          ]
+        }
       ]
     },
     "tags": [
@@ -198,9 +210,14 @@
       "Try to kill all attackers with C4s from below site.",
       "You are only allowed to start shooting at people when all C4s are gone."
     ],
-    "allowedOperators": {
-      "gadgets": [
-        "C4"
+    "operatorFilter": {
+      "side": "DEF",
+      "loadoutFilters": [
+        {
+          "gadget": [
+            "C4"
+          ]
+        }
       ]
     },
     "side": "DEF",
@@ -227,10 +244,14 @@
       "Bring only LMGs.",
       "You may shoot only entire magazines at once."
     ],
-    "allowedOperators": {
+    "operatorFilter": {
       "side": "ATT",
-      "weapons": [
-        "LMG"
+      "loadoutFilters": [
+        {
+          "primary": [
+            "LMG"
+          ]
+        }
       ]
     },
     "side": "ATT",
@@ -339,9 +360,14 @@
       "Everyone brings breach charges.",
       "Everyone picks a window and hot-breaches into the building at the same time."
     ],
-    "allowedOperators": {
-      "gadgets": [
-        "BREACH"
+    "operatorFilter": {
+      "side": "ATT",
+      "loadoutFilters": [
+        {
+          "gadget": [
+            "BREACH"
+          ]
+        }
       ]
     },
     "side": "ATT",
@@ -457,7 +483,7 @@
     "title": "Leaky Roof",
     "tagline": "It's raining in here!",
     "rules": [
-      "Bring as much soft destruction as you can.",
+      "Bring as much soft destruction (operator gadgets, breach charges, shotguns) as you can.",
       "Destroy every desctructible floor above site."
     ],
     "requiredOperators": [
@@ -466,9 +492,20 @@
       "BUCK",
       "RAM"
     ],
-    "allowedOperators": {
-      "gadgets": [
-        "BREACH"
+    "operatorFilter": {
+      "side": "ATT",
+      "loadoutFilters": [
+        {
+          "primary": [
+            "SG"
+          ],
+          "secondary": [
+            "SG"
+          ],
+          "gadget": [
+            "BREACH"
+          ]
+        }
       ]
     },
     "side": "ATT",
@@ -486,10 +523,14 @@
       "Machine pistols, secondary shotguns and shields are disallowed.",
       "Bonus points for Deagle and Revolver only."
     ],
-    "allowedOperators": {
-      "weapons": [
-        "DE",
-        "REV"
+    "operatorFilter": {
+      "loadoutFilters": [
+        {
+          "secondary": [
+            "DE",
+            "REV"
+          ]
+        }
       ]
     },
     "tags": [
@@ -570,10 +611,14 @@
       "You may only bring LMGs.",
       "Secondary guns are disallowed."
     ],
-    "allowedOperators": {
+    "operatorFilter": {
       "side": "ATT",
-      "weapons": [
-        "LMG"
+      "loadoutFilters": [
+        {
+          "primary": [
+            "LMG"
+          ]
+        }
       ]
     },
     "side": "ATT",
@@ -656,9 +701,14 @@
     "rules": [
       "Only kill enemies with impact grenades."
     ],
-    "allowedOperators": {
-      "gadgets": [
-        "IMPACT"
+    "operatorFilter": {
+      "side": "DEF",
+      "loadoutFilters": [
+        {
+          "gadget": [
+            "IMPACT"
+          ]
+        }
       ]
     },
     "side": "DEF",
@@ -795,9 +845,14 @@
       "GLAZ",
       "KALI"
     ],
-    "allowedOperators": {
-      "weapons": [
-        "DMR"
+    "operatorFilter": {
+      "side": "ATT",
+      "loadoutFilters": [
+        {
+          "primary": [
+            "DMR"
+          ]
+        }
       ]
     },
     "side": "ATT",
@@ -825,8 +880,11 @@
       "Take the most direct route to site.",
       "No roam clearing."
     ],
-    "allowedOperators": {
-      "speed": 3
+    "operatorFilter": {
+      "side": "ATT",
+      "speed": [
+        3
+      ]
     },
     "side": "ATT",
     "tags": [
@@ -864,10 +922,14 @@
       "CAVEIRA",
       "ZERO"
     ],
-    "allowedOperators": {
-      "weapons": [
-        "DE",
-        "HG"
+    "operatorFilter": {
+      "loadoutFilters": [
+        {
+          "secondary": [
+            "DE",
+            "HG"
+          ]
+        }
       ]
     },
     "tags": [
@@ -921,10 +983,14 @@
       "Bring only LMGs.",
       "As soon as you start shooting, you cannot stop until your magazine is empty."
     ],
-    "allowedOperators": {
+    "operatorFilter": {
       "side": "ATT",
-      "weapons": [
-        "LMG"
+      "loadoutFilters": [
+        {
+          "primary": [
+            "LMG"
+          ]
+        }
       ]
     },
     "side": "ATT",
@@ -1123,6 +1189,17 @@
     "tags": [
       "LINEUP",
       "STRATEGY"
+    ]
+  },
+  {
+    "title": "Age Limit",
+    "tagline": "Let me see your identification, please!",
+    "rules": [
+      "Let the randomizer pick an operator.",
+      "You can only pick operators which were released before (or at the same time as) that operator."
+    ],
+    "tags": [
+      "LINEUP"
     ]
   }
 ]
