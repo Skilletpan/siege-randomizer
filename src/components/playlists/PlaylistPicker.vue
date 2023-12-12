@@ -1,0 +1,61 @@
+<template>
+  <!-- Playlist Picker -->
+  <v-select
+    v-bind="$props"
+    clearable
+    density="comfortable"
+    hide-details
+    :items="items"
+    item-title="name"
+    item-value="key"
+    label="Playlist"
+    persistent-placeholder
+    placeholder="Select..."
+    variant="solo-filled"
+  >
+    <template
+      v-slot:item="{ index, props }"
+      v-if="!props.classicOnly && !props.arcadeOnly"
+    >
+      <!-- Classic Playlist Subheader -->
+      <v-list-subheader v-if="index === 0">Classic Playlists</v-list-subheader>
+
+      <!-- Arcade Playlist Subheader -->
+      <template v-if="!items[index - 1]?.isArcade && items[index].isArcade">
+        <v-divider />
+        <v-list-subheader>Arcade Playlists</v-list-subheader>
+      </template>
+
+      <!-- Playlist Item -->
+      <v-list-item v-bind="props" />
+    </template>
+  </v-select>
+</template>
+
+<script setup>
+import { computed } from 'vue';
+
+import { Playlist } from '@/models';
+
+// eslint-disable-next-line
+const props = defineProps({
+  /** Whether only classic playlists should be pickable. */
+  classicOnly: {
+    default: false,
+    type: Boolean
+  },
+
+  /** Whether only arcade playlists should be pickable. */
+  arcadeOnly: {
+    default: false,
+    type: Boolean
+  }
+});
+
+/** The items that can be picked from in the picker. */
+const items = computed(() => {
+  if (props.classicOnly) return Playlist.LIST.filter((p) => !p.isArcade);
+  if (props.arcadeOnly) return Playlist.LIST.filter((p) => p.isArcade);
+  return Playlist.LIST;
+});
+</script>

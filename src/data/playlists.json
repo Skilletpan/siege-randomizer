@@ -1,11 +1,6 @@
 {
   "COMPETITIVE": {
     "name": "Competitive",
-    "bannedOperators": [
-      "RECRUIT_ATT",
-      "RECRUIT_DEF"
-    ],
-    "canBanOperators": true,
     "maps": [
       "OREGON",
       "CLUBHOUSE",
@@ -16,15 +11,15 @@
       "BORDER",
       "SKYSCRAPER",
       "NIGHTHAVEN"
+    ],
+    "canBanOperators": true,
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
     ]
   },
   "RANKED": {
     "name": "Ranked",
-    "bannedOperators": [
-      "RECRUIT_ATT",
-      "RECRUIT_DEF"
-    ],
-    "canBanOperators": true,
     "maps": [
       "OREGON",
       "CLUBHOUSE",
@@ -42,14 +37,15 @@
       "EMERALD",
       "NIGHTHAVEN",
       "LAIR"
+    ],
+    "canBanOperators": true,
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
     ]
   },
   "STANDARD": {
     "name": "Standard",
-    "bannedOperators": [
-      "RECRUIT_ATT",
-      "RECRUIT_DEF"
-    ],
     "maps": [
       "OREGON",
       "CLUBHOUSE",
@@ -67,6 +63,10 @@
       "EMERALD",
       "NIGHTHAVEN",
       "LAIR"
+    ],
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
     ]
   },
   "QUICKMATCH": {
@@ -98,14 +98,6 @@
   },
   "DEATHMATCH": {
     "name": "Deathmatch",
-    "bannedOperators": [
-      "MONTAGNE",
-      "BLITZ",
-      "CLASH",
-      "RECRUIT_ATT",
-      "RECRUIT_DEF"
-    ],
-    "isArcade": true,
     "maps": [
       "CONSULATE",
       "FAVELA",
@@ -117,18 +109,18 @@
       "NIGHTHAVEN",
       "LAIR",
       "CLOSEQUARTER"
-    ]
-  },
-  "F4A": {
-    "name": "Free for All",
+    ],
+    "isArcade": true,
     "bannedOperators": [
       "MONTAGNE",
       "BLITZ",
       "CLASH",
       "RECRUIT_ATT",
       "RECRUIT_DEF"
-    ],
-    "isArcade": true,
+    ]
+  },
+  "F4A": {
+    "name": "Free for All",
     "maps": [
       "CONSULATE",
       "FAVELA",
@@ -138,15 +130,18 @@
       "NIGHTHAVEN",
       "LAIR",
       "CLOSEQUARTER"
+    ],
+    "isArcade": true,
+    "bannedOperators": [
+      "MONTAGNE",
+      "BLITZ",
+      "CLASH",
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
     ]
   },
   "GOLDENGUN": {
     "name": "Golden Gun",
-    "bannedOperators": [
-      "RECRUIT_ATT",
-      "RECRUIT_DEF"
-    ],
-    "isArcade": true,
     "maps": [
       "FAVELA",
       "SKYSCRAPER",
@@ -154,15 +149,15 @@
       "STADIUM",
       "LAIR",
       "CLOSEQUARTER"
+    ],
+    "isArcade": true,
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
     ]
   },
   "HEADSHOTS": {
     "name": "Headshots Only",
-    "bannedOperators": [
-      "RECRUIT_ATT",
-      "RECRUIT_DEF"
-    ],
-    "isArcade": true,
     "maps": [
       "COASTLINE",
       "THEMEPARK",
@@ -170,26 +165,26 @@
       "NIGHTHAVEN",
       "CLOSEQUARTER"
     ],
+    "isArcade": true,
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
+    ],
     "disabled": true
   },
   "SNIPERS": {
     "name": "Snipers Only",
+    "maps": [
+      "HEREFORD"
+    ],
+    "isArcade": true,
     "bannedOperators": [
       "RECRUIT_ATT",
       "RECRUIT_DEF"
-    ],
-    "isArcade": true,
-    "maps": [
-      "HEREFORD"
     ]
   },
   "ROULETTE": {
     "name": "Weapon Roulette",
-    "bannedOperators": [
-      "RECRUIT_ATT",
-      "RECRUIT_DEF"
-    ],
-    "isArcade": true,
     "maps": [
       "FAVELA",
       "COASTLINE",
@@ -198,6 +193,11 @@
       "NIGHTHAVEN",
       "LAIR",
       "CLOSEQUARTER"
+    ],
+    "isArcade": true,
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
     ]
   }
 }
