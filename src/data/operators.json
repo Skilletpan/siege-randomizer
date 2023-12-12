@@ -805,7 +805,7 @@
       }
     },
     "RECRUIT_ATT": {
-      "name": "Recruit (Attack)",
+      "name": "Recruit",
       "roles": [
         "SUPPORT"
       ],
@@ -1631,7 +1631,7 @@
       }
     },
     "RECRUIT_DEF": {
-      "name": "Recruit (Defense)",
+      "name": "Recruit",
       "roles": [
         "SUPPORT"
       ],
