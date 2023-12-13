@@ -14,20 +14,20 @@
     variant="solo-filled"
   >
     <template
-      v-slot:item="{ index, props }"
+      v-slot:item="{ index: i, props: p }"
       v-if="!props.classicOnly && !props.arcadeOnly"
     >
       <!-- Classic Playlist Subheader -->
-      <v-list-subheader v-if="index === 0">Classic Playlists</v-list-subheader>
+      <v-list-subheader v-if="i === 0">Classic Playlists</v-list-subheader>
 
       <!-- Arcade Playlist Subheader -->
-      <template v-if="!items[index - 1]?.isArcade && items[index].isArcade">
-        <v-divider />
+      <template v-if="!items[i - 1]?.isArcade && items[i].isArcade">
+        <v-divider class="my-2" />
         <v-list-subheader>Arcade Playlists</v-list-subheader>
       </template>
 
       <!-- Playlist Item -->
-      <v-list-item v-bind="props" />
+      <v-list-item v-bind="p" />
     </template>
   </v-select>
 </template>
