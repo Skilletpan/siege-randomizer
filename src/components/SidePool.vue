@@ -54,6 +54,11 @@ const props = defineProps({
   items: {
     required: true,
     type: Array
+  },
+
+  /** Whether distinct sides should only show items of this side. */
+  distinct: {
+    type: Boolean
   }
 });
 
@@ -64,5 +69,8 @@ const displaySideKey = ref(Side.ALL.key);
 const displaySide = computed(() => Side.valueOf(displaySideKey.value));
 
 /** @type {import('vue').ComputedRef<import('@/models').Model[]>} */
-const displayItems = computed(() => props.items.filter((i) => displaySide.value.includes(i.side)));
+const displayItems = computed(() => props.items.filter((i) => {
+  if (props.distinct) return displaySide.value.includes(i.side);
+  return displaySide.value.overlaps(i.side);
+}));
 </script>
