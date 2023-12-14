@@ -3,48 +3,40 @@
     <!-- Operator Cards -->
     <v-row class="justify-center">
       <v-col
-        v-for="i in settings.picks"
+        v-for="i in settings.pickerSettings.pickAmount"
         :key="i"
         class="operator-card"
       >
         <operator-card
-          v-if="pickedOperators[i - 1]"
-          :operator-id="pickedOperators[i - 1]"
-          portrait
-        />
-
-        <operator-card
-          v-else
-          placeholder
-        />
-      </v-col>
-    </v-row>
-
-    <v-row
-      v-if="false"
-      class="justify-center flex-nowrap pt-12"
-    >
-      <v-col
-        v-for="i in settings.picks"
-        :key="`portrait_${i}`"
-        class="operator-card"
-      >
-        <operator-card
-          v-if="pickedOperators[i - 1]"
+          colored
           :operator-key="pickedOperators[i - 1]"
-          @click="previewOperator(pickedOperators[i - 1])"
-        />
-
-        <operator-card
-          v-else
-          placeholder
+          :placeholder="!pickedOperators[i - 1]"
+          :player-name="rawSettings.playerSettings.players[i - 1] || `Player ${i}`"
+          portrait
         />
       </v-col>
     </v-row>
 
     <!-- Actions -->
-    <v-row class="justify-center pb-12">
-      <v-col cols="auto">
+    <v-row class="justify-center">
+      <v-col
+        v-for="side in Side.LIST"
+        :key="side.key"
+        cols="auto"
+      >
+        <v-btn
+          :color="side.color"
+          :disabled="!operatorPool.length"
+          :icon="side.icon"
+          size="x-large"
+          @click="pickOperator(side)"
+        />
+      </v-col>
+
+      <v-col
+        v-if="false"
+        cols="auto"
+      >
         <!-- Randomize Buttons -->
         <v-btn
           v-for="side in Side.LIST"
@@ -91,18 +83,105 @@
                 />
               </v-col>
             </v-card-text>
-
           </template>
         </side-pool>
       </v-col>
     </v-row>
   </v-container>
 
-  <!-- Operator Filter Drawer -->
-  <operator-filter-drawer
-    ref="filterDrawer"
-    v-model:duplicates="settings.duplicates"
-  />
+  <v-navigation-drawer
+    location="right"
+    width="350"
+  >
+    <v-tabs
+      v-model="rawSettings.tab"
+      fixed-tabs
+    >
+      <v-tab
+        text="Global"
+        value="GLOBAL"
+      />
+      <v-tab
+        text="Picker"
+        value="PICKER"
+      />
+    </v-tabs>
+
+    <v-divider />
+
+    <v-window v-model="rawSettings.tab">
+      <v-window-item value="GLOBAL">
+        <!-- Match Settings -->
+        <match-settings
+          v-model:playlist="rawSettings.matchSettings.playlist"
+          v-model:map="rawSettings.matchSettings.map"
+          v-model:bans="rawSettings.matchSettings.operatorBans"
+        />
+
+        <v-divider />
+
+        <!-- Player Settings -->
+        <player-settings v-model:players="rawSettings.playerSettings.players" />
+      </v-window-item>
+
+      <v-window-item value="PICKER">
+        <v-list>
+          <v-list-subheader>Picker Settings</v-list-subheader>
+
+          <!-- Player Count -->
+          <v-list-item
+            :disabled="!!rawSettings.playerSettings.players.length"
+            class="mb-1"
+          >
+            <v-label class="d-block text-caption">Player Count</v-label>
+            <v-slider
+              v-model="rawSettings.pickerSettings.pickAmount"
+              append-icon="mdi-account-group"
+              density="comfortable"
+              :hide-details="!rawSettings.playerSettings.players.length"
+              messages="Set by players list."
+              max="5"
+              min="1"
+              prepend-icon="mdi-account"
+              show-ticks="always"
+              step="1"
+            />
+          </v-list-item>
+
+          <!-- Duplicate Pick Switch -->
+          <v-list-item
+            :disabled="!!rawSettings.matchSettings.playlist"
+            class="mb-1"
+          >
+            <template v-slot:prepend>
+              <v-list-item-action start>
+                <v-switch
+                  v-model="rawSettings.pickerSettings.pickDuplicates"
+                  density="comfortable"
+                  hide-details
+                  v-bind="rawSettings.matchSettings.playlist ? { modelValue: settings.matchSettings.playlist.isArcade } : null"
+                />
+              </v-list-item-action>
+            </template>
+            <v-list-item-title>Allow duplicate operator picks</v-list-item-title>
+            <v-list-item-subtitle v-if="rawSettings.matchSettings.playlist">Set by playlist</v-list-item-subtitle>
+          </v-list-item>
+        </v-list>
+
+        <v-divider />
+
+        <!-- Operator Filters -->
+        <operator-settings
+          v-model:speed="rawSettings.operatorSettings.speed"
+          v-model:role="rawSettings.operatorSettings.role"
+          v-model:squad="rawSettings.operatorSettings.squad"
+          v-model:primary="rawSettings.operatorSettings.loadout.primary"
+          v-model:secondary="rawSettings.operatorSettings.loadout.secondary"
+          v-model:gadget="rawSettings.operatorSettings.loadout.gadget"
+        />
+      </v-window-item>
+    </v-window>
+  </v-navigation-drawer>
 
   <!-- Operator Preview Dialog -->
   <v-dialog
@@ -120,36 +199,120 @@
 <script setup>
 import { computed, ref } from 'vue';
 
-import { OperatorCard, OperatorFilterDrawer, SidePool } from '@/components';
+import { MatchSettings, OperatorCard, OperatorSettings, PlayerSettings, SidePool } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
-import { Side } from '@/models';
+import { Gadget, Map, Operator, Playlist, Role, Side, Squad, Weapon } from '@/models';
 
 // Define dynamic properties
-const filterDrawer = ref(null);
+/** The raw settings values. */
+const rawSettings = ref({
+  tab: 'PICKER',
+  matchSettings: {
+    playlist: null,
+    map: null,
+    operatorBans: []
+  },
+  playerSettings: {
+    players: []
+  },
+  pickerSettings: {
+    pickAmount: 5,
+    pickDuplicates: false
+  },
+  operatorSettings: {
+    speed: [],
+    role: [],
+    squad: null,
+    loadout: {
+      primary: [],
+      secondary: [],
+      gadget: []
+    }
+  }
+});
+
+/** The finalized settings values. */
+const settings = computed(() => {
+  const {
+    matchSettings: { playlist, map, operatorBans },
+    playerSettings: { players },
+    pickerSettings: { pickAmount, pickDuplicates },
+    operatorSettings: { speed, role, squad, loadout: { primary, secondary, gadget } }
+  } = rawSettings.value;
+
+  const _settings = {
+    matchSettings: {
+      playlist: playlist ? Playlist.valueOf(playlist) : null,
+      map: map ? Map.valueOf(map) : null,
+      operatorBans: operatorBans.map((o) => Operator.valueOf(o))
+    },
+    playerSettings: {
+      players
+    },
+    pickerSettings: {
+      pickAmount: players.length || pickAmount,
+      pickDuplicates
+    },
+    operatorSettings: {
+      speed,
+      role: role.map((r) => Role.valueOf(r)),
+      squad: squad ? Squad.valueOf(squad) : null,
+      loadout: {
+        primary: primary.map((p) => Weapon.valueOf(p)),
+        secondary: secondary.map((s) => Weapon.valueOf(s)),
+        gadget: gadget.map((g) => Gadget.valueOf(g))
+      }
+    }
+  }
+
+  if (playlist) {
+    _settings.matchSettings.operatorBans.push(..._settings.matchSettings.playlist.bannedOperators);
+    _settings.pickerSettings.pickDuplicates = _settings.matchSettings.playlist.isArcade;
+  }
+
+  return _settings;
+});
 
 /**
- * The operators that have been picked by the randomizer.
- * 
- * @type {import('vue').Ref<import('@/models').Operator[]>}
+ * The keys of the operators that have been picked by the randomizer.
+ * @type {import('vue').Ref<String>}
  */
 const pickedOperators = ref([]);
 const previewDialog = ref({
   operatorKey: null,
   show: false
 });
-const settings = ref({
-  duplicates: false,
-  picks: 5
-});
 
-/**
- * The pool to pick operators from.
- * @type {import('vue').ComputedRef<import('@/models').Operator[]>}
- */
+/** The pool to pick operators from. */
 const operatorPool = computed(() => {
-  if (filterDrawer.value) return filterDrawer.value.operatorPool;
-  return [];
-})
+  const {
+    matchSettings: { operatorBans },
+    operatorSettings: { speed, role, squad, loadout: { primary, secondary, gadget } }
+  } = settings.value;
+
+  const operatorFilters = {};
+
+  // Set bans
+  if (operatorBans.length) operatorFilters.bans = operatorBans;
+
+  // Set operator details
+  if (speed.length) operatorFilters.speed = speed;
+  if (role.length) operatorFilters.role = role;
+  if (squad) operatorFilters.squad = squad;
+
+  // Set loadout filter
+  if (primary.length || secondary.length || gadget.length) {
+    const loadoutFilter = { method: 'every' };
+
+    if (primary.length) loadoutFilter.primary = primary;
+    if (secondary.length) loadoutFilter.secondary = secondary;
+    if (gadget.length) loadoutFilter.gadget = gadget;
+
+    operatorFilters.loadoutFilters = [loadoutFilter];
+  }
+
+  return Operator.getOperators(operatorFilters);
+});
 
 /**
  * Picks a random operator from the operator pool.
@@ -157,18 +320,14 @@ const operatorPool = computed(() => {
  * @param {Side} side The side to pick the operator from.
  */
 function pickOperator(side) {
-  const { duplicates, picks } = settings.value;
+  const { pickerSettings: { pickAmount, pickDuplicates } } = settings.value;
 
-  // Apply filters
-  const pool = operatorPool.value
-    .filter((o) => [
-      side === Side.ALL || o.side === side,
-      picks > 1 || pickedOperators.value.length !== 1 || o.key !== pickedOperators.value[0]
-    ].every((isTrue) => isTrue))
+  // Apply side filter
+  const pool = operatorPool.value.filter((o) => side.includes(o.side));
 
   // Pick random operator
   pickedOperators.value.length = 0;
-  pickedOperators.value = pickRandom(pool, picks, duplicates).map((o) => o.id);
+  pickedOperators.value = pickRandom(pool, pickAmount, pickDuplicates).map((o) => o.key);
 }
 
 /**
@@ -185,4 +344,5 @@ function previewOperator(operatorKey) {
 <style scoped>
 .operator-card {
   max-width: calc(100% / 5);
-}</style>
+}
+</style>
