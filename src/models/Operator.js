@@ -163,6 +163,9 @@ export default class Operator extends MapModel {
   static getOperators(filters, pool = Operator.LIST) {
     const parsedFilters = {};
 
+    // Parse bans
+    if (filters.bans) parsedFilters.bans = filters.bans.map((o) => Operator.valueOf(o));
+
     // Parse simple filter values
     if (filters.side) parsedFilters.side = Side.valueOf(filters.side);
     if (filters.role?.length) parsedFilters.role = filters.role.map((r) => Role.valueOf(r));
@@ -181,10 +184,13 @@ export default class Operator extends MapModel {
 
     // The final filter values
     const { speed, health } = filters;
-    const { side, role, squad, loadoutFilters } = parsedFilters;
+    const { bans, side, role, squad, loadoutFilters } = parsedFilters;
 
     // Filter operators
     return pool.filter((o) => {
+      // Filter by bans
+      if (bans && bans.includes(o)) return false;
+
       // Filter by simple values
       if (speed?.length && !speed.includes(o.speed)) return false;
       if (health?.length && !health.includes(o.health)) return false;
