@@ -62,7 +62,7 @@
         label="Primary Weapon"
         multiple
         persistent-placeholder
-        placeholder="All"
+        placeholder="Select..."
         variant="solo-filled"
         @update:model-value="emit('update:primary', $event)"
       />
@@ -80,7 +80,7 @@
         label="Secondary Weapon"
         multiple
         persistent-placeholder
-        placeholder="All"
+        placeholder="Select..."
         variant="solo-filled"
         @update:model-value="emit('update:secondary', $event)"
       />
@@ -98,7 +98,7 @@
         label="Gadget"
         multiple
         persistent-placeholder
-        placeholder="All"
+        placeholder="Select..."
         variant="solo-filled"
         @update:model-value="emit('update:gadget', $event)"
       />
