@@ -12,7 +12,6 @@ import MapPicker from './maps/MapPicker';
 import OperatorCard from './operators/OperatorCard';
 import OperatorLabel from './operators/OperatorLabel';
 import OperatorPicker from './operators/OperatorPicker';
-import OperatorSearch from './operators/OperatorSearch';
 import OperatorSettings from './operators/OperatorSettings';
 
 // Playlist
@@ -40,7 +39,6 @@ export {
   OperatorCard,
   OperatorLabel,
   OperatorPicker,
-  OperatorSearch,
   OperatorSettings,
 
   // Playlist
