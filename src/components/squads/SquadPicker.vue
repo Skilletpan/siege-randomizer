@@ -17,7 +17,7 @@
     <template v-slot:item="{ item, props }">
       <v-list-item
         v-bind="props"
-        :append-avatar="Squad.valueOf(item.value).emblem"
+        :prepend-avatar="Squad.valueOf(item.value).emblem"
       />
     </template>
   </v-select>
