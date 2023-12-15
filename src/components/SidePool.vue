@@ -1,11 +1,10 @@
 <template>
   <v-card variant="elevated">
     <v-toolbar
-      class="text-center"
       :color="displaySide.color"
       extension-height="64"
-      :title="props.title"
     >
+      <v-toolbar-title class="mr-4 text-center">{{ props.title }}</v-toolbar-title>
       <template v-slot:extension>
         <v-tabs
           v-model="displaySideKey"
