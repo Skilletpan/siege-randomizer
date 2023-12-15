@@ -216,4 +216,30 @@ export default class Operator extends MapModel {
       return true;
     });
   }
+
+  /**
+   * Picks random operators.
+   * 
+   * @param {Operator[]} [pool]                The operator pool to pick from.
+   * @param {Object}     parameters            The parameters for the randomizer to take into account.
+   * @param {number}     parameters.amount     The amount of operators to pick.
+   * @param {boolean}    parameters.duplicates Whether to allow duplicate picks.
+   * @param {Operator[]} [parameters.previous] Previous operator picks to exclude.
+   * 
+   * @returns {Operator[]} The randomly picked operators.
+   */
+  static pickRandomOperators(pool = Operator.LIST, parameters) {
+    const _pool = [...pool];
+
+    const picks = [];
+
+    for (let i = 0; i < parameters.amount; i += 1) {
+      const pick = Operator.pickRandom(_pool, parameters.previous?.[i] || null) || null;
+      picks.push(pick);
+
+      if (!parameters.duplicates) _pool.splice(_pool.indexOf(pick), 1);
+    }
+
+    return picks;
+  }
 }
