@@ -21,7 +21,8 @@
           "STUN",
           "EMP"
         ]
-      }
+      },
+      "released": "Y0S1"
     },
     "THATCHER": {
       "name": "Thatcher",
@@ -43,7 +44,8 @@
           "BREACH",
           "CLAYMORE"
         ]
-      }
+      },
+      "released": "Y0S1"
     },
     "ASH": {
       "name": "Ash",
@@ -64,7 +66,8 @@
           "BREACH",
           "CLAYMORE"
         ]
-      }
+      },
+      "released": "Y0S2"
     },
     "THERMITE": {
       "name": "Thermite",
@@ -86,7 +89,8 @@
           "SMOKE",
           "STUN"
         ]
-      }
+      },
+      "released": "Y0S2"
     },
     "TWITCH": {
       "name": "Twitch",
@@ -110,7 +114,8 @@
           "CLAYMORE",
           "SMOKE"
         ]
-      }
+      },
+      "released": "Y0S3"
     },
     "MONTAGNE": {
       "name": "Montagne",
@@ -133,7 +138,8 @@
           "SMOKE",
           "EMP"
         ]
-      }
+      },
+      "released": "Y0S3"
     },
     "GLAZ": {
       "name": "Glaz",
@@ -157,7 +163,8 @@
           "FRAG",
           "CLAYMORE"
         ]
-      }
+      },
+      "released": "Y0S4"
     },
     "FUZE": {
       "name": "Fuze",
@@ -180,7 +187,8 @@
           "HARDBREACH",
           "SMOKE"
         ]
-      }
+      },
+      "released": "Y0S4"
     },
     "BLITZ": {
       "name": "Blitz",
@@ -201,7 +209,8 @@
           "SMOKE",
           "BREACH"
         ]
-      }
+      },
+      "released": "Y0S5"
     },
     "IQ": {
       "name": "IQ",
@@ -224,7 +233,8 @@
           "CLAYMORE",
           "FRAG"
         ]
-      }
+      },
+      "released": "Y0S5"
     },
     "BUCK": {
       "name": "Buck",
@@ -248,7 +258,8 @@
           "STUN",
           "HARDBREACH"
         ]
-      }
+      },
+      "released": "Y1S1"
     },
     "BLACKBEARD": {
       "name": "Blackbeard",
@@ -270,7 +281,8 @@
           "STUN",
           "FRAG"
         ]
-      }
+      },
+      "released": "Y1S2"
     },
     "CAPITAO": {
       "name": "Capitão",
@@ -294,7 +306,8 @@
           "HARDBREACH",
           "EMP"
         ]
-      }
+      },
+      "released": "Y1S3"
     },
     "HIBANA": {
       "name": "Hibana",
@@ -317,7 +330,8 @@
           "STUN",
           "BREACH"
         ]
-      }
+      },
+      "released": "Y1S4"
     },
     "JACKAL": {
       "name": "Jackal",
@@ -341,7 +355,8 @@
           "CLAYMORE",
           "SMOKE"
         ]
-      }
+      },
+      "released": "Y2S1"
     },
     "YING": {
       "name": "Ying",
@@ -363,7 +378,8 @@
           "HARDBREACH",
           "SMOKE"
         ]
-      }
+      },
+      "released": "Y2S3"
     },
     "ZOFIA": {
       "name": "Zofia",
@@ -385,7 +401,8 @@
           "BREACH",
           "CLAYMORE"
         ]
-      }
+      },
+      "released": "Y2S4"
     },
     "DOKKAEBI": {
       "name": "Dokkaebi",
@@ -409,7 +426,8 @@
           "STUN",
           "EMP"
         ]
-      }
+      },
+      "released": "Y2S4"
     },
     "LION": {
       "name": "Lion",
@@ -434,7 +452,8 @@
           "CLAYMORE",
           "FRAG"
         ]
-      }
+      },
+      "released": "Y3S1"
     },
     "FINKA": {
       "name": "Finka",
@@ -458,7 +477,8 @@
           "STUN",
           "FRAG"
         ]
-      }
+      },
+      "released": "Y3S1"
     },
     "MAVERICK": {
       "name": "Maverick",
@@ -480,7 +500,8 @@
           "STUN",
           "CLAYMORE"
         ]
-      }
+      },
+      "released": "Y3S3"
     },
     "NOMAD": {
       "name": "Nomad",
@@ -502,7 +523,8 @@
           "STUN",
           "BREACH"
         ]
-      }
+      },
+      "released": "Y3S4"
     },
     "GRIDLOCK": {
       "name": "Gridlock",
@@ -526,7 +548,8 @@
           "EMP",
           "FRAG"
         ]
-      }
+      },
+      "released": "Y4S1"
     },
     "NOKK": {
       "name": "Nøkk",
@@ -550,7 +573,8 @@
           "HARDBREACH",
           "EMP"
         ]
-      }
+      },
+      "released": "Y4S2"
     },
     "AMARU": {
       "name": "Amaru",
@@ -574,7 +598,8 @@
           "HARDBREACH",
           "STUN"
         ]
-      }
+      },
+      "released": "Y4S3"
     },
     "KALI": {
       "name": "Kali",
@@ -596,7 +621,8 @@
           "CLAYMORE",
           "BREACH"
         ]
-      }
+      },
+      "released": "Y4S4"
     },
     "IANA": {
       "name": "Iana",
@@ -618,7 +644,8 @@
           "STUN",
           "SMOKE"
         ]
-      }
+      },
+      "released": "Y5S1"
     },
     "ACE": {
       "name": "Ace",
@@ -640,7 +667,8 @@
           "BREACH",
           "CLAYMORE"
         ]
-      }
+      },
+      "released": "Y5S2"
     },
     "ZERO": {
       "name": "Zero",
@@ -663,7 +691,8 @@
           "HARDBREACH",
           "CLAYMORE"
         ]
-      }
+      },
+      "released": "Y5S3"
     },
     "FLORES": {
       "name": "Flores",
@@ -685,7 +714,8 @@
           "STUN",
           "CLAYMORE"
         ]
-      }
+      },
+      "released": "Y6S1"
     },
     "OSA": {
       "name": "Osa",
@@ -709,7 +739,8 @@
           "FRAG",
           "EMP"
         ]
-      }
+      },
+      "released": "Y6S3"
     },
     "SENS": {
       "name": "Sens",
@@ -732,7 +763,8 @@
           "CLAYMORE",
           "FRAG"
         ]
-      }
+      },
+      "released": "Y7S2"
     },
     "GRIM": {
       "name": "Grim",
@@ -756,7 +788,8 @@
           "CLAYMORE",
           "HARDBREACH"
         ]
-      }
+      },
+      "released": "Y7S3"
     },
     "BRAVA": {
       "name": "Brava",
@@ -779,7 +812,8 @@
           "SMOKE",
           "CLAYMORE"
         ]
-      }
+      },
+      "released": "Y8S1"
     },
     "RAM": {
       "name": "Ram",
@@ -802,7 +836,8 @@
           "STUN",
           "SMOKE"
         ]
-      }
+      },
+      "released": "Y8S3"
     },
     "RECRUIT_ATT": {
       "name": "Recruit",
@@ -830,7 +865,8 @@
           "STUN",
           "CLAYMORE"
         ]
-      }
+      },
+      "released": "Y0S6"
     }
   },
   "DEF": {
@@ -855,7 +891,8 @@
           "BARBED",
           "BEEPER"
         ]
-      }
+      },
+      "released": "Y0S1"
     },
     "MUTE": {
       "name": "Mute",
@@ -878,7 +915,8 @@
           "C4",
           "CAMERA"
         ]
-      }
+      },
+      "released": "Y0S1"
     },
     "CASTLE": {
       "name": "Castle",
@@ -901,7 +939,8 @@
           "CAMERA",
           "BEEPER"
         ]
-      }
+      },
+      "released": "Y0S2"
     },
     "PULSE": {
       "name": "Pulse",
@@ -924,7 +963,8 @@
           "SHIELD",
           "BLOCKER"
         ]
-      }
+      },
+      "released": "Y0S2"
     },
     "DOC": {
       "name": "Doc",
@@ -947,7 +987,8 @@
           "CAMERA",
           "BARBED"
         ]
-      }
+      },
+      "released": "Y0S3"
     },
     "ROOK": {
       "name": "Rook",
@@ -970,7 +1011,8 @@
           "IMPACT",
           "BLOCKER"
         ]
-      }
+      },
+      "released": "Y0S3"
     },
     "KAPKAN": {
       "name": "Kapkan",
@@ -992,7 +1034,8 @@
           "IMPACT",
           "C4"
         ]
-      }
+      },
+      "released": "Y0S4"
     },
     "TACHANKA": {
       "name": "Tachanka",
@@ -1016,7 +1059,8 @@
           "SHIELD",
           "BEEPER"
         ]
-      }
+      },
+      "released": "Y0S4"
     },
     "JAGER": {
       "name": "Jäger",
@@ -1038,7 +1082,8 @@
           "CAMERA",
           "BLOCKER"
         ]
-      }
+      },
+      "released": "Y0S5"
     },
     "BANDIT": {
       "name": "Bandit",
@@ -1060,7 +1105,8 @@
           "BARBED",
           "C4"
         ]
-      }
+      },
+      "released": "Y0S5"
     },
     "FROST": {
       "name": "Frost",
@@ -1083,7 +1129,8 @@
           "CAMERA",
           "SHIELD"
         ]
-      }
+      },
+      "released": "Y1S1"
     },
     "VALKYRIE": {
       "name": "Valkyrie",
@@ -1105,7 +1152,8 @@
           "IMPACT",
           "C4"
         ]
-      }
+      },
+      "released": "Y1S2"
     },
     "CAVEIRA": {
       "name": "Caveira",
@@ -1128,7 +1176,8 @@
           "BEEPER",
           "BLOCKER"
         ]
-      }
+      },
+      "released": "Y1S3"
     },
     "ECHO": {
       "name": "Echo",
@@ -1151,7 +1200,8 @@
           "IMPACT",
           "SHIELD"
         ]
-      }
+      },
+      "released": "Y1S4"
     },
     "MIRA": {
       "name": "Mira",
@@ -1174,7 +1224,8 @@
           "BEEPER",
           "C4"
         ]
-      }
+      },
+      "released": "Y2S1"
     },
     "LESION": {
       "name": "Lesion",
@@ -1197,7 +1248,8 @@
           "IMPACT",
           "CAMERA"
         ]
-      }
+      },
+      "released": "Y2S3"
     },
     "ELA": {
       "name": "Ela",
@@ -1220,7 +1272,8 @@
           "SHIELD",
           "BLOCKER"
         ]
-      }
+      },
+      "released": "Y2S3"
     },
     "VIGIL": {
       "name": "Vigil",
@@ -1242,7 +1295,8 @@
           "CAMERA",
           "IMPACT"
         ]
-      }
+      },
+      "released": "Y2S4"
     },
     "MAESTRO": {
       "name": "Maestro",
@@ -1266,7 +1320,8 @@
           "IMPACT",
           "BLOCKER"
         ]
-      }
+      },
+      "released": "Y3S2"
     },
     "ALIBI": {
       "name": "Alibi",
@@ -1289,7 +1344,8 @@
           "BEEPER",
           "BLOCKER"
         ]
-      }
+      },
+      "released": "Y3S2"
     },
     "CLASH": {
       "name": "Clash",
@@ -1313,7 +1369,8 @@
           "IMPACT",
           "SHIELD"
         ]
-      }
+      },
+      "released": "Y3S3"
     },
     "KAID": {
       "name": "Kaid",
@@ -1336,7 +1393,8 @@
           "BARBED",
           "BLOCKER"
         ]
-      }
+      },
+      "released": "Y3S4"
     },
     "MOZZIE": {
       "name": "Mozzie",
@@ -1358,7 +1416,8 @@
           "BARBED",
           "C4"
         ]
-      }
+      },
+      "released": "Y4S1"
     },
     "WARDEN": {
       "name": "Warden",
@@ -1382,7 +1441,8 @@
           "C4",
           "BLOCKER"
         ]
-      }
+      },
+      "released": "Y4S2"
     },
     "GOYO": {
       "name": "Goyo",
@@ -1405,7 +1465,8 @@
           "CAMERA",
           "IMPACT"
         ]
-      }
+      },
+      "released": "Y4S3"
     },
     "WAMAI": {
       "name": "Wamai",
@@ -1428,7 +1489,8 @@
           "IMPACT",
           "BEEPER"
         ]
-      }
+      },
+      "released": "Y4S4"
     },
     "ORYX": {
       "name": "Oryx",
@@ -1450,7 +1512,8 @@
           "BARBED",
           "BEEPER"
         ]
-      }
+      },
+      "released": "Y5S1"
     },
     "MELUSI": {
       "name": "Melusi",
@@ -1472,7 +1535,8 @@
           "CAMERA",
           "IMPACT"
         ]
-      }
+      },
+      "released": "Y5S2"
     },
     "ARUNI": {
       "name": "Aruni",
@@ -1494,7 +1558,8 @@
           "BARBED",
           "CAMERA"
         ]
-      }
+      },
+      "released": "Y5S4"
     },
     "THUNDERBIRD": {
       "name": "Thunderbird",
@@ -1516,7 +1581,8 @@
           "BARBED",
           "CAMERA"
         ]
-      }
+      },
+      "released": "Y6S2"
     },
     "THORN": {
       "name": "Thorn",
@@ -1539,7 +1605,8 @@
           "SHIELD",
           "BARBED"
         ]
-      }
+      },
+      "released": "Y6S4"
     },
     "AZAMI": {
       "name": "Azami",
@@ -1561,7 +1628,8 @@
           "BARBED",
           "IMPACT"
         ]
-      }
+      },
+      "released": "Y7S1"
     },
     "SOLIS": {
       "name": "Solis",
@@ -1583,7 +1651,8 @@
           "IMPACT",
           "CAMERA"
         ]
-      }
+      },
+      "released": "Y7S4"
     },
     "FENRIR": {
       "name": "Fenrir",
@@ -1606,7 +1675,8 @@
           "CAMERA",
           "BARBED"
         ]
-      }
+      },
+      "released": "Y8S2"
     },
     "TUBARAO": {
       "name": "Tubarão",
@@ -1628,7 +1698,8 @@
           "C4",
           "BEEPER"
         ]
-      }
+      },
+      "released": "Y8S4"
     },
     "RECRUIT_DEF": {
       "name": "Recruit",
@@ -1654,7 +1725,8 @@
           "SHIELD",
           "BLOCKER"
         ]
-      }
+      },
+      "released": "Y0S6"
     }
   }
 }

@@ -26,7 +26,15 @@ export default class Operator extends MapModel {
   }
 
   /** @returns {Operator[]} A list of all operators. */
-  static get LIST() { return super.LIST; }
+  static get LIST() {
+    return super.LIST.sort((o1, o2) => {
+      if (o1._released !== o2._released) return o1._released.localeCompare(o2._released);
+      if (o1.side === Side.ATT && o2.side === Side.DEF) return -1;
+      if (o1.side === Side.DEF && o2.side === Side.ATT) return 1;
+
+      return 1;
+    });
+  }
 
   /**
    * Parses an input to a Operator instance.
@@ -43,6 +51,7 @@ export default class Operator extends MapModel {
   #speed;
   #roles = [];
   #squad;
+  _released;
 
   #loadout;
 
@@ -55,14 +64,15 @@ export default class Operator extends MapModel {
   /**
    * Creates a new Operator instance.
    * 
-   * @param {Object}   rawOperator         The raw operator data.
-   * @param {string}   rawOperator.key     The key of the operator.
-   * @param {string}   rawOperator.name    The name of the operator.
-   * @param {string[]} rawOperator.roles   The role(s) of the operator.
-   * @param {string}   rawOperator.side    The side of the operator.
-   * @param {number}   rawOperator.speed   The speed of the operator.
-   * @param {?string}  [rawOperator.squad] The squad of the operator.
-   * @param {Object}   rawOperator.loadout The raw loadout data of the operator.
+   * @param {Object}   rawOperator          The raw operator data.
+   * @param {string}   rawOperator.key      The key of the operator.
+   * @param {string}   rawOperator.name     The name of the operator.
+   * @param {string[]} rawOperator.roles    The role(s) of the operator.
+   * @param {string}   rawOperator.side     The side of the operator.
+   * @param {number}   rawOperator.speed    The speed of the operator.
+   * @param {?string}  [rawOperator.squad]  The squad of the operator.
+   * @param {Object}   rawOperator.loadout  The raw loadout data of the operator.
+   * @param {string}   rawOperator.released The year and season the operator was released.
    */
   constructor(rawOperator) {
     super(rawOperator.key, Operator);
@@ -74,6 +84,7 @@ export default class Operator extends MapModel {
     this.#roles.push(...rawOperator.roles);
     this.#squad = rawOperator.squad || null;
     this.#loadout = new Loadout(rawOperator.loadout);
+    this._released = rawOperator.released;
 
     this.#imageKey = rawOperator.key.replace(/_[A-Z]{3}/, '');
   }
