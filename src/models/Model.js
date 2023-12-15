@@ -4,12 +4,16 @@ export class Model extends Object {
   /**
    * Picks a random item from the model item list or a custom pool.
    * 
-   * @param {any[]} [customPool] The pool to pick an item from.
+   * @param {any[]} [customPool]   The pool to pick an item from.
+   * @param {any}   [previousPick] The previously picked item to exclude.
    * 
    * @returns {any} The item that was picked from the pool.
    */
-  static pickRandom(customPool = null) {
-    const pool = customPool || this.LIST;
+  static pickRandom(customPool = null, previousPick = null) {
+    let pool = customPool || this.LIST;
+
+    if (previousPick) pool = pool.filter((i) => i !== previousPick);
+
     return pool[Math.floor(Math.random() * pool.length)];
   }
 }
