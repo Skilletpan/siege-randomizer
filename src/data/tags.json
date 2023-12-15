@@ -1,9 +1,30 @@
 {
-  "COMMUNICATION": "Communication Restrictions",
-  "LINEUP": "Lineup Requirements",
-  "LOADOUT": "Loadout Requirements",
-  "MOVEMENT": "Movement Restrictions",
-  "REALLIFE": "Real Life Impact",
-  "SETTINGS": "Setting Changes",
-  "STRATEGY": "Strategy Requirements"
+  "COMMUNICATION": {
+    "name": "Communication",
+    "description": "Restricts the way you can communicate"
+  },
+  "LINEUP": {
+    "name": "Lineup",
+    "description": "Sets requirements for your operator lineups"
+  },
+  "LOADOUT": {
+    "name": "Loadout",
+    "description": "Sets requirements for your operator loadouts"
+  },
+  "MOVEMENT": {
+    "name": "Movement",
+    "description": "Restricts the way you can move in-game"
+  },
+  "REALLIFE": {
+    "name": "Real Life",
+    "description": "Includes a real life consequence"
+  },
+  "SETTINGS": {
+    "name": "Game Settings",
+    "description": "Requires changes to your game settings"
+  },
+  "STRATEGY": {
+    "name": "Strategy",
+    "description": "Specifies how you approach your objective"
+  }
 }

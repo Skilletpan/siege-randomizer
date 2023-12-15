@@ -9,7 +9,7 @@ export default class StrategyTag extends MapModel {
     // Build strategy tag instances from raw data
     Object.entries(rawStrategyTags).forEach(([key, tag]) => {
       // Create strategy tag instance
-      new StrategyTag({ key, name: tag });
+      new StrategyTag({ key, ...tag });
     });
 
     console.debug('Strategy Tags imported:', StrategyTag.LIST);
@@ -29,23 +29,29 @@ export default class StrategyTag extends MapModel {
 
   // Instance properties
   #name;
+  #description;
 
   /**
    * Creates a new Strategy Tag instance.
    * 
-   * @param {Object} rawTag      The raw tag data.
-   * @param {string} rawTag.key  The key of the tag.
-   * @param {string} rawTag.name The name of the tag.
+   * @param {Object} rawTag             The raw tag data.
+   * @param {string} rawTag.key         The key of the tag.
+   * @param {string} rawTag.name        The name of the tag.
+   * @param {string} rawTag.description The description of the tag.
    */
   constructor(rawTag) {
     super(rawTag.key, StrategyTag);
 
     // Set instance properties
     this.#name = rawTag.name;
+    this.#description = rawTag.description;
   }
 
-  /** @returns {string} The name of thee strategy tag. */
+  /** @returns {string} The name of the strategy tag. */
   get name() { return this.#name; }
+
+  /** @returns {string} The description of the strategy tag. */
+  get description() { return this.#description; }
 
   /** @returns {Strategy[]} The strategies with this tag. */
   get strategies() { return Strategy.LIST.filter((strategy) => strategy.tags.includes(this)); }
