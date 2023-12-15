@@ -1,7 +1,7 @@
 <template>
   <!-- Map Picker -->
   <v-select
-    v-bind="$props"
+    v-bind="$attrs"
     clearable
     density="comfortable"
     hide-details

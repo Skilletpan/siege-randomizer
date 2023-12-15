@@ -1,7 +1,7 @@
 <template>
   <!-- Operator Picker -->
   <v-autocomplete
-    v-bind="$props"
+    v-bind="$attrs"
     ref="search"
     clearable
     density="comfortable"

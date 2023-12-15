@@ -1,6 +1,6 @@
 <template>
   <v-chip
-    v-bind="$props"
+    v-bind="$attrs"
     class="font-weight-bold"
     :class="{ 'text-decoration-line-through': banned }"
     :color="labelColor"
