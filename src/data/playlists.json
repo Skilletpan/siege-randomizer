@@ -199,5 +199,36 @@
       "RECRUIT_ATT",
       "RECRUIT_DEF"
     ]
+  },
+  "MAPRUN": {
+    "name": "Map Training",
+    "maps": [
+      "LAIR",
+      "CLUBHOUSE",
+      "BANK",
+      "CONSULATE",
+      "CHALET",
+      "KAFE",
+      "OREGON"
+    ],
+    "isPractice": true,
+    "bannedOperators": [
+      "RECRUIT_ATT",
+      "RECRUIT_DEF"
+    ]
+  },
+  "AI": {
+    "name": "Defender AI",
+    "maps": [
+      "CLUBHOUSE"
+    ],
+    "isPractice": true,
+    "allowedOperators": [
+      "SLEDGE",
+      "THATCHER",
+      "THERMITE",
+      "GLAZ",
+      "IQ"
+    ]
   }
 }

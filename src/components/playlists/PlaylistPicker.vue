@@ -26,6 +26,12 @@
         <v-list-subheader>Arcade Playlists</v-list-subheader>
       </template>
 
+      <!-- Practice Playlist Subheader -->
+      <template v-if="!items[i - 1]?.isPractice && items[i].isPractice">
+        <v-divider class="my-2" />
+        <v-list-subheader>Practice Playlists</v-list-subheader>
+      </template>
+
       <!-- Playlist Item -->
       <v-list-item v-bind="p" />
     </template>
@@ -49,13 +55,20 @@ const props = defineProps({
   arcadeOnly: {
     default: false,
     type: Boolean
+  },
+
+  /** Whether only practice playlists should be pickable. */
+  practiceOnly: {
+    default: false,
+    type: Boolean
   }
 });
 
 /** The items that can be picked from in the picker. */
 const items = computed(() => {
-  if (props.classicOnly) return Playlist.LIST.filter((p) => !p.isArcade);
+  if (props.classicOnly) return Playlist.LIST.filter((p) => p.isStandard);
   if (props.arcadeOnly) return Playlist.LIST.filter((p) => p.isArcade);
+  if (props.practiceOnly) return Playlist.LIST.filter((p) => p.isPractice);
   return Playlist.LIST;
 });
 </script>
