@@ -2,6 +2,7 @@
   <!-- Squad Picker -->
   <v-select
     v-bind="$attrs"
+    v-model="pickedSquad"
     clearable
     density="comfortable"
     hide-details
@@ -13,6 +14,18 @@
     placeholder="Select..."
     variant="solo-filled"
   >
+    <!-- Squad Emblem -->
+    <template
+      v-slot:prepend-inner
+      v-if="pickedSquad"
+    >
+      <v-avatar
+        :image="Squad.valueOf(pickedSquad).emblem"
+        rounded="0"
+        size="small"
+      />
+    </template>
+
     <!-- Squad Item -->
     <template v-slot:item="{ item, props }">
       <v-list-item
@@ -24,5 +37,9 @@
 </template>
 
 <script setup>
+import { ref } from 'vue';
+
 import { Squad } from '@/models';
+
+const pickedSquad = ref(null);
 </script>
