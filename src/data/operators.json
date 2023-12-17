@@ -866,7 +866,8 @@
           "CLAYMORE"
         ]
       },
-      "released": "Y0S6"
+      "released": "Y0S6",
+      "unbannable": true
     }
   },
   "DEF": {
@@ -1726,7 +1727,8 @@
           "BLOCKER"
         ]
       },
-      "released": "Y0S6"
+      "released": "Y0S6",
+      "unbannable": true
     }
   }
 }
