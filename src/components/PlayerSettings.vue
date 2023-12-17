@@ -1,28 +1,54 @@
 <template>
-  <v-list v-bind="$props">
+  <v-list v-bind="$attrs">
     <v-list-subheader>Players</v-list-subheader>
 
     <!-- Player Input -->
     <v-list-item class="mb-1">
-      <v-text-field
-        v-model="input"
-        :append-inner-icon="input?.length ? 'mdi-send' : null"
+      <v-combobox
+        ref="input"
+        v-model="PlayerSettings.playerList"
         density="comfortable"
-        :disabled="players.length >= 5"
-        :hide-details="!input?.length"
+        :disabled="PlayerSettings.playerList.length >= 5"
+        :hide-details="!$refs.input?.search?.length"
+        hide-selected
         hint="Press ENTER to add"
+        :items="PlayerSettings.recentPlayers"
         label="Add Player"
+        multiple
         persistent-placeholder
         placeholder="Enter player name..."
         variant="solo-filled"
-        @click:append-inner="addPlayer"
-        @update:focused="input = null"
-        @keyup.enter="addPlayer"
-      />
+        @update:focused="$refs.input.search = null"
+      >
+        <!-- Selection Text -->
+        <template v-slot:selection="{ index }">
+          <template v-if="index === 0">
+            {{ PlayerSettings.playerList.length }} selected
+          </template>
+        </template>
+
+        <!-- Recent Player Item -->
+        <template v-slot:item="{ item, props }">
+          <v-list-item
+            v-bind="props"
+            prepend-icon="mdi-history"
+          >
+            <template v-slot:append>
+              <v-card-actions end>
+                <v-btn
+                  density="comfortable"
+                  icon="mdi-delete"
+                  @click.stop="PlayerSettings.removeRecentPlayer(item.value)"
+                />
+              </v-card-actions>
+            </template>
+          </v-list-item>
+        </template>
+      </v-combobox>
     </v-list-item>
 
     <!-- Player List -->
-    <v-list-item v-if="players.length">
+    <v-list-item v-if="PlayerSettings.playerList.length">
       <v-label class="d-block mb-1 text-caption">Player List</v-label>
       <v-list
         border
@@ -32,7 +58,7 @@
       >
         <!-- Player Item -->
         <v-list-item
-          v-for="player, index in players"
+          v-for="player, index in PlayerSettings.playerList"
           :key="index"
           :title="player"
         >
@@ -43,7 +69,7 @@
                 density="comfortable"
                 icon="mdi-delete"
                 variant="text"
-                @click="players.splice(index, 1); emit('update:players', players)"
+                @click="PlayerSettings.removePlayer(index)"
               />
             </v-list-item-action>
           </template>
@@ -54,24 +80,19 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { useAppSettings, usePlayerSettings } from '@/store';
 
-// eslint-disable-next-line
-const emit = defineEmits(['update:players']);
+const AppSettings = useAppSettings();
+const PlayerSettings = usePlayerSettings();
 
-/** @type {import('vue').Ref<String>} The input value. */
-const input = ref(null);
+// Update player lists in local storage and session storage
+PlayerSettings.$subscribe(
+  (_, state) => {
+    sessionStorage.setItem('players', JSON.stringify({ players: state.playerList }));
 
-/** @type {import('vue').Ref<String[]>} The players in the list. */
-const players = ref([]);
-
-/** Adds a new player to the list. */
-function addPlayer() {
-  if (input.value) {
-    players.value.push(input.value);
-    input.value = null;
-
-    emit('update:players', players.value);
+    if (AppSettings.storeRecentPlayers) {
+      localStorage.setItem('players', JSON.stringify({ recentPlayers: state.recentPlayers }));
+    }
   }
-}
+);
 </script>
