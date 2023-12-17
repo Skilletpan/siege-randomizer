@@ -7,14 +7,15 @@
       <v-combobox
         ref="input"
         v-model="PlayerSettings.playerList"
+        counter="5"
         density="comfortable"
         :disabled="PlayerSettings.playerList.length >= 5"
-        :hide-details="!$refs.input?.search?.length"
         hide-selected
-        hint="Press ENTER to add"
+        :hint="$refs.input?.search.length ? 'Press ENTER to add' : null"
         :items="PlayerSettings.recentPlayers"
         label="Add Player"
         multiple
+        persistent-counter
         persistent-placeholder
         placeholder="Enter player name..."
         variant="solo-filled"
@@ -22,9 +23,7 @@
       >
         <!-- Selection Text -->
         <template v-slot:selection="{ index }">
-          <template v-if="index === 0">
-            {{ PlayerSettings.playerList.length }} selected
-          </template>
+          <template v-if="index === 0">{{ selectionText }}</template>
         </template>
 
         <!-- Recent Player Item -->
@@ -92,6 +91,8 @@
 </template>
 
 <script setup>
+import { computed } from 'vue';
+
 import { useAppSettings, usePlayerSettings } from '@/store';
 
 // Include settings
@@ -102,4 +103,9 @@ const PlayerSettings = usePlayerSettings();
 PlayerSettings.$subscribe(() => {
   PlayerSettings.storeSettings(AppSettings.storeRecentPlayers);
 });
+
+const selectionText = computed(() => [
+  PlayerSettings.playerList.length,
+  PlayerSettings.playerList.length === 1 ? 'player' : 'players'
+].join(' '));
 </script>
