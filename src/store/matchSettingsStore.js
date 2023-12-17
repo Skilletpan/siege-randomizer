@@ -1,14 +1,17 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 
-import { Map, Operator, Playlist, Side } from '@/models';
+import { Operator, Playlist, Side } from '@/models';
+
+// Load data from sessionStorage
+const storedData = JSON.parse(sessionStorage.getItem('match-settings'));
 
 export default defineStore('match-settings', () => {
   /**
    * The key of the playlist selected in the match settings.
-   * @type {import('vue').Ref<string>}
+   * @type {import('vue').Ref<String>}
    */
-  const playlistKey = ref(null);
+  const playlistKey = ref(storedData?.playlist || null);
 
   /**
    * The playlist selected in the match settings.
@@ -17,50 +20,55 @@ export default defineStore('match-settings', () => {
   const playlist = computed(() => playlistKey.value ? Playlist.valueOf(playlistKey.value) : null);
 
   /**
-   * The key of the map selected in the match settings.
-   * @type {import('vue').Ref<string>}
+   * The keys of the manually banned operators.
+   * @type {import('vue').Ref<String[]>}
    */
-  const mapKey = ref(null);
+  const manualBanKeys = ref(storedData?.bans || []);
 
   /**
-   * The map selected in the match settings.
-   * @type {import('vue').ComputedRef<Map>}
-   */
-  const map = computed(() => mapKey.value ? Map.valueOf(mapKey.value) : null);
-
-  /**
-   * The keys of the operators banned in the match settings.
-   * @type {import('vue').Ref<string[]>}
-   */
-  const bannedOperatorKeys = ref([]);
-
-  /**
-   * The operators banned in the match settings.
+   * The manually banned operators.
    * @type {import('vue').ComputedRef<Operator[]>}
    */
-  const bannedOperators = computed(() => Operator.LIST.filter((o) => {
-    if (playlist.value?.bannedOperators.includes(o)) return true;
-    if (bannedOperatorKeys.value.includes(o.key)) return true;
-    return false;
-  }));
+  const manualBans = computed(() => Operator.LIST.filter((o) => manualBanKeys.value.includes(o.key)));
+
+  /**
+   * All banned operators.
+   * @type {import('vue').ComputedRef<Operator[]>}
+   */
+  const bannedOperators = computed(() => {
+    const bans = [];
+    if (playlist.value) bans.push(...playlist.value.bannedOperators);
+    if (!playlist.value || playlist.value.canBanOperators) bans.push(...manualBans.value);
+
+    return Operator.LIST.filter((o) => bans.includes(o));
+  });
 
   /**
    * The attacker operators banned in the match settings.
    * @type {import('vue').ComputedRef<Operator[]>}
    */
-  const bannedAttackers = computed(() => bannedOperators.value.filter((o) => o.side === Side.ATT));
+  const bannedAttackers = computed(() => bannedOperators.value.filter((o) => o.side === Side.ATT && o.bannable));
 
   /**
    * The defender operators banned in the match settings.
    * @type {import('vue').ComputedRef<Operator[]>}
    */
-  const bannedDefenders = computed(() => bannedOperators.value.filter((o) => o.side === Side.DEF));
+  const bannedDefenders = computed(() => bannedOperators.value.filter((o) => o.side === Side.DEF && o.bannable));
+
+  /**
+   * Removes an operator from the manual ban list.
+   * 
+   * @param {string|number} operator The operator key or index to remove.
+   */
+  function removeOperatorBan(operator) {
+    const index = typeof operator === 'string' ? manualBanKeys.value.indexOf(operator) : operator;
+    manualBanKeys.value.splice(index, 1);
+  }
 
   /** Resets the store to its empty state. */
   function reset() {
     playlistKey.value = null;
-    mapKey.value = null;
-    bannedOperatorKeys.value.length = 0;
+    manualBanKeys.value.length = 0;
   }
 
   return {
@@ -68,15 +76,14 @@ export default defineStore('match-settings', () => {
     playlistKey,
     playlist,
 
-    // Map
-    mapKey,
-    map,
-
     // Banned Operators
-    bannedOperatorKeys,
+    manualBanKeys,
+    manualBans,
     bannedOperators,
     bannedAttackers,
     bannedDefenders,
+
+    removeOperatorBan,
 
     reset
   };
