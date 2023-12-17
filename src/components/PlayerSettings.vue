@@ -47,52 +47,59 @@
       </v-combobox>
     </v-list-item>
 
-    <!-- Player List -->
-    <v-list-item v-if="PlayerSettings.playerList.length">
-      <v-label class="d-block mb-1 text-caption">Player List</v-label>
-      <v-list
-        border
-        class="py-0"
-        rounded
-        variant="plain"
-      >
-        <!-- Player Item -->
-        <v-list-item
-          v-for="player, index in PlayerSettings.playerList"
-          :key="index"
-          :title="player"
+    <template v-if="PlayerSettings.playerList.length">
+      <!-- Player List -->
+      <v-list-item class="mb-1">
+        <v-label class="d-block mb-1 text-caption">Player List</v-label>
+        <v-list
+          border
+          class="py-0"
+          rounded
+          variant="plain"
         >
-          <!-- Remove Player Button -->
-          <template v-slot:append>
-            <v-list-item-action end>
-              <v-btn
-                density="comfortable"
-                icon="mdi-delete"
-                variant="text"
-                @click="PlayerSettings.removePlayer(index)"
-              />
-            </v-list-item-action>
-          </template>
-        </v-list-item>
-      </v-list>
-    </v-list-item>
+          <!-- Player Item -->
+          <v-list-item
+            v-for="player, index in PlayerSettings.playerList"
+            :key="index"
+            :title="player"
+          >
+            <!-- Remove Player Button -->
+            <template v-slot:append>
+              <v-list-item-action end>
+                <v-btn
+                  density="comfortable"
+                  icon="mdi-delete"
+                  variant="text"
+                  @click="PlayerSettings.removePlayer(index, AppSettings.storeRecentPlayers)"
+                />
+              </v-list-item-action>
+            </template>
+          </v-list-item>
+        </v-list>
+      </v-list-item>
+
+      <!-- Clear List Button -->
+      <v-list-item class="mb-1">
+        <v-btn
+          block
+          color="primary"
+          text="Clear List"
+          @click="PlayerSettings.playerList.length = 0"
+        />
+      </v-list-item>
+    </template>
   </v-list>
 </template>
 
 <script setup>
 import { useAppSettings, usePlayerSettings } from '@/store';
 
+// Include settings
 const AppSettings = useAppSettings();
 const PlayerSettings = usePlayerSettings();
 
-// Update player lists in local storage and session storage
-PlayerSettings.$subscribe(
-  (_, state) => {
-    sessionStorage.setItem('players', JSON.stringify({ players: state.playerList }));
-
-    if (AppSettings.storeRecentPlayers) {
-      localStorage.setItem('players', JSON.stringify({ recentPlayers: state.recentPlayers }));
-    }
-  }
-);
+// Update player settings in local storage and session storage
+PlayerSettings.$subscribe(() => {
+  PlayerSettings.storeSettings(AppSettings.storeRecentPlayers);
+});
 </script>
