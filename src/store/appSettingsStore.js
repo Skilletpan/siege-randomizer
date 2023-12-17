@@ -27,7 +27,7 @@ export default defineStore('app-settings', () => {
    * Whether recently used player names should be stored.
    * @type {import('vue').Ref<Boolean>}
    */
-  const storeRecentPlayers = ref(Object.hasOwn(storedData, 'storeRecent') ? storedData.storeRecent : true);
+  const storeRecentPlayers = ref(storedData ? Boolean(storedData.storeRecent) : true);
 
   /** Stores the current settings in the browser store. */
   function storeSettings() {
