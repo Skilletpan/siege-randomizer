@@ -14,6 +14,17 @@
     placeholder="Select..."
     variant="solo-filled"
   >
+    <!-- Slot Passhtrough -->
+    <template
+      v-for="(_, name) in $slots"
+      v-slot:[name]="slotData"
+    >
+      <slot
+        :name="name"
+        v-bind="slotData"
+      />
+    </template>
+
     <!-- Squad Emblem -->
     <template
       v-slot:prepend-inner

@@ -12,7 +12,18 @@
     persistent-placeholder
     placeholder="Select..."
     variant="solo-filled"
-  />
+  >
+    <!-- Slot Passhtrough -->
+    <template
+      v-for="(_, name) in $slots"
+      v-slot:[name]="slotData"
+    >
+      <slot
+        :name="name"
+        v-bind="slotData"
+      />
+    </template>
+  </v-select>
 </template>
 
 <script setup>

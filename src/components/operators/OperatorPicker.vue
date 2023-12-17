@@ -15,6 +15,17 @@
     variant="solo-filled"
     @update:model-value="$refs.search.search = null"
   >
+    <!-- Slot Passhtrough -->
+    <template
+      v-for="(_, name) in $slots"
+      v-slot:[name]="slotData"
+    >
+      <slot
+        :name="name"
+        v-bind="slotData"
+      />
+    </template>
+
     <!-- Selection Text Replacer -->
     <template
       v-slot:selection="{ index: i }"
