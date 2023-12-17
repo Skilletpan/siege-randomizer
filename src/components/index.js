@@ -1,4 +1,5 @@
 // Common
+import AppSettings from './AppSettings';
 import MatchSettings from './MatchSettings';
 import NavigationDrawer from './NavigationDrawer';
 import PlayerSettings from './PlayerSettings';
@@ -10,9 +11,9 @@ import MapPicker from './maps/MapPicker';
 
 // Operator
 import OperatorCard from './operators/OperatorCard';
+import OperatorFilters from './operators/OperatorFilters';
 import OperatorLabel from './operators/OperatorLabel';
 import OperatorPicker from './operators/OperatorPicker';
-import OperatorSettings from './operators/OperatorSettings';
 
 // Playlist
 import PlaylistPicker from './playlists/PlaylistPicker';
@@ -22,10 +23,12 @@ import SquadPicker from './squads/SquadPicker';
 
 // Strat
 import StratCard from './strats/StratCard';
-import StratFilterDrawer from './strats/StratFilterDrawer';
+import StratFilters from './strats/StratFilters';
+import TagPicker from './strats/TagPicker';
 
 export {
   // Common
+  AppSettings,
   MatchSettings,
   NavigationDrawer,
   PlayerSettings,
@@ -37,9 +40,9 @@ export {
 
   // Operator
   OperatorCard,
+  OperatorFilters,
   OperatorLabel,
   OperatorPicker,
-  OperatorSettings,
 
   // Playlist
   PlaylistPicker,
@@ -49,5 +52,6 @@ export {
 
   // Strat
   StratCard,
-  StratFilterDrawer
+  StratFilters,
+  TagPicker
 };
