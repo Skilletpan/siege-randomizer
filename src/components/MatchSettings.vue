@@ -38,27 +38,27 @@
       <v-list-item-title class="align-center d-flex justify-space-around">
         <v-icon :icon="Side.ATT.icon" />
 
-        <v-avatar
-          v-for="i in 2"
+        <template
+          v-for="list, i in [MatchSettings.bannedAttackers, MatchSettings.bannedDefenders]"
           :key="i"
-          :color="MatchSettings.bannedAttackers[i - 1] ? 'error' : null"
-          icon="mdi-help"
-          :image="MatchSettings.bannedAttackers[i - 1]?.emblem"
-          rounded="rounded"
-          variant="tonal"
-        />
+        >
+          <v-avatar
+            v-for="j in 2"
+            :key="j"
+            :class="{ 'clickable-avatar': !!list[j - 1] }"
+            :color="list[j - 1] ? 'error' : null"
+            icon="mdi-help"
+            :image="list[j - 1]?.emblem"
+            rounded="rounded"
+            variant="tonal"
+            v-on="list[j - 1] ? { click: () => MatchSettings.removeOperatorBan(list[j - 1].key) } : null"
+          />
 
-        <v-divider vertical />
-
-        <v-avatar
-          v-for="i in 2"
-          :key="i"
-          :color="MatchSettings.bannedDefenders[i - 1] ? 'error' : null"
-          icon="mdi-help"
-          :image="MatchSettings.bannedDefenders[i - 1]?.emblem"
-          rounded="rounded"
-          variant="tonal"
-        />
+          <v-divider
+            v-if="i === 0"
+            vertical
+          />
+        </template>
 
         <v-icon :icon="Side.DEF.icon" />
       </v-list-item-title>
@@ -86,6 +86,11 @@ import { useMatchSettings } from '@/store';
 // Create match settings store
 const MatchSettings = useMatchSettings();
 
+// Update match settings in session storage
+MatchSettings.$subscribe(() => {
+  MatchSettings.storeSettings();
+});
+
 /** The items that are available in the operator picker. */
 const operatorPickerItems = computed(() => Operator.LIST.filter((o) => (
   o.bannable && (!MatchSettings.playlist || !MatchSettings.playlist.bannedOperators.includes(o))
@@ -103,14 +108,10 @@ function banRandomOperators() {
   MatchSettings.manualBanKeys.length = 0;
   MatchSettings.manualBanKeys.push(...operators.map((o) => o.key));
 }
-
-// Update app settings in session storage
-MatchSettings.$subscribe(
-  (_, state) => {
-    sessionStorage.setItem('match-settings', JSON.stringify({
-      playlist: state.playlistKey,
-      bans: [...state.manualBanKeys]
-    }));
-  }
-);
 </script>
+
+<style scoped>
+.clickable-avatar {
+  cursor: pointer;
+}
+</style>

@@ -65,6 +65,17 @@ export default defineStore('match-settings', () => {
     manualBanKeys.value.splice(index, 1);
   }
 
+  /** Stores the current settings in the browser store. */
+  function storeSettings() {
+    sessionStorage.setItem(
+      'match-settings',
+      JSON.stringify({
+        playlist: playlistKey.value,
+        bans: [...manualBanKeys.value]
+      })
+    );
+  }
+
   /** Resets the store to its empty state. */
   function reset() {
     playlistKey.value = null;
@@ -84,6 +95,7 @@ export default defineStore('match-settings', () => {
     bannedDefenders,
 
     removeOperatorBan,
+    storeSettings,
 
     reset
   };
