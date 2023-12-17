@@ -104,6 +104,10 @@ PlayerSettings.$subscribe(() => {
   PlayerSettings.storeSettings(AppSettings.storeRecentPlayers);
 });
 
+/**
+ * Builds the selection text for the player name input.
+ * @type {import('vue').ComputedRef<String>}
+ */
 const selectionText = computed(() => [
   PlayerSettings.playerList.length,
   PlayerSettings.playerList.length === 1 ? 'player' : 'players'
