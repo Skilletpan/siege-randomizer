@@ -1,5 +1,9 @@
 <template>
-  <v-dialog v-bind="$attrs">
+  <v-dialog
+    v-bind="$attrs"
+    v-model="AppSettings.showSettings"
+    width="700"
+  >
     <v-card>
       <v-card-item class="px-6 py-4">
         <template v-slot:prepend>
@@ -62,19 +66,12 @@ const vuetifyTheme = useTheme().global.name;
 vuetifyTheme.value = AppSettings.theme;
 
 // Update app settings in local storage
-AppSettings.$subscribe(
-  (_, state) => {
-    localStorage.setItem('app-settings', JSON.stringify({
-      theme: state.theme,
-      storeRecent: state.storeRecentPlayers
-    }));
-    vuetifyTheme.value = state.theme;
+AppSettings.$subscribe((_, state) => {
+  // Update app settings
+  AppSettings.storeSettings();
+  vuetifyTheme.value = state.theme;
 
-    if (!state.storeRecentPlayers) {
-      PlayerSettings.recentPlayers.length = 0;
-      localStorage.removeItem('players');
-    }
-  },
-  { detached: true }
-);
+  // Remove recent players if `storeRecentPlayers` is disabled
+  if (!state.storeRecentPlayers) PlayerSettings.recentPlayers.length = 0;
+});
 </script>

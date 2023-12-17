@@ -13,14 +13,20 @@
     <v-main>
       <router-view />
     </v-main>
+
+    <!-- App Settings -->
+    <app-settings />
   </v-app>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-import { NavigationDrawer } from '@/components';
+import { AppSettings, NavigationDrawer } from '@/components';
 
-/** Whether the navigation drawer should be expanded. */
+/**
+ * Whether the navigation drawer should be expanded.
+ * @type {import('vue').Ref<Boolean>}
+ */
 const expandNavigation = ref(true);
 </script>
