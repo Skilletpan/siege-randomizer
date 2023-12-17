@@ -27,6 +27,16 @@
             @click.prevent="banRandomOperators"
           />
         </template>
+
+        <!-- Operator Item -->
+        <template v-slot:item="{ item, props }">
+          <v-list-item
+            v-bind="props"
+            :append-icon="Operator.valueOf(item.value).side.icon"
+            :disabled="isDisabled(item.value)"
+            :prepend-avatar="Operator.valueOf(item.value).emblem"
+          />
+        </template>
       </operator-picker>
     </v-list-item>
 
@@ -95,6 +105,19 @@ MatchSettings.$subscribe(() => {
 const operatorPickerItems = computed(() => Operator.LIST.filter((o) => (
   o.bannable && (!MatchSettings.playlist || !MatchSettings.playlist.bannedOperators.includes(o))
 )));
+
+/**
+ * Checks whether an operator should be disabled in the ban picker.
+ * 
+ * @param {string} operatorKey The key of the operator to check.
+ */
+function isDisabled(operatorKey) {
+  const operator = Operator.valueOf(operatorKey);
+
+  if (operator.side === Side.ATT && MatchSettings.bannedAttackers.length >= 2) return true;
+  if (operator.side === Side.DEF && MatchSettings.bannedDefenders.length >= 2) return true;
+  return false;
+}
 
 /** Bans random operators from the `operatorPickerItems` list. */
 function banRandomOperators() {
