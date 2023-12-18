@@ -18,18 +18,10 @@
       />
     </template>
 
-    <!-- Selection Text Replacer -->
-    <template
-      v-slot:selection="{ index: i }"
-      v-if="props.selectionText"
-    >
-      <template v-if="i === 0">{{ props.selectionText }}</template>
-    </template>
-
     <!-- Operator Item -->
-    <template v-slot:item="{ item, props: p }">
+    <template v-slot:item="{ item, props }">
       <v-list-item
-        v-bind="p"
+        v-bind="props"
         :append-icon="Operator.valueOf(item.value).side.icon"
         :prepend-avatar="Operator.valueOf(item.value).emblem"
       />
@@ -39,12 +31,4 @@
 
 <script setup>
 import { Operator } from '@/models';
-
-// eslint-disable-next-line
-const props = defineProps({
-  /** A text to display in place of the default selection text. */
-  selectionText: {
-    type: String
-  }
-})
 </script>
