@@ -11,14 +11,14 @@ const defaultInputProps = {
   itemValue: 'key',
   hideDetails: true,
   persistentPlaceholder: true,
-  placeholder: 'Select...',
   variant: 'solo-filled'
 };
 
 const defaultSelectProps = {
   ...defaultInputProps,
   itemTitle: 'name',
-  itemValue: 'key'
+  itemValue: 'key',
+  placeholder: 'Select...'
 };
 
 export default createVuetify({
