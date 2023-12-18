@@ -45,13 +45,6 @@ import { useTheme } from 'vuetify';
 
 import { useAppSettings, usePlayerSettings } from '@/store';
 
-/** The list of available themes. */
-const THEMES = readonly([
-  { title: 'Default', value: 'default' },
-  { title: 'Dark', value: 'dark' },
-  { title: 'Light', value: 'light' }
-]);
-
 // Include settings
 const AppSettings = useAppSettings();
 const PlayerSettings = usePlayerSettings();
@@ -69,4 +62,11 @@ AppSettings.$subscribe((_, state) => {
   // Remove recent players if `storeRecentPlayers` is disabled
   if (!state.storeRecentPlayers) PlayerSettings.recentPlayers.length = 0;
 });
+
+/** The list of available themes. */
+const THEMES = readonly([
+  { name: 'Default', key: 'default' },
+  { name: 'Dark', key: 'dark' },
+  { name: 'Light', key: 'light' }
+]);
 </script>
