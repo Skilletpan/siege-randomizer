@@ -4,6 +4,13 @@
     <v-app-bar>
       <v-app-bar-nav-icon @click="expandNavigation = !expandNavigation" />
       <v-app-bar-title>Siege Randomizer</v-app-bar-title>
+
+      <template v-slot:append>
+        <v-btn
+          icon="mdi-stadium-variant"
+          @click="AppSettings.showMatchDrawer = !AppSettings.showMatchDrawer"
+        />
+      </template>
     </v-app-bar>
 
     <!-- Navigation Drawer -->
@@ -14,15 +21,21 @@
       <router-view />
     </v-main>
 
+    <!-- Match Settings Drawer -->
+    <match-settings-drawer />
+
     <!-- App Settings -->
-    <app-settings />
+    <app-settings-dialog />
   </v-app>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-import { AppSettings, NavigationDrawer } from '@/components';
+import { AppSettingsDialog, MatchSettingsDrawer, NavigationDrawer } from '@/components';
+import { useAppSettings } from './store';
+
+const AppSettings = useAppSettings();
 
 /**
  * Whether the navigation drawer should be expanded.

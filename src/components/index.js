@@ -1,8 +1,7 @@
 // Common
-import AppSettings from './AppSettings';
-import MatchSettings from './MatchSettings';
+import AppSettingsDialog from './AppSettingsDialog';
+import MatchSettingsDrawer from './MatchSettingsDrawer';
 import NavigationDrawer from './NavigationDrawer';
-import PlayerSettings from './PlayerSettings';
 import SidePool from './SidePool';
 
 // Map
@@ -28,10 +27,9 @@ import TagPicker from './strats/TagPicker';
 
 export {
   // Common
-  AppSettings,
-  MatchSettings,
+  AppSettingsDialog,
+  MatchSettingsDrawer,
   NavigationDrawer,
-  PlayerSettings,
   SidePool,
 
   // Map
