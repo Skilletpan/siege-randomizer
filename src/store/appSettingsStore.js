@@ -35,7 +35,7 @@ export default defineStore('app-settings', () => {
       'app-settings',
       JSON.stringify({
         theme: theme.value,
-        storeRecent: storeRecentPlayers
+        storeRecent: storeRecentPlayers.value
       })
     );
   }
