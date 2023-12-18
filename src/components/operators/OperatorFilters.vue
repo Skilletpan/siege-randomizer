@@ -26,17 +26,9 @@
     <!-- Roles -->
     <v-list-item class="mb-1">
       <v-select
-        clearable
-        density="comfortable"
-        hide-details
         :items="Role.LIST"
-        item-title="name"
-        item-value="key"
         label="Roles"
         multiple
-        persistent-placeholder
-        placeholder="Select..."
-        variant="solo-filled"
         @update:model-value="emit('update:role', $event)"
       />
     </v-list-item>
@@ -53,17 +45,9 @@
     <!-- Primary Weapon -->
     <v-list-item class="mb-1">
       <v-select
-        clearable
-        density="comfortable"
-        hide-details
         :items="Weapon.LIST.filter((w) => w.isPrimary)"
-        item-title="name"
-        item-value="key"
         label="Primary Weapon"
         multiple
-        persistent-placeholder
-        placeholder="Select..."
-        variant="solo-filled"
         @update:model-value="emit('update:primary', $event)"
       />
     </v-list-item>
@@ -71,17 +55,9 @@
     <!-- Secondary Weapon -->
     <v-list-item class="mb-1">
       <v-select
-        clearable
-        density="comfortable"
-        hide-details
         :items="Weapon.LIST.filter((w) => w.isSecondary)"
-        item-title="name"
-        item-value="key"
         label="Secondary Weapon"
         multiple
-        persistent-placeholder
-        placeholder="Select..."
-        variant="solo-filled"
         @update:model-value="emit('update:secondary', $event)"
       />
     </v-list-item>
@@ -89,17 +65,9 @@
     <!-- Gadget -->
     <v-list-item class="mb-1">
       <v-select
-        clearable
-        density="comfortable"
-        hide-details
         :items="Gadget.LIST"
-        item-title="name"
-        item-value="key"
         label="Gadget"
         multiple
-        persistent-placeholder
-        placeholder="Select..."
-        variant="solo-filled"
         @update:model-value="emit('update:gadget', $event)"
       />
     </v-list-item>

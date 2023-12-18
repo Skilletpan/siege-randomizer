@@ -3,19 +3,11 @@
   <v-autocomplete
     v-bind="$attrs"
     ref="search"
-    clearable
-    density="comfortable"
-    hide-details
     :items="Operator.LIST"
-    item-title="name"
-    item-value="key"
     label="Operators"
-    persistent-placeholder
-    placeholder="Select..."
-    variant="solo-filled"
     @update:model-value="$refs.search.search = null"
   >
-    <!-- Slot Passhtrough -->
+    <!-- Slot Passthrough -->
     <template
       v-for="(_, name) in $slots"
       v-slot:[name]="slotData"

@@ -8,7 +8,6 @@
         ref="input"
         v-model="PlayerSettings.playerList"
         counter="5"
-        density="comfortable"
         :disabled="PlayerSettings.playerList.length >= 5"
         hide-selected
         :hint="$refs.input?.search.length ? 'Press ENTER to add' : null"
@@ -16,9 +15,7 @@
         label="Add Player"
         multiple
         persistent-counter
-        persistent-placeholder
         placeholder="Enter player name..."
-        variant="solo-filled"
         @update:focused="$refs.input.search = null"
       >
         <!-- Selection Text -->

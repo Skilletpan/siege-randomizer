@@ -3,18 +3,10 @@
   <v-select
     v-bind="$attrs"
     v-model="pickedSquad"
-    clearable
-    density="comfortable"
-    hide-details
     :items="Squad.LIST"
-    item-title="name"
-    item-value="key"
     label="Squad"
-    persistent-placeholder
-    placeholder="Select..."
-    variant="solo-filled"
   >
-    <!-- Slot Passhtrough -->
+    <!-- Slot Passthrough -->
     <template
       v-for="(_, name) in $slots"
       v-slot:[name]="slotData"

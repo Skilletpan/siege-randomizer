@@ -1,24 +1,42 @@
 // Styles
-import '@mdi/font/css/materialdesignicons.css'
-import 'vuetify/styles'
+import { createVuetify } from 'vuetify';
+import { VAvatar } from 'vuetify/lib/components/index.mjs';
+import 'vuetify/styles';
+import '@mdi/font/css/materialdesignicons.css';
 
-// Vuetify
-import { createVuetify } from 'vuetify'
+const defaultInputProps = {
+  clearable: true,
+  density: 'comfortable',
+  itemTitle: 'name',
+  itemValue: 'key',
+  hideDetails: true,
+  persistentPlaceholder: true,
+  placeholder: 'Select...',
+  variant: 'solo-filled'
+};
 
-const cancer = {
-  dark: false,
-  colors: {
-    background: '#FFFDE7',
-    surface: '#76FF03',
-    primary: 'AB47BC',
-    secondary: '#9575CD',
-    generic: '#006064',
-    attacker: '#FFF176',
-    defender: '#3E2723'
-  }
-}
+const defaultSelectProps = {
+  ...defaultInputProps,
+  itemTitle: 'name',
+  itemValue: 'key'
+};
 
 export default createVuetify({
+  aliases: {
+    OperatorEmblem: VAvatar,
+  },
+  defaults: {
+    OperatorEmblem: {
+      icon: 'mdi-help',
+      rounded: 0
+    },
+    VAutocomplete: defaultSelectProps,
+    VCombobox: defaultSelectProps,
+    VSelect: defaultSelectProps,
+    VSwitch: defaultInputProps,
+    VTextField: defaultInputProps
+  },
+
   theme: {
     defaultTheme: 'default',
     themes: {
@@ -37,14 +55,12 @@ export default createVuetify({
       dark: {
         dark: true,
         colors: {
-          primary: '#607D8B',
+          // primary: '#607D8B',
           generic: '#607D8B',
           attacker: '#1E88E5',
           defender: '#FB8C00'
         }
-      },
-
-      cancer
+      }
     }
   }
-})
+});

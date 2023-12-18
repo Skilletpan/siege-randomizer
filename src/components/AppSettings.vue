@@ -20,20 +20,15 @@
           <v-col cols="6">
             <v-select
               v-model="AppSettings.theme"
-              density="comfortable"
-              hide-details
               :items="THEMES"
               label="Theme"
               prepend-icon="mdi-palette"
-              variant="solo-filled"
             />
           </v-col>
 
           <v-col cols="6">
             <v-switch
               v-model="AppSettings.storeRecentPlayers"
-              density="comfortable"
-              hide-details
               label="Store recent players"
               prepend-icon="mdi-history"
             />

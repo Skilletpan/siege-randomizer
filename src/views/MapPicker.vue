@@ -1,63 +1,26 @@
 <template>
   <v-container>
-    <v-row class="align-end justify-center py-12">
+    <v-row class="align-end justify-center">
       <!-- Map Card -->
-      <v-col
-        cols="auto"
-        offset="3"
-      >
+      <v-col cols="6">
         <map-card
+          v-if="pickedMap"
           big
           :map-key="pickedMap"
           :placeholder="!pickedMap"
           v-on="{ click: pickedMap ? () => { showPreview(pickedMap); } : null }"
         />
       </v-col>
+    </v-row>
 
-      <!-- Filters -->
-      <v-col cols="3">
-        <v-card
-          color="transparent"
-          elevation="0"
-          max-width="300"
-        >
-          <!-- Playlist Select -->
-          <v-select
-            v-model="mapFilters.playlist"
-            clearable
-            hide-details
-            :items="Playlist.LIST"
-            item-title="name"
-            item-value="id"
-            label="Playlist"
-            persistent-placeholder
-            placeholder="All Maps"
-            variant="solo-filled"
-          >
-            <template v-slot:item="{ index, props }">
-              <!-- Default Playlists Subheader -->
-              <v-list-subheader v-if="index === 0">Default Playlists</v-list-subheader>
-
-              <!-- Arcade Playlists Subheader -->
-              <template v-if="index === Playlist.LIST.findIndex((p) => p.isArcade)">
-                <v-divider class="my-2" />
-                <v-list-subheader>Arcade Playlists</v-list-subheader>
-              </template>
-
-              <!-- Item -->
-              <v-list-item v-bind="props" />
-            </template>
-          </v-select>
-
-          <!-- Pick Button -->
-          <v-btn
-            block
-            class="mt-4"
-            color="primary"
-            :text="pickedMap ? 'Repick' : 'Randomize'"
-            @click="pickMap"
-          />
-        </v-card>
+    <v-row class="justify-center">
+      <v-col cols="auto">
+        <v-btn
+          color="primary"
+          icon="mdi-dice-multiple-outline"
+          size="x-large"
+          @click="pickMap"
+        />
       </v-col>
     </v-row>
 
@@ -76,7 +39,7 @@
       <v-col
         v-for="m in mapPool"
         :key="m.key"
-        cols="auto"
+        cols="3"
       >
         <map-card
           :inactive="mapFilters.disabled.includes(m.key)"
@@ -87,9 +50,16 @@
     </v-row>
   </v-container>
 
+  <v-navigation-drawer
+    location="right"
+    width="350"
+  >
+    <match-settings />
+  </v-navigation-drawer>
+
   <v-dialog
     v-model="preview.show"
-    width="auto"
+    width="700"
   >
     <map-card
       big
@@ -102,8 +72,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 
-import { MapCard } from '@/components';
-import { pickRandom } from '@/composables/randomizer';
+import { MapCard, MatchSettings } from '@/components';
 import { Map, Playlist } from '@/models';
 
 // Define dynamic properties
@@ -121,22 +90,16 @@ const preview = ref({
 
 // Define computed properties
 const mapPool = computed(() => {
-  if (!mapFilters.value.playlist) return Map.LIST;
-  return Playlist[mapFilters.value.playlist].maps;
+  if (mapFilters.value.playlist) return Playlist.valueOf(mapFilters.value.playlist).maps;
+  return Map.LIST;
 });
 
 /**
  * Picks a random map from the map pool.
  */
 function pickMap() {
-  const pool = mapPool.value
-    .filter((m) => {
-      if (m.key === pickedMap.value) return false;
-      return !mapFilters.value.disabled.includes(m.key);
-    })
-    .map((m) => m.key);
-
-  [pickedMap.value] = pickRandom(pool);
+  const previous = pickedMap.value ? Map.valueOf(pickedMap.value) : null;
+  pickedMap.value = Map.pickRandom(mapPool.value, previous)?.key || null;
 }
 
 function showPreview(mapKey) {

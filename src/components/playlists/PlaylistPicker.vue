@@ -2,18 +2,10 @@
   <!-- Playlist Picker -->
   <v-select
     v-bind="$attrs"
-    clearable
-    density="comfortable"
-    hide-details
     :items="items"
-    item-title="name"
-    item-value="key"
     label="Playlist"
-    persistent-placeholder
-    placeholder="Select..."
-    variant="solo-filled"
   >
-    <!-- Slot Passhtrough -->
+    <!-- Slot Passthrough -->
     <template
       v-for="(_, name) in $slots"
       v-slot:[name]="slotData"

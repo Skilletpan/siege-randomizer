@@ -52,16 +52,15 @@
           v-for="list, i in [MatchSettings.bannedAttackers, MatchSettings.bannedDefenders]"
           :key="i"
         >
-          <v-avatar
+          <operator-emblem
             v-for="j in 2"
             :key="j"
             :class="{ 'clickable-avatar': !!list[j - 1] }"
             :color="list[j - 1] ? 'error' : null"
-            icon="mdi-help"
             :image="list[j - 1]?.emblem"
             rounded="rounded"
             variant="tonal"
-            v-on="list[j - 1] ? { click: () => MatchSettings.removeOperatorBan(list[j - 1].key) } : null"
+            v-on="list[j - 1] ? { click: () => MatchSettings.removeOperatorBan(list[j - 1].key) } : {}"
           />
 
           <v-divider
