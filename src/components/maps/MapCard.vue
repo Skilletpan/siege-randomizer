@@ -104,7 +104,7 @@ const cardVariant = computed(() => ({ [props.variant]: true }));
 
 <style scoped>
 .map-name {
-  backdrop-filter: brightness(20%);
+  backdrop-filter: brightness(50%);
   -webkit-backdrop-filter: brightness(20%);
 }
 
