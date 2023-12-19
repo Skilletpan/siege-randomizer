@@ -1700,7 +1700,8 @@
           "BEEPER"
         ]
       },
-      "released": "Y8S4"
+      "released": "Y8S4",
+      "unbannable": true
     },
     "RECRUIT_DEF": {
       "name": "Recruit",
