@@ -10,7 +10,7 @@
       <!-- Name -->
       <v-card-title
         v-if="!cardVariant.placeholder"
-        class="font-weight-medium map-name text-center text-uppercase"
+        class="font-weight-bold map-name text-center text-uppercase"
       >
         {{ map.name }}
       </v-card-title>
@@ -91,7 +91,7 @@ const props = defineProps({
  * @type {import('vue').ComputedRef<Map>}
  */
 const map = computed(() => {
-  if (props.variant === 'placeholder') return Map.pickRandom();
+  if (cardVariant.value.placeholder) return Map.pickRandom();
   return Map.valueOf(props.mapKey);
 });
 
@@ -104,8 +104,8 @@ const cardVariant = computed(() => ({ [props.variant]: true }));
 
 <style scoped>
 .map-name {
-  backdrop-filter: brightness(50%);
-  -webkit-backdrop-filter: brightness(50%);
+  backdrop-filter: brightness(20%);
+  -webkit-backdrop-filter: brightness(20%);
 }
 
 .randomize-icon {

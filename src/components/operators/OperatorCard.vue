@@ -1,57 +1,57 @@
 <template>
-  <v-card
-    :color="!props.placeholder && props.colored ? operator.side.color : null"
-    variant="elevated"
-  >
+  <v-card :color="cardVariant.default ? operator.side.color : null">
     <!-- Portrait -->
     <v-img
-      v-if="!props.placeholder && props.portrait"
-      :alt="`${operator.name} portrait`"
+      v-if="!cardVariant.default"
       :aspect-ratio="3 / 5"
-      class="align-end portrait text-center"
       cover
-      :src="operator.easterEggPortrait"
-      :style="{ backgroundImage: `url(${randomMap.thumbnail})` }"
+      v-bind="imageProperties"
     >
-      <!-- Emblem -->
-      <v-avatar
-        class="mb-2"
-        :image="operator.emblem"
-        rounded="0"
+      <template v-if="!cardVariant.placeholder">
+        <!-- Emblem -->
+        <operator-emblem
+          class="mb-1"
+          :image="operator.emblem"
+          size="70"
+        />
+
+        <v-card-item class="operator-name">
+          <!-- Name -->
+          <v-card-title
+            class="font-weight-bold text-center text-uppercase"
+            :class="`text-${operator.side.color}`"
+          >
+            {{ operator.name }}
+          </v-card-title>
+
+          <!-- Player Name -->
+          <v-card-subtitle v-if="playerName">{{ playerName }}</v-card-subtitle>
+        </v-card-item>
+      </template>
+
+      <!-- Randomize Icon -->
+      <v-icon
+        v-else
+        class="align-center h-100 justify-center randomize-icon w-100"
+        icon="mdi-dice-multiple-outline"
         size="70"
       />
     </v-img>
 
-    <!-- Placeholder Portrait -->
-    <v-img
-      v-else-if="props.placeholder"
-      alt="Placeholder portrait"
-      :aspect-ratio="3 / 5"
-      class="placeholder"
-      cover
-      :src="operator.portrait"
-    />
-
-    <v-card-item>
+    <v-card-item v-if="cardVariant.default">
       <!-- Emblem -->
-      <template
-        v-slot:prepend
-        v-if="!props.placeholder && !props.portrait"
-      >
-        <v-avatar
-          :image="operator.emblem"
-          rounded="0"
-        />
+      <template v-slot:prepend>
+        <operator-emblem :image="operator.emblem" />
       </template>
 
       <!-- Name -->
-      <v-card-title :class="{ 'font-weight-medium text-center text-uppercase': props.placeholder || props.portrait }">
-        {{ props.placeholder ? '?' : operator.name }}
-      </v-card-title>
+      <v-card-title>{{ operator.name }}</v-card-title>
     </v-card-item>
 
     <!-- Details -->
-    <template v-if="props.detailed">
+    <template v-if="cardVariant.detailed">
+      <v-divider />
+
       <!-- Tabs -->
       <v-tabs
         v-model="tab"
@@ -62,111 +62,107 @@
 
       <v-divider />
 
+      <!-- Tab Windows -->
       <v-window v-model="tab">
-        <!-- Details -->
-        <v-window-item :value="TABS[0]">
-          <v-card-text>
-            <!-- Speed and Health -->
-            <v-label class="d-block mb-1 text-caption">Speed and Health</v-label>
-            <v-radio-group
-              append-icon="mdi-hospital-box-outline"
-              class="d-flex justify-space-between"
-              density="compact"
-              hide-details
-              inline
-              :model-value="[1, 2, 3, 4]"
-              multiple
-              prepend-icon="mdi-speedometer"
-              readonly
-            >
-              <v-radio
-                v-for="i in 4"
-                :key="i"
-                :color="i <= operator.speed ? 'green' : 'blue'"
-                :value="i"
-              />
-            </v-radio-group>
-
-            <!-- Role -->
-            <v-label class="d-block mt-3 text-caption">Roles</v-label>
-            <v-chip-group>
-              <v-chip
-                v-for="role in operator.roles"
-                :key="role.id"
-                label
-                :ripple="false"
-                size="small"
-                :text="role.name"
-              />
-            </v-chip-group>
-
-            <!-- Squad -->
-            <v-row
-              v-if="operator.squad"
-              class="align-center mt-3"
-              no-gutters
-            >
-              <!-- Squad Name -->
-              <v-col class="pa-0">
-                <v-label class="d-block text-caption">Squad</v-label>
-                {{ operator.squad.name }}
-              </v-col>
-
-              <!-- Squad Emblem -->
-              <v-col
-                class="pa-0"
-                cols="auto"
+        <v-window-item
+          v-for="t, i in TABS"
+          :key="t"
+          :value="t"
+        >
+          <v-card-text class="pa-4 pt-3">
+            <!-- Details -->
+            <template v-if="i === 0">
+              <!-- Speed and Health -->
+              <field-label>Speed and Health</field-label>
+              <v-input
+                append-icon="mdi-hospital-box-outline"
+                hide-details
+                prepend-icon="mdi-speedometer"
               >
-                <v-avatar
-                  :image="operator.squad.emblem"
-                  rounded="0"
+                <v-row
+                  class="align-center justify-space-around"
+                  no-gutters
+                >
+                  <v-radio
+                    v-for="r in 4"
+                    :key="r"
+                    :color="r <= operator.speed ? 'green' : 'blue'"
+                    density="compact"
+                    inline
+                    :model-value="true"
+                    readonly
+                    :ripple="false"
+                  />
+                </v-row>
+              </v-input>
+
+              <!-- Roles -->
+              <field-label class="mt-3">Roles</field-label>
+              <label-row>
+                <v-chip
+                  v-for="r in operator.roles"
+                  :key="r.key"
+                  size="small"
+                  :text="r.name"
                 />
-              </v-col>
-            </v-row>
-          </v-card-text>
-        </v-window-item>
+              </label-row>
 
-        <!-- Loadout -->
-        <v-window-item :value="TABS[1]">
-          <v-card-text>
-            <!-- Primary Weapons -->
-            <v-label class="d-block text-caption">Primary Weapons</v-label>
-            <v-chip-group>
-              <v-chip
-                v-for="weapon in operator.loadout.primaryWeapons"
-                :key="weapon.id"
-                label
-                :ripple="false"
-                size="small"
-                :text="weapon.name"
-              />
-            </v-chip-group>
+              <!-- Squad -->
+              <v-row
+                v-if="operator.squad"
+                class="align-center mt-3"
+                no-gutters
+              >
+                <v-col class="pa-0">
+                  <v-label class="d-block text-caption">Squad</v-label>
+                  <span class="text-body-2">{{ operator.squad.name }}</span>
+                </v-col>
 
-            <!-- Secondary Weapons -->
-            <v-label class="d-block mt-3 text-caption">Secondary Weapons</v-label>
-            <v-chip-group>
-              <v-chip
-                v-for="weapon in operator.loadout.secondaryWeapons"
-                :key="weapon.id"
-                label
-                :ripple="false"
-                size="small"
-                :text="weapon.name"
-              />
-            </v-chip-group>
+                <v-col cols="auto">
+                  <v-avatar
+                    :image="operator.squad.emblem"
+                    rounded="0"
+                    size="small"
+                  />
+                </v-col>
+              </v-row>
+            </template>
 
-            <!-- Gadgets -->
-            <v-label class="d-block mt-3 text-caption">Gadgets</v-label>
-            <v-chip-group>
-              <v-chip
-                v-for="gadget in operator.loadout.gadgets"
-                :key="gadget.id"
-                label
-                :ripple="false"
-                size="small"
-                :text="gadget.name"
-              />
-            </v-chip-group>
+            <!-- Loadout -->
+            <template v-if="i === 1">
+              <!-- Primary Weapons -->
+              <field-label>Primary Weapons</field-label>
+              <label-row>
+                <v-chip
+                  v-for="p in operator.loadout.primaryWeapons"
+                  :key="p.key"
+                  size="small"
+                  :text="p.name"
+                />
+              </label-row>
+
+              <!-- Secondary Weapons -->
+              <field-label class="mt-3">Secondary Weapons</field-label>
+              <label-row>
+                <v-chip
+                  v-for="s in operator.loadout.secondaryWeapons"
+                  :key="s.key"
+                  size="small"
+                  :text="s.name"
+                />
+              </label-row>
+
+              <!-- Gadgets -->
+              <field-label class="mt-3">Gadgets</field-label>
+              <label-row>
+                <v-chip
+                  v-for="g in operator.loadout.gadgets"
+                  :key="g.key"
+                  size="small"
+                  :text="g.name"
+                />
+              </label-row>
+            </template>
           </v-card-text>
         </v-window-item>
       </v-window>
@@ -175,11 +171,9 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, readonly, ref } from 'vue';
 
 import { Map, Operator } from '@/models';
-
-const TABS = ['Details', 'Loadout'];
 
 // eslint-disable-next-line
 const props = defineProps({
@@ -189,61 +183,68 @@ const props = defineProps({
     validator: (v) => Operator.KEYS.includes(v)
   },
 
-  /** Whether to apply the side color of the operator to the card. */
-  colored: {
-    type: Boolean
+  /** The variant of the card to display. */
+  variant: {
+    default: 'default',
+    type: String,
+    validator: (v) => ['default', 'detailed', 'prominent', 'placeholder'].includes(v)
   },
 
-  /** Whether to show detailed information about the operator. */
-  detailed: {
-    type: Boolean
-  },
-
-  /** Whether to show the portrait of the operator. */
-  portrait: {
-    type: Boolean
-  },
-
-  /**
-   * Whether this is a placeholder card.
-   * 
-   * Placeholder cards consist of a darkened out portrait and a question mark for the name.
-   */
-  placeholder: {
-    type: Boolean
-  }
+  /** An optional player name to display along with the operator name. */
+  playerName: String
 });
 
-/**
- * Which tab of the operator details to show.
- * @type {import('vue').Ref<'detailed' | 'loadout'>}
- */
+/** The tab names on the detailed operator card. */
+const TABS = readonly(['Details', 'Loadout']);
+
+/** Which tab of the operator details to show. */
 const tab = ref(TABS[0]);
 
 /**
- * Fetches the given operator or picks a random one for placeholder cards.
+ * The operator to display on the card.
+ * 
+ * A random operator will be drawn for placeholder cards.
+ * 
  * @type {import('vue').ComputedRef<Operator>}
  */
 const operator = computed(() => {
-  if (props.operatorKey) return Operator[props.operatorKey];
-  return Operator.pickRandom();
+  if (cardVariant.value.placeholder) return Operator.pickRandom();
+  return Operator.valueOf(props.operatorKey);
 });
 
 /**
- * Picks a random map for the card background.
- * @type {import('vue').ComputedRef<Map>}
+ * Maps the card variant into an object for easier access.
+ * @type {import('vue').ComputedRef<{ [variant: String]: Boolean }>}
  */
-const randomMap = computed(() => Map.pickRandom());
+const cardVariant = computed(() => ({ [props.variant]: true }));
+
+/** Builds the properties for the portrait image. */
+const imageProperties = computed(() => {
+  // Return placeholder portrait properties
+  if (cardVariant.value.placeholder) return { src: operator.value.portrait };
+
+  // Return normal portrait properties
+  return {
+    class: 'align-end portrait text-center',
+    src: operator.value.easterEggPortrait,
+    style: { backgroundImage: `url(${Map.pickRandom().thumbnail})` }
+  }
+});
 </script>
 
 <style scoped>
-.placeholder {
-  filter: brightness(10%) grayscale(100%);
-  -webkit-filter: brightness(10%) grayscale(100%);
-}
-
 .portrait {
   background-position: center;
   background-size: cover;
+}
+
+.operator-name {
+  backdrop-filter: brightness(20%);
+  -webkit-backdrop-filter: brightness(20%);
+}
+
+.randomize-icon {
+  backdrop-filter: brightness(30%) grayscale(100%);
+  -webkit-backdrop-filter: brightness(30%) grayscale(100%);
 }
 </style>
