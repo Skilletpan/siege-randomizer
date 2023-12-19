@@ -2,14 +2,14 @@
   <v-card>
     <!-- Prominent Thumbnail -->
     <v-img
-      v-if="variant !== 'default'"
-      :class="{ 'align-end': variant !== 'placeholder' }"
+      v-if="!cardVariant.default"
+      :class="{ 'align-end': !cardVariant.placeholder }"
       cover
       :src="{ src: map.thumbnail, aspect: 16 / 9 }"
     >
       <!-- Name -->
       <v-card-title
-        v-if="variant !== 'placeholder'"
+        v-if="!cardVariant.placeholder"
         class="font-weight-medium map-name text-center text-uppercase"
       >
         {{ map.name }}
@@ -27,7 +27,7 @@
     <!-- Background Thumbnail -->
     <template
       v-slot:image
-      v-if="variant === 'default'"
+      v-if="cardVariant.default"
     >
       <v-img
         cover
@@ -37,14 +37,14 @@
 
     <!-- Name -->
     <v-card-title
-      v-if="variant === 'default'"
+      v-if="cardVariant.default"
       class="map-name"
     >
       {{ map.name }}
     </v-card-title>
 
     <!-- Details -->
-    <template v-if="variant === 'detailed'">
+    <template v-if="cardVariant.detailed">
       <v-divider />
 
       <!-- Playlists -->
@@ -94,6 +94,12 @@ const map = computed(() => {
   if (props.variant === 'placeholder') return Map.pickRandom();
   return Map.valueOf(props.mapKey);
 });
+
+/**
+ * Maps the card variant into an object for easier access.
+ * @type {import('vue').ComputedRef<{ [variant: String]: Boolean }>}
+ */
+const cardVariant = computed(() => ({ [props.variant]: true }));
 </script>
 
 <style scoped>
