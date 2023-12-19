@@ -63,7 +63,7 @@
         v-if="!playlist || playlist.canBanOperators"
         class="mb-1 px-8"
       >
-        <field-label>Banned Operators</field-label>
+        <field-label class="mb-1">Banned Operators</field-label>
         <v-row
           class="align-center justify-space-between"
           no-gutters
@@ -115,10 +115,9 @@
         <v-combobox
           ref="playerInput"
           v-model="playerList"
-          counter="5"
           :hide-details="false"
           hide-selected
-          hint="Press ENTER to add"
+          :hint="playerList.length < 5 ? 'Press ENTER to add' : null"
           :items="recentPlayerList"
           label="Add Players"
           multiple
@@ -155,7 +154,7 @@
         v-if="playerList.length > 0"
         class="mb-1"
       >
-        <field-label class="ml-4">Current Players</field-label>
+        <field-label class="mb-1 ml-4">Current Players</field-label>
         <v-list
           border
           class="py-0"

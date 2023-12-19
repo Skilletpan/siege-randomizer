@@ -1,24 +1,18 @@
 <template>
   <v-container>
     <!-- Picked Map -->
-    <v-row
-      class="justify-center"
-      no-gutters
-    >
+    <v-row class="justify-center">
       <v-col cols="6">
         <map-card
-          :map-key="pickedMap"
+          :map-key="toRaw(pickedMap)?.key"
           :variant="pickedMap ? 'prominent' : 'placeholder'"
-          @click="onMapClick"
+          @click="onCardClick"
         />
       </v-col>
     </v-row>
 
     <!-- Actions -->
-    <v-row
-      class="justify-center mt-4"
-      no-gutters
-    >
+    <v-row class="justify-center">
       <v-col cols="auto">
         <v-btn
           color="primary"
@@ -67,7 +61,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, ref, toRaw } from 'vue';
 
 import { MapCard } from '@/components';
 import { Map } from '@/models';
@@ -98,15 +92,14 @@ const preview = ref({
 const mapPool = computed(() => MatchSettings.playlist?.maps || Map.LIST);
 
 /** Handles clicks on the picked map card. */
-function onMapClick() {
-  if (pickedMap.value) showPreview(pickedMap.value);
+function onCardClick() {
+  if (pickedMap.value) showPreview(toRaw(pickedMap.value).key);
   else pickMap();
 }
 
 /** Picks a random map from the map pool. */
 function pickMap() {
-  const previous = Map.valueOf(pickedMap.value);
-  pickedMap.value = Map.pickRandom(mapPool.value, previous)?.key || null;
+  pickedMap.value = Map.pickRandom(mapPool.value, toRaw(pickedMap.value)) || null;
 }
 
 /**

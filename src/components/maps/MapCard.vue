@@ -49,7 +49,7 @@
 
       <!-- Playlists -->
       <v-card-text class="pa-4 pt-3">
-        <field-label>Playlists</field-label>
+        <field-label class="mb-1">Playlists</field-label>
         <label-row>
           <v-chip
             v-for="playlist in map.playlists"

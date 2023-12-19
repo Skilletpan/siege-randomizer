@@ -73,7 +73,7 @@
             <!-- Details -->
             <template v-if="i === 0">
               <!-- Speed and Health -->
-              <field-label>Speed and Health</field-label>
+              <field-label class="mb-1">Speed and Health</field-label>
               <v-input
                 append-icon="mdi-hospital-box-outline"
                 hide-details
@@ -97,7 +97,7 @@
               </v-input>
 
               <!-- Roles -->
-              <field-label class="mt-3">Roles</field-label>
+              <field-label class="mb-1 mt-3">Roles</field-label>
               <label-row>
                 <v-chip
                   v-for="r in operator.roles"
@@ -114,7 +114,7 @@
                 no-gutters
               >
                 <v-col class="pa-0">
-                  <v-label class="d-block text-caption">Squad</v-label>
+                  <field-label>Squad</field-label>
                   <span class="text-body-2">{{ operator.squad.name }}</span>
                 </v-col>
 
@@ -131,7 +131,7 @@
             <!-- Loadout -->
             <template v-if="i === 1">
               <!-- Primary Weapons -->
-              <field-label>Primary Weapons</field-label>
+              <field-label class="mb-1">Primary Weapons</field-label>
               <label-row>
                 <v-chip
                   v-for="p in operator.loadout.primaryWeapons"
@@ -142,7 +142,7 @@
               </label-row>
 
               <!-- Secondary Weapons -->
-              <field-label class="mt-3">Secondary Weapons</field-label>
+              <field-label class="mb-1 mt-3">Secondary Weapons</field-label>
               <label-row>
                 <v-chip
                   v-for="s in operator.loadout.secondaryWeapons"
@@ -153,7 +153,7 @@
               </label-row>
 
               <!-- Gadgets -->
-              <field-label class="mt-3">Gadgets</field-label>
+              <field-label class="mb-1 mt-3">Gadgets</field-label>
               <label-row>
                 <v-chip
                   v-for="g in operator.loadout.gadgets"

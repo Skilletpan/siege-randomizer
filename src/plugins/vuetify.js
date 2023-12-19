@@ -29,7 +29,7 @@ export default createVuetify({
   },
   defaults: {
     FieldLabel: {
-      class: 'd-block mb-1 text-caption'
+      class: 'd-block text-caption'
     },
     LabelRow: {
       class: 'ma-n1',
