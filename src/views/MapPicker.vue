@@ -1,19 +1,24 @@
 <template>
   <v-container>
-    <v-row class="align-end justify-center">
-      <!-- Map Card -->
+    <!-- Picked Map -->
+    <v-row
+      class="justify-center"
+      no-gutters
+    >
       <v-col cols="6">
         <map-card
-          v-if="pickedMap"
-          big
           :map-key="pickedMap"
-          :placeholder="!pickedMap"
-          v-on="{ click: pickedMap ? () => { showPreview(pickedMap); } : null }"
+          :variant="pickedMap ? 'prominent' : 'placeholder'"
+          @click="onMapClick"
         />
       </v-col>
     </v-row>
 
-    <v-row class="justify-center">
+    <!-- Actions -->
+    <v-row
+      class="justify-center mt-4"
+      no-gutters
+    >
       <v-col cols="auto">
         <v-btn
           color="primary"
@@ -25,46 +30,38 @@
     </v-row>
 
     <!-- Map Pool -->
-    <v-row justify="center">
+    <v-card class="mt-12">
       <!-- Title -->
-      <v-col
-        class="text-center"
-        cols="12"
-        tag="h2"
-      >
-        Map Pool
-      </v-col>
+      <v-toolbar
+        class="pr-4 text-center"
+        color="primary"
+        title="Map Pool"
+      />
 
       <!-- Map Cards -->
-      <v-col
-        v-for="m in mapPool"
-        :key="m.key"
-        cols="3"
-      >
-        <map-card
-          :inactive="mapFilters.disabled.includes(m.key)"
-          :map-key="m.key"
-          @click="showPreview(m.key)"
-        />
-      </v-col>
-    </v-row>
+      <v-card-text class="d-flex flex-wrap no-gutters">
+        <v-col
+          v-for="map in mapPool"
+          :key="map.key"
+          cols="3"
+        >
+          <map-card
+            :map-key="map.key"
+            @click="showPreview(map.key)"
+          />
+        </v-col>
+      </v-card-text>
+    </v-card>
   </v-container>
 
-  <v-navigation-drawer
-    location="right"
-    width="350"
-  >
-    <match-settings />
-  </v-navigation-drawer>
-
+  <!-- Preview Dialog -->
   <v-dialog
     v-model="preview.show"
     width="700"
   >
     <map-card
-      big
-      detailed
       :map-key="preview.mapKey"
+      variant="detailed"
     />
   </v-dialog>
 </template>
@@ -72,36 +69,51 @@
 <script setup>
 import { computed, ref } from 'vue';
 
-import { MapCard, MatchSettings } from '@/components';
-import { Map, Playlist } from '@/models';
+import { MapCard } from '@/components';
+import { Map } from '@/models';
+import { useMatchSettings } from '@/store';
 
-// Define dynamic properties
+// Include settings
+const MatchSettings = useMatchSettings();
+
+/**
+ * The map that was picked by the randomizer.
+ * @type {import('vue').Ref<Map>}
+ */
 const pickedMap = ref(null);
 
-const mapFilters = ref({
-  disabled: [],
-  playlist: null
-});
-
+/**
+ * The data for the preview dialog.
+ * @type {import('vue').Ref<{ mapKey: String, show: Boolean }>}
+ */
 const preview = ref({
   mapKey: null,
   show: false
 });
 
-// Define computed properties
-const mapPool = computed(() => {
-  if (mapFilters.value.playlist) return Playlist.valueOf(mapFilters.value.playlist).maps;
-  return Map.LIST;
-});
-
 /**
- * Picks a random map from the map pool.
+ * The map pool to display and pick from.
+ * @type {import('vue').ComputedRef<Map[]>}
  */
+const mapPool = computed(() => MatchSettings.playlist?.maps || Map.LIST);
+
+/** Handles clicks on the picked map card. */
+function onMapClick() {
+  if (pickedMap.value) showPreview(pickedMap.value);
+  else pickMap();
+}
+
+/** Picks a random map from the map pool. */
 function pickMap() {
-  const previous = pickedMap.value ? Map.valueOf(pickedMap.value) : null;
+  const previous = Map.valueOf(pickedMap.value);
   pickedMap.value = Map.pickRandom(mapPool.value, previous)?.key || null;
 }
 
+/**
+ * Shows a preview dialog for the provided map.
+ * 
+ * @prop {string} mapKey The key of the map to preview.
+ */
 function showPreview(mapKey) {
   preview.value.mapKey = mapKey;
   preview.value.show = true;
