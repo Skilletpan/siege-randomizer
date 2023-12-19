@@ -1,10 +1,13 @@
 <template>
-  <v-card variant="elevated">
+  <v-card>
     <v-toolbar
       :color="displaySide.color"
       extension-height="64"
     >
-      <v-toolbar-title class="mr-4 text-center">{{ props.title }}</v-toolbar-title>
+      <!-- Title -->
+      <v-toolbar-title class="mr-4 text-center">{{ title }}</v-toolbar-title>
+
+      <!-- Tabs -->
       <template v-slot:extension>
         <v-tabs
           v-model="displaySideKey"
@@ -27,11 +30,13 @@
       </template>
     </v-toolbar>
 
+    <!-- Items -->
     <slot
       :items="displayItems"
       :side="displaySideKey"
     >
-      {{ Side.valueOf(displaySideKey).name }}
+      <!-- Display Side name as fallback -->
+      {{ displaySide.name }}
     </slot>
   </v-card>
 </template>
@@ -55,21 +60,35 @@ const props = defineProps({
     type: Array
   },
 
-  /** Whether distinct sides should only show items of this side. */
-  distinct: {
-    type: Boolean
-  }
+  /** The key of the side to display by default. */
+  defaultSide: {
+    default: Side.ALL.key,
+    type: String,
+    validator: (v) => Side.KEYS.includes(v)
+  },
+
+  /** Whether items with side `ALL` should be displayed on `ATT` or `DEF` tabs. */
+  strict: Boolean
 });
 
-/** @type {import('vue').Ref<string>} */
-const displaySideKey = ref(Side.ALL.key);
+/**
+ * The key of the side to display.
+ * @type {import('vue').Ref<String>}
+ */
+const displaySideKey = ref(props.defaultSide);
 
-/** @type {import('vue').ComputedRef<Side>} */
+/**
+ * The side to display.
+ * @type {import('vue').ComputedRef<Side>}
+ */
 const displaySide = computed(() => Side.valueOf(displaySideKey.value));
 
-/** @type {import('vue').ComputedRef<import('@/models').Model[]>} */
+/**
+ * The items to display for the current `displaySide`.
+ * @type {import('vue').ComputedRef<import('@/models').Model[]>}
+ */
 const displayItems = computed(() => props.items.filter((i) => {
-  if (props.distinct) return displaySide.value.includes(i.side);
+  if (props.strict) return displaySide.value.includes(i.side);
   return displaySide.value.overlaps(i.side);
 }));
 </script>
