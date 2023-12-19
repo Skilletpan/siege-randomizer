@@ -63,7 +63,7 @@
         v-if="!playlist || playlist.canBanOperators"
         class="mb-1 px-8"
       >
-        <v-label class="d-block mb-1 text-caption">Banned Operators</v-label>
+        <field-label>Banned Operators</field-label>
         <v-row
           class="align-center justify-space-between"
           no-gutters
@@ -155,7 +155,7 @@
         v-if="playerList.length > 0"
         class="mb-1"
       >
-        <v-label class="d-block mb-1 ml-4 text-caption">Current Players</v-label>
+        <field-label class="ml-4">Current Players</field-label>
         <v-list
           border
           class="py-0"
