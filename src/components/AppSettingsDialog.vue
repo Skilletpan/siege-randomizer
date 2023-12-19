@@ -43,11 +43,11 @@
 import { readonly } from 'vue';
 import { useTheme } from 'vuetify';
 
-import { useAppSettings, usePlayerSettings } from '@/store';
+import { useAppSettings, useMatchSettings } from '@/store';
 
 // Include settings
 const AppSettings = useAppSettings();
-const PlayerSettings = usePlayerSettings();
+const MatchSettings = useMatchSettings();
 
 // Set app theme
 const vuetifyTheme = useTheme().global.name;
@@ -60,7 +60,10 @@ AppSettings.$subscribe((_, state) => {
   vuetifyTheme.value = state.theme;
 
   // Remove recent players if `storeRecentPlayers` is disabled
-  if (!state.storeRecentPlayers) PlayerSettings.recentPlayers.length = 0;
+  if (!state.storeRecentPlayers) {
+    MatchSettings.recentPlayerList.length = 0;
+    localStorage.removeItem('recent-players');
+  }
 });
 
 /** The list of available themes. */
