@@ -7,7 +7,7 @@
 
       <template v-slot:append>
         <v-btn
-          icon="mdi-stadium-variant"
+          icon="mdi-web"
           @click="AppSettings.showMatchDrawer = !AppSettings.showMatchDrawer"
         />
       </template>
