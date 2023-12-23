@@ -186,7 +186,7 @@ export default defineStore('match-settings', () => {
     sessionStorage.setItem('match-settings', matchSettings);
 
     // Store recent players in local storage
-    if (storeRecentPlayers) localStorage.setItem('recent-players', JSON.stringify(recentPlayerList.value));
+    if (storeRecentPlayers) localStorage.setItem('recent-players', JSON.stringify(settings.value.recentPlayerList));
   }
 
   /** Resets the store to its empty state. */
