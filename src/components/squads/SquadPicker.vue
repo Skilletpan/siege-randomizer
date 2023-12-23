@@ -33,14 +33,14 @@
     <template v-slot:item="{ item, props }">
       <v-list-item
         v-bind="props"
-        :prepend-avatar="Squad.valueOf(item.value).emblem"
+        :prepend-avatar="toRaw(item.raw).emblem"
       />
     </template>
   </v-select>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { ref, toRaw } from 'vue';
 
 import { Squad } from '@/models';
 

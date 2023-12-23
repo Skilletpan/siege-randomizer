@@ -16,22 +16,23 @@
       />
     </template>
 
+    <!-- Playlist Items -->
     <template
-      v-slot:item="{ index: i, props: p }"
+      v-slot:item="{ item, index, props: p }"
       v-if="!props.classicOnly && !props.arcadeOnly"
     >
       <!-- Classic Playlist Subheader -->
-      <v-list-subheader v-if="i === 0">Classic Playlists</v-list-subheader>
+      <v-list-subheader v-if="index === 0">Classic Playlists</v-list-subheader>
 
       <!-- Arcade Playlist Subheader -->
-      <template v-if="!items[i - 1]?.isArcade && items[i].isArcade">
-        <v-divider class="my-2" />
+      <template v-if="toRaw(item.raw).isArcade && !items[index - 1]?.isArcade">
+        <v-divider class="mb-1" />
         <v-list-subheader>Arcade Playlists</v-list-subheader>
       </template>
 
       <!-- Practice Playlist Subheader -->
-      <template v-if="!items[i - 1]?.isPractice && items[i].isPractice">
-        <v-divider class="my-2" />
+      <template v-if="toRaw(item.raw).isPractice && !items[index - 1]?.isPractice">
+        <v-divider class="mb-1" />
         <v-list-subheader>Practice Playlists</v-list-subheader>
       </template>
 
@@ -42,7 +43,7 @@
 </template>
 
 <script setup>
-import { computed } from 'vue';
+import { computed, toRaw } from 'vue';
 
 import { Playlist } from '@/models';
 

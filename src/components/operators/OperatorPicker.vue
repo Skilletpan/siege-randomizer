@@ -22,13 +22,15 @@
     <template v-slot:item="{ item, props }">
       <v-list-item
         v-bind="props"
-        :append-icon="Operator.valueOf(item.value).side.icon"
-        :prepend-avatar="Operator.valueOf(item.value).emblem"
+        :append-icon="toRaw(item.raw).side.icon"
+        :prepend-avatar="toRaw(item.raw).emblem"
       />
     </template>
   </v-autocomplete>
 </template>
 
 <script setup>
+import { toRaw } from 'vue';
+
 import { Operator } from '@/models';
 </script>
