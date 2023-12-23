@@ -35,7 +35,7 @@
       <!-- Map Cards -->
       <v-card-text class="d-flex flex-wrap no-gutters">
         <v-col
-          v-for="map in mapPool"
+          v-for="map in pickableMaps"
           :key="map.key"
           cols="3"
         >
@@ -61,14 +61,15 @@
 </template>
 
 <script setup>
-import { computed, ref, toRaw } from 'vue';
+import { storeToRefs } from 'pinia';
+import { ref, toRaw } from 'vue';
 
 import { MapCard } from '@/components';
 import { Map } from '@/models';
 import { useMatchSettings } from '@/store';
 
-// Include settings
-const MatchSettings = useMatchSettings();
+// Extract refs from MatchSettings
+const { pickableMaps } = storeToRefs(useMatchSettings());
 
 /**
  * The map that was picked by the randomizer.
@@ -85,12 +86,6 @@ const preview = ref({
   show: false
 });
 
-/**
- * The map pool to display and pick from.
- * @type {import('vue').ComputedRef<Map[]>}
- */
-const mapPool = computed(() => MatchSettings.playlist?.maps || Map.LIST);
-
 /** Handles clicks on the picked map card. */
 function onCardClick() {
   if (pickedMap.value) showPreview(toRaw(pickedMap.value).key);
@@ -99,7 +94,7 @@ function onCardClick() {
 
 /** Picks a random map from the map pool. */
 function pickMap() {
-  pickedMap.value = Map.pickRandom(mapPool.value, toRaw(pickedMap.value)) || null;
+  pickedMap.value = Map.pickRandom(pickableMaps.value, toRaw(pickedMap.value)) || null;
 }
 
 /**
