@@ -3,8 +3,7 @@ import { createRouter, createWebHashHistory } from 'vue-router';
 import {
   MapPicker,
   OperatorPicker,
-  StratPicker,
-  UnderConstruction
+  StratPicker
 } from '@/views';
 
 const routes = [
@@ -26,11 +25,6 @@ const routes = [
     path: '/strats',
     name: 'strat-picker',
     component: StratPicker
-  },
-  {
-    path: '/teams',
-    name: 'team-picker',
-    component: UnderConstruction
   }
 ];
 

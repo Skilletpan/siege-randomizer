@@ -7,8 +7,6 @@ import '@mdi/font/css/materialdesignicons.css';
 const defaultInputProps = {
   clearable: true,
   density: 'comfortable',
-  itemTitle: 'name',
-  itemValue: 'key',
   hideDetails: true,
   persistentPlaceholder: true,
   variant: 'solo-filled'
