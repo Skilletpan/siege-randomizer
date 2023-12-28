@@ -5,10 +5,10 @@
       extension-height="64"
     >
       <!-- Title -->
-      <v-toolbar-title class="mr-4 text-center">{{ title }}</v-toolbar-title>
+      <v-toolbar-title class="font-weight-bold mr-4 text-center text-h5">{{ title }}</v-toolbar-title>
 
       <!-- Tabs -->
-      <template v-slot:extension>
+      <template #extension>
         <v-tabs
           v-model="displaySideKey"
           class="w-100"
@@ -42,7 +42,7 @@
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed, shallowRef } from 'vue';
 
 import { Side } from '@/models';
 
@@ -57,7 +57,8 @@ const props = defineProps({
   /** The items in the side pool. */
   items: {
     required: true,
-    type: Array
+    type: Array,
+    validator: (v) => v.every((_v) => !!_v.side)
   },
 
   /** The key of the side to display by default. */
@@ -75,7 +76,7 @@ const props = defineProps({
  * The key of the side to display.
  * @type {import('vue').Ref<String>}
  */
-const displaySideKey = ref(props.defaultSide);
+const displaySideKey = shallowRef(props.defaultSide);
 
 /**
  * The side to display.
