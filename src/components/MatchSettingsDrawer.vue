@@ -1,6 +1,5 @@
 <template>
   <v-navigation-drawer
-    v-model="AppSettings.showMatchDrawer"
     location="right"
     width="350"
   >
@@ -32,14 +31,14 @@
           v-bind="!operatorBansEnabled ? { modelValue: [] } : {}"
         >
           <!-- Selection Text -->
-          <template v-slot:selection="{ index }">
+          <template #selection="{ index }">
             <template v-if="index === 0">{{ operatorBans.MANUAL.length }}/4 Operators</template>
           </template>
 
           <!-- Random Bans Button -->
           <template
-            v-slot:append-inner
             v-if="operatorBansEnabled"
+            #append-inner
           >
             <v-btn
               density="comfortable"
@@ -50,11 +49,11 @@
           </template>
 
           <!-- Operator Item -->
-          <template v-slot:item="{ item, props }">
+          <template #item="{ item, props }">
             <v-list-item
+              v-show="operatorBansBySide[toRaw(item.raw).side.key].length < 2"
               v-bind="props"
               :append-icon="toRaw(item.raw).side.icon"
-              :disabled="operatorBansBySide[toRaw(item.raw).side.key].length >= 2"
               :prepend-avatar="toRaw(item.raw).emblem"
             />
           </template>
@@ -77,7 +76,7 @@
             :key="i"
           >
             <v-hover>
-              <template v-slot="{ isHovering, props }">
+              <template #default="{ isHovering, props }">
                 <operator-emblem
                   v-bind="props"
                   class="clickable-avatar"
@@ -124,20 +123,20 @@
           persistent-counter
           :readonly="playerList.length >= 5"
           @update:focused="$refs.playerInput.search = ''"
-          @update:model-value="addRecentPlayer($refs.playerInput.search, AppSettings.storeRecentPlayers)"
+          @update:model-value="addRecentPlayer($refs.playerInput.search, storeRecentPlayers)"
         >
           <!-- Selection -->
-          <template v-slot:selection="{ index }">
+          <template #selection="{ index }">
             <template v-if="index === 0">{{ playerList.length }}/5 Players</template>
           </template>
 
           <!-- Recent Player Item -->
-          <template v-slot:item="{ item, props }">
+          <template #item="{ item, props }">
             <v-list-item
               v-bind="props"
               prepend-icon="mdi-history"
             >
-              <template v-slot:append>
+              <template #append>
                 <v-btn
                   density="comfortable"
                   icon="mdi-delete"
@@ -161,10 +160,10 @@
             rounded
           >
             <!-- Player Item -->
-            <template v-slot:item="{ props }">
+            <template #item="{ props }">
               <v-list-item v-bind="props">
                 <!-- Remove Button -->
-                <template v-slot:append>
+                <template #append>
                   <v-btn
                     density="comfortable"
                     icon="mdi-close"
@@ -190,13 +189,10 @@ import { Operator, Side } from '@/models';
 import { useAppSettings, useMatchSettings } from '@/store';
 
 // Include settings
-const AppSettings = useAppSettings();
 const MatchSettings = useMatchSettings();
 
-// Update match settings in browser storage on change
-MatchSettings.$subscribe(() => { MatchSettings.storeSettings(AppSettings.storeRecentPlayers); });
-
-// Extract refs from MatchSettings
+// Extract refs from settings
+const { storeRecentPlayers } = storeToRefs(useAppSettings());
 const {
   settings,
 
@@ -207,9 +203,10 @@ const {
   playerList,
   recentPlayerList
 } = storeToRefs(MatchSettings);
+const { removeOperatorBan, addRecentPlayer, removePlayer, removeRecentPlayer, storeSettings } = MatchSettings;
 
-// Extract methods from MatchSettings
-const { removeOperatorBan, addRecentPlayer, removePlayer, removeRecentPlayer } = MatchSettings;
+// Update match settings in browser storage on change
+MatchSettings.$subscribe(() => { storeSettings(storeRecentPlayers.value); });
 
 /**
  * Splits the manually banned operators by side.
@@ -222,6 +219,25 @@ const operatorBansBySide = computed(() => operatorBans.value.MANUAL.reduce(
   },
   { [Side.ATT.key]: [], [Side.DEF.key]: [] }
 ));
+
+/**
+ * Transforms raw operators to list props.
+ * 
+ * @param {Operator} operator The operator item to transform.
+ * 
+ * @todo Check when Vuetify fixed their `prependAvatar` bug.
+ * @see https://github.com/vuetifyjs/vuetify/issues/18933
+ */
+// eslint-disable-next-line
+function transformOperatorProps(operator) {
+  return {
+    title: operator.name,
+    value: operator.key,
+    'v-show': operatorBansBySide.value[operator.side.key].length < 2,
+    prependAvatar: operator.emblem,
+    appendIcon: operator.side.icon
+  }
+}
 
 /** Replaces all banned operators with random operators. */
 function banRandomOperators() {

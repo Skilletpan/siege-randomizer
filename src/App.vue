@@ -5,10 +5,10 @@
       <v-app-bar-nav-icon @click="expandNavigation = !expandNavigation" />
       <v-app-bar-title>Siege Randomizer</v-app-bar-title>
 
-      <template v-slot:append>
+      <template #append>
         <v-btn
           icon="mdi-web"
-          @click="AppSettings.showMatchDrawer = !AppSettings.showMatchDrawer"
+          @click="showMatchDrawer = !showMatchDrawer"
         />
       </template>
     </v-app-bar>
@@ -22,24 +22,24 @@
     </v-main>
 
     <!-- Match Settings Drawer -->
-    <match-settings-drawer />
-
-    <!-- App Settings -->
-    <app-settings-dialog />
+    <match-settings-drawer v-model="showMatchDrawer" />
   </v-app>
 </template>
 
 <script setup>
 import { ref } from 'vue';
 
-import { AppSettingsDialog, MatchSettingsDrawer, NavigationDrawer } from '@/components';
-import { useAppSettings } from './store';
-
-const AppSettings = useAppSettings();
+import { MatchSettingsDrawer, NavigationDrawer } from '@/components';
 
 /**
  * Whether the navigation drawer should be expanded.
  * @type {import('vue').Ref<Boolean>}
  */
 const expandNavigation = ref(true);
+
+/**
+ * Whether to show the match drawer.
+ * @type {import('vue').Ref<Boolean>}
+ */
+const showMatchDrawer = ref(false);
 </script>

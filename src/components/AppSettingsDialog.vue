@@ -1,12 +1,11 @@
 <template>
   <v-dialog
     v-bind="$attrs"
-    v-model="AppSettings.showSettings"
     width="700"
   >
     <v-card>
       <v-card-item class="px-6 py-4">
-        <template v-slot:prepend>
+        <template #prepend>
           <v-icon icon="mdi-cog" />
         </template>
         <v-card-title>App Settings</v-card-title>
@@ -19,18 +18,31 @@
           <!-- Theme Picker -->
           <v-col cols="6">
             <v-select
-              v-model="AppSettings.theme"
+              v-model="theme"
+              :clearable="false"
               :items="THEMES"
               label="Theme"
               prepend-icon="mdi-palette"
             />
           </v-col>
 
+          <!-- Recent Players Toggle -->
           <v-col cols="6">
             <v-switch
-              v-model="AppSettings.storeRecentPlayers"
+              v-model="storeRecentPlayers"
+              hide-details
               label="Store recent players"
               prepend-icon="mdi-history"
+            />
+          </v-col>
+
+          <!-- Animated Placeholder Cards Toggle -->
+          <v-col cols="6">
+            <v-switch
+              v-model="animatePlaceholderCards"
+              label="Animate placeholder cards"
+              messages="Requires reloading the page to take effect"
+              prepend-icon="mdi-animation-outline"
             />
           </v-col>
         </v-row>
@@ -40,36 +52,43 @@
 </template>
 
 <script setup>
-import { readonly } from 'vue';
+import { storeToRefs } from 'pinia';
+import { shallowReadonly, watchEffect } from 'vue';
 import { useTheme } from 'vuetify';
 
 import { useAppSettings, useMatchSettings } from '@/store';
 
 // Include settings
 const AppSettings = useAppSettings();
-const MatchSettings = useMatchSettings();
 
-// Set app theme
-const vuetifyTheme = useTheme().global.name;
-vuetifyTheme.value = AppSettings.theme;
+// Extract refs from settings
+const { animatePlaceholderCards, storeRecentPlayers, theme } = storeToRefs(AppSettings);
+const { storeSettings } = AppSettings;
+const { recentPlayerList } = storeToRefs(useMatchSettings());
+const { name: vuetifyTheme } = useTheme().global;
 
 // Update app settings in local storage
 AppSettings.$subscribe((_, state) => {
   // Update app settings
-  AppSettings.storeSettings();
-  vuetifyTheme.value = state.theme;
+  storeSettings();
 
   // Remove recent players if `storeRecentPlayers` is disabled
   if (!state.storeRecentPlayers) {
-    MatchSettings.recentPlayerList.length = 0;
+    recentPlayerList.value.length = 0;
     localStorage.removeItem('recent-players');
   }
 });
 
-/** The list of available themes. */
-const THEMES = readonly([
+/**
+ * The list of available themes.
+ * @type {import('vue').ShallowReadonly<{ name: string, key: string }[]>}
+ */
+const THEMES = shallowReadonly([
   { name: 'Default', key: 'default' },
   { name: 'Dark', key: 'dark' },
   { name: 'Light', key: 'light' }
 ]);
+
+// Update theme
+watchEffect(() => { vuetifyTheme.value = theme.value; });
 </script>

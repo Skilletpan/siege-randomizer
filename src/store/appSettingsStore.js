@@ -6,18 +6,6 @@ const storedData = JSON.parse(localStorage.getItem('app-settings'));
 
 export default defineStore('app-settings', () => {
   /**
-   * Whether to show the app settings dialog.
-   * @type {import('vue').Ref<Boolean>}
-   */
-  const showSettings = ref(false);
-
-  /**
-   * Whether to show the match settings drawer.
-   * @type {import('vue').Ref<Boolean>}
-   */
-  const showMatchDrawer = ref(true);
-
-  /**
    * The theme to use.
    * @type {import('vue').Ref<String>}
    */
@@ -29,16 +17,23 @@ export default defineStore('app-settings', () => {
    */
   const storeRecentPlayers = ref(storedData ? Boolean(storedData.storeRecent) : true);
 
+  /**
+   * Whether to animate placeholder card backgrounds.
+   * @type {import('vue').Ref<Boolean>}
+   */
+  const animatePlaceholderCards = ref(storedData ? Boolean(storedData.animatePlaceholders) : true);
+
   /** Stores the current settings in the browser store. */
   function storeSettings() {
     localStorage.setItem(
       'app-settings',
       JSON.stringify({
         theme: theme.value,
-        storeRecent: storeRecentPlayers.value
+        storeRecent: storeRecentPlayers.value,
+        animatePlaceholders: animatePlaceholderCards.value
       })
     );
   }
 
-  return { showSettings, showMatchDrawer, theme, storeRecentPlayers, storeSettings };
+  return { theme, storeRecentPlayers, animatePlaceholderCards, storeSettings };
 });
