@@ -9,7 +9,7 @@
     <!-- Slot Passthrough -->
     <template
       v-for="(_, name) in $slots"
-      v-slot:[name]="slotData"
+      #[name]="slotData"
     >
       <slot
         :name="name"
@@ -19,8 +19,8 @@
 
     <!-- Squad Emblem -->
     <template
-      v-slot:prepend-inner
-      v-if="pickedSquad"
+      v-if="pickedSquad && !$attrs.multiple"
+      #prepend-inner
     >
       <v-avatar
         :image="Squad.valueOf(pickedSquad).emblem"
@@ -30,7 +30,7 @@
     </template>
 
     <!-- Squad Item -->
-    <template v-slot:item="{ item, props }">
+    <template #item="{ item, props }">
       <v-list-item
         v-bind="props"
         :prepend-avatar="toRaw(item.raw).emblem"
@@ -40,9 +40,28 @@
 </template>
 
 <script setup>
-import { ref, toRaw } from 'vue';
+import { shallowRef, toRaw } from 'vue';
 
 import { Squad } from '@/models';
 
-const pickedSquad = ref(null);
+/**
+ * The key of the currently picked squad.
+ * @type {import('vue').ShallowRef<String>}
+ */
+const pickedSquad = shallowRef(null);
+
+/**
+ * Transforms raw squads to list props.
+ * 
+ * @param {Squad} squad The squad item to transform.
+ * 
+ * @todo Check when Vuetify fixed their `prependAvatar` bug.
+ * @see https://github.com/vuetifyjs/vuetify/issues/18933
+ */
+// eslint-disable-next-line
+function transformProps(squad) {
+  return {
+    prependAvatar: squad.emblem
+  }
+}
 </script>
