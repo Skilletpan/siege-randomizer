@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { computed, ref } from 'vue';
 
-import { Map, Operator, Playlist } from '@/models';
+import { Operator, Playlist, SiegeMap } from '@/models';
 
 // Load data from sessionStorage
 const storedLocalData = JSON.parse(localStorage.getItem('recent-players'));
@@ -44,15 +44,15 @@ export default defineStore('match-settings', () => {
 
   /**
    * The map selected in the match settings.
-   * @type {import('vue').ComputedRef<Map>}
+   * @type {import('vue').ComputedRef<SiegeMap>}
    */
-  const map = computed(() => Map.valueOf(settings.value.map));
+  const map = computed(() => SiegeMap.valueOf(settings.value.map));
 
   /**
    * The maps available to pick in the match settings.
-   * @type {import('vue').ComputedRef<Map[]>}
+   * @type {import('vue').ComputedRef<SiegeMap[]>}
    */
-  const pickableMaps = computed(() => playlist.value?.maps || Map.LIST);
+  const pickableMaps = computed(() => playlist.value?.maps || SiegeMap.LIST);
   // #endregion
 
   // #region Operator Bans

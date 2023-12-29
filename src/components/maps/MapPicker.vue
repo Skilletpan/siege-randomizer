@@ -2,13 +2,13 @@
   <!-- Map Picker -->
   <v-select
     v-bind="$attrs"
-    :items="Map.LIST"
+    :items="SiegeMap.LIST"
     label="Map"
   >
     <!-- Slot Passthrough -->
     <template
       v-for="(_, name) in $slots"
-      v-slot:[name]="slotData"
+      #[name]="slotData"
     >
       <slot
         :name="name"
@@ -19,5 +19,5 @@
 </template>
 
 <script setup>
-import { Map } from '@/models';
+import { SiegeMap } from '@/models';
 </script>

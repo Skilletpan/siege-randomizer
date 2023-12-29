@@ -40,7 +40,7 @@
 
     <v-card-item v-if="cardVariant.default">
       <!-- Emblem -->
-      <template v-slot:prepend>
+      <template #prepend>
         <operator-emblem :image="operator.emblem" />
       </template>
 
@@ -171,14 +171,15 @@
 </template>
 
 <script setup>
-import { computed, readonly, ref } from 'vue';
+import { computed, shallowReadonly, shallowRef } from 'vue';
 
-import { Map, Operator } from '@/models';
+import { Operator, SiegeMap } from '@/models';
 
 // eslint-disable-next-line
 const props = defineProps({
   /** The ID of the operator to show in the card. */
   operatorKey: {
+    default: null,
     type: String,
     validator: (v) => Operator.KEYS.includes(v)
   },
@@ -191,14 +192,17 @@ const props = defineProps({
   },
 
   /** An optional player name to display along with the operator name. */
-  playerName: String
+  playerName: {
+    default: null,
+    type: String
+  }
 });
 
 /** The tab names on the detailed operator card. */
-const TABS = readonly(['Details', 'Loadout']);
+const TABS = shallowReadonly(['Details', 'Loadout']);
 
 /** Which tab of the operator details to show. */
-const tab = ref(TABS[0]);
+const tab = shallowRef(TABS[0]);
 
 /**
  * The operator to display on the card.
@@ -227,7 +231,7 @@ const imageProperties = computed(() => {
   return {
     class: 'align-end portrait text-center',
     src: operator.value.easterEggPortrait,
-    style: { backgroundImage: `url(${Map.pickRandom().thumbnail})` }
+    style: { backgroundImage: `url(${SiegeMap.pickRandom().thumbnail})` }
   }
 });
 </script>

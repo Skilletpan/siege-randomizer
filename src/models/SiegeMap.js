@@ -1,7 +1,7 @@
 import { MapModel } from './Model';
 import Playlist from './Playlist';
 
-export default class Map extends MapModel {
+export default class SiegeMap extends MapModel {
   // Static properties
   static {
     const rawMaps = require('@/data/maps.json');
@@ -12,21 +12,21 @@ export default class Map extends MapModel {
       if (map.disabled) return;
 
       // Create map instance
-      new Map({ key, ...map });
+      new SiegeMap({ key, ...map });
     });
 
-    console.debug('Maps imported:', Map.LIST);
+    console.debug('Maps imported:', SiegeMap.LIST);
   }
 
-  /** @returns {Map[]} A list of all maps. */
+  /** @returns {SiegeMap[]} A list of all maps. */
   static get LIST() { return super.LIST; }
 
   /**
    * Parses an input to a Map instance.
    * 
-   * @param {Map | string} map The input to parse.
+   * @param {SiegeMap | string} map The input to parse.
    * 
-   * @returns {Map} The map derived from the input.
+   * @returns {SiegeMap} The map derived from the input.
    */
   static valueOf(map) { return super.valueOf(map); }
 
@@ -42,7 +42,7 @@ export default class Map extends MapModel {
    * @param {string} rawMap.name The name of the map.
    */
   constructor(rawMap) {
-    super(rawMap.key, Map);
+    super(rawMap.key, SiegeMap);
 
     // Set instance properties
     this.#name = rawMap.name;

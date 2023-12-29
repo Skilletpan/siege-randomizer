@@ -4,7 +4,7 @@
     <v-row class="justify-center">
       <v-col cols="6">
         <map-card
-          :map-key="toRaw(pickedMap)?.key"
+          :map="pickedMap"
           :variant="pickedMap ? 'prominent' : 'placeholder'"
           @click="onCardClick"
         />
@@ -40,8 +40,8 @@
           cols="3"
         >
           <map-card
-            :map-key="map.key"
-            @click="showPreview(map.key)"
+            :map="map"
+            @click="showPreview(map)"
           />
         </v-col>
       </v-card-text>
@@ -54,7 +54,7 @@
     width="700"
   >
     <map-card
-      :map-key="preview.mapKey"
+      :map="preview.mapKey"
       variant="detailed"
     />
   </v-dialog>
@@ -62,10 +62,10 @@
 
 <script setup>
 import { storeToRefs } from 'pinia';
-import { ref, toRaw } from 'vue';
+import { ref, shallowRef, toRaw } from 'vue';
 
 import { MapCard } from '@/components';
-import { Map } from '@/models';
+import { SiegeMap } from '@/models';
 import { useMatchSettings } from '@/store';
 
 // Extract refs from MatchSettings
@@ -73,9 +73,9 @@ const { pickableMaps } = storeToRefs(useMatchSettings());
 
 /**
  * The map that was picked by the randomizer.
- * @type {import('vue').Ref<Map>}
+ * @type {import('vue').ShallowRef<SiegeMap>}
  */
-const pickedMap = ref(null);
+const pickedMap = shallowRef(null);
 
 /**
  * The data for the preview dialog.
@@ -88,21 +88,23 @@ const preview = ref({
 
 /** Handles clicks on the picked map card. */
 function onCardClick() {
-  if (pickedMap.value) showPreview(toRaw(pickedMap.value).key);
+  if (pickedMap.value) showPreview(toRaw(pickedMap.value));
   else pickMap();
 }
 
 /** Picks a random map from the map pool. */
 function pickMap() {
-  pickedMap.value = Map.pickRandom(pickableMaps.value, toRaw(pickedMap.value)) || null;
+  pickedMap.value = SiegeMap.pickRandom(pickableMaps.value, toRaw(pickedMap.value)) || null;
 }
 
 /**
  * Shows a preview dialog for the provided map.
  * 
- * @prop {string} mapKey The key of the map to preview.
+ * @param {Map|string} map The key of the map to preview.
  */
-function showPreview(mapKey) {
+function showPreview(map) {
+  const mapKey = typeof map === 'string' ? map : map.key;
+
   preview.value.mapKey = mapKey;
   preview.value.show = true;
 }

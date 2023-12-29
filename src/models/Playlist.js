@@ -1,6 +1,6 @@
-import Map from './Map';
 import { MapModel } from './Model';
 import Operator from './Operator';
+import SiegeMap from './SiegeMap';
 
 export default class Playlist extends MapModel {
   // Static properties
@@ -76,8 +76,8 @@ export default class Playlist extends MapModel {
   /** @returns {string} The name of the playlist. */
   get name() { return this.#name; }
 
-  /** @returns {Map[]} The maps included in the playlist. */
-  get maps() { return Map.LIST.filter((map) => this.#maps.includes(map.key)); }
+  /** @returns {SiegeMap[]} The maps included in the playlist. */
+  get maps() { return SiegeMap.LIST.filter((map) => this.#maps.includes(map.key)); }
 
   /** @returns {boolean} Whether this playlist is a standard playlist. */
   get isStandard() { return !this.#isArcade && !this.#isPractice; }
