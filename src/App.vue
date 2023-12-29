@@ -43,3 +43,13 @@ const expandNavigation = ref(true);
  */
 const showMatchDrawer = ref(false);
 </script>
+
+<style>
+.randomize-icon {
+  position: absolute;
+  top: 0;
+
+  backdrop-filter: brightness(30%) grayscale(100%);
+  -webkit-backdrop-filter: brightness(30%) grayscale(100%);
+}
+</style>

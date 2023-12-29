@@ -22,7 +22,7 @@
 
     <!-- Prominent and Placeholder Thumbnail -->
     <v-fade-transition
-      v-if="cardVariant.placeholder"
+      v-else-if="cardVariant.placeholder"
       disabled
       group
       leave-absolute
@@ -162,13 +162,5 @@ onBeforeUnmount(() => { clearInterval(randomMap.value.timerId); });
 .map-name {
   backdrop-filter: brightness(60%);
   -webkit-backdrop-filter: brightness(60%);
-}
-
-.randomize-icon {
-  position: absolute;
-  top: 0;
-
-  backdrop-filter: brightness(30%) grayscale(100%);
-  -webkit-backdrop-filter: brightness(30%) grayscale(100%);
 }
 </style>
