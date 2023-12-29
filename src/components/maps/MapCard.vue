@@ -20,17 +20,17 @@
       :src="displayMap.thumbnail"
     />
 
-    <!-- Prominent and Placeholder Thumbnail -->
+    <!-- Placeholder Thumbnail Loop -->
     <v-fade-transition
       v-else-if="cardVariant.placeholder"
       disabled
       group
       leave-absolute
     >
-      <!-- Placeholder Thumbnail -->
+      <!-- Thumbnail -->
       <v-img
         v-for="m, i in SiegeMap.LIST"
-        v-show="cardVariant.placeholder && randomMap.index === i"
+        v-show="randomMap.index === i"
         :key="m.key"
         :aspect-ratio="16 / 9"
         cover
@@ -39,7 +39,6 @@
 
       <!-- Randomize Icon -->
       <v-icon
-        v-if="cardVariant.placeholder"
         class="h-100 randomize-icon w-100"
         icon="mdi-dice-multiple-outline"
         size="70"
