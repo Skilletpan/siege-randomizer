@@ -15,27 +15,28 @@
     <v-img
       v-if="cardVariant.prominent || cardVariant.detailed"
       :aspect-ratio="16 / 9"
-      class="align-end mb-n12"
+      class="mb-n12"
       cover
       :src="displayMap.thumbnail"
     />
 
     <!-- Placeholder Thumbnail Loop -->
-    <v-fade-transition
-      v-else-if="cardVariant.placeholder"
-      disabled
-      group
-      leave-absolute
-    >
-      <!-- Thumbnail -->
-      <v-img
-        v-for="m, i in SiegeMap.LIST"
-        v-show="randomMap.index === i"
-        :key="m.key"
-        :aspect-ratio="16 / 9"
-        cover
-        :src="m.thumbnail"
-      />
+    <template v-else-if="cardVariant.placeholder">
+      <v-fade-transition
+        disabled
+        group
+        leave-absolute
+      >
+        <!-- Thumbnail -->
+        <v-img
+          v-for="m in SiegeMap.LIST"
+          v-show="toRaw(placholderMap) === m"
+          :key="m.key"
+          :aspect-ratio="16 / 9"
+          cover
+          :src="m.thumbnail"
+        />
+      </v-fade-transition>
 
       <!-- Randomize Icon -->
       <v-icon
@@ -43,7 +44,7 @@
         icon="mdi-dice-multiple-outline"
         size="70"
       />
-    </v-fade-transition>
+    </template>
 
     <!-- Name -->
     <v-card-title
@@ -74,14 +75,10 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia';
-import { computed, onBeforeUnmount, ref, toRaw, watchEffect } from 'vue';
+import { computed, toRaw } from 'vue';
 
+import { usePlaceholderShuffler } from '@/composables/placeholderShuffler';
 import { SiegeMap } from '@/models';
-import { useAppSettings } from '@/store';
-
-// Extract refs from settings
-const { animatePlaceholderCards } = storeToRefs(useAppSettings());
 
 // eslint-disable-next-line
 const props = defineProps({
@@ -105,8 +102,7 @@ const props = defineProps({
  * @type {import('vue').ComputedRef<SiegeMap>}
  */
 const displayMap = computed(() => {
-  // Get random map
-  if (cardVariant.value.placeholder) return SiegeMap.LIST[randomMap.value.index];
+  // if (cardVariant.value.placeholder) return null;
 
   // Get display map from `props`
   if (typeof props.map === 'string') return SiegeMap.valueOf(props.map);
@@ -120,41 +116,13 @@ const displayMap = computed(() => {
 const cardVariant = computed(() => ({ [props.variant]: true }));
 
 /**
- * The random map to display on placeholder cards and the timerId of the `setInterval`.
- * @type {import('vue').ComputedRef<{ index: Number, timerId: NodeJS.Timeout }>}
+ * Shuffles a new placeholder map every 5 seconds.
+ * @type {import('vue').Ref<SiegeMap>}
  */
-const randomMap = ref({
-  index: Math.floor(Math.random() * SiegeMap.LIST.length),
-  timerId: null
-});
-
-// Starts and stops random placeholder map loop
-watchEffect(() => {
-  // Extract values
-  const animate = animatePlaceholderCards.value;
-  const { placeholder } = cardVariant.value;
-  const { index, timerId } = randomMap.value;
-
-  // Start random map loop
-  if (placeholder && animate && !timerId) {
-    randomMap.value.timerId = setInterval(
-      () => {
-        const pick = SiegeMap.pickRandom(null, SiegeMap.LIST[index]);
-        randomMap.value.index = SiegeMap.LIST.indexOf(pick);
-      },
-      5000
-    );
-  }
-
-  // Stop running random map loop
-  if (timerId && !placeholder || !animate) {
-    clearInterval(timerId);
-    randomMap.value.timerId = null;
-  }
-});
-
-// Stops the existing random map loop before unmounting the card.
-onBeforeUnmount(() => { clearInterval(randomMap.value.timerId); });
+const placholderMap = usePlaceholderShuffler(
+  SiegeMap.LIST,
+  () => cardVariant.value.placeholder
+);
 </script>
 
 <style scoped>
