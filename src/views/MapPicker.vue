@@ -26,11 +26,9 @@
     <!-- Map Pool -->
     <v-card class="mt-12">
       <!-- Title -->
-      <v-toolbar
-        class="pr-4 text-center"
-        color="primary"
-        title="Map Pool"
-      />
+      <v-toolbar color="primary">
+        <v-toolbar-title class="font-weight-bold mr-4 text-center text-h5">Map Pool</v-toolbar-title>
+      </v-toolbar>
 
       <!-- Map Cards -->
       <v-card-text class="d-flex flex-wrap no-gutters">

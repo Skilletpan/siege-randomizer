@@ -27,9 +27,9 @@
       <!-- Name -->
       <v-card-item
         v-if="!cardVariant.placeholder"
-        class="map-name"
+        class="map-name text-center"
       >
-        <v-card-title class="font-weight-bold text-center text-uppercase">{{ displayMap.name }}</v-card-title>
+        <v-card-title class="font-weight-bold text-uppercase">{{ displayMap.name }}</v-card-title>
       </v-card-item>
 
       <!-- Randomize Icon -->
