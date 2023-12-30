@@ -17,23 +17,16 @@ export default defineStore('app-settings', () => {
    */
   const storeRecentPlayers = ref(storedData ? Boolean(storedData.storeRecent) : true);
 
-  /**
-   * Whether to animate placeholder card backgrounds.
-   * @type {import('vue').Ref<Boolean>}
-   */
-  const animatePlaceholderCards = ref(storedData ? Boolean(storedData.animatePlaceholders) : true);
-
   /** Stores the current settings in the browser store. */
   function storeSettings() {
     localStorage.setItem(
       'app-settings',
       JSON.stringify({
         theme: theme.value,
-        storeRecent: storeRecentPlayers.value,
-        animatePlaceholders: animatePlaceholderCards.value
+        storeRecent: storeRecentPlayers.value
       })
     );
   }
 
-  return { theme, storeRecentPlayers, animatePlaceholderCards, storeSettings };
+  return { theme, storeRecentPlayers, storeSettings };
 });

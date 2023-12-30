@@ -35,16 +35,6 @@
               prepend-icon="mdi-history"
             />
           </v-col>
-
-          <!-- Animated Placeholder Cards Toggle -->
-          <v-col cols="6">
-            <v-switch
-              v-model="animatePlaceholderCards"
-              label="Animate placeholder cards"
-              messages="Requires reloading the page to take effect"
-              prepend-icon="mdi-animation-outline"
-            />
-          </v-col>
         </v-row>
       </v-card-text>
     </v-card>
@@ -62,7 +52,7 @@ import { useAppSettings, useMatchSettings } from '@/store';
 const AppSettings = useAppSettings();
 
 // Extract refs from settings
-const { animatePlaceholderCards, storeRecentPlayers, theme } = storeToRefs(AppSettings);
+const { storeRecentPlayers, theme } = storeToRefs(AppSettings);
 const { storeSettings } = AppSettings;
 const { recentPlayerList } = storeToRefs(useMatchSettings());
 const { name: vuetifyTheme } = useTheme().global;

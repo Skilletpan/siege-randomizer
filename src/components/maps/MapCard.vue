@@ -13,38 +13,20 @@
 
     <!-- Prominent Thumbnail -->
     <v-img
-      v-if="cardVariant.prominent || cardVariant.detailed"
+      v-if="cardVariant.prominent || cardVariant.detailed || cardVariant.placeholder"
       :aspect-ratio="16 / 9"
-      class="mb-n12"
+      :class="{ 'mb-n12': !cardVariant.placeholder }"
       cover
       :src="displayMap.thumbnail"
     />
 
-    <!-- Placeholder Thumbnail Loop -->
-    <template v-else-if="cardVariant.placeholder">
-      <v-fade-transition
-        disabled
-        group
-        leave-absolute
-      >
-        <!-- Thumbnail -->
-        <v-img
-          v-for="m in SiegeMap.LIST"
-          v-show="toRaw(placholderMap) === m"
-          :key="m.key"
-          :aspect-ratio="16 / 9"
-          cover
-          :src="m.thumbnail"
-        />
-      </v-fade-transition>
-
-      <!-- Randomize Icon -->
-      <v-icon
-        class="h-100 randomize-icon w-100"
-        icon="mdi-dice-multiple-outline"
-        size="70"
-      />
-    </template>
+    <!-- Randomize Icon -->
+    <v-icon
+      v-if="cardVariant.placeholder"
+      class="h-100 randomize-icon w-100"
+      icon="mdi-dice-multiple-outline"
+      size="70"
+    />
 
     <!-- Name -->
     <v-card-title
@@ -77,7 +59,6 @@
 <script setup>
 import { computed, toRaw } from 'vue';
 
-import { usePlaceholderShuffler } from '@/composables/placeholderShuffler';
 import { SiegeMap } from '@/models';
 
 // eslint-disable-next-line
@@ -102,7 +83,8 @@ const props = defineProps({
  * @type {import('vue').ComputedRef<SiegeMap>}
  */
 const displayMap = computed(() => {
-  // if (cardVariant.value.placeholder) return null;
+  // Pick random map for placeholder cards
+  if (cardVariant.value.placeholder) return SiegeMap.pickRandom();
 
   // Get display map from `props`
   if (typeof props.map === 'string') return SiegeMap.valueOf(props.map);
@@ -114,15 +96,6 @@ const displayMap = computed(() => {
  * @type {import('vue').ComputedRef<{ [variant: String]: Boolean }>}
  */
 const cardVariant = computed(() => ({ [props.variant]: true }));
-
-/**
- * Shuffles a new placeholder map every 5 seconds.
- * @type {import('vue').Ref<SiegeMap>}
- */
-const placholderMap = usePlaceholderShuffler(
-  SiegeMap.LIST,
-  () => cardVariant.value.placeholder
-);
 </script>
 
 <style scoped>
