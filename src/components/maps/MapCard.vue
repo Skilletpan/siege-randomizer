@@ -1,41 +1,45 @@
 <template>
-  <v-card>
-    <!-- Default Thumbnail -->
-    <template
-      v-if="cardVariant.default"
-      #image
-    >
-      <v-img
-        cover
-        :src="displayMap.thumbnail"
-      />
-    </template>
+  <!-- Default Variant -->
+  <v-card
+    v-if="cardVariant.default"
+    v-bind="$attrs"
+    :image="displayMap.thumbnail"
+  >
+    <!-- Name -->
+    <v-card-item
+      class="map-name"
+      :title="displayMap.name"
+    />
+  </v-card>
 
-    <!-- Prominent Thumbnail -->
+  <!-- Other Variants -->
+  <v-card
+    v-else
+    v-bind="$attrs"
+  >
+    <!-- Thumbnail -->
     <v-img
-      v-if="cardVariant.prominent || cardVariant.detailed || cardVariant.placeholder"
       :aspect-ratio="16 / 9"
-      :class="{ 'mb-n12': !cardVariant.placeholder }"
+      class="align-end"
       cover
       :src="displayMap.thumbnail"
-    />
-
-    <!-- Randomize Icon -->
-    <v-icon
-      v-if="cardVariant.placeholder"
-      class="h-100 randomize-icon w-100"
-      icon="mdi-dice-multiple-outline"
-      size="70"
-    />
-
-    <!-- Name -->
-    <v-card-title
-      v-if="!cardVariant.placeholder"
-      class="map-name"
-      :class="{ 'font-weight-bold text-center text-uppercase': !cardVariant.default }"
     >
-      {{ displayMap.name }}
-    </v-card-title>
+      <!-- Name -->
+      <v-card-item
+        v-if="!cardVariant.placeholder"
+        class="map-name"
+      >
+        <v-card-title class="font-weight-bold text-center text-uppercase">{{ displayMap.name }}</v-card-title>
+      </v-card-item>
+
+      <!-- Randomize Icon -->
+      <v-icon
+        v-else
+        class="h-100 randomize-icon w-100"
+        icon="mdi-dice-multiple-outline"
+        size="70"
+      />
+    </v-img>
 
     <!-- Details -->
     <template v-if="cardVariant.detailed">
