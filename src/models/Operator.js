@@ -27,13 +27,7 @@ export default class Operator extends MapModel {
 
   /** @returns {Operator[]} A list of all operators. */
   static get LIST() {
-    return super.LIST.sort((o1, o2) => {
-      if (o1._released !== o2._released) return o1._released.localeCompare(o2._released);
-      if (o1.side === Side.ATT && o2.side === Side.DEF) return -1;
-      if (o1.side === Side.DEF && o2.side === Side.ATT) return 1;
-
-      return 1;
-    });
+    return super.LIST.sort((o1, o2) => o1.valueOf().localeCompare(o2.valueOf()));
   }
 
   /**
@@ -52,7 +46,7 @@ export default class Operator extends MapModel {
   #roles = [];
   #squad;
   #bannable;
-  _released;
+  #released;
 
   #loadout;
 
@@ -87,7 +81,7 @@ export default class Operator extends MapModel {
     this.#squad = rawOperator.squad || null;
     this.#loadout = new Loadout(rawOperator.loadout);
     this.#bannable = !rawOperator.unbannable;
-    this._released = rawOperator.released;
+    this.#released = rawOperator.released;
 
     this.#imageKey = rawOperator.key.replace(/_[A-Z]{3}/, '');
   }
@@ -141,6 +135,8 @@ export default class Operator extends MapModel {
     // Set default portrait
     return this.portrait;
   }
+
+  valueOf() { return `${this.#released}_${this.#side}`; }
 
   /** Loads the easter egg portraits. */
   #loadEasterEggPortraits() {
