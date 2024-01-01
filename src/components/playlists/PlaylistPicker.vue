@@ -21,19 +21,10 @@
       v-if="!standardOnly && !arcadeOnly && !practiceOnly"
       #item="{ item, index, props: p }"
     >
-      <!-- Standard Playlist Subheader -->
-      <v-list-subheader v-if="index === 0">Standard Playlists</v-list-subheader>
-
-      <!-- Arcade Playlist Subheader -->
-      <template v-if="toRaw(item.raw).isArcade && items[index - 1].isStandard">
-        <v-divider class="mt-2" />
-        <v-list-subheader>Arcade Playlists</v-list-subheader>
-      </template>
-
-      <!-- Practice Playlist Subheader -->
-      <template v-if="toRaw(item.raw).isPractice && items[index - 1].isArcade">
-        <v-divider class="mt-2" />
-        <v-list-subheader>Practice Playlists</v-list-subheader>
+      <!-- Playlist Type Subheader -->
+      <template v-if="toRaw(item.raw).playlistType !== items[index - 1]?.playlistType">
+        <v-divider v-if="index > 0" />
+        <v-list-subheader>{{ toRaw(item.raw).playlistType }} Playlist</v-list-subheader>
       </template>
 
       <!-- Playlist Item -->
@@ -63,10 +54,10 @@ const props = defineProps({
  * The items that can be picked from in the picker.
  * @type {import('vue').ComputedRef<Playlist[]>}
  */
-const items = computed(() => {
-  if (props.standardOnly) return Playlist.LIST.filter((p) => p.isStandard);
-  if (props.arcadeOnly) return Playlist.LIST.filter((p) => p.isArcade);
-  if (props.practiceOnly) return Playlist.LIST.filter((p) => p.isPractice);
-  return Playlist.LIST;
-});
+const items = computed(() => Playlist.LIST.filter((p) => {
+  if (props.standardOnly && !p.isStandard) return false;
+  if (props.arcadeOnly && !p.isArcade) return false;
+  if (props.practiceOnly && !p.isPractice) return false;
+  return true;
+}));
 </script>
