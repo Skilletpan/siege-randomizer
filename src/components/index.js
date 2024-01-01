@@ -21,9 +21,9 @@ import PlaylistPicker from './playlists/PlaylistPicker';
 import SquadPicker from './squads/SquadPicker';
 
 // Strat
-import StratCard from './strats/StratCard';
-import StratFilters from './strats/StratFilters';
-import TagPicker from './strats/TagPicker';
+// import StratCard from './strats/StratCard';
+// import StratFilters from './strats/StratFilters';
+// import TagPicker from './strats/TagPicker';
 
 export {
   // Common
