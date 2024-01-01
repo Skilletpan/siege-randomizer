@@ -49,7 +49,7 @@ export {
   SquadPicker,
 
   // Strat
-  StratCard,
-  StratFilters,
-  TagPicker
+  // StratCard,
+  // StratFilters,
+  // TagPicker
 };
