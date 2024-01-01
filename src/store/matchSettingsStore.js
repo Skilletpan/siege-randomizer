@@ -60,7 +60,7 @@ export default defineStore('match-settings', () => {
    * Whether manual operator bans are enabled.
    * @type {import('vue').ComputedRef<Boolean>}
    */
-  const operatorBansEnabled = computed(() => !playlist.value || playlist.value.canBanOperators);
+  const operatorBansEnabled = computed(() => !playlist.value || playlist.value.features.operatorBans);
 
   /**
    * All operators that are banned in the current match.
@@ -69,27 +69,18 @@ export default defineStore('match-settings', () => {
    * 
    * @type {import('vue').ComputedRef<{ ALL: Operator[], PLAYLIST: Operator[], MANUAL: Operator[] }>}
    */
-  const operatorBans = computed(() => Operator.LIST.reduce(
-    (bans, operator) => {
-      // Include playlist banned operators
-      if (playlist.value?.bannedOperators.includes(operator)) {
-        bans.ALL.push(operator);
-        bans.PLAYLIST.push(operator);
-      }
+  const operatorBans = computed(() => {
+    // Parse bans
+    const playlistBans = Array.from(playlist.value?.bannedOperators || []);
+    const manualBans = settings.value.operatorBans.map((o) => Operator.valueOf(o));
 
-      // Skip manual bans if disabled
-      if (!operatorBansEnabled.value) return bans;
-
-      // Include manually banned operators
-      if (settings.value.operatorBans.includes(operator.key)) {
-        bans.ALL.push(operator);
-        bans.MANUAL.push(operator);
-      }
-
-      return bans;
-    },
-    { ALL: [], PLAYLIST: [], MANUAL: [] }
-  ));
+    // Return bans by source
+    return {
+      ALL: [].concat(playlistBans, operatorBansEnabled.value ? manualBans : []),
+      PLAYLIST: playlistBans,
+      MANUAL: operatorBansEnabled.value ? manualBans : []
+    };
+  });
 
   /**
    * The operators available to pick in the current match.
