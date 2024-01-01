@@ -1,6 +1,6 @@
 // Styles
 import { createVuetify } from 'vuetify';
-import { VAvatar, VLabel, VRow } from 'vuetify/lib/components/index.mjs';
+import { VAvatar, VLabel } from 'vuetify/lib/components/index.mjs';
 import 'vuetify/styles';
 import '@mdi/font/css/materialdesignicons.css';
 
@@ -22,21 +22,11 @@ const defaultSelectProps = {
 export default createVuetify({
   aliases: {
     FieldLabel: VLabel,
-    LabelRow: VRow,
-    OperatorEmblem: VAvatar,
+    OperatorEmblem: VAvatar
   },
   defaults: {
     FieldLabel: {
       class: 'd-block text-caption'
-    },
-    LabelRow: {
-      class: 'ma-n1',
-      noGutters: true,
-      VChip: {
-        class: 'ma-1',
-        label: true,
-        'v-ripple': false
-      }
     },
     OperatorEmblem: {
       icon: 'mdi-help',
@@ -67,7 +57,6 @@ export default createVuetify({
       dark: {
         dark: true,
         colors: {
-          // primary: '#607D8B',
           generic: '#607D8B',
           attacker: '#1E88E5',
           defender: '#FB8C00'

@@ -1,52 +1,60 @@
 <template>
-  <v-card :color="cardVariant.default ? operator.side.color : null">
+  <!-- Default Variant -->
+  <v-card
+    v-if="cardVariant.default"
+    v-bind="$attrs"
+    :color="displayOperator.side.color"
+    :title="displayOperator.name"
+  >
+    <!-- Emblem -->
+    <template #prepend>
+      <operator-emblem :image="displayOperator.emblem" />
+    </template>
+  </v-card>
+
+  <!-- Other Variants -->
+  <v-card
+    v-else
+    v-bind="$attrs"
+  >
     <!-- Portrait -->
     <v-img
-      v-if="!cardVariant.default"
+      v-bind="portraitProps"
       :aspect-ratio="3 / 5"
+      class="align-end portrait"
       cover
-      v-bind="imageProperties"
     >
       <template v-if="!cardVariant.placeholder">
         <!-- Emblem -->
         <operator-emblem
-          class="mb-1"
-          :image="operator.emblem"
+          class="d-block mb-2 mx-auto"
+          :image="displayOperator.emblem"
           size="70"
         />
 
-        <v-card-item class="operator-name">
-          <!-- Name -->
+        <!-- Operator Name and Player Name -->
+        <v-card-item class="operator-name text-center">
+          <!-- Operator Name -->
           <v-card-title
-            class="font-weight-bold text-center text-uppercase"
-            :class="`text-${operator.side.color}`"
+            class="font-weight-bold text-uppercase"
+            :class="`text-${displayOperator.side.color}`"
           >
-            {{ operator.name }}
+            {{ displayOperator.name }}
           </v-card-title>
 
           <!-- Player Name -->
-          <v-card-subtitle v-if="playerName">{{ playerName }}</v-card-subtitle>
+          <v-card-subtitle v-if="!!playerName">{{ playerName }}</v-card-subtitle>
         </v-card-item>
       </template>
 
       <!-- Randomize Icon -->
       <v-icon
         v-else
-        class="align-center h-100 justify-center randomize-icon w-100"
+        class="h-100 randomize-icon w-100"
         icon="mdi-dice-multiple-outline"
         size="70"
       />
     </v-img>
-
-    <v-card-item v-if="cardVariant.default">
-      <!-- Emblem -->
-      <template #prepend>
-        <operator-emblem :image="operator.emblem" />
-      </template>
-
-      <!-- Name -->
-      <v-card-title>{{ operator.name }}</v-card-title>
-    </v-card-item>
 
     <!-- Details -->
     <template v-if="cardVariant.detailed">
@@ -59,19 +67,18 @@
         fixed-tabs
         :items="TABS"
       />
-
       <v-divider />
 
       <!-- Tab Windows -->
       <v-window v-model="tab">
         <v-window-item
-          v-for="t, i in TABS"
+          v-for="t in TABS"
           :key="t"
           :value="t"
         >
-          <v-card-text class="pa-4 pt-3">
+          <v-card-text class="px-4 py-3">
             <!-- Details -->
-            <template v-if="i === 0">
+            <template v-if="t === TABS[0]">
               <!-- Speed and Health -->
               <field-label class="mb-1">Speed and Health</field-label>
               <v-input
@@ -86,7 +93,7 @@
                   <v-radio
                     v-for="r in 4"
                     :key="r"
-                    :color="r <= operator.speed ? 'green' : 'blue'"
+                    :color="r <= displayOperator.speed ? 'green' : 'blue'"
                     density="compact"
                     inline
                     :model-value="true"
@@ -97,30 +104,26 @@
               </v-input>
 
               <!-- Roles -->
-              <field-label class="mb-1 mt-3">Roles</field-label>
-              <label-row>
-                <v-chip
-                  v-for="r in operator.roles"
-                  :key="r.key"
-                  size="small"
-                  :text="r.name"
-                />
-              </label-row>
+              <label-row-display
+                class="mt-3"
+                :items="displayOperator.roles"
+                label="Roles"
+              />
 
               <!-- Squad -->
               <v-row
-                v-if="operator.squad"
+                v-if="displayOperator.squad"
                 class="align-center mt-3"
                 no-gutters
               >
                 <v-col class="pa-0">
                   <field-label>Squad</field-label>
-                  <span class="text-body-2">{{ operator.squad.name }}</span>
+                  <span class="text-body-2">{{ displayOperator.squad.name }}</span>
                 </v-col>
 
                 <v-col cols="auto">
                   <v-avatar
-                    :image="operator.squad.emblem"
+                    :image="displayOperator.squad.emblem"
                     rounded="0"
                     size="small"
                   />
@@ -129,39 +132,26 @@
             </template>
 
             <!-- Loadout -->
-            <template v-if="i === 1">
+            <template v-if="t === TABS[1]">
               <!-- Primary Weapons -->
-              <field-label class="mb-1">Primary Weapons</field-label>
-              <label-row>
-                <v-chip
-                  v-for="p in operator.loadout.primaryWeapons"
-                  :key="p.key"
-                  size="small"
-                  :text="p.name"
-                />
-              </label-row>
+              <label-row-display
+                class="mb-3"
+                :items="displayOperator.loadout.primaryWeapons"
+                label="Primary Weapons"
+              />
 
               <!-- Secondary Weapons -->
-              <field-label class="mb-1 mt-3">Secondary Weapons</field-label>
-              <label-row>
-                <v-chip
-                  v-for="s in operator.loadout.secondaryWeapons"
-                  :key="s.key"
-                  size="small"
-                  :text="s.name"
-                />
-              </label-row>
+              <label-row-display
+                class="mb-3"
+                :items="displayOperator.loadout.secondaryWeapons"
+                label="Secondary Weapons"
+              />
 
               <!-- Gadgets -->
-              <field-label class="mb-1 mt-3">Gadgets</field-label>
-              <label-row>
-                <v-chip
-                  v-for="g in operator.loadout.gadgets"
-                  :key="g.key"
-                  size="small"
-                  :text="g.name"
-                />
-              </label-row>
+              <label-row-display
+                :items="displayOperator.loadout.gadgets"
+                label="Gadgets Weapons"
+              />
             </template>
           </v-card-text>
         </v-window-item>
@@ -171,17 +161,24 @@
 </template>
 
 <script setup>
-import { computed, shallowReadonly, shallowRef } from 'vue';
+import { computed, shallowReadonly, shallowRef, toRaw } from 'vue';
 
+import { LabelRowDisplay } from '@/components';
 import { Operator, SiegeMap } from '@/models';
 
 // eslint-disable-next-line
 const props = defineProps({
   /** The ID of the operator to show in the card. */
-  operatorKey: {
+  operator: {
     default: null,
-    type: String,
-    validator: (v) => Operator.KEYS.includes(v)
+    type: [Operator, String],
+    validator: (v) => typeof v === 'string' ? Operator.KEYS.includes(v) : true
+  },
+
+  /** An optional player name to display along with the operator name. */
+  playerName: {
+    default: null,
+    type: String
   },
 
   /** The variant of the card to display. */
@@ -190,30 +187,19 @@ const props = defineProps({
     type: String,
     validator: (v) => ['default', 'detailed', 'prominent', 'placeholder'].includes(v)
   },
-
-  /** An optional player name to display along with the operator name. */
-  playerName: {
-    default: null,
-    type: String
-  }
 });
-
-/** The tab names on the detailed operator card. */
-const TABS = shallowReadonly(['Details', 'Loadout']);
-
-/** Which tab of the operator details to show. */
-const tab = shallowRef(TABS[0]);
 
 /**
  * The operator to display on the card.
- * 
- * A random operator will be drawn for placeholder cards.
- * 
  * @type {import('vue').ComputedRef<Operator>}
  */
-const operator = computed(() => {
+const displayOperator = computed(() => {
+  // Pick random operator for placeholder cards
   if (cardVariant.value.placeholder) return Operator.pickRandom();
-  return Operator.valueOf(props.operatorKey);
+
+  // Get display operator from `props`
+  if (typeof props.operator === 'string') return Operator.valueOf(props.operator);
+  return toRaw(props.operator);
 });
 
 /**
@@ -222,18 +208,19 @@ const operator = computed(() => {
  */
 const cardVariant = computed(() => ({ [props.variant]: true }));
 
-/** Builds the properties for the portrait image. */
-const imageProperties = computed(() => {
-  // Return placeholder portrait properties
-  if (cardVariant.value.placeholder) return { src: operator.value.portrait };
-
-  // Return normal portrait properties
+const portraitProps = computed(() => {
+  if (cardVariant.value.placeholder) return { src: displayOperator.value.portrait };
   return {
-    class: 'align-end portrait text-center',
-    src: operator.value.easterEggPortrait,
+    src: displayOperator.value.easterEggPortrait,
     style: { backgroundImage: `url(${SiegeMap.pickRandom().thumbnail})` }
-  }
+  };
 });
+
+/** The tab names on the detailed operator card. */
+const TABS = shallowReadonly(['Details', 'Loadout']);
+
+/** Which tab of the operator details to show. */
+const tab = shallowRef(TABS[0]);
 </script>
 
 <style scoped>
@@ -245,10 +232,5 @@ const imageProperties = computed(() => {
 .operator-name {
   backdrop-filter: brightness(20%);
   -webkit-backdrop-filter: brightness(20%);
-}
-
-.randomize-icon {
-  backdrop-filter: brightness(30%) grayscale(100%);
-  -webkit-backdrop-filter: brightness(30%) grayscale(100%);
 }
 </style>

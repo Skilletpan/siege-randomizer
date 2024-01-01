@@ -25,21 +25,17 @@ const props = defineProps({
   },
 
   /** Whether to apply the side color of the operator to the label. */
-  colored: {
-    type: Boolean
-  },
+  colored: Boolean,
 
   /** Whether the label should indicate a banned operator. */
-  banned: {
-    type: Boolean
-  }
+  banned: Boolean
 });
 
 /**
  * The operator to display in the label.
  * @type {import('vue').ComputedRef<Operator>}
  */
-const operator = computed(() => Operator[props.operatorKey]);
+const operator = computed(() => Operator.valueOf(props.operatorKey));
 
 /** The color the label should be. */
 const labelColor = computed(() => {

@@ -4,13 +4,16 @@ import MatchSettingsDrawer from './MatchSettingsDrawer';
 import NavigationDrawer from './NavigationDrawer';
 import SidePool from './SidePool';
 
+// Displays
+import LabelRowDisplay from './displays/LabelRowDisplay';
+
 // Map
 import MapCard from './maps/MapCard';
 import MapPicker from './maps/MapPicker';
 
 // Operator
 import OperatorCard from './operators/OperatorCard';
-import OperatorFilters from './operators/OperatorFilters';
+import OperatorFilterDrawer from './operators/OperatorFilterDrawer';
 import OperatorLabel from './operators/OperatorLabel';
 import OperatorPicker from './operators/OperatorPicker';
 
@@ -22,7 +25,7 @@ import SquadPicker from './squads/SquadPicker';
 
 // Strat
 // import StratCard from './strats/StratCard';
-// import StratFilters from './strats/StratFilters';
+// import StratFilterDrawer from './strats/StratFilterDrawer';
 // import TagPicker from './strats/TagPicker';
 
 export {
@@ -32,13 +35,16 @@ export {
   NavigationDrawer,
   SidePool,
 
+  // Displays
+  LabelRowDisplay,
+
   // Map
   MapCard,
   MapPicker,
 
   // Operator
   OperatorCard,
-  OperatorFilters,
+  OperatorFilterDrawer,
   OperatorLabel,
   OperatorPicker,
 
@@ -50,6 +56,6 @@ export {
 
   // Strat
   // StratCard,
-  // StratFilters,
+  // StratFilterDrawer,
   // TagPicker
 };
