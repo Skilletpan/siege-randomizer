@@ -46,15 +46,11 @@
       <v-divider />
 
       <!-- Playlists -->
-      <v-card-text class="pa-4 pt-3">
-        <field-label class="mb-1">Playlists</field-label>
-        <label-row>
-          <v-chip
-            v-for="playlist in displayMap.playlists"
-            :key="playlist.key"
-            :text="playlist.name"
-          />
-        </label-row>
+      <v-card-text class="px-4 py-3">
+        <label-row-display
+          :items="displayMap.playlists"
+          label="Playlists"
+        />
       </v-card-text>
     </template>
   </v-card>
@@ -63,6 +59,7 @@
 <script setup>
 import { computed, toRaw } from 'vue';
 
+import { LabelRowDisplay } from '@/components';
 import { SiegeMap } from '@/models';
 
 // eslint-disable-next-line
