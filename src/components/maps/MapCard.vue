@@ -46,7 +46,7 @@
       <v-divider />
 
       <!-- Playlists -->
-      <v-card-text class="px-4 py-3">
+      <v-card-text class="pa-4">
         <label-row-display
           :items="displayMap.playlists"
           label="Playlists"
