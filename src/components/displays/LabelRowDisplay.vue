@@ -1,22 +1,11 @@
 <template>
-  <div>
-    <!-- Field Label -->
-    <v-label
-      class="d-block mb-1 text-caption"
-      :text="label"
-    />
-
-    <!-- Item Label Container -->
-    <v-row
-      class="ma-n1"
-      no-gutters
-    >
+  <base-display :label="{ value: label, props: { class: 'mb-1' } }">
+    <v-row class="ma-n1">
       <slot :items="items">
-        <!-- Item Label -->
         <v-chip
           v-for="item, index in items"
           :key="index"
-          v-bind="labelProps"
+          v-bind="chipProps"
           class="ma-1"
           label
           size="small"
@@ -24,12 +13,20 @@
         />
       </slot>
     </v-row>
-  </div>
+  </base-display>
 </template>
 
 <script setup>
+import BaseDisplay from './BaseDisplay';
+
 // eslint-disable-next-line
 const props = defineProps({
+  /** Props to assign to the item label. */
+  chipProps: {
+    default: () => ({}),
+    type: Object
+  },
+
   /** The items to display. */
   items: {
     required: true,
@@ -40,12 +37,6 @@ const props = defineProps({
   label: {
     required: true,
     type: String
-  },
-
-  /** Props to assign to the item label. */
-  labelProps: {
-    default: () => ({}),
-    type: Object
   },
 
   /** The name of the text prop on items. */

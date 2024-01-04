@@ -76,73 +76,61 @@
           :key="t"
           :value="t"
         >
-          <v-card-text class="px-4 py-3">
+          <v-card-text class="pa-4">
             <!-- Details -->
             <template v-if="t === TABS[0]">
               <!-- Speed and Health -->
-              <field-label class="mb-1">Speed and Health</field-label>
-              <v-input
-                append-icon="mdi-hospital-box-outline"
-                hide-details
-                prepend-icon="mdi-speedometer"
+              <base-display
+                append-inner-icon="mdi-hospital-box-outline"
+                class="mb-3"
+                label="Speed and Health"
+                prepend-inner-icon="mdi-speedometer"
               >
-                <v-row
-                  class="align-center justify-space-around"
-                  no-gutters
+                <v-radio-group
+                  density="compact"
+                  hide-details
+                  inline
+                  :model-value="true"
+                  readonly
                 >
                   <v-radio
-                    v-for="r in 4"
-                    :key="r"
-                    :color="r <= displayOperator.speed ? 'green' : 'blue'"
-                    density="compact"
-                    inline
-                    :model-value="true"
-                    readonly
-                    :ripple="false"
+                    v-for="i in 4"
+                    :key="i"
+                    class="mx-auto"
+                    :color="i <= displayOperator.speed ? 'green' : 'blue'"
                   />
-                </v-row>
-              </v-input>
+                </v-radio-group>
+              </base-display>
 
               <!-- Roles -->
               <label-row-display
-                class="mt-3"
+                :class="{ 'mb-4': !!displayOperator.squad }"
                 :items="displayOperator.roles"
                 label="Roles"
               />
 
               <!-- Squad -->
-              <v-row
+              <base-display
                 v-if="displayOperator.squad"
-                class="align-center mt-3"
-                no-gutters
+                :append-avatar="{ value: displayOperator.squad.emblem, props: { rounded: 0 } }"
+                label="Squad"
               >
-                <v-col class="pa-0">
-                  <field-label>Squad</field-label>
-                  <span class="text-body-2">{{ displayOperator.squad.name }}</span>
-                </v-col>
-
-                <v-col cols="auto">
-                  <v-avatar
-                    :image="displayOperator.squad.emblem"
-                    rounded="0"
-                    size="small"
-                  />
-                </v-col>
-              </v-row>
+                {{ displayOperator.squad.name }}
+              </base-display>
             </template>
 
             <!-- Loadout -->
             <template v-if="t === TABS[1]">
               <!-- Primary Weapons -->
               <label-row-display
-                class="mb-3"
+                class="mb-4"
                 :items="displayOperator.loadout.primaryWeapons"
                 label="Primary Weapons"
               />
 
               <!-- Secondary Weapons -->
               <label-row-display
-                class="mb-3"
+                class="mb-4"
                 :items="displayOperator.loadout.secondaryWeapons"
                 label="Secondary Weapons"
               />
@@ -163,7 +151,7 @@
 <script setup>
 import { computed, shallowReadonly, shallowRef, toRaw } from 'vue';
 
-import { LabelRowDisplay } from '@/components';
+import { BaseDisplay, LabelRowDisplay } from '@/components';
 import { Operator, SiegeMap } from '@/models';
 
 // eslint-disable-next-line

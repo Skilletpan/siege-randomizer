@@ -5,6 +5,7 @@ import NavigationDrawer from './NavigationDrawer';
 import SidePool from './SidePool';
 
 // Displays
+import BaseDisplay from './displays/BaseDisplay';
 import LabelRowDisplay from './displays/LabelRowDisplay';
 
 // Map
@@ -36,6 +37,7 @@ export {
   SidePool,
 
   // Displays
+  BaseDisplay,
   LabelRowDisplay,
 
   // Map
