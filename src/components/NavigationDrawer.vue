@@ -1,65 +1,52 @@
 <template>
-  <v-navigation-drawer :rail="!expanded">
-    <v-list
-      :items="navigationItems"
-      nav
-    />
+  <v-navigation-drawer v-bind="$attrs">
+    <v-list nav>
+      <v-list-subheader v-if="!$attrs.rail">Randomizers</v-list-subheader>
+
+      <!-- Map Picker -->
+      <v-list-item
+        prepend-icon="mdi-warehouse"
+        title="Map Picker"
+        to="maps"
+      />
+
+      <!-- Operator Picker -->
+      <v-list-item
+        prepend-icon="mdi-account"
+        title="Operator Picker"
+        to="operators"
+      />
+
+      <!-- Strat Roulette -->
+      <v-list-item
+        prepend-icon="mdi-strategy"
+        title="Strat Roulette"
+        to="strats"
+      />
+
+      <v-divider class="my-1" />
+
+      <!-- Settings -->
+      <v-list-item
+        prepend-icon="mdi-cog"
+        title="Settings"
+        @click="showAppSettings = true"
+      />
+    </v-list>
   </v-navigation-drawer>
+
+  <!-- App Settings -->
+  <app-settings-dialog v-model="showAppSettings" />
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { shallowRef } from 'vue';
 
-// Define dynamic properties
-const expanded = ref(true);
+import { AppSettingsDialog } from '@/components';
 
-// Define computed properties
-const navigationItems = computed(() => [
-  {
-    title: 'Siege Randomizer',
-    props: {
-      prependIcon: 'mdi-menu',
-      onClick: () => expanded.value = !expanded.value
-    }
-  },
-  {
-    type: 'divider',
-    props: {
-      class: 'mb-1'
-    }
-  },
-  {
-    title: 'Randomizers',
-    type: 'subheader',
-    expandedOnly: true
-  },
-  {
-    title: 'Maps',
-    props: {
-      prependIcon: 'mdi-warehouse',
-      to: 'maps'
-    }
-  },
-  {
-    title: 'Teams',
-    props: {
-      prependIcon: 'mdi-account-group',
-      to: 'teams'
-    }
-  },
-  {
-    title: 'Operators',
-    props: {
-      prependIcon: 'mdi-account',
-      to: 'operators'
-    }
-  },
-  {
-    title: 'Strats',
-    props: {
-      prependIcon: 'mdi-strategy',
-      to: 'strats'
-    }
-  }
-].filter((i) => i.expandedOnly ? expanded.value : true));
+/**
+ * Whether to show the app settings dialog.
+ * @type {import('vue').ShallowRef<Boolean>}
+ */
+const showAppSettings = shallowRef(false);
 </script>

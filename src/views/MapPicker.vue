@@ -1,145 +1,108 @@
 <template>
   <v-container>
-    <v-row class="align-end justify-center py-12">
-      <!-- Map Card -->
-      <v-col
-        cols="auto"
-        offset="3"
-      >
+    <!-- Picked Map -->
+    <v-row class="justify-center">
+      <v-col cols="6">
         <map-card
-          big
-          :map-key="pickedMap"
-          :placeholder="!pickedMap"
-          v-on="{ click: pickedMap ? () => { showPreview(pickedMap); } : null }"
+          :map="pickedMap"
+          :variant="pickedMap ? 'prominent' : 'placeholder'"
+          @click="onCardClick"
         />
       </v-col>
+    </v-row>
 
-      <!-- Filters -->
-      <v-col cols="3">
-        <v-card
-          color="transparent"
-          elevation="0"
-          max-width="300"
-        >
-          <!-- Playlist Select -->
-          <v-select
-            v-model="mapFilters.playlist"
-            clearable
-            hide-details
-            :items="PLAYLIST_LIST"
-            item-title="name"
-            item-value="key"
-            label="Playlist"
-            persistent-placeholder
-            placeholder="All Maps"
-            variant="solo-filled"
-          >
-            <template v-slot:item="{ index, props }">
-              <!-- Default Playlists Subheader -->
-              <v-list-subheader v-if="index === 0">Default Playlists</v-list-subheader>
-
-              <!-- Arcade Playlists Subheader -->
-              <template v-if="index === PLAYLIST_LIST.findIndex((p) => p.isArcade)">
-                <v-divider class="my-2" />
-                <v-list-subheader>Arcade Playlists</v-list-subheader>
-              </template>
-
-              <!-- Item -->
-              <v-list-item v-bind="props" />
-            </template>
-          </v-select>
-
-          <!-- Pick Button -->
-          <v-btn
-            block
-            class="mt-4"
-            color="primary"
-            :text="pickedMap ? 'Repick' : 'Randomize'"
-            @click="pickMap"
-          />
-        </v-card>
+    <!-- Actions -->
+    <v-row class="justify-center">
+      <v-col cols="auto">
+        <v-btn
+          color="primary"
+          icon="mdi-dice-multiple-outline"
+          size="x-large"
+          @click="pickMap"
+        />
       </v-col>
     </v-row>
 
     <!-- Map Pool -->
-    <v-row justify="center">
+    <v-card class="mt-12">
       <!-- Title -->
-      <v-col
-        class="text-center"
-        cols="12"
-        tag="h2"
-      >
-        Map Pool
-      </v-col>
+      <v-toolbar color="primary">
+        <v-toolbar-title class="font-weight-bold mr-4 text-center text-h5">Map Pool</v-toolbar-title>
+      </v-toolbar>
 
       <!-- Map Cards -->
-      <v-col
-        v-for="m in mapPool"
-        :key="m.key"
-        cols="auto"
-      >
-        <map-card
-          :inactive="mapFilters.disabled.includes(m.key)"
-          :map-key="m.key"
-          @click="showPreview(m.key)"
-        />
-      </v-col>
-    </v-row>
+      <v-card-text class="d-flex flex-wrap no-gutters">
+        <v-col
+          v-for="map in pickableMaps"
+          :key="map.key"
+          cols="3"
+        >
+          <map-card
+            :map="map"
+            @click="showPreview(map)"
+          />
+        </v-col>
+      </v-card-text>
+    </v-card>
   </v-container>
 
+  <!-- Preview Dialog -->
   <v-dialog
     v-model="preview.show"
-    width="auto"
+    width="700"
   >
     <map-card
-      big
-      detailed
-      :map-key="preview.mapKey"
+      :map="preview.mapKey"
+      variant="detailed"
     />
   </v-dialog>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { ref, shallowRef, toRaw } from 'vue';
 
 import { MapCard } from '@/components';
-import { pickRandom } from '@/composables/randomizer';
-import { MAP_LIST, PLAYLISTS, PLAYLIST_LIST } from '@/data';
+import { SiegeMap } from '@/models';
+import { useMatchSettings } from '@/store';
 
-// Define dynamic properties
-const pickedMap = ref(null);
+// Extract refs from MatchSettings
+const { pickableMaps } = storeToRefs(useMatchSettings());
 
-const mapFilters = ref({
-  disabled: [],
-  playlist: null
-});
+/**
+ * The map that was picked by the randomizer.
+ * @type {import('vue').ShallowRef<SiegeMap>}
+ */
+const pickedMap = shallowRef(null);
 
+/**
+ * The data for the preview dialog.
+ * @type {import('vue').Ref<{ mapKey: String, show: Boolean }>}
+ */
 const preview = ref({
   mapKey: null,
   show: false
 });
 
-// Define computed properties
-const mapPool = computed(() => {
-  if (!mapFilters.value.playlist) return MAP_LIST;
-  return MAP_LIST.filter((m) => PLAYLISTS[mapFilters.value.playlist].maps.includes(m.key));
-});
-
-/**
- * Picks a random map from the map pool.
- */
-function pickMap() {
-  const pool = mapPool.value
-    .filter((m) => {
-      if (m.key === pickedMap.value) return false;
-      return !mapFilters.value.disabled.includes(m.key);
-    })
-    .map((m) => m.key);
-
-  [pickedMap.value] = pickRandom(pool);
+/** Handles clicks on the picked map card. */
+function onCardClick() {
+  if (pickedMap.value) showPreview(toRaw(pickedMap.value));
+  else pickMap();
 }
 
-function showPreview(mapKey) {
+/** Picks a random map from the map pool. */
+function pickMap() {
+  pickedMap.value = SiegeMap.pickRandom(pickableMaps.value, toRaw(pickedMap.value)) || null;
+}
+
+/**
+ * Shows a preview dialog for the provided map.
+ * 
+ * @param {Map|string} map The key of the map to preview.
+ */
+function showPreview(map) {
+  const mapKey = typeof map === 'string' ? map : map.key;
+
   preview.value.mapKey = mapKey;
   preview.value.show = true;
 }

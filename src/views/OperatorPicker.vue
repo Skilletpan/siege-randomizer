@@ -1,164 +1,216 @@
 <template>
   <v-container>
-    <!-- Operator Cards -->
-    <v-row class="justify-center flex-nowrap pt-12">
+    <!-- Picked Operators -->
+    <v-row class="justify-center">
       <v-col
-        v-for="i in settings.picks"
-        :key="`portrait_${i}`"
+        v-for="i in playerList.length || pickerSettings.pickAmount"
+        :key="i"
         class="operator-card"
       >
         <operator-card
-          :operator-key="pickedOperators[i - 1]"
-          :placeholder="!pickedOperators[i - 1]"
-          @click="previewOperator(pickedOperators[i - 1])"
+          :operator="pickedOperators[i - 1]"
+          :player-name="playerList[i - 1] || null"
+          :variant="!pickedOperators[i - 1] ? 'placeholder' : 'prominent'"
+          @click="onCardClick(i - 1)"
         />
       </v-col>
     </v-row>
 
     <!-- Actions -->
-    <v-row class="justify-center pb-12">
-      <v-col cols="auto">
-        <!-- Randomize Buttons -->
+    <v-row class="justify-center">
+      <v-col
+        v-for="side in pickableSides"
+        :key="side.key"
+        cols="auto"
+      >
         <v-btn
-          v-for="{ key, icon, sideKey } in SIDE_LIST"
-          :key="`randomize_${key}`"
-          class="mb-4 mx-2"
-          color="primary"
+          :color="side.color"
           :disabled="!operatorPool.length"
-          :icon="icon"
+          :icon="side.icon"
           size="x-large"
-          @click="pickOperator(sideKey)"
-        />
-
-        <!-- Pick Amount Slider -->
-        <v-slider
-          v-model="settings.picks"
-          hide-details
-          label="Pick Amount"
-          max="5"
-          min="1"
-          show-ticks="always"
-          step="1"
+          @click="pickOperators(side)"
         />
       </v-col>
+
+      <v-btn
+        icon="mdi-filter"
+        @click="showOperatorFilters = true"
+      />
     </v-row>
 
     <!-- Operator Pool -->
-    <v-row>
-      <template
-        v-for="{ descriptor, icon, sideKey } in SIDE_LIST"
-        :key="sideKey"
-      >
-        <v-col v-if="sideKey">
-          <!-- Side Title -->
-          <h2 class="mb-4 text-center">
-            <v-icon
-              :icon="icon"
-              size="small"
-              start
+    <side-pool
+      class="mt-12"
+      :items="operatorPool"
+      title="Operator Pool"
+    >
+      <template #default="{ items }">
+        <v-card-text class="d-flex flex-wrap">
+          <v-col
+            v-for="operator in items"
+            :key="operator.key"
+            cols="3"
+          >
+            <operator-card
+              :operator="operator"
+              @click="previewOperator(operator.key)"
             />
-            {{ descriptor }}
-          </h2>
-
-          <!-- Operator Items -->
-          <v-row>
-            <v-col
-              v-for="{ key, name } in operatorPool.filter((o) => o.side === sideKey)"
-              :key="key"
-              cols="6"
-            >
-              <!-- Operator Card -->
-              <v-hover v-slot="{ isHovering, props }">
-                <v-card
-                  v-bind="props"
-                  :prepend-avatar="loadEmblem(key)"
-                  :title="name"
-                  @click="previewOperator(key)"
-                >
-                  <!-- Ban Button -->
-                  <template v-slot:append>
-                    <v-btn
-                      v-show="isHovering"
-                      color="primary"
-                      variant="text"
-                      @click.stop="filterDrawer.addBan(key)"
-                    >
-                      Ban
-                    </v-btn>
-                  </template>
-                </v-card>
-              </v-hover>
-            </v-col>
-          </v-row>
-        </v-col>
-
-        <v-divider
-          v-else
-          vertical
-        />
+          </v-col>
+        </v-card-text>
       </template>
-    </v-row>
-  </v-container>
+    </side-pool>
 
-  <!-- Operator Filter Drawer -->
-  <operator-filter-drawer
-    ref="filterDrawer"
-    v-model:duplicates="settings.duplicates"
-    @update:operators="operatorPool = $event"
-  />
+    <!-- Filter Drawer -->
+    <operator-filter-drawer
+      v-model="showOperatorFilters"
+      v-model:pick-amount="pickerSettings.pickAmount"
+      v-model:pick-duplicates="pickerSettings.pickDuplicates"
+      v-model:speed="filters.speed"
+      v-model:roles="filters.roles"
+      v-model:squad="filters.squad"
+      v-model:primary="filters.primary"
+      v-model:secondary="filters.secondary"
+      v-model:gadgets="filters.gadgets"
+    />
+  </v-container>
 
   <!-- Operator Preview Dialog -->
   <v-dialog
     v-model="previewDialog.show"
-    width="auto"
+    width="300"
   >
     <operator-card
-      detailed
-      :operator-key="previewDialog.operatorKey"
+      :operator="previewDialog.operatorKey"
+      variant="detailed"
     />
   </v-dialog>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
+import { computed, ref, shallowRef, toRaw } from 'vue';
 
-import { OperatorCard, OperatorFilterDrawer } from '@/components';
-import { loadEmblem } from '@/composables/imageLoader';
-import { pickRandom } from '@/composables/randomizer';
-import { SIDE_LIST } from '@/data';
+import { OperatorCard, OperatorFilterDrawer, SidePool } from '@/components';
+import { Operator, Side } from '@/models';
+import { useMatchSettings } from '@/store';
 
-// Define dynamic properties
-const filterDrawer = ref(null);
-const operatorPool = ref([]);
+// Include settings
+const MatchSettings = useMatchSettings();
+
+// Extract refs from MatchSettings
+const { pickableOperators, playerList, playlist } = storeToRefs(MatchSettings);
+
+const pickableSides = computed(() => Side.LIST.filter((s) => {
+  return s !== Side.ALL || (!playlist.value || playlist.value.features.mixedTeams);
+}));
+
+/**
+ * Whether to show the operator filter drawer.
+ * @type {import('vue').ShallowRef<Boolean>}
+ */
+const showOperatorFilters = shallowRef(false);
+
+/**
+ * The settings for the operator picker.
+ * @type {import('vue').Ref<{ pickAmount: Number, pickDuplicates: Boolean }>}
+ */
+const pickerSettings = ref({
+  pickAmount: 5,
+  pickDuplicates: false
+});
+
+/**
+ * @typedef {Object}   OperatorFilters The values to filter operators by.
+ * @prop    {number[]} speed           The target operator's speed.
+ * @prop    {string[]} roles           The keys of the target operator's roles.
+ * @prop    {string}   squad           The key of the target operator's squad.
+ * @prop    {string[]} primary         The keys of the target operator's primary weapons.
+ * @prop    {string[]} secondary       The keys of the target operator's secondary weapons.
+ * @prop    {string[]} gadgets         The keys of the target operator's gadgets.
+ */
+
+/**
+ * The values to filter operators by.
+ * @type {import('vue').Ref<OperatorFilters>}
+ */
+const filters = ref({
+  // Operator Details
+  speed: [],
+  roles: [],
+  squad: null,
+
+  // Loadout
+  primary: [],
+  secondary: [],
+  gadgets: []
+});
+
+/**
+ * The keys of the operators that have been picked by the randomizer.
+ * @type {import('vue').Ref<Operator[]>}
+ */
 const pickedOperators = ref([]);
 const previewDialog = ref({
   operatorKey: null,
   show: false
 });
-const settings = ref({
-  duplicates: false,
-  picks: 1
+
+/** The pool to pick operators from. */
+const operatorPool = computed(() => {
+  const { speed, roles, squad, primary, secondary, gadgets } = filters.value;
+
+  const operatorFilters = {};
+
+  // Set operator details
+  if (speed.length) operatorFilters.speed = speed;
+  if (roles.length) operatorFilters.role = roles;
+  if (squad) operatorFilters.squad = squad;
+
+  // Set loadout filter
+  if (primary.length || secondary.length || gadgets.length) {
+    const loadoutFilter = { method: 'every' };
+
+    if (primary.length) loadoutFilter.primary = primary;
+    if (secondary.length) loadoutFilter.secondary = secondary;
+    if (gadgets.length) loadoutFilter.gadget = gadgets;
+
+    operatorFilters.loadoutFilters = [loadoutFilter];
+  }
+
+  return Operator.getOperators(operatorFilters, pickableOperators.value);
 });
 
-/**
- * Picks a random operator from the operator pool.
- * 
- * @param {"ATT" | "DEF"} [side=null] The side to pick the operator from.
- */
-function pickOperator(side = null) {
-  const { duplicates, picks } = settings.value;
+function onCardClick(index) {
+  // Pick operators
+  if (pickedOperators.value.length === 0) {
+    pickOperators(Side.ALL);
+    return;
+  }
 
-  // Apply filters
-  const pool = operatorPool.value
-    .filter((o) => [
-      !side || o.side === side,
-      picks > 1 || pickedOperators.value.length !== 1 || o.key !== pickedOperators.value[0]
-    ].every((isTrue) => isTrue))
-    .map((o) => o.key);
+  const pickedOperator = toRaw(pickedOperators.value[index]);
+  if (pickedOperator) previewOperator(pickedOperator.key);
+}
+
+/**
+ * Picks random operators from the operator pool.
+ * 
+ * @param {Side} side The side to pick the operators from.
+ */
+function pickOperators(side) {
+  const { pickAmount, pickDuplicates } = pickerSettings.value;
+  // const { pickerSettings: { pickAmount, pickDuplicates } } = settings2.value;
+
+  // Apply side filter
+  const pool = operatorPool.value.filter((o) => side.includes(o.side));
+  const pickerParams = {
+    amount: playerList.length || pickAmount,
+    duplicates: pickDuplicates,
+    previous: [...pickedOperators.value.map((o) => toRaw(o))]
+  };
 
   // Pick random operator
   pickedOperators.value.length = 0;
-  pickedOperators.value = pickRandom(pool, picks, duplicates);
+  pickedOperators.value.push(...Operator.pickRandomOperators(pool, pickerParams));
 }
 
 /**
