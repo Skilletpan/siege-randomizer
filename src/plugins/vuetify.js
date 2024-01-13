@@ -1,6 +1,6 @@
 // Styles
 import { createVuetify } from 'vuetify';
-import { VAvatar, VLabel } from 'vuetify/lib/components/index.mjs';
+import { VAvatar } from 'vuetify/lib/components/index.mjs';
 import 'vuetify/styles';
 import '@mdi/font/css/materialdesignicons.css';
 
@@ -21,16 +21,17 @@ const defaultSelectProps = {
 
 export default createVuetify({
   aliases: {
-    FieldLabel: VLabel,
-    OperatorEmblem: VAvatar
+    OperatorEmblem: VAvatar,
+    SquadEmblem: VAvatar
   },
   defaults: {
-    FieldLabel: {
-      class: 'd-block text-caption'
-    },
     OperatorEmblem: {
       icon: 'mdi-help',
       rounded: 0
+    },
+    SquadEmblem: {
+      rounded: 0,
+      size: 'small'
     },
     VAutocomplete: defaultSelectProps,
     VCombobox: defaultSelectProps,

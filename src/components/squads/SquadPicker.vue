@@ -3,6 +3,7 @@
   <v-select
     v-bind="$attrs"
     v-model="pickedSquad"
+    :item-props="transformProps"
     :items="Squad.LIST"
     label="Squad"
   >
@@ -22,25 +23,22 @@
       v-if="pickedSquad && !$attrs.multiple"
       #prepend-inner
     >
-      <v-avatar
-        :image="Squad.valueOf(pickedSquad).emblem"
-        rounded="0"
-        size="small"
-      />
+      <squad-emblem :image="Squad.valueOf(pickedSquad).emblem" />
     </template>
 
     <!-- Squad Item -->
-    <template #item="{ item, props }">
-      <v-list-item
-        v-bind="props"
-        :prepend-avatar="toRaw(item.raw).emblem"
-      />
+    <template #item="{ props }">
+      <v-list-item v-bind="props">
+        <template #prepend>
+          <squad-emblem :image="props.prependAvatar" />
+        </template>
+      </v-list-item>
     </template>
   </v-select>
 </template>
 
 <script setup>
-import { shallowRef, toRaw } from 'vue';
+import { shallowRef } from 'vue';
 
 import { Squad } from '@/models';
 
@@ -54,11 +52,7 @@ const pickedSquad = shallowRef(null);
  * Transforms raw squads to list props.
  * 
  * @param {Squad} squad The squad item to transform.
- * 
- * @todo Check when Vuetify fixed their `prependAvatar` bug.
- * @see https://github.com/vuetifyjs/vuetify/issues/18933
  */
-// eslint-disable-next-line
 function transformProps(squad) {
   return {
     prependAvatar: squad.emblem
