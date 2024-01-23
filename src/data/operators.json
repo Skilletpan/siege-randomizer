@@ -498,7 +498,8 @@
         ],
         "gadgets": [
           "STUN",
-          "CLAYMORE"
+          "CLAYMORE",
+          "SMOKE"
         ]
       },
       "released": "Y3S3"
@@ -1032,7 +1033,7 @@
           "HG"
         ],
         "gadgets": [
-          "IMPACT",
+          "CAMERA",
           "C4"
         ]
       },
@@ -1580,7 +1581,8 @@
         ],
         "gadgets": [
           "BARBED",
-          "CAMERA"
+          "CAMERA",
+          "SHIELD"
         ]
       },
       "released": "Y6S2"
