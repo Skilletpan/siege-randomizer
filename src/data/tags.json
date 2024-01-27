@@ -3,6 +3,10 @@
     "name": "Communication",
     "description": "Restricts the way you can communicate"
   },
+  "INPUT": {
+    "name": "Input Devices",
+    "description": "Restricts the input devices you can use."
+  },
   "LINEUP": {
     "name": "Lineup",
     "description": "Sets requirements for your operator lineups"

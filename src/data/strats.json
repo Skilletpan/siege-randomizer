@@ -1201,5 +1201,15 @@
     "tags": [
       "LINEUP"
     ]
+  },
+  {
+    "title": "Back on the Sticks",
+    "tagline": "Report reverse XIMmer!",
+    "rules": [
+      "You must use a controller to play."
+    ],
+    "tags": [
+      "INPUT"
+    ]
   }
 ]
