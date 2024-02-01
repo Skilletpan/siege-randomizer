@@ -24,6 +24,7 @@ export default createVuetify({
     OperatorEmblem: VAvatar,
     SquadEmblem: VAvatar
   },
+
   defaults: {
     OperatorEmblem: {
       icon: 'mdi-help',
@@ -38,6 +39,26 @@ export default createVuetify({
     VSelect: defaultSelectProps,
     VSwitch: defaultInputProps,
     VTextField: defaultInputProps
+  },
+
+  icons: {
+    aliases: {
+      delete: 'mdi-delete',
+      filter: 'mdi-filter',
+      map: 'mdi-warehouse',
+      operator: 'mdi-account',
+      'operator-ban': 'mdi-account-off',
+      'operator-health': 'mdi-hospital-box-outline',
+      'operator-speed': 'mdi-speedometer',
+      'player-recent': 'mdi-history',
+      randomize: 'mdi-dice-multiple-outline',
+      settings: 'mdi-cog',
+      'side-all': 'mdi-infinity',
+      'side-attack': 'mdi-sword-cross',
+      'side-defense': 'mdi-chess-rook',
+      squad: 'mdi-account-group',
+      strategy: 'mdi-strategy'
+    }
   },
 
   theme: {
