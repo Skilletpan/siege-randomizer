@@ -125,15 +125,17 @@ export default class Playlist extends MapModel {
     const { recruits: allowRecruits } = this.#features;
 
     return Operator.LIST.filter((operator) => {
-      if (allowed.length) {
-        // Include explicitly allowed operators
-        if (allowed.includes(operator.key)) return true;
-      } else {
+      // Include explicitly allowed operators
+      if (allowed.length) return allowed.includes(operator.key);
+      else {
+        // Exclude explicitly banned operators
+        if (banned.includes(operator.key)) return false;
+
         // Exclude recruits if the `RECRUIT` feature is disabled
         if (!allowRecruits && operator.key.startsWith('RECRUIT')) return false;
 
-        // Exclude explicitly banned recruits
-        return !banned.includes(operator.key);
+        // Include remaining operators
+        return true;
       }
     });
   }
@@ -146,13 +148,11 @@ export default class Playlist extends MapModel {
     const { recruits: allowRecruits } = this.#features;
 
     return Operator.LIST.filter((operator) => {
+      // Include all except allowed operators
+      if (allowed.length) return !allowed.includes(operator.key);
+
       // Include explicitly banned operators
       if (banned.includes(operator.key)) return true;
-
-      if (allowed.length) {
-        // Include operators missing from explicit allowed list
-        if (!allowed.includes(operator.key)) return true;
-      }
 
       // Include recruits if the `RECRUIT` feature is disabled
       return !allowRecruits && operator.key.startsWith('RECRUIT');

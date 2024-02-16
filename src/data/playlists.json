@@ -17,13 +17,7 @@
           "BORDER",
           "SKYSCRAPER",
           "NIGHTHAVEN"
-        ],
-        "operators": {
-          "banned": [
-            "RECRUIT_ATT",
-            "RECRUIT_DEF"
-          ]
-        }
+        ]
       },
       "RANKED": {
         "name": "Ranked",
@@ -47,13 +41,7 @@
           "EMERALD",
           "NIGHTHAVEN",
           "LAIR"
-        ],
-        "operators": {
-          "banned": [
-            "RECRUIT_ATT",
-            "RECRUIT_DEF"
-          ]
-        }
+        ]
       },
       "STANDARD": {
         "name": "Standard",
@@ -74,13 +62,7 @@
           "EMERALD",
           "NIGHTHAVEN",
           "LAIR"
-        ],
-        "operators": {
-          "banned": [
-            "RECRUIT_ATT",
-            "RECRUIT_DEF"
-          ]
-        }
+        ]
       },
       "QUICKMATCH": {
         "name": "Quick Match",
