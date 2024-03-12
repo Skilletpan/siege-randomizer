@@ -7,7 +7,22 @@
         "ANTIGADGET"
       ],
       "speed": 1,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "SG",
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "FRAG",
+          "STUN",
+          "EMP"
+        ]
+      },
+      "released": "Y0S1"
     },
     "THATCHER": {
       "name": "Thatcher",
@@ -16,7 +31,21 @@
         "SUPPORT"
       ],
       "speed": 1,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
+      "released": "Y0S1"
     },
     "ASH": {
       "name": "Ash",
@@ -25,7 +54,20 @@
         "FRONTLINE"
       ],
       "speed": 3,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
+      "released": "Y0S2"
     },
     "THERMITE": {
       "name": "Thermite",
@@ -34,7 +76,21 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "SG",
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "STUN"
+        ]
+      },
+      "released": "Y0S2"
     },
     "TWITCH": {
       "name": "Twitch",
@@ -43,7 +99,23 @@
         "INTEL"
       ],
       "speed": 2,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "REV"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "SMOKE"
+        ]
+      },
+      "released": "Y0S3"
     },
     "MONTAGNE": {
       "name": "Montagne",
@@ -52,7 +124,22 @@
         "SUPPORT"
       ],
       "speed": 1,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "SH"
+        ],
+        "secondary": [
+          "HG",
+          "REV"
+        ],
+        "gadgets": [
+          "HARDBREACH",
+          "SMOKE",
+          "EMP"
+        ]
+      },
+      "released": "Y0S3"
     },
     "GLAZ": {
       "name": "Glaz",
@@ -61,7 +148,23 @@
         "SUPPORT"
       ],
       "speed": 3,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "DMR"
+        ],
+        "secondary": [
+          "HG",
+          "GON",
+          "SMG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "FRAG",
+          "CLAYMORE"
+        ]
+      },
+      "released": "Y0S4"
     },
     "FUZE": {
       "name": "Fuze",
@@ -69,7 +172,23 @@
         "ANTIGADGET"
       ],
       "speed": 1,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "SH",
+          "LMG",
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "HARDBREACH",
+          "SMOKE"
+        ]
+      },
+      "released": "Y0S4"
     },
     "BLITZ": {
       "name": "Blitz",
@@ -78,7 +197,20 @@
         "MAPCONTROL"
       ],
       "speed": 2,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "SH"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "BREACH"
+        ]
+      },
+      "released": "Y0S5"
     },
     "IQ": {
       "name": "IQ",
@@ -87,7 +219,22 @@
         "SUPPORT"
       ],
       "speed": 3,
-      "squad": "NIGHTHAVEN"
+      "squad": "NIGHTHAVEN",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE",
+          "FRAG"
+        ]
+      },
+      "released": "Y0S5"
     },
     "BUCK": {
       "name": "Buck",
@@ -96,7 +243,23 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "GON"
+        ],
+        "gadgets": [
+          "STUN",
+          "HARDBREACH"
+        ]
+      },
+      "released": "Y1S1"
     },
     "BLACKBEARD": {
       "name": "Blackbeard",
@@ -104,7 +267,22 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR"
+        ],
+        "secondary": [
+          "DE"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "STUN",
+          "FRAG"
+        ]
+      },
+      "released": "Y1S2"
     },
     "CAPITAO": {
       "name": "Capitão",
@@ -113,7 +291,23 @@
         "MAPCONTROL"
       ],
       "speed": 3,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG"
+        ],
+        "secondary": [
+          "HG",
+          "GON"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "HARDBREACH",
+          "EMP"
+        ]
+      },
+      "released": "Y1S3"
     },
     "HIBANA": {
       "name": "Hibana",
@@ -122,7 +316,22 @@
         "FRONTLINE"
       ],
       "speed": 3,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "SMG"
+        ],
+        "gadgets": [
+          "STUN",
+          "BREACH"
+        ]
+      },
+      "released": "Y1S4"
     },
     "JACKAL": {
       "name": "Jackal",
@@ -131,7 +340,23 @@
         "MAPCONTROL"
       ],
       "speed": 2,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "AR",
+          "PDW",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "SMOKE"
+        ]
+      },
+      "released": "Y2S1"
     },
     "YING": {
       "name": "Ying",
@@ -140,7 +365,21 @@
         "MAPCONTROL"
       ],
       "speed": 2,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "LMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "HARDBREACH",
+          "SMOKE"
+        ]
+      },
+      "released": "Y2S3"
     },
     "ZOFIA": {
       "name": "Zofia",
@@ -149,7 +388,21 @@
         "ANTIGADGET"
       ],
       "speed": 1,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "LMG",
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
+      "released": "Y2S4"
     },
     "DOKKAEBI": {
       "name": "Dokkaebi",
@@ -158,7 +411,23 @@
         "MAPCONTROL"
       ],
       "speed": 3,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "DMR",
+          "SSG"
+        ],
+        "secondary": [
+          "SMG",
+          "GON"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "STUN",
+          "EMP"
+        ]
+      },
+      "released": "Y2S4"
     },
     "LION": {
       "name": "Lion",
@@ -167,7 +436,24 @@
         "MAPCONTROL"
       ],
       "speed": 2,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR",
+          "SG"
+        ],
+        "secondary": [
+          "REV",
+          "HG"
+        ],
+        "gadgets": [
+          "STUN",
+          "CLAYMORE",
+          "FRAG"
+        ]
+      },
+      "released": "Y3S1"
     },
     "FINKA": {
       "name": "Finka",
@@ -176,7 +462,23 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "NIGHTHAVEN"
+      "squad": "NIGHTHAVEN",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "STUN",
+          "FRAG"
+        ]
+      },
+      "released": "Y3S1"
     },
     "MAVERICK": {
       "name": "Maverick",
@@ -185,7 +487,22 @@
         "FRONTLINE"
       ],
       "speed": 3,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "DMR",
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "STUN",
+          "CLAYMORE",
+          "SMOKE"
+        ]
+      },
+      "released": "Y3S3"
     },
     "NOMAD": {
       "name": "Nomad",
@@ -194,7 +511,21 @@
         "MAPCONTROL"
       ],
       "speed": 2,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "AR"
+        ],
+        "secondary": [
+          "REV",
+          "HG"
+        ],
+        "gadgets": [
+          "STUN",
+          "BREACH"
+        ]
+      },
+      "released": "Y3S4"
     },
     "GRIDLOCK": {
       "name": "Gridlock",
@@ -203,7 +534,23 @@
         "MAPCONTROL"
       ],
       "speed": 1,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG"
+        ],
+        "secondary": [
+          "SG",
+          "HG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "EMP",
+          "FRAG"
+        ]
+      },
+      "released": "Y4S1"
     },
     "NOKK": {
       "name": "Nøkk",
@@ -212,7 +559,23 @@
         "MAPCONTROL"
       ],
       "speed": 2,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "DE"
+        ],
+        "gadgets": [
+          "FRAG",
+          "HARDBREACH",
+          "EMP"
+        ]
+      },
+      "released": "Y4S2"
     },
     "AMARU": {
       "name": "Amaru",
@@ -221,7 +584,23 @@
         "MAPCONTROL"
       ],
       "speed": 2,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "LMG",
+          "SG"
+        ],
+        "secondary": [
+          "SMG",
+          "SG",
+          "GON"
+        ],
+        "gadgets": [
+          "HARDBREACH",
+          "STUN"
+        ]
+      },
+      "released": "Y4S3"
     },
     "KALI": {
       "name": "Kali",
@@ -230,7 +609,21 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "NIGHTHAVEN"
+      "squad": "NIGHTHAVEN",
+      "loadout": {
+        "primary": [
+          "SR"
+        ],
+        "secondary": [
+          "SMG",
+          "HG"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "BREACH"
+        ]
+      },
+      "released": "Y4S4"
     },
     "IANA": {
       "name": "Iana",
@@ -239,7 +632,21 @@
         "INTEL"
       ],
       "speed": 2,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "AR"
+        ],
+        "secondary": [
+          "HG",
+          "GON"
+        ],
+        "gadgets": [
+          "STUN",
+          "SMOKE"
+        ]
+      },
+      "released": "Y5S1"
     },
     "ACE": {
       "name": "Ace",
@@ -248,7 +655,21 @@
         "ANTIGADGET"
       ],
       "speed": 2,
-      "squad": "NIGHTHAVEN"
+      "squad": "NIGHTHAVEN",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
+      "released": "Y5S2"
     },
     "ZERO": {
       "name": "Zero",
@@ -257,7 +678,22 @@
         "INTEL"
       ],
       "speed": 3,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "GON"
+        ],
+        "gadgets": [
+          "HARDBREACH",
+          "CLAYMORE"
+        ]
+      },
+      "released": "Y5S3"
     },
     "FLORES": {
       "name": "Flores",
@@ -266,7 +702,21 @@
         "INTEL"
       ],
       "speed": 2,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "STUN",
+          "CLAYMORE"
+        ]
+      },
+      "released": "Y6S1"
     },
     "OSA": {
       "name": "Osa",
@@ -275,7 +725,23 @@
         "SUPPORT"
       ],
       "speed": 1,
-      "squad": "NIGHTHAVEN"
+      "squad": "NIGHTHAVEN",
+      "loadout": {
+        "primary": [
+          "AR",
+          "PDW",
+          "SH"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "FRAG",
+          "EMP"
+        ]
+      },
+      "released": "Y6S3"
     },
     "SENS": {
       "name": "Sens",
@@ -284,7 +750,22 @@
         "MAPCONTROL"
       ],
       "speed": 3,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "HARDBREACH",
+          "CLAYMORE",
+          "FRAG"
+        ]
+      },
+      "released": "Y7S2"
     },
     "GRIM": {
       "name": "Grim",
@@ -293,7 +774,23 @@
         "MAPCONTROL"
       ],
       "speed": 3,
-      "squad": "NIGHTHAVEN"
+      "squad": "NIGHTHAVEN",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "BAI"
+        ],
+        "gadgets": [
+          "EMP",
+          "CLAYMORE",
+          "HARDBREACH"
+        ]
+      },
+      "released": "Y7S3"
     },
     "BRAVA": {
       "name": "Brava",
@@ -302,7 +799,22 @@
         "INTEL"
       ],
       "speed": 3,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR"
+        ],
+        "secondary": [
+          "SG",
+          "HG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "CLAYMORE"
+        ]
+      },
+      "released": "Y8S1"
     },
     "RAM": {
       "name": "Ram",
@@ -311,14 +823,52 @@
         "ANTIGADGET"
       ],
       "speed": 1,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "STUN",
+          "SMOKE"
+        ]
+      },
+      "released": "Y8S3"
     },
     "RECRUIT_ATT": {
-      "name": "Recruit (Attack)",
+      "name": "Recruit",
       "roles": [
         "SUPPORT"
       ],
-      "speed": 2
+      "speed": 2,
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR",
+          "LMG"
+        ],
+        "secondary": [
+          "HG",
+          "SG",
+          "SMG"
+        ],
+        "gadgets": [
+          "FRAG",
+          "SMOKE",
+          "EMP",
+          "HARDBREACH",
+          "BREACH",
+          "STUN",
+          "CLAYMORE"
+        ]
+      },
+      "released": "Y0S6",
+      "unbannable": true
     }
   },
   "DEF": {
@@ -329,7 +879,22 @@
         "TRAPPER"
       ],
       "speed": 2,
-      "squad": "NIGHTHAVEN"
+      "squad": "NIGHTHAVEN",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "SMG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "BEEPER"
+        ]
+      },
+      "released": "Y0S1"
     },
     "MUTE": {
       "name": "Mute",
@@ -338,7 +903,22 @@
         "CROWDCONTROL"
       ],
       "speed": 1,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "SMG"
+        ],
+        "gadgets": [
+          "C4",
+          "CAMERA"
+        ]
+      },
+      "released": "Y0S1"
     },
     "CASTLE": {
       "name": "Castle",
@@ -347,7 +927,22 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "BEEPER"
+        ]
+      },
+      "released": "Y0S2"
     },
     "PULSE": {
       "name": "Pulse",
@@ -356,7 +951,22 @@
         "SUPPORT"
       ],
       "speed": 3,
-      "squad": "NIGHTHAVEN"
+      "squad": "NIGHTHAVEN",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "C4",
+          "SHIELD",
+          "BLOCKER"
+        ]
+      },
+      "released": "Y0S2"
     },
     "DOC": {
       "name": "Doc",
@@ -364,7 +974,23 @@
         "SUPPORT"
       ],
       "speed": 1,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "REV",
+          "BAI"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "BARBED"
+        ]
+      },
+      "released": "Y0S3"
     },
     "ROOK": {
       "name": "Rook",
@@ -372,7 +998,23 @@
         "SUPPORT"
       ],
       "speed": 1,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "REV",
+          "HG"
+        ],
+        "gadgets": [
+          "BEEPER",
+          "IMPACT",
+          "BLOCKER"
+        ]
+      },
+      "released": "Y0S3"
     },
     "KAPKAN": {
       "name": "Kapkan",
@@ -381,7 +1023,21 @@
         "TRAPPER"
       ],
       "speed": 2,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "C4"
+        ]
+      },
+      "released": "Y0S4"
     },
     "TACHANKA": {
       "name": "Tachanka",
@@ -390,7 +1046,23 @@
         "CROWDCONTROL"
       ],
       "speed": 1,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "LMG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "SMG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "SHIELD",
+          "BEEPER"
+        ]
+      },
+      "released": "Y0S4"
     },
     "JAGER": {
       "name": "Jäger",
@@ -399,7 +1071,21 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "SG",
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "BLOCKER"
+        ]
+      },
+      "released": "Y0S5"
     },
     "BANDIT": {
       "name": "Bandit",
@@ -408,7 +1094,21 @@
         "ANTIGADGET"
       ],
       "speed": 3,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "C4"
+        ]
+      },
+      "released": "Y0S5"
     },
     "FROST": {
       "name": "Frost",
@@ -417,7 +1117,22 @@
         "TRAPPER"
       ],
       "speed": 2,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "SHIELD"
+        ]
+      },
+      "released": "Y1S1"
     },
     "VALKYRIE": {
       "name": "Valkyrie",
@@ -426,7 +1141,21 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "DE"
+        ],
+        "gadgets": [
+          "IMPACT",
+          "C4"
+        ]
+      },
+      "released": "Y1S2"
     },
     "CAVEIRA": {
       "name": "Caveira",
@@ -435,7 +1164,22 @@
         "CROWDCONTROL"
       ],
       "speed": 3,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "IMPACT",
+          "BEEPER",
+          "BLOCKER"
+        ]
+      },
+      "released": "Y1S3"
     },
     "ECHO": {
       "name": "Echo",
@@ -444,7 +1188,22 @@
         "CROWDCONTROL"
       ],
       "speed": 2,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "SMG"
+        ],
+        "gadgets": [
+          "IMPACT",
+          "SHIELD"
+        ]
+      },
+      "released": "Y1S4"
     },
     "MIRA": {
       "name": "Mira",
@@ -453,7 +1212,22 @@
         "SUPPORT"
       ],
       "speed": 1,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "BEEPER",
+          "C4"
+        ]
+      },
+      "released": "Y2S1"
     },
     "LESION": {
       "name": "Lesion",
@@ -462,7 +1236,22 @@
         "TRAPPER"
       ],
       "speed": 2,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "IMPACT",
+          "CAMERA"
+        ]
+      },
+      "released": "Y2S3"
     },
     "ELA": {
       "name": "Ela",
@@ -471,7 +1260,22 @@
         "TRAPPER"
       ],
       "speed": 2,
-      "squad": "NIGHTHAVEN"
+      "squad": "NIGHTHAVEN",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "SHIELD",
+          "BLOCKER"
+        ]
+      },
+      "released": "Y2S3"
     },
     "VIGIL": {
       "name": "Vigil",
@@ -480,7 +1284,21 @@
         "CROWDCONTROL"
       ],
       "speed": 3,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SSG"
+        ],
+        "secondary": [
+          "SMG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "IMPACT"
+        ]
+      },
+      "released": "Y2S4"
     },
     "MAESTRO": {
       "name": "Maestro",
@@ -489,7 +1307,23 @@
         "INTEL"
       ],
       "speed": 1,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "LMG",
+          "SSG"
+        ],
+        "secondary": [
+          "BAI",
+          "REV"
+        ],
+        "gadgets": [
+          "BARBED",
+          "IMPACT",
+          "BLOCKER"
+        ]
+      },
+      "released": "Y3S2"
     },
     "ALIBI": {
       "name": "Alibi",
@@ -498,7 +1332,22 @@
         "TRAPPER"
       ],
       "speed": 3,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SSG"
+        ],
+        "secondary": [
+          "REV",
+          "BAI"
+        ],
+        "gadgets": [
+          "BEEPER",
+          "BLOCKER"
+        ]
+      },
+      "released": "Y3S2"
     },
     "CLASH": {
       "name": "Clash",
@@ -507,7 +1356,23 @@
         "CROWDCONTROL"
       ],
       "speed": 1,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "SH"
+        ],
+        "secondary": [
+          "SG",
+          "SMG",
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "IMPACT",
+          "SHIELD"
+        ]
+      },
+      "released": "Y3S3"
     },
     "KAID": {
       "name": "Kaid",
@@ -516,7 +1381,22 @@
         "ANTIGADGET"
       ],
       "speed": 1,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SSG"
+        ],
+        "secondary": [
+          "REV"
+        ],
+        "gadgets": [
+          "C4",
+          "BARBED",
+          "BLOCKER"
+        ]
+      },
+      "released": "Y3S4"
     },
     "MOZZIE": {
       "name": "Mozzie",
@@ -525,7 +1405,21 @@
         "INTEL"
       ],
       "speed": 2,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SMG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "C4"
+        ]
+      },
+      "released": "Y4S1"
     },
     "WARDEN": {
       "name": "Warden",
@@ -534,7 +1428,23 @@
         "INTEL"
       ],
       "speed": 1,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "SMG"
+        ],
+        "gadgets": [
+          "SHIELD",
+          "C4",
+          "BLOCKER"
+        ]
+      },
+      "released": "Y4S2"
     },
     "GOYO": {
       "name": "Goyo",
@@ -543,7 +1453,22 @@
         "TRAPPER"
       ],
       "speed": 2,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SSG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BEEPER",
+          "CAMERA",
+          "IMPACT"
+        ]
+      },
+      "released": "Y4S3"
     },
     "WAMAI": {
       "name": "Wamai",
@@ -552,7 +1477,22 @@
         "TRAPPER"
       ],
       "speed": 2,
-      "squad": "NIGHTHAVEN"
+      "squad": "NIGHTHAVEN",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SMG"
+        ],
+        "secondary": [
+          "REV",
+          "HG"
+        ],
+        "gadgets": [
+          "IMPACT",
+          "BEEPER"
+        ]
+      },
+      "released": "Y4S4"
     },
     "ORYX": {
       "name": "Oryx",
@@ -560,7 +1500,22 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "BAI",
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "BEEPER"
+        ]
+      },
+      "released": "Y5S1"
     },
     "MELUSI": {
       "name": "Melusi",
@@ -569,7 +1524,21 @@
         "CROWDCONTROL"
       ],
       "speed": 1,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "IMPACT"
+        ]
+      },
+      "released": "Y5S2"
     },
     "ARUNI": {
       "name": "Aruni",
@@ -578,7 +1547,21 @@
         "ANTIGADGET"
       ],
       "speed": 1,
-      "squad": "NIGHTHAVEN"
+      "squad": "NIGHTHAVEN",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "DMR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "CAMERA"
+        ]
+      },
+      "released": "Y5S4"
     },
     "THUNDERBIRD": {
       "name": "Thunderbird",
@@ -586,7 +1569,23 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "SMG",
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "CAMERA",
+          "SHIELD"
+        ]
+      },
+      "released": "Y6S2"
     },
     "THORN": {
       "name": "Thorn",
@@ -595,7 +1594,22 @@
         "TRAPPER"
       ],
       "speed": 2,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "SMG"
+        ],
+        "gadgets": [
+          "SHIELD",
+          "BARBED"
+        ]
+      },
+      "released": "Y6S4"
     },
     "AZAMI": {
       "name": "Azami",
@@ -604,7 +1618,21 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "VIPERSTRIKE"
+      "squad": "VIPERSTRIKE",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SSG"
+        ],
+        "secondary": [
+          "DE"
+        ],
+        "gadgets": [
+          "BARBED",
+          "IMPACT"
+        ]
+      },
+      "released": "Y7S1"
     },
     "SOLIS": {
       "name": "Solis",
@@ -613,7 +1641,21 @@
         "SUPPORT"
       ],
       "speed": 2,
-      "squad": "GHOSTEYES"
+      "squad": "GHOSTEYES",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "SMG"
+        ],
+        "gadgets": [
+          "IMPACT",
+          "CAMERA"
+        ]
+      },
+      "released": "Y7S4"
     },
     "FENRIR": {
       "name": "Fenrir",
@@ -622,7 +1664,22 @@
         "TRAPPER"
       ],
       "speed": 2,
-      "squad": "REDHAMMER"
+      "squad": "REDHAMMER",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "BAI",
+          "HG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "BARBED"
+        ]
+      },
+      "released": "Y8S2"
     },
     "TUBARAO": {
       "name": "Tubarão",
@@ -631,14 +1688,49 @@
         "CROWDCONTROL"
       ],
       "speed": 2,
-      "squad": "WOLFGUARD"
+      "squad": "WOLFGUARD",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "DMR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "C4",
+          "BEEPER"
+        ]
+      },
+      "released": "Y8S4"
     },
     "RECRUIT_DEF": {
-      "name": "Recruit (Defense)",
+      "name": "Recruit",
       "roles": [
         "SUPPORT"
       ],
-      "speed": 2
+      "speed": 2,
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "SMG"
+        ],
+        "gadgets": [
+          "C4",
+          "IMPACT",
+          "BEEPER",
+          "CAMERA",
+          "BARBED",
+          "SHIELD",
+          "BLOCKER"
+        ]
+      },
+      "released": "Y0S6",
+      "unbannable": true
     }
   }
 }

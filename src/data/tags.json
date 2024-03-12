@@ -1,0 +1,34 @@
+{
+  "COMMUNICATION": {
+    "name": "Communication",
+    "description": "Restricts the way you can communicate"
+  },
+  "INPUT": {
+    "name": "Input Devices",
+    "description": "Restricts the input devices you can use."
+  },
+  "LINEUP": {
+    "name": "Lineup",
+    "description": "Sets requirements for your operator lineups"
+  },
+  "LOADOUT": {
+    "name": "Loadout",
+    "description": "Sets requirements for your operator loadouts"
+  },
+  "MOVEMENT": {
+    "name": "Movement",
+    "description": "Restricts the way you can move in-game"
+  },
+  "REALLIFE": {
+    "name": "Real Life",
+    "description": "Includes a real life consequence"
+  },
+  "SETTINGS": {
+    "name": "Game Settings",
+    "description": "Requires changes to your game settings"
+  },
+  "STRATEGY": {
+    "name": "Strategy",
+    "description": "Specifies how you approach your objective"
+  }
+}
