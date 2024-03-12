@@ -313,6 +313,14 @@
       "speed": 1,
       "squad": "REDHAMMER"
     },
+    "DEIMOS": {
+      "name": "Deimos",
+      "roles": [
+        "INTEL",
+        "MAPCONTROL"
+      ],
+      "speed": 2
+    },
     "RECRUIT_ATT": {
       "name": "Recruit (Attack)",
       "roles": [
