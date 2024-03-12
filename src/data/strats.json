@@ -123,7 +123,8 @@
       "SOLIS",
       "BRAVA",
       "FENRIR",
-      "RAM"
+      "RAM",
+      "DEIMOS"
     ],
     "requiredOperators": [
       "THATCHER"
@@ -657,7 +658,8 @@
       "DOKKAEBI",
       "LION",
       "ZERO",
-      "GRIM"
+      "GRIM",
+      "DEIMOS"
     ],
     "rules": [
       {
@@ -679,6 +681,10 @@
       {
         "operator": "GRIM",
         "value": "Bee them."
+      },
+      {
+        "operator": "DEIMOS",
+        "value": "Hunt them."
       }
     ],
     "side": "ATT"
