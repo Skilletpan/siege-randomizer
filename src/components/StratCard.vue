@@ -84,7 +84,7 @@
 </template>
 
 <script setup>
-import { computed, defineProps, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 import { loadEmblem } from '@/composables/imageLoader';
 import { OPERATORS, SIDES } from '@/data';

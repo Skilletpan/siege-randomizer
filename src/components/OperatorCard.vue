@@ -97,7 +97,7 @@
 </template>
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { computed } from 'vue';
 
 import { loadEmblem, loadPortrait, loadSquadEmblem } from '@/composables/imageLoader';
 import { MAP_LIST, OPERATORS, ROLES, SQUADS } from '@/data';
