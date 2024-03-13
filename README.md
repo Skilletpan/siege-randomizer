@@ -1,24 +1,19 @@
-# siege-randomizer
+# Welcome to Siege Randomizer!
 
-## Project setup
-```
-npm install
-```
+Siege Randomizer is a small web-app with several tools to randomize your Siege-experience. It currently features a Map Picker, an Operator Picker and a Strat Roulette, all are still to be expanded on.
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
+##  Technical Stuff
 
-### Compiles and minifies for production
-```
-npm run build
-```
+Siege Randomizer is built with [Vue 3](https://vuejs.org) and [Vuetify](https://vuetifyjs.com).
 
-### Lints and fixes files
-```
-npm run lint
+### Commands
+```shell
+npm install       # Install packages
+npm run dev       # Run a development build
+npm run build     # Create an app build
+npm run preview   # Preview an app build
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+##  Disclaimer
+
+I don't own Tom Clancy's Rainbow Six: Siege, its Maps or Operators. The brand, the used Operator Portraits, Operator Emblems and Map Images all belong to Ubisoft.
