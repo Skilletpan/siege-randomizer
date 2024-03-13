@@ -146,7 +146,7 @@ function loadBackgroundImage() {
 
   // Pick random map
   const map = MAP_LIST[Math.floor(Math.random() * MAP_LIST.length)].key;
-  return `url(${require(`@/assets/maps/${map}.jpg`)})`;
+  return `url(${new URL(`/src/assets/maps/${map}.jpg`, import.meta.url).href})`;
 }
 </script>
 
