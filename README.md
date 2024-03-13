@@ -16,4 +16,4 @@ npm run preview   # Preview an app build
 
 ##  Disclaimer
 
-I don't own Tom Clancy's Rainbow Six: Siege, its Maps or Operators. The brand, the used Operator Portraits, Operator Emblems and Map Images all belong to Ubisoft.
+I don't own Tom Clancy's Rainbow Six: Siege, its Maps, Operators or Squads. The brand, the used Operator Portraits, Operator Emblems, Squad Emblems and Map Images all belong to Ubisoft.
