@@ -37,7 +37,7 @@
 </template>
 
 <script setup>
-import { computed, defineProps } from 'vue';
+import { computed } from 'vue';
 
 import { loadMapPreview } from '@/composables/imageLoader';
 import { MAPS, MAP_LIST, PLAYLIST_LIST } from '@/data';
