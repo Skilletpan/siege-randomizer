@@ -30,12 +30,12 @@ export function loadPortrait(operatorKey, disableEasterEgg = false) {
 
   // Try to return easter egg portrait
   if (!disableEasterEgg && Math.floor(Math.random() * 50) === 0) {
-    try { return require(`@/assets/portraits/${imageKey}_2.png`); }
-    catch (e) { console.debug(`${imageKey} does not have an easter egg portrait.`); }
+    const url = new URL(`/src/assets/portraits/${imageKey}_2.png`, import.meta.url).href;
+    if (!url.endsWith('undefined')) return url;
   }
 
   // Return default portrait
-  return require(`@/assets/portraits/${imageKey}.png`);
+  return new URL(`/src/assets/portraits/${imageKey}.png`, import.meta.url).href;
 }
 
 /**
@@ -47,12 +47,12 @@ export function loadPortrait(operatorKey, disableEasterEgg = false) {
  */
 export function loadEmblem(operatorKey) {
   if (!operatorKey) return null;
-  return require(`@/assets/emblems/${setImageKey(operatorKey)}.png`);
+  return new URL(`/src/assets/emblems/${setImageKey(operatorKey)}.png`, import.meta.url).href;
 }
 
 export function loadMapPreview(mapKey) {
   if (!mapKey) return null;
-  return require(`@/assets/maps/${mapKey}.jpg`);
+  return new URL(`/src/assets/maps/${mapKey}.jpg`, import.meta.url).href;
 }
 
 /**
@@ -64,5 +64,5 @@ export function loadMapPreview(mapKey) {
  */
 export function loadSquadEmblem(squad) {
   if (!squad) return null;
-  return require(`@/assets/squads/${squad.toUpperCase()}.png`);
+  return new URL(`/src/assets/squads/${squad.toUpperCase()}.png`, import.meta.url).href;
 }

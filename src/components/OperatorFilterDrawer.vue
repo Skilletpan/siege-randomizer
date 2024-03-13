@@ -182,7 +182,7 @@
 </template>
 
 <script setup>
-import { computed, defineEmits, defineExpose, ref, watch } from 'vue';
+import { computed, ref, watch } from 'vue';
 
 import { loadEmblem, loadSquadEmblem } from '@/composables/imageLoader';
 import { OPERATORS, OPERATOR_LIST, ROLE_LIST, SQUAD_LIST } from '@/data';
