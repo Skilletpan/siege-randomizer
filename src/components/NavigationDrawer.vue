@@ -1,65 +1,64 @@
 <template>
-  <v-navigation-drawer :rail="!expanded">
-    <v-list
-      :items="navigationItems"
-      nav
-    />
+  <v-navigation-drawer
+    :model-value="showNavigation"
+    :rail="!expandNavigation"
+    @update:model-value="(value) => show = value"
+  >
+    <v-list nav>
+      <v-list-subheader
+        v-show="mobile || expandNavigation"
+        title="Randomizers"
+      />
+
+      <!-- To Map Picker -->
+      <v-list-item
+        prepend-icon="$siege-map"
+        title="Map Picker"
+        to="/maps"
+      />
+
+      <!-- To Operator Picker -->
+      <v-list-item
+        prepend-icon="$siege-operators"
+        title="Operator Picker"
+        to="/operators"
+      />
+
+      <!-- To Strat Roulette -->
+      <v-list-item
+        prepend-icon="$siege-strategy"
+        title="Strat Roulette"
+        to="/strats"
+      />
+    </v-list>
   </v-navigation-drawer>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { computed } from 'vue';
+import { useDisplay } from 'vuetify';
 
-// Define dynamic properties
-const expanded = ref(true);
+// Extract Vuetify breakpoints
+const { mobile } = useDisplay();
 
-// Define computed properties
-const navigationItems = computed(() => [
-  {
-    title: 'Siege Randomizer',
-    props: {
-      prependIcon: 'mdi-menu',
-      onClick: () => expanded.value = !expanded.value
-    }
-  },
-  {
-    type: 'divider',
-    props: {
-      class: 'mb-1'
-    }
-  },
-  {
-    title: 'Randomizers',
-    type: 'subheader',
-    expandedOnly: true
-  },
-  {
-    title: 'Maps',
-    props: {
-      prependIcon: 'mdi-warehouse',
-      to: 'maps'
-    }
-  },
-  {
-    title: 'Teams',
-    props: {
-      prependIcon: 'mdi-account-group',
-      to: 'teams'
-    }
-  },
-  {
-    title: 'Operators',
-    props: {
-      prependIcon: 'mdi-account',
-      to: 'operators'
-    }
-  },
-  {
-    title: 'Strats',
-    props: {
-      prependIcon: 'mdi-strategy',
-      to: 'strats'
-    }
-  }
-].filter((i) => i.expandedOnly ? expanded.value : true));
+/**
+ * Whether to show (mobile) or expand (desktop) the navigation bar.
+ * @type {import('vue').ModelRef<Boolean>}
+ */
+const show = defineModel({ type: Boolean });
+
+// Set the default value for `show` depending on device type
+show.value = !mobile.value;
+
+/**
+ * Whether the navigation drawer should be expanded.
+ * @type {import('vue').ShallowRef<Boolean>}
+ */
+const expandNavigation = computed(() => show.value);
+
+/**
+ * Whether the navigation drawer should be shown.
+ * @type {import('vue').ShallowRef<Boolean>}
+ */
+const showNavigation = computed(() => !mobile.value || show.value);
 </script>
