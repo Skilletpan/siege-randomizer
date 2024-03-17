@@ -1,65 +1,54 @@
 <template>
-  <v-navigation-drawer :rail="!expanded">
-    <v-list
-      :items="navigationItems"
-      nav
-    />
+  <v-navigation-drawer
+    :model-value="!mobile || show"
+    :rail="!mobile && !show"
+    @update:model-value="show = $event"
+  >
+    <v-list nav>
+      <v-list-subheader
+        v-show="mobile || show"
+        title="Randomizers"
+      />
+
+      <!-- To Map Picker -->
+      <v-list-item
+        prepend-icon="$siege-map"
+        title="Map Picker"
+        to="/maps"
+      />
+
+      <!-- To Operator Picker -->
+      <v-list-item
+        prepend-icon="$siege-operators"
+        title="Operator Picker"
+        to="/operators"
+      />
+
+      <!-- To Strat Roulette -->
+      <v-list-item
+        prepend-icon="$siege-strategy"
+        title="Strat Roulette"
+        to="/strats"
+      />
+    </v-list>
   </v-navigation-drawer>
 </template>
 
 <script setup>
-import { computed, ref } from 'vue';
+import { watchEffect } from 'vue';
+import { useDisplay } from 'vuetify';
 
-// Define dynamic properties
-const expanded = ref(true);
+// Extract Vuetify breakpoints
+const { mobile } = useDisplay();
 
-// Define computed properties
-const navigationItems = computed(() => [
-  {
-    title: 'Siege Randomizer',
-    props: {
-      prependIcon: 'mdi-menu',
-      onClick: () => expanded.value = !expanded.value
-    }
-  },
-  {
-    type: 'divider',
-    props: {
-      class: 'mb-1'
-    }
-  },
-  {
-    title: 'Randomizers',
-    type: 'subheader',
-    expandedOnly: true
-  },
-  {
-    title: 'Maps',
-    props: {
-      prependIcon: 'mdi-warehouse',
-      to: 'maps'
-    }
-  },
-  {
-    title: 'Teams',
-    props: {
-      prependIcon: 'mdi-account-group',
-      to: 'teams'
-    }
-  },
-  {
-    title: 'Operators',
-    props: {
-      prependIcon: 'mdi-account',
-      to: 'operators'
-    }
-  },
-  {
-    title: 'Strats',
-    props: {
-      prependIcon: 'mdi-strategy',
-      to: 'strats'
-    }
-  }
-].filter((i) => i.expandedOnly ? expanded.value : true));
+/**
+ * Whether to show (mobile) or expand (desktop) the navigation bar.
+ * @type {import('vue').ModelRef<Boolean>}
+ */
+const show = defineModel({ type: Boolean });
+
+// Toggles navigation visibility depending on screen size
+watchEffect(() => {
+  show.value = !mobile.value;
+});
 </script>
