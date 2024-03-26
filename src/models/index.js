@@ -1,5 +1,7 @@
 import Playlist from './playlist';
+import SiegeMap from './map';
 
 export {
-  Playlist
+  Playlist,
+  SiegeMap
 };

@@ -89,7 +89,7 @@
       "name": "Weapon Roulette",
       "maps": [
         "VILLA",
-        "CLOSEQUARTERS",
+        "CLOSEQUARTER",
         "LABS",
         "LAIR",
         "THEMEPARK",
@@ -103,7 +103,7 @@
       "maps": [
         "VILLA",
         "CONSULATE",
-        "CLOSEQUARTERS",
+        "CLOSEQUARTER",
         "LABS",
         "LAIR",
         "THEMEPARK",
@@ -117,7 +117,7 @@
       "maps": [
         "VILLA",
         "CONSULATE",
-        "CLOSEQUARTERS",
+        "CLOSEQUARTER",
         "LABS",
         "LAIR",
         "THEMEPARK",
@@ -139,7 +139,7 @@
       "name": "Golden Gun",
       "maps": [
         "STADIUM",
-        "CLOSEQUARTERS",
+        "CLOSEQUARTER",
         "LAIR",
         "EMERALD",
         "SKYSCRAPER",
