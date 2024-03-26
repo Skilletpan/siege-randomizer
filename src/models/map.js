@@ -1,3 +1,5 @@
+import loadImage from "@/utils/loadImage";
+
 export default class SiegeMap {
   // Instance properties
   #key;
@@ -12,7 +14,7 @@ export default class SiegeMap {
   constructor(rawMap) {
     this.#key = rawMap.key;
     this.#name = rawMap.name;
-    this.#thumbnail = new URL(`/src/assets/maps/${rawMap.key}.jpg`, import.meta.url).href;
+    this.#thumbnail = loadImage('maps', `${rawMap.key}.jpg`);
   }
 
   /** @returns {string} The key of the map. */
