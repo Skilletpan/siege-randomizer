@@ -2,6 +2,7 @@ export default class SiegeMap {
   // Instance properties
   #key;
   #name;
+  #thumbnail;
 
   /**
    * @param {Object} rawMap      The raw map object.
@@ -11,6 +12,7 @@ export default class SiegeMap {
   constructor(rawMap) {
     this.#key = rawMap.key;
     this.#name = rawMap.name;
+    this.#thumbnail = new URL(`/src/assets/maps/${rawMap.key}.jpg`, import.meta.url).href;
   }
 
   /** @returns {string} The key of the map. */
@@ -18,4 +20,7 @@ export default class SiegeMap {
 
   /** @returns {string} The name of the map. */
   get name() { return this.#name; }
+
+  /** @returns {string} The URL of the thumbnail of the map. */
+  get thumbnail() { return this.#thumbnail; }
 };
