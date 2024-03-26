@@ -15,6 +15,7 @@ Object.entries(RAW_PLAYLISTS).forEach(([category, playlists]) => {
 export default defineStore('playlists-store', () => {
   /** @type {import('vue').ShallowRef<Playlist[]>} */
   const PLAYLISTS = shallowRef(_playlists);
+  console.debug(PLAYLISTS.value);
 
   /**
    * Gets a single playlist by key.

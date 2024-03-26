@@ -4,11 +4,13 @@ import { shallowRef } from 'vue';
 import RAW_MAPS from '@/data/maps_v2.json';
 import { SiegeMap } from '@/models';
 
+// Map raw maps
 const _maps = RAW_MAPS.map((map) => new SiegeMap(map));
 
 export default defineStore('mapStore', () => {
   /** @type {import('vue').ShallowRef<SiegeMap[]>} */
   const MAPS = shallowRef(_maps);
+  console.debug(MAPS.value);
 
   /**
    * Gets a single map by key.
