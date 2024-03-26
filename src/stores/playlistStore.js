@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { readonly } from 'vue';
+import { shallowRef } from 'vue';
 
 import RAW_PLAYLISTS from '@/data/playlists_v2';
 import { Playlist } from '@/models';
@@ -13,8 +13,8 @@ Object.entries(RAW_PLAYLISTS).forEach(([category, playlists]) => {
 });
 
 export default defineStore('playlists-store', () => {
-  /** @type {import('vue').DeepReadonly<Playlist[]>} */
-  const PLAYLISTS = readonly(_playlists);
+  /** @type {import('vue').ShallowRef<Playlist[]>} */
+  const PLAYLISTS = shallowRef(_playlists);
 
   /**
    * Gets a single playlist by key.
@@ -23,7 +23,7 @@ export default defineStore('playlists-store', () => {
    * 
    * @returns {Playlist} The corresponding playlist instance.
    */
-  function get(key) { return PLAYLISTS.find((playlist) => playlist.key === key); }
+  function get(key) { return PLAYLISTS.value.find((playlist) => playlist.key === key); }
 
   /**
    * Gets a list of playlists by keys.
