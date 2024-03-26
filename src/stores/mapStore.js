@@ -17,16 +17,16 @@ export default defineStore('mapStore', () => {
    * 
    * @returns {SiegeMap} The corresponding map instance.
    */
-    function get(key) { return MAPS.value.find((map) => map.key === key); }
+  function get(key) { return MAPS.value.find((map) => map.key === key); }
 
-    /**
-     * Gets a list of maps by keys.
-     * 
-     * @param {string[]} keys The keys of the maps.
-     * 
-     * @returns {SiegeMap[]} The corresponding map instances.
-     */
-    function map(keys) { return keys.map((key) => get(key)); }
+  /**
+   * Gets a list of maps by keys.
+   * 
+   * @param {string[]} keys The keys of the maps.
+   * 
+   * @returns {SiegeMap[]} The corresponding map instances.
+   */
+  function map(keys) { return keys.map((key) => get(key)); }
 
   return {
     // State
