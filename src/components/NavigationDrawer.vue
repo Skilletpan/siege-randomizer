@@ -34,6 +34,14 @@
         title="Strat Roulette"
         to="/strats"
       />
+
+      <v-divider class="my-1" />
+
+      <!-- Settings -->
+      <v-list-item
+        prepend-icon="$settings"
+        title="Settings"
+      />
     </v-list>
   </v-navigation-drawer>
 </template>
