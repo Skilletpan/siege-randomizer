@@ -13,7 +13,7 @@ export default class Squad {
   constructor(key, name) {
     this.#key = key;
     this.#name = name;
-    this.#thumbnail = loadImage('squads', `${name}.png`);
+    this.#thumbnail = loadImage('squads', `${key}.png`);
   }
 
   /** @returns {string} The key of the squad. */
