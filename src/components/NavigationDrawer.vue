@@ -5,23 +5,27 @@
     @update:model-value="show = $event"
   >
     <v-list nav>
-      <v-list-subheader
-        v-show="mobile || show"
-        title="Randomizers"
+      <!-- To Home -->
+      <v-list-item
+        prepend-icon="mdi-home"
+        title="Home"
+        to="/"
+      />
+
+      <v-divider class="my-1" />
+
+      <!-- To Operator Picker -->
+      <v-list-item
+        prepend-icon="$siege-operators"
+        title="Operators"
+        to="/operators"
       />
 
       <!-- To Map Picker -->
       <v-list-item
         prepend-icon="$siege-map"
-        title="Map Picker"
+        title="Maps"
         to="/maps"
-      />
-
-      <!-- To Operator Picker -->
-      <v-list-item
-        prepend-icon="$siege-operators"
-        title="Operator Picker"
-        to="/operators"
       />
 
       <!-- To Strat Roulette -->

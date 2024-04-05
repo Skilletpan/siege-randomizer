@@ -3,7 +3,11 @@
     <!-- App Bar -->
     <v-app-bar>
       <v-app-bar-nav-icon @click="showNavigation = !showNavigation" />
-      <v-app-bar-title text="Siege Randomizer" />
+      <v-app-bar-title
+        class="cursor-pointer"
+        text="Siege Randomizer"
+        @click="$router.push('/')"
+      />
     </v-app-bar>
 
     <!-- Navigation Drawer -->
