@@ -1,19 +1,16 @@
-/**
- * plugins/vuetify.js
- *
- * Framework documentation: https://vuetifyjs.com`
- */
-
-// Styles
-import '@mdi/font/css/materialdesignicons.css';
-import 'vuetify/styles';
-
-// Composables
 import { createVuetify } from 'vuetify';
+import 'vuetify/styles';
+import '@mdi/font/css/materialdesignicons.css';
 
-// https://vuetifyjs.com/en/introduction/why-vuetify/#feature-guides
 export default createVuetify({
-  theme: {
-    defaultTheme: 'dark',
+  icons: {
+    aliases: {
+      'siege-map': 'mdi-map',
+      'siege-operators': 'mdi-account-multiple',
+      'siege-strategy': 'mdi-strategy'
+    }
   },
+  theme: {
+    defaultTheme: 'dark'
+  }
 });
