@@ -12,7 +12,7 @@
 
     <!-- Tool Tiles -->
     <v-row
-      class="pb-6"
+      class="pb-6 pb-sm-8 pb-md-10 pb-lg-12"
       justify="center"
     >
       <v-col
