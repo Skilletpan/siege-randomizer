@@ -1,13 +1,14 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-import { MapPicker, OperatorPicker, StratPicker, UnderConstruction } from '@/views';
+import { Home, MapPicker, OperatorPicker, StratPicker, UnderConstruction } from '@/views';
 
 export default createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
   routes: [
     {
       path: '/',
-      redirect: '/maps'
+      name: 'home',
+      component: Home
     },
     {
       path: '/maps',
