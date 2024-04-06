@@ -32,6 +32,9 @@ export default class SiegeMap {
   /** @returns {SiegeMap[]} A list of all maps. */
   static get LIST() { return Object.values(SiegeMap); }
 
+  /** @returns {SiegeMap} A randomly picked map. */
+  static random() { return SiegeMap.LIST[Math.floor(Math.random() * SiegeMap.LIST.length)]; }
+
   // Register Maps
   static HOUSE = new SiegeMap('HOUSE', 'House');
   static OREGON = new SiegeMap('OREGON', 'Oregon');
