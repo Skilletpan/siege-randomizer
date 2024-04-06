@@ -34,6 +34,6 @@ export default class Squad {
   static REDHAMMER = new Squad('REDHAMMER', 'Redhammer');
   static VIPERSTRIKE = new Squad('VIPERSTRIKE', 'Viperstrike');
   static WOLFGUARD = new Squad('WOLFGUARD', 'Wolfguard');
-};
+}
 
 console.debug(Squad.LIST);

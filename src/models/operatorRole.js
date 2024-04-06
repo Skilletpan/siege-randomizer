@@ -31,6 +31,6 @@ export default class OperatorRole {
   static MAPCONTROL = new OperatorRole('MAPCONTROL', 'Map Control');
   static SUPPORT = new OperatorRole('SUPPORT', 'Support');
   static TRAPPER = new OperatorRole('TRAPPER', 'Trapper');
-};
+}
 
 console.debug(OperatorRole.LIST);

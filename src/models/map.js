@@ -62,6 +62,6 @@ export default class SiegeMap {
   static STADIUM = new SiegeMap('STADIUM', 'Stadium Bravo');
   static LABS = new SiegeMap('LABS', 'Nighthaven Labs');
   static LAIR = new SiegeMap('LAIR', 'Lair');
-};
+}
 
 console.debug(SiegeMap.LIST);

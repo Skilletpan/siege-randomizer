@@ -35,6 +35,6 @@ export default class WeaponClass {
   static BAI = new WeaponClass('BAI', 'Bailiff');
   static HC = new WeaponClass('HC', 'Hand Cannon');
   static SH = new WeaponClass('SH', 'Shield');
-};
+}
 
 console.debug(WeaponClass.LIST);

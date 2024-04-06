@@ -65,6 +65,6 @@ export default class Playlist {
   static AI_HARD = new Playlist(PLAYLISTS.AI_HARD);
   static LANDMARK = new Playlist(PLAYLISTS.LANDMARK);
   static TARGET = new Playlist(PLAYLISTS.TARGET);
-};
+}
 
 console.debug(Playlist.LIST);
