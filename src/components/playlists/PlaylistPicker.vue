@@ -2,8 +2,9 @@
   <!-- Playlist Picker -->
   <v-select
     v-bind="$attrs"
-    :items="items"
-    label="Playlist"
+    :items="pickerItems"
+    :label="label"
+    :multiple="multiple"
   >
     <!-- Slot Passthrough -->
     <template
@@ -22,7 +23,7 @@
       #item="{ item, index, props: p }"
     >
       <!-- Playlist Type Subheader -->
-      <template v-if="toRaw(item.raw).playlistType !== items[index - 1]?.playlistType">
+      <template v-if="toRaw(item.raw).playlistType !== pickerItems[index - 1]?.playlistType">
         <v-divider v-if="index > 0" />
         <v-list-subheader>{{ toRaw(item.raw).playlistType }} Playlist</v-list-subheader>
       </template>
@@ -40,24 +41,44 @@ import { Playlist } from '@/models';
 
 // eslint-disable-next-line
 const props = defineProps({
-  /** Whether only standard playlists should be pickable. */
-  standardOnly: Boolean,
-
   /** Whether only arcade playlists should be pickable. */
   arcadeOnly: Boolean,
 
+  /** The items to pick a playlist from. */
+  items: {
+    default: undefined,
+    type: Array,
+    validator: (value) => value.every((v) => Playlist.LIST.includes(v))
+  },
+
+  /** The label for the picker. */
+  label: {
+    default: 'Playlist',
+    type: String
+  },
+
+  /** Whether multiple playlists can be picked. */
+  multiple: Boolean,
+
   /** Whether only practice playlists should be pickable. */
-  practiceOnly: Boolean
+  practiceOnly: Boolean,
+
+  /** Whether only standard playlists should be pickable. */
+  standardOnly: Boolean
 });
 
 /**
  * The items that can be picked from in the picker.
  * @type {import('vue').ComputedRef<Playlist[]>}
  */
-const items = computed(() => Playlist.LIST.filter((p) => {
-  if (props.standardOnly && !p.isStandard) return false;
-  if (props.arcadeOnly && !p.isArcade) return false;
-  if (props.practiceOnly && !p.isPractice) return false;
-  return true;
-}));
+const pickerItems = computed(() => {
+  if (props.items) return props.items;
+
+  return Playlist.LIST.filter((p) => {
+    if (props.standardOnly && !p.isStandard) return false;
+    if (props.arcadeOnly && !p.isArcade) return false;
+    if (props.practiceOnly && !p.isPractice) return false;
+    return true;
+  });
+});
 </script>

@@ -16,7 +16,7 @@
       <v-col cols="auto">
         <v-btn
           color="primary"
-          icon="mdi-dice-multiple-outline"
+          icon="$randomize"
           size="x-large"
           @click="pickMap"
         />
@@ -44,6 +44,8 @@
         </v-col>
       </v-card-text>
     </v-card>
+
+    <map-filter-drawer />
   </v-container>
 
   <!-- Preview Dialog -->
@@ -62,7 +64,7 @@
 import { storeToRefs } from 'pinia';
 import { ref, shallowRef, toRaw } from 'vue';
 
-import { MapCard } from '@/components';
+import { MapCard, MapFilterDrawer } from '@/components';
 import { SiegeMap } from '@/models';
 import { useMatchSettings } from '@/store';
 

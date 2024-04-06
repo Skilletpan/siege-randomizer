@@ -46,6 +46,8 @@ export default class Playlist extends MapModel {
     allowed: null,
     banned: null
   }
+  #allowedOperators;
+  #bannedOperators;
 
   /**
    * Creates a new Playlist instance.
@@ -74,88 +76,82 @@ export default class Playlist extends MapModel {
     this.#operators.banned = Array.from(rawPlaylist.operators?.banned || []);
   }
 
-  /**
-   * The name of the playlist.
-   */
+  /** @returns {string} The name of the playlist. */
   get name() { return this.#name; }
 
-  /**
-   * The type of the playlist.
-   * @returns {'Standard'|'Arcade'|'Practice'}
-   */
+  /** @returns {'Standard'|'Arcade'|'Practice'} The type of the playlist. */
   get playlistType() { return PLAYLIST_TYPES[this.#type]; }
 
-  /**
-   * Whether the playlist is a `STANDARD` playlist.
-   */
+  /** @returns {boolean} Whether the playlist is a `STANDARD` playlist. */
   get isStandard() { return this.#type === 'STANDARD'; }
 
-  /**
-   * Whether the playlist is an `ARCADE` playlist.
-   */
+  /** @returns {boolean} Whether the playlist is an `ARCADE` playlist. */
   get isArcade() { return this.#type === 'ARCADE'; }
 
-  /**
-   * Whether the playlist is a `PRACTICE` playlist.
-   */
+  /** @returns {boolean} Whether the playlist is a `PRACTICE` playlist. */
   get isPractice() { return this.#type === 'PRACTICE'; }
 
-  /**
-   * The features of this playlist.
-   */
+  /** @returns {{ [feature: string]: boolean }} The features of this playlist. */
   get features() {
-    return Object.freeze({
+    return {
       duplicateOperators: this.#features.includes('DUPLICATE_OPERATORS'),
       mixedTeams: this.#features.includes('MIXED_TEAMS'),
       operatorBans: this.#features.includes('OPERATOR_BANS'),
       recruits: this.#features.includes('RECRUITS')
-    });
+    };
   }
 
-  /**
-   * The maps included in the playlist.
-   */
-  get maps() { return SiegeMap.LIST.filter((map) => this.#maps.includes(map.key)); }
+  /** @returns {SiegeMap[]} The maps included in the playlist. */
+  get maps() { return this.#maps.map((map) => SiegeMap.valueOf(map)); }
 
-  /**
-   * The operators allowed in the playlist.
-   */
+  /** @returns {Operator[]} The operators allowed in the playlist. */
   get allowedOperators() {
-    const { allowed, banned } = this.#operators;
-    const { recruits: allowRecruits } = this.#features;
-
-    return Operator.LIST.filter((operator) => {
-      // Include explicitly allowed operators
-      if (allowed.length) return allowed.includes(operator.key);
-      else {
-        // Exclude explicitly banned operators
-        if (banned.includes(operator.key)) return false;
-
-        // Exclude recruits if the `RECRUIT` feature is disabled
-        if (!allowRecruits && operator.key.startsWith('RECRUIT')) return false;
-
-        // Include remaining operators
-        return true;
-      }
-    });
+    // Maps operators on first call
+    if (!this.#allowedOperators) this.#mapOperators();
+    return this.#allowedOperators;
   }
 
-  /**
-   * The operators banned from this playlist.
-   */
+  /** @returns {Operator[]} The operators banned from this playlist. */
   get bannedOperators() {
+    // Maps operators on first call
+    if (!this.#bannedOperators) this.#mapOperators();
+    return this.#bannedOperators;
+  }
+
+  /** Builds the allowed and banned operator lists. */
+  #mapOperators() {
     const { allowed, banned } = this.#operators;
-    const { recruits: allowRecruits } = this.#features;
+    const { recruits } = this.features;
 
-    return Operator.LIST.filter((operator) => {
-      // Include all except allowed operators
-      if (allowed.length) return !allowed.includes(operator.key);
+    // Create empty lists
+    const _allowed = [], _banned = [];
 
-      // Include explicitly banned operators
-      if (banned.includes(operator.key)) return true;
+    Operator.LIST.forEach((operator) => {
+      // Set explicitly allowed and implicitly disallowed operators
+      if (allowed.length) {
+        if (allowed.includes(operator.key)) _allowed.push(operator);
+        else _banned.push(operator);
+        return;
+      }
 
-      // Include recruits if the `RECRUIT` feature is disabled
-      return !allowRecruits && operator.key.startsWith('RECRUIT');
+      // Set explicitly disallowed operators
+      if (banned.length && banned.includes(operator.key)) {
+        _banned.push(operator);
+        return;
+      }
+
+      // Set recruits
+      if (operator.key.startsWith('RECRUIT')) {
+        if (recruits) _allowed.push(operator);
+        else _banned.push(operator);
+      }
+
+      // Set implicitly allowed operators
+      _allowed.push(operator);
     });
+
+    // Assign lists to instance properties
+    this.#allowedOperators = _allowed;
+    this.#bannedOperators = _banned;
   }
 }

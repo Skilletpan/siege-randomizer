@@ -7,10 +7,7 @@ export default class Gadget extends MapModel {
     const rawGadgets = require('@/data/gadgets.json');
 
     // Build gadget instances from raw data
-    Object.entries(rawGadgets).forEach(([key, gadget]) => {
-      // Create gadget instance
-      new Gadget({ key, ...gadget });
-    });
+    Object.entries(rawGadgets).forEach(([key, gadget]) => new Gadget({ key, ...gadget }));
 
     console.debug('Gadgets imported:', Gadget.LIST);
   }
@@ -29,48 +26,46 @@ export default class Gadget extends MapModel {
 
   // Instance properties
   #name;
-  #isDeployable = false;
-  #isElectrical = false;
-  #isLethal = false;
-  #isThrowable = false;
+  #amount;
+  #properties;
+  #operators;
 
   /**
    * Creates a new Gadget instance.
    * 
-   * @param {Object}   rawGadget              The raw gadget data.
-   * @param {string}   rawGadget.key          The key of the gadget.
-   * @param {string}   rawGadget.name         The name of the gadget.
-   * @param {?boolean} rawGadget.isDeployable Whether the gadget can be deployed.
-   * @param {?boolean} rawGadget.isElectrical Whether the gadget is electrical.
-   * @param {?boolean} rawGadget.isLethal     Whether the gadget is lethal.
-   * @param {?boolean} rawGadget.isThrowable  Whether the gadget can be thrown.
+   * @param {Object}   rawGadget                         The raw gadget data.
+   * @param {string}   rawGadget.key                     The key of the gadget.
+   * @param {string}   rawGadget.name                    The name of the gadget.
+   * @param {number}   rawGadget.amount                  The amount of copies of the gadget the player gets.
+   * @param {string[]} rawGadget.properties              The properties of the gadget.
    */
   constructor(rawGadget) {
     super(rawGadget.key, Gadget);
 
     // Set instance properties
     this.#name = rawGadget.name;
-    this.#isDeployable = Boolean(rawGadget.isDeployable);
-    this.#isElectrical = Boolean(rawGadget.isElectrical);
-    this.#isLethal = Boolean(rawGadget.isLethal);
-    this.#isThrowable = Boolean(rawGadget.isThrowable);
+    this.#amount = rawGadget.amount;
+    this.#properties = {
+      deployable: rawGadget.properties.includes('DEPLOYABLE'),
+      electrical: rawGadget.properties.includes('ELECTRICAL'),
+      lethal: rawGadget.properties.includes('LETHAL'),
+      throwable: rawGadget.properties.includes('THROWABLE')
+    };
   }
 
   /** @returns {string} The name of the gadget. */
   get name() { return this.#name; }
 
-  /** @returns {boolean} Whether the gadget is deployable. */
-  get isDeployable() { return this.#isDeployable; }
+  /** @returns {number} The amount of copies of the gadget the player gets. */
+  get amount() { return this.#amount; }
 
-  /** @returns {boolean} Whether the gadget is electrical. */
-  get isElectrical() { return this.#isElectrical; }
-
-  /** @returns {boolean} Whether the gadget is lethal. */
-  get isLethal() { return this.#isLethal; }
-
-  /** @returns {boolean} Whether the gadget is throwable. */
-  get isThrowable() { return this.#isThrowable; }
+  /** @returns {{ [feature: string]: boolean }} The properties of the gadget. */
+  get properties() { return this.#properties; }
 
   /** @returns {Operator[]} The operators who use this gadget. */
-  get operators() { return Operator.getOperators({ loadoutFilters: [{ gadget: [this] }] }) }
+  get operators() {
+    // Maps operators on first call
+    if (!this.#operators) this.#operators = Operator.LIST.filter((operator) => operator.loadout.hasGadget(this));
+    return this.#operators;
+  }
 }

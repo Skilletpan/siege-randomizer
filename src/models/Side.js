@@ -6,10 +6,7 @@ export default class Side extends MapModel {
     const rawSides = require('@/data/sides.json');
 
     // Build side instances from raw data
-    Object.entries(rawSides).forEach(([key, side]) => {
-      // Create side instance
-      new Side({ key, ...side });
-    });
+    Object.entries(rawSides).forEach(([key, side]) => new Side({ key, ...side }));
 
     console.debug('Sides imported:', Side.LIST);
   }
@@ -62,12 +59,7 @@ export default class Side extends MapModel {
   get color() { return this.#color; }
 
   /** @returns {Side[]} The sides that are included in this sides. */
-  get included() {
-    const sides = [];
-    if (this === Side.ATT || this === Side.ALL) sides.push(Side.ATT);
-    if (this === Side.DEF || this === Side.ALL) sides.push(Side.DEF);
-    return sides;
-  }
+  get included() { return this === Side.ALL ? [Side.ATT, Side.DEF] : [this]; }
 
   /** @returns {Side} The opposite side of this side. */
   get opposite() {
@@ -83,12 +75,7 @@ export default class Side extends MapModel {
    * 
    * @returns {boolean} Whether the side is included.
    */
-  includes(side) {
-    const s = Side.valueOf(side);
-
-    if (this === Side.ALL) return true;
-    return this === s;
-  }
+  includes(side) { return this.included.includes(Side.valueOf(side)); }
 
   /**
    * Checks whether a given side overlaps with this side.

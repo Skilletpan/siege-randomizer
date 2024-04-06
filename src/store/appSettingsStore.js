@@ -1,32 +1,49 @@
 import { defineStore } from 'pinia';
-import { ref } from 'vue';
+import { computed, ref, shallowRef, watchEffect } from 'vue';
 
 // Load data from localStorage
-const storedData = JSON.parse(localStorage.getItem('app-settings'));
+const local = JSON.parse(localStorage.getItem('app-settings')) || {};
 
 export default defineStore('app-settings', () => {
   /**
-   * The theme to use.
-   * @type {import('vue').Ref<String>}
+   * Whether to show the app settings dialog.
+   * @type {import('vue').ShallowRef<Boolean>}
    */
-  const theme = ref(storedData?.theme || 'default');
+  const show = shallowRef(false);
 
   /**
-   * Whether recently used player names should be stored.
-   * @type {import('vue').Ref<Boolean>}
+   * The raw and editable app setting values.
+   * @type {import('vue').Ref<{ expandNavigation: Boolean, theme: String }>}
    */
-  const storeRecentPlayers = ref(storedData ? Boolean(storedData.storeRecent) : true);
+  const appSettings = ref({
+    expandNavigation: Object.hasOwn(local, 'expandNavigation') ? local.expandNavigation : true,
+    theme: local.theme || 'default'
+  });
 
-  /** Stores the current settings in the browser store. */
-  function storeSettings() {
+  /**
+   * Whether to expand the navigation bar.
+   * @type {import('vue').ComputedRef<Boolean>}
+   */
+  const expandNavigation = computed(() => appSettings.value.expandNavigation);
+
+  /**
+   * The theme to use.
+   * @type {import('vue').ComputedRef<String>}
+   */
+  const theme = computed(() => appSettings.value.theme);
+
+  // Store updates in browser storage
+  watchEffect(() => {
+    const { expandNavigation: _expandNavigation, theme: _theme } = appSettings.value;
+
     localStorage.setItem(
       'app-settings',
       JSON.stringify({
-        theme: theme.value,
-        storeRecent: storeRecentPlayers.value
+        expandNavigation: _expandNavigation,
+        theme: _theme
       })
     );
-  }
+  });
 
-  return { theme, storeRecentPlayers, storeSettings };
+  return { show, appSettings, expandNavigation, theme };
 });

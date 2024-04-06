@@ -7,10 +7,7 @@ export default class StrategyTag extends MapModel {
     const rawStrategyTags = require('@/data/tags.json');
 
     // Build strategy tag instances from raw data
-    Object.entries(rawStrategyTags).forEach(([key, tag]) => {
-      // Create strategy tag instance
-      new StrategyTag({ key, ...tag });
-    });
+    Object.entries(rawStrategyTags).forEach(([key, tag]) => new StrategyTag({ key, ...tag }));
 
     console.debug('Strategy Tags imported:', StrategyTag.LIST);
   }
@@ -30,6 +27,7 @@ export default class StrategyTag extends MapModel {
   // Instance properties
   #name;
   #description;
+  #strategies;
 
   /**
    * Creates a new Strategy Tag instance.
@@ -54,5 +52,9 @@ export default class StrategyTag extends MapModel {
   get description() { return this.#description; }
 
   /** @returns {Strategy[]} The strategies with this tag. */
-  get strategies() { return Strategy.LIST.filter((strategy) => strategy.tags.includes(this)); }
+  get strategies() {
+    // Stores strategies on first call
+    if (!this.#strategies) this.#strategies = Strategy.LIST.filter((strategy) => strategy.tags.includes(this));
+    return this.#strategies;
+  }
 }

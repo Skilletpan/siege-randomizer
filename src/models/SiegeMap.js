@@ -32,6 +32,7 @@ export default class SiegeMap extends MapModel {
 
   // Instance properties
   #name;
+  #playlists;
   #thumbnail;
 
   /**
@@ -52,13 +53,16 @@ export default class SiegeMap extends MapModel {
   get name() { return this.#name; }
 
   /** @returns {Playlist[]} The playlists that include this map. */
-  get playlists() { return Playlist.LIST.filter((playlist) => playlist.maps.includes(this)); }
+  get playlists() {
+    // Stores playlists on first call
+    if (!this.#playlists) this.#playlists = Playlist.LIST.filter((playlist) => playlist.maps.includes(this));
+    return this.#playlists;
+  }
 
   /** @returns {string} The thumbnail image of the map. */
   get thumbnail() {
     // Loads the thumbnail on first call
     if (!this.#thumbnail) this.#thumbnail = require(`@/assets/maps/${this.key}.jpg`);
-
     return this.#thumbnail;
   }
 }

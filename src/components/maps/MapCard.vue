@@ -36,7 +36,7 @@
       <v-icon
         v-else
         class="h-100 randomize-icon w-100"
-        icon="mdi-dice-multiple-outline"
+        icon="$randomize"
         size="70"
       />
     </v-img>

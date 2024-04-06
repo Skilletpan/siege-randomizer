@@ -1,67 +1,157 @@
 <template>
   <v-navigation-drawer
+    v-model="MatchSettings2.show"
     location="right"
-    width="350"
+    order="0"
+    width="300"
   >
+    <!-- Match Settings -->
     <v-list>
-      <!-- Match Settings -->
-      <v-list-subheader>Match Settings</v-list-subheader>
+      <v-list-subheader
+        class="text-h6"
+        title="Lobby Settings"
+      />
+
+      <v-list-subheader title="Match" />
 
       <!-- Playlist Picker -->
-      <v-list-item class="mb-1">
-        <playlist-picker v-model="settings.playlist" />
+      <v-list-item>
+        <playlist-picker
+          v-model="matchSettings.playlistKey"
+          placeholder="Custom"
+        />
       </v-list-item>
 
-      <!-- Banned Operators Picker -->
+      <!-- Map Picker -->
+      <v-list-item>
+        <map-picker
+          v-model="matchSettings.mapKey"
+          :items="MatchSettings2.playlist?.maps || SiegeMap.LIST"
+        />
+      </v-list-item>
+
+      <v-divider class="mt-2" />
+
+      <v-list-subheader title="Features" />
+
       <v-list-item
-        class="mb-1"
-        :disabled="!operatorBansEnabled"
+        density="compact"
+        :disabled="!!MatchSettings2.playlist"
+        title="Operator Bans"
+        @click="matchSettings.features.bans = !MatchSettings2.features.operatorBans"
       >
-        <operator-picker
-          v-model="settings.operatorBans"
-          class="mb-1"
-          :hide-details="operatorBansEnabled"
-          hide-selected
-          hint="Disabled by Playlist"
-          :items="bannableOperators"
-          label="Ban Operators"
-          multiple
-          :persistent-hint="!operatorBansEnabled"
-          :readonly="operatorBans.MANUAL.length >= 4"
-          v-bind="!operatorBansEnabled ? { modelValue: [] } : {}"
-        >
-          <!-- Selection Text -->
-          <template #selection="{ index }">
-            <template v-if="index === 0">{{ operatorBans.MANUAL.length }}/4 Operators</template>
-          </template>
+        <template #prepend>
+          <v-list-item-action start>
+            <v-checkbox-btn
+              density="compact"
+              :model-value="MatchSettings2.features.operatorBans"
+            />
+          </v-list-item-action>
+        </template>
+      </v-list-item>
 
-          <!-- Random Bans Button -->
-          <template
-            v-if="operatorBansEnabled"
-            #append-inner
+      <v-list-item
+        density="compact"
+        :disabled="!!MatchSettings2.playlist"
+        title="Recruits"
+        @click="matchSettings.features.recruits = !MatchSettings2.features.recruits"
+      >
+        <template #prepend>
+          <v-list-item-action start>
+            <v-checkbox-btn
+              density="compact"
+              :model-value="MatchSettings2.features.recruits"
+            />
+          </v-list-item-action>
+        </template>
+      </v-list-item>
+
+      <v-list-item
+        density="compact"
+        :disabled="!!MatchSettings2.playlist"
+        title="Duplicate Picks"
+        @click="matchSettings.features.duplicates = !MatchSettings2.features.duplicateOperators"
+      >
+        <template #prepend>
+          <v-list-item-action start>
+            <v-checkbox-btn
+              density="compact"
+              :model-value="MatchSettings2.features.duplicateOperators"
+            />
+          </v-list-item-action>
+        </template>
+      </v-list-item>
+
+      <v-list-item
+        density="compact"
+        :disabled="!!MatchSettings2.playlist"
+        title="Mixed Teams"
+        @click="matchSettings.features.mixed = !MatchSettings2.features.mixedTeams"
+      >
+        <template #prepend>
+          <v-list-item-action start>
+            <v-checkbox-btn
+              density="compact"
+              :model-value="MatchSettings2.features.mixedTeams"
+            />
+          </v-list-item-action>
+        </template>
+      </v-list-item>
+
+
+
+      <!-- Banned Operators Picker -->
+      <filter-drawer-item
+        v-if="false"
+        :disabled="!operatorBansEnabled"
+        reason="Disabled by Playlist"
+      >
+        <template #default="{ disabled }">
+          <operator-picker
+            v-model="MatchSettings2.matchSettings.mapKey"
+            :disabled="disabled"
+            hide-selected
+            :items="bannableOperators"
+            label="Ban Operators"
+            multiple
+            :readonly="MatchSettings2.bannedOperators.length >= 4"
           >
-            <v-btn
-              density="comfortable"
-              icon="mdi-dice-multiple-outline"
-              variant="text"
-              @click.capture.stop="banRandomOperators"
-            />
-          </template>
+            <!-- Selection Text -->
+            <template #selection="{ index }">
+              <template v-if="index === 0">{{ MatchSettings2.bannedOperators.length }}/4 Operators</template>
+            </template>
 
-          <!-- Operator Item -->
-          <template #item="{ item, props }">
-            <v-list-item
-              v-show="operatorBansBySide[toRaw(item.raw).side.key].length < 2"
-              v-bind="props"
-              :append-icon="toRaw(item.raw).side.icon"
-              :prepend-avatar="toRaw(item.raw).emblem"
-            />
-          </template>
-        </operator-picker>
+            <!-- Random Bans Button -->
+            <template
+              v-if="operatorBansEnabled"
+              #append-inner
+            >
+              <v-btn
+                density="comfortable"
+                icon="$randomize"
+                variant="text"
+                @click.stop="banRandomOperators"
+              />
+            </template>
 
-        <!-- Banned Operators -->
+            <!-- Operator Item -->
+            <template #item="{ item, props }">
+              <v-list-item
+                v-show="operatorBansBySide[toRaw(item.raw).side.key].length < 2"
+                v-bind="props"
+              >
+                <template #prepend>
+                  <operator-emblem :image="props.prependAvatar" />
+                </template>
+              </v-list-item>
+            </template>
+          </operator-picker>
+        </template>
+      </filter-drawer-item>
+
+      <filter-drawer-item v-if="false && operatorBansEnabled">
         <v-row
-          class="align-center justify-space-between pa-2"
+          class="align-center justify-space-around"
           no-gutters
         >
           <!-- Attackers Icon -->
@@ -81,7 +171,7 @@
                   v-bind="props"
                   class="clickable-avatar"
                   :color="operatorBansBySide[i < 3 ? 'ATT' : 'DEF'][(i - 1) % 2] ? 'error' : null"
-                  :icon="isHovering ? 'mdi-dice-multiple-outline' : 'mdi-help'"
+                  :icon="isHovering ? '$randomize' : 'mdi-help'"
                   :image="operatorBansBySide[i < 3 ? 'ATT' : 'DEF'][(i - 1) % 2]?.emblem"
                   rounded="rounded"
                   variant="tonal"
@@ -102,80 +192,7 @@
             :icon="Side.DEF.icon"
           />
         </v-row>
-      </v-list-item>
-
-      <v-divider class="my-1" />
-
-      <!-- Player Settings -->
-      <v-list-subheader>Players</v-list-subheader>
-
-      <!-- Player Input -->
-      <v-list-item class="mb-1">
-        <v-combobox
-          ref="playerInput"
-          v-model="settings.playerList"
-          :hide-details="false"
-          hide-selected
-          :hint="playerList.length < 5 ? 'Press ENTER to add' : null"
-          :items="recentPlayerList"
-          label="Add Players"
-          multiple
-          persistent-counter
-          :readonly="playerList.length >= 5"
-          @update:focused="$refs.playerInput.search = ''"
-          @update:model-value="addRecentPlayer($refs.playerInput.search, storeRecentPlayers)"
-        >
-          <!-- Selection -->
-          <template #selection="{ index }">
-            <template v-if="index === 0">{{ playerList.length }}/5 Players</template>
-          </template>
-
-          <!-- Recent Player Item -->
-          <template #item="{ item, props }">
-            <v-list-item
-              v-bind="props"
-              prepend-icon="mdi-history"
-            >
-              <template #append>
-                <v-btn
-                  density="comfortable"
-                  icon="mdi-delete"
-                  variant="text"
-                  @click.stop="removeRecentPlayer(item.title)"
-                />
-              </template>
-            </v-list-item>
-          </template>
-        </v-combobox>
-      </v-list-item>
-
-      <!-- Player List -->
-      <template v-if="playerList.length > 0">
-        <field-label class="ml-8">Current Players</field-label>
-        <v-list-item class="mb-1">
-          <v-list
-            border
-            class="py-0"
-            :items="playerList"
-            rounded
-          >
-            <!-- Player Item -->
-            <template #item="{ props }">
-              <v-list-item v-bind="props">
-                <!-- Remove Button -->
-                <template #append>
-                  <v-btn
-                    density="comfortable"
-                    icon="mdi-close"
-                    variant="text"
-                    @click="removePlayer(props.title)"
-                  />
-                </template>
-              </v-list-item>
-            </template>
-          </v-list>
-        </v-list-item>
-      </template>
+      </filter-drawer-item>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -184,12 +201,13 @@
 import { storeToRefs } from 'pinia';
 import { computed, toRaw } from 'vue';
 
-import { OperatorPicker, PlaylistPicker } from '@/components';
-import { Operator, Side } from '@/models';
-import { useAppSettings, useMatchSettings } from '@/store';
+import { FilterDrawerItem, MapPicker, OperatorPicker, PlaylistPicker } from '@/components';
+import { Operator, Side, SiegeMap } from '@/models';
+import { useAppSettings, useMatchSettings, useMatchSettings2 } from '@/store';
 
 // Include settings
 const MatchSettings = useMatchSettings();
+const MatchSettings2 = useMatchSettings2();
 
 // Extract refs from settings
 const { storeRecentPlayers } = storeToRefs(useAppSettings());
@@ -198,12 +216,14 @@ const {
 
   operatorBans,
   operatorBansEnabled,
-  bannableOperators,
-
-  playerList,
-  recentPlayerList
+  bannableOperators
 } = storeToRefs(MatchSettings);
-const { removeOperatorBan, addRecentPlayer, removePlayer, removeRecentPlayer, storeSettings } = MatchSettings;
+const { matchSettings } = storeToRefs(MatchSettings2);
+const {
+  removeOperatorBan,
+
+  storeSettings
+} = MatchSettings;
 
 // Update match settings in browser storage on change
 MatchSettings.$subscribe(() => { storeSettings(storeRecentPlayers.value); });
@@ -219,25 +239,6 @@ const operatorBansBySide = computed(() => operatorBans.value.MANUAL.reduce(
   },
   { [Side.ATT.key]: [], [Side.DEF.key]: [] }
 ));
-
-/**
- * Transforms raw operators to list props.
- * 
- * @param {Operator} operator The operator item to transform.
- * 
- * @todo Check when Vuetify fixed their `prependAvatar` bug.
- * @see https://github.com/vuetifyjs/vuetify/issues/18933
- */
-// eslint-disable-next-line
-function transformOperatorProps(operator) {
-  return {
-    title: operator.name,
-    value: operator.key,
-    'v-show': operatorBansBySide.value[operator.side.key].length < 2,
-    prependAvatar: operator.emblem,
-    appendIcon: operator.side.icon
-  }
-}
 
 /** Replaces all banned operators with random operators. */
 function banRandomOperators() {

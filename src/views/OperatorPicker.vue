@@ -3,15 +3,17 @@
     <!-- Picked Operators -->
     <v-row class="justify-center">
       <v-col
-        v-for="i in playerList.length || pickerSettings.pickAmount"
+        v-for="i in pickerSettings.pickAmount"
         :key="i"
         class="operator-card"
       >
         <operator-card
           :operator="pickedOperators[i - 1]"
           :player-name="playerList[i - 1] || null"
+          :refreshable="!!pickedOperators[i - 1]"
           :variant="!pickedOperators[i - 1] ? 'placeholder' : 'prominent'"
           @click="onCardClick(i - 1)"
+          @refresh="() => { console.log('Test') }"
         />
       </v-col>
     </v-row>
@@ -33,7 +35,7 @@
       </v-col>
 
       <v-btn
-        icon="mdi-filter"
+        icon="$filter"
         @click="showOperatorFilters = true"
       />
     </v-row>
@@ -53,7 +55,7 @@
           >
             <operator-card
               :operator="operator"
-              @click="previewOperator(operator.key)"
+              @click="previewOperator(operator)"
             />
           </v-col>
         </v-card-text>
@@ -63,14 +65,8 @@
     <!-- Filter Drawer -->
     <operator-filter-drawer
       v-model="showOperatorFilters"
-      v-model:pick-amount="pickerSettings.pickAmount"
-      v-model:pick-duplicates="pickerSettings.pickDuplicates"
-      v-model:speed="filters.speed"
-      v-model:roles="filters.roles"
-      v-model:squad="filters.squad"
-      v-model:primary="filters.primary"
-      v-model:secondary="filters.secondary"
-      v-model:gadgets="filters.gadgets"
+      @update:operators="filteredOperators = $event"
+      @update:settings="pickerSettings = $event"
     />
   </v-container>
 
@@ -80,7 +76,7 @@
     width="300"
   >
     <operator-card
-      :operator="previewDialog.operatorKey"
+      :operator="previewDialog.operator"
       variant="detailed"
     />
   </v-dialog>
@@ -92,17 +88,14 @@ import { computed, ref, shallowRef, toRaw } from 'vue';
 
 import { OperatorCard, OperatorFilterDrawer, SidePool } from '@/components';
 import { Operator, Side } from '@/models';
-import { useMatchSettings } from '@/store';
+import { useMatchSettings, useSquadSettings } from '@/store';
 
 // Include settings
 const MatchSettings = useMatchSettings();
+const SquadSettings = useSquadSettings();
 
 // Extract refs from MatchSettings
 const { pickableOperators, playerList, playlist } = storeToRefs(MatchSettings);
-
-const pickableSides = computed(() => Side.LIST.filter((s) => {
-  return s !== Side.ALL || (!playlist.value || playlist.value.features.mixedTeams);
-}));
 
 /**
  * Whether to show the operator filter drawer.
@@ -114,70 +107,42 @@ const showOperatorFilters = shallowRef(false);
  * The settings for the operator picker.
  * @type {import('vue').Ref<{ pickAmount: Number, pickDuplicates: Boolean }>}
  */
-const pickerSettings = ref({
-  pickAmount: 5,
-  pickDuplicates: false
-});
+const pickerSettings = ref({});
 
 /**
- * @typedef {Object}   OperatorFilters The values to filter operators by.
- * @prop    {number[]} speed           The target operator's speed.
- * @prop    {string[]} roles           The keys of the target operator's roles.
- * @prop    {string}   squad           The key of the target operator's squad.
- * @prop    {string[]} primary         The keys of the target operator's primary weapons.
- * @prop    {string[]} secondary       The keys of the target operator's secondary weapons.
- * @prop    {string[]} gadgets         The keys of the target operator's gadgets.
+ * The filtered operators from the filter drawer.
+ * @type {import('vue').Ref<Operator[]>}
  */
+const filteredOperators = ref([]);
 
-/**
- * The values to filter operators by.
- * @type {import('vue').Ref<OperatorFilters>}
- */
-const filters = ref({
-  // Operator Details
-  speed: [],
-  roles: [],
-  squad: null,
-
-  // Loadout
-  primary: [],
-  secondary: [],
-  gadgets: []
+/** The sides available to pick operators from. */
+const pickableSides = computed(() => {
+  if (!playlist.value || playlist.value.features.mixedTeams) return Side.LIST;
+  return Side.SIDES;
 });
+
+/** The pool to pick operators from. */
+const operatorPool = computed(() => pickableOperators.value.filter((o) => filteredOperators.value.includes(o)));
 
 /**
  * The keys of the operators that have been picked by the randomizer.
  * @type {import('vue').Ref<Operator[]>}
  */
 const pickedOperators = ref([]);
+
+/**
+ * The operators that have been picked by the randomizer by player name.
+ * @type {import('vue').Ref<{ [playerName: String]: Operator[] }>}
+ */
+const picks = ref({});
+
+/**
+ * The data for the preview dialog.
+ * @type {import('vue').Ref<{ operator: Operator | String, show: Boolean }>}
+ */
 const previewDialog = ref({
-  operatorKey: null,
+  operator: null,
   show: false
-});
-
-/** The pool to pick operators from. */
-const operatorPool = computed(() => {
-  const { speed, roles, squad, primary, secondary, gadgets } = filters.value;
-
-  const operatorFilters = {};
-
-  // Set operator details
-  if (speed.length) operatorFilters.speed = speed;
-  if (roles.length) operatorFilters.role = roles;
-  if (squad) operatorFilters.squad = squad;
-
-  // Set loadout filter
-  if (primary.length || secondary.length || gadgets.length) {
-    const loadoutFilter = { method: 'every' };
-
-    if (primary.length) loadoutFilter.primary = primary;
-    if (secondary.length) loadoutFilter.secondary = secondary;
-    if (gadgets.length) loadoutFilter.gadget = gadgets;
-
-    operatorFilters.loadoutFilters = [loadoutFilter];
-  }
-
-  return Operator.getOperators(operatorFilters, pickableOperators.value);
 });
 
 function onCardClick(index) {
@@ -188,7 +153,7 @@ function onCardClick(index) {
   }
 
   const pickedOperator = toRaw(pickedOperators.value[index]);
-  if (pickedOperator) previewOperator(pickedOperator.key);
+  if (pickedOperator) previewOperator(pickedOperator);
 }
 
 /**
@@ -198,7 +163,6 @@ function onCardClick(index) {
  */
 function pickOperators(side) {
   const { pickAmount, pickDuplicates } = pickerSettings.value;
-  // const { pickerSettings: { pickAmount, pickDuplicates } } = settings2.value;
 
   // Apply side filter
   const pool = operatorPool.value.filter((o) => side.includes(o.side));
@@ -216,10 +180,10 @@ function pickOperators(side) {
 /**
  * Opens a preview dialog for the selected operator.
  * 
- * @param {String} operatorKey The key of the operator to preview.
+ * @param {Operator|string} operator The (key of the) operator to preview.
  */
-function previewOperator(operatorKey) {
-  previewDialog.value.operatorKey = operatorKey;
+function previewOperator(operator) {
+  previewDialog.value.operator = operator;
   previewDialog.value.show = true;
 }
 </script>

@@ -36,18 +36,20 @@
   {
     "title": "Alternate Arms",
     "tagline": "What even are these?",
+    "operators": {
+      "disallowed": [
+        "MONTAGNE",
+        "GLAZ",
+        "BLITZ",
+        "CLASH",
+        "KALI"
+      ]
+    },
     "rules": [
       "Pick a random operator.",
       "Equip a different main gun.",
       "Equip a different secondary gun.",
       "Equip a different secondary gadget."
-    ],
-    "disallowedOperators": [
-      "MONTAGNE",
-      "GLAZ",
-      "BLITZ",
-      "CLASH",
-      "KALI"
     ],
     "tags": [
       "LOADOUT"
@@ -66,21 +68,33 @@
   {
     "title": "A Throwaway Joke",
     "tagline": "And the kitchen sink!",
+    "operators": {
+      "allowed": [
+        "SMOKE",
+        "VALKYRIE",
+        "ECHO",
+        "LESION",
+        "ELA",
+        "ALIBI",
+        "KAID",
+        "WAMAI",
+        "THORN",
+        "AZAMI",
+        "FENRIR",
+        "TUBARAO"
+      ],
+      "filter": {
+        "side": "DEF",
+        "gadgetProperties": [
+          {
+            "throwable": true
+          }
+        ]
+      }
+    },
     "rules": [
       "Bring as many throwable primary and secondary gadgets as possible.",
       "Shout \"YEET\" every time you throw one."
-    ],
-    "allowedOperators": [
-      "SMOKE",
-      "VALKYRIE",
-      "LESION",
-      "ELA",
-      "ALIBI",
-      "KAID",
-      "WAMAI",
-      "THORN",
-      "AZAMI",
-      "FENRIR"
     ],
     "side": "DEF",
     "tags": [
@@ -90,28 +104,27 @@
   {
     "title": "Big Brother",
     "tagline": "They see everything",
+    "operators": {
+      "required": [
+        "VALKYRIE",
+        "ECHO",
+        "MAESTRO",
+        "MOZZIE"
+      ],
+      "filter": {
+        "side": "DEF",
+        "gadgets": [
+          "CAMERA"
+        ]
+      }
+    },
     "rules": [
       "Remaining operator brings a bulletproof camera.",
       "Place all your cameras on site.",
       "Hide on the other side of the building and watch the enemy on cams.",
-      "Red ping the enemy all the time."
+      "Red ping the enemy all the time.",
+      "You may retake site as soon as the defuser is planted or the hostage or site is being taken."
     ],
-    "requiredOperators": [
-      "VALKYRIE",
-      "ECHO",
-      "MAESTRO",
-      "MOZZIE"
-    ],
-    "operatorFilter": {
-      "side": "DEF",
-      "loadoutFilters": [
-        {
-          "gadget": [
-            "CAMERA"
-          ]
-        }
-      ]
-    },
     "side": "DEF",
     "tags": [
       "LOADOUT",
@@ -122,6 +135,62 @@
   {
     "title": "Blackout",
     "tagline": "No recharging your phone",
+    "operators": {
+      "disallowed": [
+        "SMOKE",
+        "MUTE",
+        "THERMITE",
+        "PULSE",
+        "TWITCH",
+        "FUZE",
+        "KAPKAN",
+        "BLITZ",
+        "IQ",
+        "JAGER",
+        "BANDIT",
+        "VALKYRIE",
+        "HIBANA",
+        "ECHO",
+        "JACKAL",
+        "ELA",
+        "DOKKAEBI",
+        "VIGIL",
+        "LION",
+        "MAESTRO",
+        "ALIBI",
+        "CLASH",
+        "NOMAD",
+        "KAID",
+        "MOZZIE",
+        "NOKK",
+        "WARDEN",
+        "WAMAI",
+        "IANA",
+        "ACE",
+        "MELUSI",
+        "ZERO",
+        "ARUNI",
+        "FLORES",
+        "THUNDERBIRD",
+        "THORN",
+        "SENS",
+        "GRIM",
+        "SOLIS",
+        "BRAVA",
+        "FENRIR",
+        "RAM"
+      ],
+      "required": [
+        "THATCHER"
+      ],
+      "filter": {
+        "gadgetProperties": [
+          {
+            "electrical": false
+          }
+        ]
+      }
+    },
     "rules": [
       "Don't bring any electric gadgets.",
       {
@@ -137,33 +206,6 @@
         "text": "Shoot all default cameras during prep phase."
       }
     ],
-    "requiredOperators": [
-      "THATCHER"
-    ],
-    "allowedOperators": [
-      "SLEDGE",
-      "ASH",
-      "CASTLE",
-      "MONTAGNE",
-      "DOC",
-      "ROOK",
-      "TACHANKA",
-      "BUCK",
-      "FROST",
-      "BLACKBEARD",
-      "CAVEIRA",
-      "CAPITAO",
-      "MIRA",
-      "LESION",
-      "ZOFIA",
-      "MAVERICK",
-      "GRIDLOCK",
-      "AMARU",
-      "GOYO",
-      "ORYX",
-      "OSA",
-      "AZAMI"
-    ],
     "tags": [
       "LINEUP",
       "STRATEGY"
@@ -172,22 +214,17 @@
   {
     "title": "Boomstick",
     "tagline": "A deadly squad. Unless they're more than 5 meters away.",
+    "operators": {
+      "filter": {
+        "primaryWeapons": [
+          "SG"
+        ]
+      }
+    },
     "rules": [
       "Only use shotguns.",
       "If possible, bring secondary shotguns as well."
     ],
-    "operatorFilter": {
-      "loadoutFilters": [
-        {
-          "primary": [
-            "SG"
-          ],
-          "secondary": [
-            "SG"
-          ]
-        }
-      ]
-    },
     "tags": [
       "LOADOUT"
     ]
@@ -205,21 +242,19 @@
   {
     "title": "C5",
     "tagline": "Can you die from explosions? You'll have to C4 yourself.",
+    "operators": {
+      "filter": {
+        "side": "DEF",
+        "gadgets": [
+          "C4"
+        ]
+      }
+    },
     "rules": [
       "Everyone brings a C4.",
       "Try to kill all attackers with C4s from below site.",
       "You are only allowed to start shooting at people when all C4s are gone."
     ],
-    "operatorFilter": {
-      "side": "DEF",
-      "loadoutFilters": [
-        {
-          "gadget": [
-            "C4"
-          ]
-        }
-      ]
-    },
     "side": "DEF",
     "tags": [
       "LOADOUT",
@@ -239,21 +274,19 @@
   {
     "title": "Da Vinci Cannon",
     "tagline": "You don't need good aim if you shoot everywhere at once.",
+    "operators": {
+      "filter": {
+        "side": "ATT",
+        "primaryWeapons": [
+          "LMG"
+        ]
+      }
+    },
     "rules": [
       "Set your in-game mouse sensitivity to 100 and your mouse DPI to the maximum.",
       "Bring only LMGs.",
       "You may shoot only entire magazines at once."
     ],
-    "operatorFilter": {
-      "side": "ATT",
-      "loadoutFilters": [
-        {
-          "primary": [
-            "LMG"
-          ]
-        }
-      ]
-    },
     "side": "ATT",
     "tags": [
       "LOADOUT",
@@ -264,20 +297,22 @@
   {
     "title": "Doktor's Curse",
     "tagline": "The experiments are loose!",
+    "operators": {
+      "allowed": [
+        "KAPKAN",
+        "FROST",
+        "LESION",
+        "ELA",
+        "GOYO",
+        "MELUSI",
+        "ARUNI",
+        "THORN",
+        "FENRIR"
+      ]
+    },
     "rules": [
       "No guns allowed.",
       "Make your traps and knives count."
-    ],
-    "allowedOperators": [
-      "KAPKAN",
-      "FROST",
-      "LESION",
-      "ELA",
-      "GOYO",
-      "MELUSI",
-      "ARUNI",
-      "THORN",
-      "FENRIR"
     ],
     "side": "DEF",
     "tags": [
@@ -287,12 +322,14 @@
   {
     "title": "Drone Strike",
     "tagline": "\"Why do it yourself, when robots do it better?\" - Echo",
-    "requiredOperators": [
-      "TWITCH",
-      "FLORES",
-      "BRAVA",
-      "RAM"
-    ],
+    "operators": {
+      "required": [
+        "TWITCH",
+        "FLORES",
+        "BRAVA",
+        "RAM"
+      ]
+    },
     "rules": [
       "Bring all of the drones.",
       "You are only allowed to attack with your operators when all drones (normal drones or gadgets) are dead.",
@@ -342,9 +379,11 @@
   {
     "title": "Grounded",
     "tagline": "Take the stairs",
-    "disallowedOperators": [
-      "AMARU"
-    ],
+    "operators": {
+      "disallowed": [
+        "AMARU"
+      ]
+    },
     "rules": [
       "You are not allowed to rappel, vault or climb ladders."
     ],
@@ -356,20 +395,18 @@
   {
     "title": "Hot Breach",
     "tagline": "E3 2014 called. It wants its Siege trailer back.",
+    "operators": {
+      "filter": {
+        "side": "ATT",
+        "gadgets": [
+          "BREACH"
+        ]
+      }
+    },
     "rules": [
       "Everyone brings breach charges.",
       "Everyone picks a window and hot-breaches into the building at the same time."
     ],
-    "operatorFilter": {
-      "side": "ATT",
-      "loadoutFilters": [
-        {
-          "gadget": [
-            "BREACH"
-          ]
-        }
-      ]
-    },
     "side": "ATT",
     "tags": [
       "STRATEGY"
@@ -378,9 +415,11 @@
   {
     "title": "Hot Drop Retake",
     "tagline": "Strike from above",
-    "requiredOperators": [
-      "ARUNI"
-    ],
+    "operators": {
+      "required": [
+        "ARUNI"
+      ]
+    },
     "rules": [
       "Wait on a hatch above site until the objective is being taken or defused.",
       "As soon as the objective is being taken or defused, hot-drop the hatch and retake site."
@@ -403,14 +442,16 @@
   {
     "title": "Iron Sights only",
     "tagline": "What do you mean you can't see?",
+    "operators": {
+      "disallowed": [
+        "MONTAGNE",
+        "GLAZ",
+        "BLITZ",
+        "KALI"
+      ]
+    },
     "rules": [
       "Unequip any sights on your guns."
-    ],
-    "disallowedOperators": [
-      "MONTAGNE",
-      "GLAZ",
-      "BLITZ",
-      "KALI"
     ],
     "tags": [
       "LOADOUT"
@@ -419,6 +460,12 @@
   {
     "title": "King's Guard",
     "tagline": "Rainbow Six: Secret Service",
+    "operators": {
+      "required": [
+        "TACHANKA",
+        "WARDEN"
+      ]
+    },
     "rules": [
       {
         "operator": "TACHANKA",
@@ -431,10 +478,6 @@
       "Protect Tachanka at all costs.",
       "If Tachanka dies, the rest commits sudoku or surrenders themselves to the enemy."
     ],
-    "requiredOperators": [
-      "TACHANKA",
-      "WARDEN"
-    ],
     "side": "DEF",
     "tags": [
       "LINEUP",
@@ -444,6 +487,23 @@
   {
     "title": "Labyrinth",
     "tagline": "Environmental destruction? What is that?",
+    "operators": {
+      "disallowed": [
+        "SLEDGE",
+        "ASH",
+        "THERMITE",
+        "CASTLE",
+        "BUCK",
+        "HIBANA",
+        "ZOFIA",
+        "MAVERICK",
+        "ORYX",
+        "ACE",
+        "AZAMI",
+        "FLORES",
+        "RAM"
+      ]
+    },
     "rules": [
       "Treat the map \"as-is\". You are not allowed to create any additional pathways, sightlines etc.",
       "You are allowed to use pathways created by the other team.",
@@ -460,21 +520,6 @@
         "text": "You are allowed to reinforce walls and hatches, but not destroy them."
       }
     ],
-    "disallowedOperators": [
-      "SLEDGE",
-      "ASH",
-      "THERMITE",
-      "CASTLE",
-      "BUCK",
-      "HIBANA",
-      "ZOFIA",
-      "MAVERICK",
-      "ORYX",
-      "ACE",
-      "AZAMI",
-      "FLORES",
-      "RAM"
-    ],
     "tags": [
       "STRATEGY"
     ]
@@ -482,32 +527,30 @@
   {
     "title": "Leaky Roof",
     "tagline": "It's raining in here!",
+    "operators": {
+      "required": [
+        "SLEDGE",
+        "BUCK",
+        "RAM"
+      ],
+      "allowed": [
+        "ASH",
+        "ZOFIA"
+      ],
+      "filter": {
+        "side": "ATT",
+        "weapons": [
+          "SG"
+        ],
+        "gadgets": [
+          "BREACH"
+        ]
+      }
+    },
     "rules": [
       "Bring as much soft destruction (operator gadgets, breach charges, shotguns) as you can.",
       "Destroy every desctructible floor above site."
     ],
-    "requiredOperators": [
-      "SLEDGE",
-      "ASH",
-      "BUCK",
-      "RAM"
-    ],
-    "operatorFilter": {
-      "side": "ATT",
-      "loadoutFilters": [
-        {
-          "primary": [
-            "SG"
-          ],
-          "secondary": [
-            "SG"
-          ],
-          "gadget": [
-            "BREACH"
-          ]
-        }
-      ]
-    },
     "side": "ATT",
     "tags": [
       "LINEUP",
@@ -518,21 +561,17 @@
   {
     "title": "Lucky Luke",
     "tagline": "Click faster than your shadow.",
-    "rules": [
-      "Only use handguns.",
-      "Machine pistols, secondary shotguns and shields are disallowed.",
-      "Bonus points for Deagle and Revolver only."
-    ],
-    "operatorFilter": {
-      "loadoutFilters": [
-        {
-          "secondary": [
-            "DE",
-            "REV"
-          ]
-        }
-      ]
+    "operators": {
+      "filter": {
+        "secondaryWeapons": [
+          "DE",
+          "REV"
+        ]
+      }
     },
+    "rules": [
+      "Only use revolvers or deagles."
+    ],
     "tags": [
       "LOADOUT"
     ]
@@ -540,18 +579,20 @@
   {
     "title": "Might need this later",
     "tagline": "When did I get 250 health potions?",
+    "operators": {
+      "disallowed": [
+        "PULSE",
+        "CAVEIRA",
+        "VIGIL",
+        "CLASH",
+        "WARDEN",
+        "ORYX",
+        "SOLIS"
+      ]
+    },
     "rules": [
       "Bring a lot of deployable or expendable utility.",
       "Don't utilize it."
-    ],
-    "disallowedOperators": [
-      "PULSE",
-      "CAVEIRA",
-      "VIGIL",
-      "CLASH",
-      "WARDEN",
-      "ORYX",
-      "SOLIS"
     ],
     "side": "DEF",
     "tags": [
@@ -574,13 +615,15 @@
   {
     "title": "Noob Team",
     "tagline": "They wear matching outfits!",
+    "operators": {
+      "required": [
+        "RECRUIT_ATT",
+        "RECRUIT_DEF"
+      ]
+    },
     "rules": [
       "Everyone picks Recruit.",
       "Everyone brings the same loadout."
-    ],
-    "requiredOperators": [
-      "RECRUIT_ATT",
-      "RECRUIT_DEF"
     ],
     "tags": [
       "LINEUP",
@@ -590,13 +633,16 @@
   {
     "title": "One in the Chamber",
     "tagline": "One tap",
+    "operators": {
+      "disallowed": [
+        "GLAZ",
+        "KALI"
+      ]
+    },
     "rules": [
       "You may only shoot at enemies with one bullet in the chamber.",
       "Use reload cancel to empty your magazines.",
-      "Shotguns are disallowed."
-    ],
-    "disallowedOperators": [
-      "KALI"
+      "Shotguns and Sniper Rifles are disallowed."
     ],
     "tags": [
       "STRATEGY"
@@ -605,22 +651,19 @@
   {
     "title": "One in the Chamber (extreme)",
     "tagline": "One tap",
+    "operators": {
+      "filter": {
+        "side": "ATT",
+        "primaryWeapons": [
+          "LMG"
+        ]
+      }
+    },
     "rules": [
       "You may only shoot at enemies with one bullet in the chamber.",
       "Use reload cancel to empty your magazines.",
-      "You may only bring LMGs.",
-      "Secondary guns are disallowed."
+      "You may only use LMGs."
     ],
-    "operatorFilter": {
-      "side": "ATT",
-      "loadoutFilters": [
-        {
-          "primary": [
-            "LMG"
-          ]
-        }
-      ]
-    },
     "side": "ATT",
     "tags": [
       "STRATEGY"
@@ -655,13 +698,15 @@
   {
     "title": "Phalanx",
     "tagline": "The wall is moving!",
-    "requiredOperators": [
-      "MONTAGNE",
-      "FUZE",
-      "BLITZ",
-      "BLACKBEARD",
-      "OSA"
-    ],
+    "operators": {
+      "required": [
+        "MONTAGNE",
+        "FUZE",
+        "BLITZ",
+        "BLACKBEARD",
+        "OSA"
+      ]
+    },
     "rules": [
       {
         "operator": "FUZE",
@@ -698,19 +743,18 @@
   {
     "title": "Pokémon",
     "tagline": "Gotta catch 'em all!",
-    "rules": [
-      "Only kill enemies with impact grenades."
-    ],
-    "operatorFilter": {
-      "side": "DEF",
-      "loadoutFilters": [
-        {
-          "gadget": [
-            "IMPACT"
-          ]
-        }
-      ]
+    "operators": {
+      "filter": {
+        "side": "DEF",
+        "gadgets": [
+          "IMPACT"
+        ]
+      }
     },
+    "rules": [
+      "Only kill enemies with impact grenades.",
+      "You are allowed to soften them up with your pistol."
+    ],
     "side": "DEF",
     "tags": [
       "LOADOUT",
@@ -730,6 +774,24 @@
   {
     "title": "Privacy, Please!",
     "tagline": "We are very shy.",
+    "operators": {
+      "disallowed": [
+        "PULSE",
+        "VALKYRIE",
+        "ECHO",
+        "MIRA",
+        "MAESTRO"
+      ],
+      "required": [
+        "MUTE",
+        "MOZZIE"
+      ],
+      "filter": {
+        "gadgets": [
+          "BLOCKER"
+        ]
+      }
+    },
     "rules": [
       {
         "operator": "MUTE",
@@ -749,16 +811,6 @@
       "Deploy observation blockers everywhere.",
       "Shoot every default camera.",
       "Don't bring cameras."
-    ],
-    "requiredOperators": [
-      "MUTE",
-      "MOZZIE"
-    ],
-    "disallowedOperators": [
-      "VALKYRIE",
-      "ECHO",
-      "MIRA",
-      "MAESTRO"
     ],
     "side": "DEF",
     "tags": [
@@ -802,6 +854,12 @@
   {
     "title": "Santa Claus",
     "tagline": "We come bearing gifts!",
+    "operators": {
+      "required": [
+        "ROOK",
+        "THUNDERBIRD"
+      ]
+    },
     "rules": [
       {
         "operator": "ROOK",
@@ -812,10 +870,6 @@
         "text": "Place your Kona Stations outside the building for the attackers to use."
       },
       "Let the attackers take their armors and heals. Don't camp it and kill them."
-    ],
-    "requiredOperators": [
-      "ROOK",
-      "THUNDERBIRD"
     ],
     "side": "DEF",
     "tags": [
@@ -837,24 +891,22 @@
   {
     "title": "Sniper Squad",
     "tagline": "Snjept",
+    "operators": {
+      "filter": {
+        "side": "ATT",
+        "primaryWeapons": [
+          "DMR"
+        ]
+      },
+      "required": [
+        "GLAZ",
+        "KALI"
+      ]
+    },
     "rules": [
       "Bring DMRs with 3x scopes.",
       "Only use primary guns."
     ],
-    "requiredOperators": [
-      "GLAZ",
-      "KALI"
-    ],
-    "operatorFilter": {
-      "side": "ATT",
-      "loadoutFilters": [
-        {
-          "primary": [
-            "DMR"
-          ]
-        }
-      ]
-    },
     "side": "ATT",
     "tags": [
       "LINEUP",
@@ -875,17 +927,19 @@
   {
     "title": "Speedrun",
     "tagline": "I am speed!",
+    "operators": {
+      "filter": {
+        "side": "ATT",
+        "speeds": [
+          3
+        ]
+      }
+    },
     "rules": [
       "Bring only 3 speed operators.",
       "Take the most direct route to site.",
       "No roam clearing."
     ],
-    "operatorFilter": {
-      "side": "ATT",
-      "speed": [
-        3
-      ]
-    },
     "side": "ATT",
     "tags": [
       "LINEUP",
@@ -906,9 +960,20 @@
   {
     "title": "Splinter Cell",
     "tagline": "Pew.",
+    "operators": {
+      "filter": {
+        "secondaryWeapons": [
+          "HG"
+        ]
+      },
+      "required": [
+        "CAVEIRA",
+        "ZERO"
+      ]
+    },
     "rules": [
       "Only use silenced handguns.",
-      "Machine pistols and secondary shotguns are disallowed.",
+      "Machine pistols, secondary shotguns, deagles and revolvers are disallowed.",
       {
         "side": "ATT",
         "text": "Everyone follows Zero's lead."
@@ -918,20 +983,6 @@
         "text": "Everyone follows Caveira's lead."
       }
     ],
-    "requiredOperators": [
-      "CAVEIRA",
-      "ZERO"
-    ],
-    "operatorFilter": {
-      "loadoutFilters": [
-        {
-          "secondary": [
-            "DE",
-            "HG"
-          ]
-        }
-      ]
-    },
     "tags": [
       "LINEUP",
       "LOADOUT",
@@ -941,6 +992,15 @@
   {
     "title": "Spotted!",
     "tagline": "You can't hide!",
+    "operators": {
+      "required": [
+        "JACKAL",
+        "DOKKAEBI",
+        "LION",
+        "ZERO",
+        "GRIM"
+      ]
+    },
     "rules": [
       {
         "operator": "JACKAL",
@@ -963,13 +1023,6 @@
         "text": "Bee them."
       }
     ],
-    "requiredOperators": [
-      "JACKAL",
-      "DOKKAEBI",
-      "LION",
-      "ZERO",
-      "GRIM"
-    ],
     "side": "ATT",
     "tags": [
       "LINEUP",
@@ -979,20 +1032,18 @@
   {
     "title": "Supressive Fire",
     "tagline": "LMG mounted. And loaded. And unloaded. On everything.",
+    "operators": {
+      "filter": {
+        "side": "ATT",
+        "primaryWeapons": [
+          "LMG"
+        ]
+      }
+    },
     "rules": [
       "Bring only LMGs.",
       "As soon as you start shooting, you cannot stop until your magazine is empty."
     ],
-    "operatorFilter": {
-      "side": "ATT",
-      "loadoutFilters": [
-        {
-          "primary": [
-            "LMG"
-          ]
-        }
-      ]
-    },
     "side": "ATT",
     "tags": [
       "LOADOUT",
@@ -1002,12 +1053,14 @@
   {
     "title": "Swiss Cheese",
     "tagline": "Punch holes. Punch holes everywhere.",
+    "operators": {
+      "disallowed": [
+        "ARUNI"
+      ]
+    },
     "rules": [
       "Make as many punch holes in reinforcable walls as possible.",
       "Only shoot at people through punch holes."
-    ],
-    "disallowedOperators": [
-      "ARUNI"
     ],
     "side": "DEF",
     "tags": [
@@ -1041,6 +1094,11 @@
   {
     "title": "The Snake",
     "tagline": "snek 🐍",
+    "operators": {
+      "required": [
+        "BLACKBEARD"
+      ]
+    },
     "rules": [
       {
         "operator": "BLACKBEARD",
@@ -1048,9 +1106,6 @@
       },
       "Inside the building, you are only allowed to move while prone.",
       "You may stand up to shoot, but need to go prone again to continue moving."
-    ],
-    "requiredOperators": [
-      "BLACKBEARD"
     ],
     "side": "ATT",
     "tags": [
@@ -1086,6 +1141,20 @@
   {
     "title": "Welcome!",
     "tagline": "We've got nothing to hide.",
+    "operators": {
+      "allowed": [
+        "TACHANKA"
+      ],
+      "required": [
+        "FROST"
+      ],
+      "filter": {
+        "weapons": [
+          "SG",
+          "SSG"
+        ]
+      }
+    },
     "rules": [
       "You may not reinforce any walls or barricade any doors.",
       "Fully open every reinforcable wall on and between sites.",
@@ -1093,9 +1162,6 @@
         "operator": "FROST",
         "text": "Place a Welcome Mat at every site door."
       }
-    ],
-    "requiredOperators": [
-      "FROST"
     ],
     "side": "DEF",
     "tags": [
@@ -1116,6 +1182,20 @@
   {
     "title": "Year 1 Turtle",
     "tagline": "Site is Home. Site is Safe Space.",
+    "operators": {
+      "allowed": [
+        "SMOKE",
+        "MUTE",
+        "CASTLE",
+        "PULSE",
+        "DOC",
+        "ROOK",
+        "KAPKAN",
+        "TACHANKA",
+        "JAGER",
+        "BANDIT"
+      ]
+    },
     "rules": [
       "Bring only Pathfinder operators.",
       "Reinforce every wall, door and window of site.",
@@ -1123,18 +1203,6 @@
       "Pray they don't bring Fuze."
     ],
     "side": "DEF",
-    "allowedOperators": [
-      "SMOKE",
-      "MUTE",
-      "CASTLE",
-      "PULSE",
-      "DOC",
-      "ROOK",
-      "KAPKAN",
-      "TACHANKA",
-      "JAGER",
-      "BANDIT"
-    ],
     "tags": [
       "LINEUP",
       "STRATEGY"
@@ -1143,23 +1211,25 @@
   {
     "title": "Biene Maja",
     "tagline": "The hive is coming!",
+    "operators": {
+      "required": [
+        "GRIM"
+      ],
+      "allowed": [
+        "BLITZ",
+        "IQ",
+        "BLACKBEARD",
+        "LION",
+        "FINKA",
+        "OSA"
+      ]
+    },
     "rules": [
       "Only bring operators with yellow icons.",
       "Everyone follows Grim's lead.",
       "Sing \"Biene Maja\" for the duration of the round."
     ],
     "side": "ATT",
-    "requiredOperators": [
-      "GRIM"
-    ],
-    "allowedOperators": [
-      "BLITZ",
-      "IQ",
-      "BLACKBEARD",
-      "LION",
-      "FINKA",
-      "OSA"
-    ],
     "tags": [
       "COMMUNICATION",
       "LINEUP"
@@ -1168,18 +1238,20 @@
   {
     "title": "The Hunt",
     "tagline": "\"A hunter always watches where he steps.\" - Kapkan",
-    "allowedOperators": [
-      "KAPKAN",
-      "FROST",
-      "LESION",
-      "ELA",
-      "ALIBI",
-      "GOYO",
-      "MELUSI",
-      "ARUNI",
-      "THORN",
-      "FENRIR"
-    ],
+    "operators": {
+      "allowed": [
+        "KAPKAN",
+        "FROST",
+        "LESION",
+        "ELA",
+        "ALIBI",
+        "GOYO",
+        "MELUSI",
+        "ARUNI",
+        "THORN",
+        "FENRIR"
+      ]
+    },
     "rules": [
       "Place your traps, then hide closeby.",
       "Don't take engagements directly. Play off your traps.",

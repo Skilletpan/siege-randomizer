@@ -33,17 +33,17 @@ export default class Weapon extends MapModel {
   /**
    * Creates a new Weapon instance.
    * 
-   * @param {Object}                 rawWeapon      The raw weapon data.
-   * @param {string}                 rawWeapon.key  The key of the weapon.
-   * @param {string}                 rawWeapon.name The name of the weapon.
-   * @param {?'primary'|'secondary'} rawWeapon.slot The weapon slot the weapon belongs in.
+   * @param {Object}                rawWeapon      The raw weapon data.
+   * @param {string}                rawWeapon.key  The key of the weapon.
+   * @param {string}                rawWeapon.name The name of the weapon.
+   * @param {'primary'|'secondary'} [rawWeapon.slot] The weapon slot the weapon belongs in.
    */
   constructor(rawWeapon) {
     super(rawWeapon.key, Weapon);
 
     // Set instance properties
     this.#name = rawWeapon.name;
-    this.#slot = rawWeapon.slot;
+    this.#slot = rawWeapon.slot || null;
   }
 
   /** @returns {string} The name of the weapon. */

@@ -2,871 +2,953 @@
   "ATT": {
     "SLEDGE": {
       "name": "Sledge",
-      "roles": [
-        "BREACH",
-        "ANTIGADGET"
-      ],
-      "speed": 1,
-      "squad": "REDHAMMER",
       "loadout": {
-        "primary": [
-          "SG",
-          "AR"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "SG",
+            "AR"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
         "gadgets": [
           "FRAG",
           "STUN",
           "EMP"
         ]
       },
+      "roles": [
+        "BREACH",
+        "ANTIGADGET"
+      ],
+      "speed": 1,
+      "squad": "REDHAMMER",
       "released": "Y0S1"
     },
     "THATCHER": {
       "name": "Thatcher",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "AR",
+            "SG"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "SUPPORT"
       ],
       "speed": 1,
       "squad": "VIPERSTRIKE",
-      "loadout": {
-        "primary": [
-          "AR",
-          "SG"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "BREACH",
-          "CLAYMORE"
-        ]
-      },
       "released": "Y0S1"
     },
     "ASH": {
       "name": "Ash",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "AR"
+          ],
+          "secondary": [
+            "HG",
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "BREACH",
         "FRONTLINE"
       ],
       "speed": 3,
       "squad": "REDHAMMER",
-      "loadout": {
-        "primary": [
-          "AR"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "BREACH",
-          "CLAYMORE"
-        ]
-      },
       "released": "Y0S2"
     },
     "THERMITE": {
       "name": "Thermite",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SG",
+            "AR"
+          ],
+          "secondary": [
+            "HG",
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "SMOKE",
+          "STUN"
+        ]
+      },
       "roles": [
         "BREACH",
         "SUPPORT"
       ],
       "speed": 2,
       "squad": "REDHAMMER",
-      "loadout": {
-        "primary": [
-          "SG",
-          "AR"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "SMOKE",
-          "STUN"
-        ]
-      },
       "released": "Y0S2"
     },
     "TWITCH": {
       "name": "Twitch",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "DMR",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "REV"
+          ]
+        },
+        "gadgets": [
+          "CLAYMORE",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
       ],
       "speed": 2,
       "squad": "WOLFGUARD",
-      "loadout": {
-        "primary": [
-          "AR",
-          "DMR",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "REV"
-        ],
-        "gadgets": [
-          "CLAYMORE",
-          "SMOKE"
-        ]
-      },
       "released": "Y0S3"
     },
     "MONTAGNE": {
       "name": "Montagne",
-      "roles": [
-        "INTEL",
-        "SUPPORT"
-      ],
-      "speed": 1,
-      "squad": "WOLFGUARD",
       "loadout": {
-        "primary": [
-          "SH"
-        ],
-        "secondary": [
-          "HG",
-          "REV"
-        ],
+        "weapons": {
+          "primary": [
+            "SH"
+          ],
+          "secondary": [
+            "HG",
+            "REV"
+          ]
+        },
         "gadgets": [
           "HARDBREACH",
           "SMOKE",
           "EMP"
         ]
       },
-      "released": "Y0S3"
-    },
-    "GLAZ": {
-      "name": "Glaz",
       "roles": [
         "INTEL",
         "SUPPORT"
       ],
-      "speed": 3,
-      "squad": "GHOSTEYES",
+      "speed": 1,
+      "squad": "WOLFGUARD",
+      "released": "Y0S3"
+    },
+    "GLAZ": {
+      "name": "Glaz",
       "loadout": {
-        "primary": [
-          "DMR"
-        ],
-        "secondary": [
-          "HG",
-          "GON",
-          "SMG"
-        ],
+        "weapons": {
+          "primary": [
+            "DMR"
+          ],
+          "secondary": [
+            "HG",
+            "GON",
+            "SMG"
+          ]
+        },
         "gadgets": [
           "SMOKE",
           "FRAG",
           "CLAYMORE"
         ]
       },
+      "roles": [
+        "INTEL",
+        "SUPPORT"
+      ],
+      "speed": 3,
+      "squad": "GHOSTEYES",
       "released": "Y0S4"
     },
     "FUZE": {
       "name": "Fuze",
-      "roles": [
-        "ANTIGADGET"
-      ],
-      "speed": 1,
-      "squad": "REDHAMMER",
       "loadout": {
-        "primary": [
-          "SH",
-          "LMG",
-          "AR"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "SH",
+            "LMG",
+            "AR"
+          ],
+          "secondary": [
+            "HG",
+            "HG"
+          ]
+        },
         "gadgets": [
           "BREACH",
           "HARDBREACH",
           "SMOKE"
         ]
       },
+      "roles": [
+        "ANTIGADGET"
+      ],
+      "speed": 1,
+      "squad": "REDHAMMER",
       "released": "Y0S4"
     },
     "BLITZ": {
       "name": "Blitz",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SH"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "SMOKE",
+          "BREACH"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
       ],
       "speed": 2,
       "squad": "VIPERSTRIKE",
-      "loadout": {
-        "primary": [
-          "SH"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "SMOKE",
-          "BREACH"
-        ]
-      },
       "released": "Y0S5"
     },
     "IQ": {
       "name": "IQ",
-      "roles": [
-        "INTEL",
-        "SUPPORT"
-      ],
-      "speed": 3,
-      "squad": "NIGHTHAVEN",
       "loadout": {
-        "primary": [
-          "AR",
-          "LMG"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "AR",
+            "AR",
+            "LMG"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
         "gadgets": [
           "BREACH",
           "CLAYMORE",
           "FRAG"
         ]
       },
+      "roles": [
+        "INTEL",
+        "SUPPORT"
+      ],
+      "speed": 3,
+      "squad": "NIGHTHAVEN",
       "released": "Y0S5"
     },
     "BUCK": {
       "name": "Buck",
-      "roles": [
-        "BREACH",
-        "SUPPORT"
-      ],
-      "speed": 2,
-      "squad": "REDHAMMER",
       "loadout": {
-        "primary": [
-          "AR",
-          "DMR",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "GON"
-        ],
+        "weapons": {
+          "primary": [
+            "SG",
+            "AR",
+            "DMR"
+          ],
+          "secondary": [
+            "HG",
+            "GON"
+          ]
+        },
         "gadgets": [
           "STUN",
           "HARDBREACH"
         ]
       },
-      "released": "Y1S1"
-    },
-    "BLACKBEARD": {
-      "name": "Blackbeard",
       "roles": [
+        "BREACH",
         "SUPPORT"
       ],
       "speed": 2,
       "squad": "REDHAMMER",
+      "released": "Y1S1"
+    },
+    "BLACKBEARD": {
+      "name": "Blackbeard",
       "loadout": {
-        "primary": [
-          "AR",
-          "DMR"
-        ],
-        "secondary": [
-          "DE"
-        ],
+        "weapons": {
+          "primary": [
+            "AR",
+            "DMR"
+          ],
+          "secondary": [
+            "DE"
+          ]
+        },
         "gadgets": [
           "CLAYMORE",
           "STUN",
           "FRAG"
         ]
       },
+      "roles": [
+        "SUPPORT"
+      ],
+      "speed": 2,
+      "squad": "REDHAMMER",
       "released": "Y1S2"
     },
     "CAPITAO": {
       "name": "Capitão",
-      "roles": [
-        "FRONTLINE",
-        "MAPCONTROL"
-      ],
-      "speed": 3,
-      "squad": "VIPERSTRIKE",
       "loadout": {
-        "primary": [
-          "AR",
-          "LMG"
-        ],
-        "secondary": [
-          "HG",
-          "GON"
-        ],
+        "weapons": {
+          "primary": [
+            "AR",
+            "LMG"
+          ],
+          "secondary": [
+            "HG",
+            "GON"
+          ]
+        },
         "gadgets": [
           "CLAYMORE",
           "HARDBREACH",
           "EMP"
         ]
       },
+      "roles": [
+        "FRONTLINE",
+        "MAPCONTROL"
+      ],
+      "speed": 3,
+      "squad": "VIPERSTRIKE",
       "released": "Y1S3"
     },
     "HIBANA": {
       "name": "Hibana",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "SMG"
+          ]
+        },
+        "gadgets": [
+          "STUN",
+          "BREACH"
+        ]
+      },
       "roles": [
         "BREACH",
         "FRONTLINE"
       ],
       "speed": 3,
       "squad": "VIPERSTRIKE",
-      "loadout": {
-        "primary": [
-          "AR",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "SMG"
-        ],
-        "gadgets": [
-          "STUN",
-          "BREACH"
-        ]
-      },
       "released": "Y1S4"
     },
     "JACKAL": {
       "name": "Jackal",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "PDW",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "SG"
+          ]
+        },
+        "gadgets": [
+          "CLAYMORE",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "INTEL",
         "MAPCONTROL"
       ],
       "speed": 2,
       "squad": "VIPERSTRIKE",
-      "loadout": {
-        "primary": [
-          "AR",
-          "PDW",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "SG"
-        ],
-        "gadgets": [
-          "CLAYMORE",
-          "SMOKE"
-        ]
-      },
       "released": "Y2S1"
     },
     "YING": {
       "name": "Ying",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "LMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "HARDBREACH",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
       ],
       "speed": 2,
       "squad": "WOLFGUARD",
-      "loadout": {
-        "primary": [
-          "LMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "HARDBREACH",
-          "SMOKE"
-        ]
-      },
       "released": "Y2S3"
     },
     "ZOFIA": {
       "name": "Zofia",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "LMG",
+            "AR"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "BREACH",
         "ANTIGADGET"
       ],
       "speed": 1,
       "squad": "GHOSTEYES",
-      "loadout": {
-        "primary": [
-          "LMG",
-          "AR"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "BREACH",
-          "CLAYMORE"
-        ]
-      },
       "released": "Y2S4"
     },
     "DOKKAEBI": {
       "name": "Dokkaebi",
-      "roles": [
-        "INTEL",
-        "MAPCONTROL"
-      ],
-      "speed": 3,
-      "squad": "VIPERSTRIKE",
       "loadout": {
-        "primary": [
-          "DMR",
-          "SSG"
-        ],
-        "secondary": [
-          "SMG",
-          "GON"
-        ],
+        "weapons": {
+          "primary": [
+            "DMR",
+            "SSG"
+          ],
+          "secondary": [
+            "SMG",
+            "SMG",
+            "GON"
+          ]
+        },
         "gadgets": [
           "SMOKE",
           "STUN",
           "EMP"
         ]
       },
+      "roles": [
+        "INTEL",
+        "MAPCONTROL"
+      ],
+      "speed": 3,
+      "squad": "VIPERSTRIKE",
       "released": "Y2S4"
     },
     "LION": {
       "name": "Lion",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "DMR",
+            "SG"
+          ],
+          "secondary": [
+            "REV",
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "STUN",
+          "CLAYMORE",
+          "FRAG"
+        ]
+      },
       "roles": [
         "INTEL",
         "MAPCONTROL"
       ],
       "speed": 2,
       "squad": "WOLFGUARD",
-      "loadout": {
-        "primary": [
-          "AR",
-          "DMR",
-          "SG"
-        ],
-        "secondary": [
-          "REV",
-          "HG"
-        ],
-        "gadgets": [
-          "STUN",
-          "CLAYMORE",
-          "FRAG"
-        ]
-      },
       "released": "Y3S1"
     },
     "FINKA": {
       "name": "Finka",
-      "roles": [
-        "FRONTLINE",
-        "SUPPORT"
-      ],
-      "speed": 2,
-      "squad": "NIGHTHAVEN",
       "loadout": {
-        "primary": [
-          "AR",
-          "LMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "AR",
+            "LMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "HG"
+          ]
+        },
         "gadgets": [
           "SMOKE",
           "STUN",
           "FRAG"
         ]
       },
+      "roles": [
+        "FRONTLINE",
+        "SUPPORT"
+      ],
+      "speed": 2,
+      "squad": "NIGHTHAVEN",
       "released": "Y3S1"
     },
     "MAVERICK": {
       "name": "Maverick",
-      "roles": [
-        "BREACH",
-        "FRONTLINE"
-      ],
-      "speed": 3,
-      "squad": "GHOSTEYES",
       "loadout": {
-        "primary": [
-          "DMR",
-          "AR"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "DMR",
+            "AR"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
         "gadgets": [
           "STUN",
           "CLAYMORE",
           "SMOKE"
         ]
       },
+      "roles": [
+        "BREACH",
+        "FRONTLINE"
+      ],
+      "speed": 3,
+      "squad": "GHOSTEYES",
       "released": "Y3S3"
     },
     "NOMAD": {
       "name": "Nomad",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "AR"
+          ],
+          "secondary": [
+            "REV",
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "STUN",
+          "BREACH"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
       ],
       "speed": 2,
       "squad": "WOLFGUARD",
-      "loadout": {
-        "primary": [
-          "AR"
-        ],
-        "secondary": [
-          "REV",
-          "HG"
-        ],
-        "gadgets": [
-          "STUN",
-          "BREACH"
-        ]
-      },
       "released": "Y3S4"
     },
     "GRIDLOCK": {
       "name": "Gridlock",
-      "roles": [
-        "SUPPORT",
-        "MAPCONTROL"
-      ],
-      "speed": 1,
-      "squad": "REDHAMMER",
       "loadout": {
-        "primary": [
-          "AR",
-          "LMG"
-        ],
-        "secondary": [
-          "SG",
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "AR",
+            "LMG"
+          ],
+          "secondary": [
+            "SG",
+            "HG"
+          ]
+        },
         "gadgets": [
           "SMOKE",
           "EMP",
           "FRAG"
         ]
       },
+      "roles": [
+        "SUPPORT",
+        "MAPCONTROL"
+      ],
+      "speed": 1,
+      "squad": "REDHAMMER",
       "released": "Y4S1"
     },
     "NOKK": {
       "name": "Nøkk",
-      "roles": [
-        "FRONTLINE",
-        "MAPCONTROL"
-      ],
-      "speed": 2,
-      "squad": "GHOSTEYES",
       "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "DE"
-        ],
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "DE"
+          ]
+        },
         "gadgets": [
           "FRAG",
           "HARDBREACH",
           "EMP"
         ]
       },
-      "released": "Y4S2"
-    },
-    "AMARU": {
-      "name": "Amaru",
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
       ],
       "speed": 2,
-      "squad": "REDHAMMER",
+      "squad": "GHOSTEYES",
+      "released": "Y4S2"
+    },
+    "AMARU": {
+      "name": "Amaru",
       "loadout": {
-        "primary": [
-          "LMG",
-          "SG"
-        ],
-        "secondary": [
-          "SMG",
-          "SG",
-          "GON"
-        ],
+        "weapons": {
+          "primary": [
+            "LMG",
+            "SG"
+          ],
+          "secondary": [
+            "SMG",
+            "SG",
+            "GON"
+          ]
+        },
         "gadgets": [
           "HARDBREACH",
           "STUN"
         ]
       },
+      "roles": [
+        "FRONTLINE",
+        "MAPCONTROL"
+      ],
+      "speed": 2,
+      "squad": "REDHAMMER",
       "released": "Y4S3"
     },
     "KALI": {
       "name": "Kali",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SR"
+          ],
+          "secondary": [
+            "SMG",
+            "SMG",
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "CLAYMORE",
+          "BREACH"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "SUPPORT"
       ],
       "speed": 2,
       "squad": "NIGHTHAVEN",
-      "loadout": {
-        "primary": [
-          "SR"
-        ],
-        "secondary": [
-          "SMG",
-          "HG"
-        ],
-        "gadgets": [
-          "CLAYMORE",
-          "BREACH"
-        ]
-      },
       "released": "Y4S4"
     },
     "IANA": {
       "name": "Iana",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "AR"
+          ],
+          "secondary": [
+            "HG",
+            "GON"
+          ]
+        },
+        "gadgets": [
+          "STUN",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "INTEL"
       ],
       "speed": 2,
       "squad": "GHOSTEYES",
-      "loadout": {
-        "primary": [
-          "AR"
-        ],
-        "secondary": [
-          "HG",
-          "GON"
-        ],
-        "gadgets": [
-          "STUN",
-          "SMOKE"
-        ]
-      },
       "released": "Y5S1"
     },
     "ACE": {
       "name": "Ace",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "SG"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "BREACH",
         "ANTIGADGET"
       ],
       "speed": 2,
       "squad": "NIGHTHAVEN",
-      "loadout": {
-        "primary": [
-          "AR",
-          "SG"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "BREACH",
-          "CLAYMORE"
-        ]
-      },
       "released": "Y5S2"
     },
     "ZERO": {
       "name": "Zero",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "SMG"
+          ],
+          "secondary": [
+            "HG",
+            "GON"
+          ]
+        },
+        "gadgets": [
+          "HARDBREACH",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
       ],
       "speed": 3,
       "squad": "GHOSTEYES",
-      "loadout": {
-        "primary": [
-          "AR",
-          "SMG"
-        ],
-        "secondary": [
-          "HG",
-          "GON"
-        ],
-        "gadgets": [
-          "HARDBREACH",
-          "CLAYMORE"
-        ]
-      },
       "released": "Y5S3"
     },
     "FLORES": {
       "name": "Flores",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "DMR"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "STUN",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
       ],
       "speed": 2,
       "squad": "GHOSTEYES",
-      "loadout": {
-        "primary": [
-          "AR",
-          "DMR"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "STUN",
-          "CLAYMORE"
-        ]
-      },
       "released": "Y6S1"
     },
     "OSA": {
       "name": "Osa",
-      "roles": [
-        "INTEL",
-        "SUPPORT"
-      ],
-      "speed": 1,
-      "squad": "NIGHTHAVEN",
       "loadout": {
-        "primary": [
-          "AR",
-          "PDW",
-          "SH"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "AR",
+            "PDW"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
         "gadgets": [
           "CLAYMORE",
           "FRAG",
           "EMP"
         ]
       },
+      "roles": [
+        "INTEL",
+        "SUPPORT"
+      ],
+      "speed": 1,
+      "squad": "NIGHTHAVEN",
       "released": "Y6S3"
     },
     "SENS": {
       "name": "Sens",
-      "roles": [
-        "SUPPORT",
-        "MAPCONTROL"
-      ],
-      "speed": 3,
-      "squad": "WOLFGUARD",
       "loadout": {
-        "primary": [
-          "AR",
-          "DMR"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "AR",
+            "DMR"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
         "gadgets": [
           "HARDBREACH",
           "CLAYMORE",
           "FRAG"
         ]
       },
+      "roles": [
+        "SUPPORT",
+        "MAPCONTROL"
+      ],
+      "speed": 3,
+      "squad": "WOLFGUARD",
       "released": "Y7S2"
     },
     "GRIM": {
       "name": "Grim",
-      "roles": [
-        "FRONTLINE",
-        "MAPCONTROL"
-      ],
-      "speed": 3,
-      "squad": "NIGHTHAVEN",
       "loadout": {
-        "primary": [
-          "AR",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "BAI"
-        ],
+        "weapons": {
+          "primary": [
+            "AR",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "BAI"
+          ]
+        },
         "gadgets": [
           "EMP",
           "CLAYMORE",
           "HARDBREACH"
         ]
       },
+      "roles": [
+        "FRONTLINE",
+        "MAPCONTROL"
+      ],
+      "speed": 3,
+      "squad": "NIGHTHAVEN",
       "released": "Y7S3"
     },
     "BRAVA": {
       "name": "Brava",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "DMR"
+          ],
+          "secondary": [
+            "SG",
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "SMOKE",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
       ],
       "speed": 3,
       "squad": "VIPERSTRIKE",
-      "loadout": {
-        "primary": [
-          "AR",
-          "DMR"
-        ],
-        "secondary": [
-          "SG",
-          "HG"
-        ],
-        "gadgets": [
-          "SMOKE",
-          "CLAYMORE"
-        ]
-      },
       "released": "Y8S1"
     },
     "RAM": {
       "name": "Ram",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "LMG"
+          ],
+          "secondary": [
+            "HG",
+            "SG"
+          ]
+        },
+        "gadgets": [
+          "STUN",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "BREACH",
         "ANTIGADGET"
       ],
       "speed": 1,
       "squad": "REDHAMMER",
-      "loadout": {
-        "primary": [
-          "AR",
-          "LMG"
-        ],
-        "secondary": [
-          "HG",
-          "SG"
-        ],
-        "gadgets": [
-          "STUN",
-          "SMOKE"
-        ]
-      },
       "released": "Y8S3"
     },
     "RECRUIT_ATT": {
       "name": "Recruit",
-      "roles": [
-        "SUPPORT"
-      ],
-      "speed": 2,
       "loadout": {
-        "primary": [
-          "AR",
-          "DMR",
-          "LMG"
-        ],
-        "secondary": [
-          "HG",
-          "SG",
-          "SMG"
-        ],
+        "weapons": {
+          "primary": [
+            "AR",
+            "DMR",
+            "LMG"
+          ],
+          "secondary": [
+            "HG",
+            "SG",
+            "SMG"
+          ]
+        },
         "gadgets": [
           "FRAG",
           "SMOKE",
-          "EMP",
           "HARDBREACH",
+          "EMP",
           "BREACH",
           "STUN",
           "CLAYMORE"
         ]
       },
+      "roles": [
+        "SUPPORT"
+      ],
+      "speed": 2,
       "released": "Y0S6",
       "unbannable": true
     }
@@ -874,851 +956,927 @@
   "DEF": {
     "SMOKE": {
       "name": "Smoke",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "SMG"
+          ]
+        },
+        "gadgets": [
+          "BARBED",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
       ],
       "speed": 2,
       "squad": "NIGHTHAVEN",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "SMG"
-        ],
-        "gadgets": [
-          "BARBED",
-          "BEEPER"
-        ]
-      },
       "released": "Y0S1"
     },
     "MUTE": {
       "name": "Mute",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "SMG"
+          ]
+        },
+        "gadgets": [
+          "C4",
+          "CAMERA"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "CROWDCONTROL"
       ],
       "speed": 1,
       "squad": "VIPERSTRIKE",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "SMG"
-        ],
-        "gadgets": [
-          "C4",
-          "CAMERA"
-        ]
-      },
       "released": "Y0S1"
     },
     "CASTLE": {
       "name": "Castle",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "SG",
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "CAMERA",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "SUPPORT"
       ],
       "speed": 2,
       "squad": "WOLFGUARD",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "SG"
-        ],
-        "gadgets": [
-          "CAMERA",
-          "BEEPER"
-        ]
-      },
       "released": "Y0S2"
     },
     "PULSE": {
       "name": "Pulse",
-      "roles": [
-        "INTEL",
-        "SUPPORT"
-      ],
-      "speed": 3,
-      "squad": "NIGHTHAVEN",
       "loadout": {
-        "primary": [
-          "SG",
-          "SMG"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "SG",
+            "SMG"
+          ],
+          "secondary": [
+            "HG",
+            "HG"
+          ]
+        },
         "gadgets": [
           "C4",
           "SHIELD",
           "BLOCKER"
         ]
       },
+      "roles": [
+        "INTEL",
+        "SUPPORT"
+      ],
+      "speed": 3,
+      "squad": "NIGHTHAVEN",
       "released": "Y0S2"
     },
     "DOC": {
       "name": "Doc",
-      "roles": [
-        "SUPPORT"
-      ],
-      "speed": 1,
-      "squad": "WOLFGUARD",
       "loadout": {
-        "primary": [
-          "SG",
-          "SMG"
-        ],
-        "secondary": [
-          "HG",
-          "REV",
-          "BAI"
-        ],
+        "weapons": {
+          "primary": [
+            "SG",
+            "SMG",
+            "SMG"
+          ],
+          "secondary": [
+            "HG",
+            "REV",
+            "BAI"
+          ]
+        },
         "gadgets": [
           "CAMERA",
           "BARBED"
         ]
       },
+      "roles": [
+        "SUPPORT"
+      ],
+      "speed": 1,
+      "squad": "WOLFGUARD",
       "released": "Y0S3"
     },
     "ROOK": {
       "name": "Rook",
-      "roles": [
-        "SUPPORT"
-      ],
-      "speed": 1,
-      "squad": "VIPERSTRIKE",
       "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "REV",
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "REV",
+            "HG"
+          ]
+        },
         "gadgets": [
           "BEEPER",
           "IMPACT",
           "BLOCKER"
         ]
       },
+      "roles": [
+        "SUPPORT"
+      ],
+      "speed": 1,
+      "squad": "VIPERSTRIKE",
       "released": "Y0S3"
     },
     "KAPKAN": {
       "name": "Kapkan",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "CAMERA",
+          "C4"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
       ],
       "speed": 2,
       "squad": "REDHAMMER",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "CAMERA",
-          "C4"
-        ]
-      },
       "released": "Y0S4"
     },
     "TACHANKA": {
       "name": "Tachanka",
-      "roles": [
-        "ANTIENTRY",
-        "CROWDCONTROL"
-      ],
-      "speed": 1,
-      "squad": "REDHAMMER",
       "loadout": {
-        "primary": [
-          "LMG",
-          "SMG"
-        ],
-        "secondary": [
-          "HG",
-          "SMG"
-        ],
+        "weapons": {
+          "primary": [
+            "LMG",
+            "SMG"
+          ],
+          "secondary": [
+            "HG",
+            "HG",
+            "SMG"
+          ]
+        },
         "gadgets": [
           "BARBED",
           "SHIELD",
           "BEEPER"
         ]
       },
+      "roles": [
+        "ANTIENTRY",
+        "CROWDCONTROL"
+      ],
+      "speed": 1,
+      "squad": "REDHAMMER",
       "released": "Y0S4"
     },
     "JAGER": {
       "name": "Jäger",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SG",
+            "AR"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "CAMERA",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "SUPPORT"
       ],
       "speed": 2,
       "squad": "VIPERSTRIKE",
-      "loadout": {
-        "primary": [
-          "SG",
-          "AR"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "CAMERA",
-          "BLOCKER"
-        ]
-      },
       "released": "Y0S5"
     },
     "BANDIT": {
       "name": "Bandit",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "BARBED",
+          "C4"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "ANTIGADGET"
       ],
       "speed": 3,
       "squad": "WOLFGUARD",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "BARBED",
-          "C4"
-        ]
-      },
       "released": "Y0S5"
     },
     "FROST": {
       "name": "Frost",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SG",
+            "SMG"
+          ],
+          "secondary": [
+            "HG",
+            "SG"
+          ]
+        },
+        "gadgets": [
+          "CAMERA",
+          "SHIELD"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
       ],
       "speed": 2,
       "squad": "WOLFGUARD",
-      "loadout": {
-        "primary": [
-          "SG",
-          "SMG"
-        ],
-        "secondary": [
-          "HG",
-          "SG"
-        ],
-        "gadgets": [
-          "CAMERA",
-          "SHIELD"
-        ]
-      },
       "released": "Y1S1"
     },
     "VALKYRIE": {
       "name": "Valkyrie",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "DE"
+          ]
+        },
+        "gadgets": [
+          "IMPACT",
+          "C4"
+        ]
+      },
       "roles": [
         "INTEL",
         "SUPPORT"
       ],
       "speed": 2,
       "squad": "GHOSTEYES",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "DE"
-        ],
-        "gadgets": [
-          "IMPACT",
-          "C4"
-        ]
-      },
       "released": "Y1S2"
     },
     "CAVEIRA": {
       "name": "Caveira",
-      "roles": [
-        "INTEL",
-        "CROWDCONTROL"
-      ],
-      "speed": 3,
-      "squad": "GHOSTEYES",
       "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
         "gadgets": [
           "IMPACT",
           "BEEPER",
           "BLOCKER"
         ]
       },
+      "roles": [
+        "INTEL",
+        "CROWDCONTROL"
+      ],
+      "speed": 3,
+      "squad": "GHOSTEYES",
       "released": "Y1S3"
     },
     "ECHO": {
       "name": "Echo",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SG",
+            "SMG"
+          ],
+          "secondary": [
+            "HG",
+            "SMG"
+          ]
+        },
+        "gadgets": [
+          "IMPACT",
+          "SHIELD"
+        ]
+      },
       "roles": [
         "INTEL",
         "CROWDCONTROL"
       ],
       "speed": 2,
       "squad": "VIPERSTRIKE",
-      "loadout": {
-        "primary": [
-          "SG",
-          "SMG"
-        ],
-        "secondary": [
-          "HG",
-          "SMG"
-        ],
-        "gadgets": [
-          "IMPACT",
-          "SHIELD"
-        ]
-      },
       "released": "Y1S4"
     },
     "MIRA": {
       "name": "Mira",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "SG"
+          ]
+        },
+        "gadgets": [
+          "BEEPER",
+          "C4"
+        ]
+      },
       "roles": [
         "INTEL",
         "SUPPORT"
       ],
       "speed": 1,
       "squad": "VIPERSTRIKE",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "SG"
-        ],
-        "gadgets": [
-          "BEEPER",
-          "C4"
-        ]
-      },
       "released": "Y2S1"
     },
     "LESION": {
       "name": "Lesion",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SG",
+            "SMG"
+          ],
+          "secondary": [
+            "HG",
+            "SG"
+          ]
+        },
+        "gadgets": [
+          "IMPACT",
+          "CAMERA"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
       ],
       "speed": 2,
       "squad": "GHOSTEYES",
-      "loadout": {
-        "primary": [
-          "SG",
-          "SMG"
-        ],
-        "secondary": [
-          "HG",
-          "SG"
-        ],
-        "gadgets": [
-          "IMPACT",
-          "CAMERA"
-        ]
-      },
       "released": "Y2S3"
     },
     "ELA": {
       "name": "Ela",
-      "roles": [
-        "CROWDCONTROL",
-        "TRAPPER"
-      ],
-      "speed": 2,
-      "squad": "NIGHTHAVEN",
       "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
         "gadgets": [
           "BARBED",
           "SHIELD",
           "BLOCKER"
         ]
       },
+      "roles": [
+        "CROWDCONTROL",
+        "TRAPPER"
+      ],
+      "speed": 2,
+      "squad": "NIGHTHAVEN",
       "released": "Y2S3"
     },
     "VIGIL": {
       "name": "Vigil",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SSG"
+          ],
+          "secondary": [
+            "SMG",
+            "SMG"
+          ]
+        },
+        "gadgets": [
+          "CAMERA",
+          "IMPACT"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "CROWDCONTROL"
       ],
       "speed": 3,
       "squad": "GHOSTEYES",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SSG"
-        ],
-        "secondary": [
-          "SMG"
-        ],
-        "gadgets": [
-          "CAMERA",
-          "IMPACT"
-        ]
-      },
       "released": "Y2S4"
     },
     "MAESTRO": {
       "name": "Maestro",
-      "roles": [
-        "ANTIGADGET",
-        "INTEL"
-      ],
-      "speed": 1,
-      "squad": "VIPERSTRIKE",
       "loadout": {
-        "primary": [
-          "LMG",
-          "SSG"
-        ],
-        "secondary": [
-          "BAI",
-          "REV"
-        ],
+        "weapons": {
+          "primary": [
+            "LMG",
+            "SSG"
+          ],
+          "secondary": [
+            "BAI",
+            "REV"
+          ]
+        },
         "gadgets": [
           "BARBED",
           "IMPACT",
           "BLOCKER"
         ]
       },
+      "roles": [
+        "ANTIGADGET",
+        "INTEL"
+      ],
+      "speed": 1,
+      "squad": "VIPERSTRIKE",
       "released": "Y3S2"
     },
     "ALIBI": {
       "name": "Alibi",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SSG"
+          ],
+          "secondary": [
+            "REV",
+            "BAI"
+          ]
+        },
+        "gadgets": [
+          "BEEPER",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "INTEL",
         "TRAPPER"
       ],
       "speed": 3,
       "squad": "VIPERSTRIKE",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SSG"
-        ],
-        "secondary": [
-          "REV",
-          "BAI"
-        ],
-        "gadgets": [
-          "BEEPER",
-          "BLOCKER"
-        ]
-      },
       "released": "Y3S2"
     },
     "CLASH": {
       "name": "Clash",
-      "roles": [
-        "INTEL",
-        "CROWDCONTROL"
-      ],
-      "speed": 1,
-      "squad": "WOLFGUARD",
       "loadout": {
-        "primary": [
-          "SH"
-        ],
-        "secondary": [
-          "SG",
-          "SMG",
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "SH"
+          ],
+          "secondary": [
+            "SG",
+            "SMG",
+            "HG"
+          ]
+        },
         "gadgets": [
           "BARBED",
           "IMPACT",
           "SHIELD"
         ]
       },
+      "roles": [
+        "INTEL",
+        "CROWDCONTROL"
+      ],
+      "speed": 1,
+      "squad": "WOLFGUARD",
       "released": "Y3S3"
     },
     "KAID": {
       "name": "Kaid",
-      "roles": [
-        "ANTIENTRY",
-        "ANTIGADGET"
-      ],
-      "speed": 1,
-      "squad": "REDHAMMER",
       "loadout": {
-        "primary": [
-          "SMG",
-          "SSG"
-        ],
-        "secondary": [
-          "REV"
-        ],
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SSG"
+          ],
+          "secondary": [
+            "REV",
+            "REV"
+          ]
+        },
         "gadgets": [
           "C4",
           "BARBED",
           "BLOCKER"
         ]
       },
+      "roles": [
+        "ANTIENTRY",
+        "ANTIGADGET"
+      ],
+      "speed": 1,
+      "squad": "REDHAMMER",
       "released": "Y3S4"
     },
     "MOZZIE": {
       "name": "Mozzie",
-      "roles": [
-        "ANTIGADGET",
-        "INTEL"
-      ],
-      "speed": 2,
-      "squad": "GHOSTEYES",
       "loadout": {
-        "primary": [
-          "AR",
-          "SMG"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "AR",
+            "SMG"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
         "gadgets": [
           "BARBED",
           "C4"
         ]
       },
+      "roles": [
+        "ANTIGADGET",
+        "INTEL"
+      ],
+      "speed": 2,
+      "squad": "GHOSTEYES",
       "released": "Y4S1"
     },
     "WARDEN": {
       "name": "Warden",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SG",
+            "SMG"
+          ],
+          "secondary": [
+            "HG",
+            "SMG"
+          ]
+        },
+        "gadgets": [
+          "SHIELD",
+          "C4",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
       ],
       "speed": 1,
       "squad": "GHOSTEYES",
-      "loadout": {
-        "primary": [
-          "SG",
-          "SMG"
-        ],
-        "secondary": [
-          "HG",
-          "SMG"
-        ],
-        "gadgets": [
-          "SHIELD",
-          "C4",
-          "BLOCKER"
-        ]
-      },
       "released": "Y4S2"
     },
     "GOYO": {
       "name": "Goyo",
-      "roles": [
-        "ANTIENTRY",
-        "TRAPPER"
-      ],
-      "speed": 2,
-      "squad": "REDHAMMER",
       "loadout": {
-        "primary": [
-          "SMG",
-          "SSG"
-        ],
-        "secondary": [
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SSG"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
         "gadgets": [
           "BEEPER",
           "CAMERA",
           "IMPACT"
         ]
       },
+      "roles": [
+        "ANTIENTRY",
+        "TRAPPER"
+      ],
+      "speed": 2,
+      "squad": "REDHAMMER",
       "released": "Y4S3"
     },
     "WAMAI": {
       "name": "Wamai",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "AR",
+            "SMG"
+          ],
+          "secondary": [
+            "REV",
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "IMPACT",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "TRAPPER"
       ],
       "speed": 2,
       "squad": "NIGHTHAVEN",
-      "loadout": {
-        "primary": [
-          "AR",
-          "SMG"
-        ],
-        "secondary": [
-          "REV",
-          "HG"
-        ],
-        "gadgets": [
-          "IMPACT",
-          "BEEPER"
-        ]
-      },
       "released": "Y4S4"
     },
     "ORYX": {
       "name": "Oryx",
-      "roles": [
-        "SUPPORT"
-      ],
-      "speed": 2,
-      "squad": "REDHAMMER",
       "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "BAI",
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "BAI",
+            "HG"
+          ]
+        },
         "gadgets": [
           "BARBED",
           "BEEPER"
         ]
       },
+      "roles": [
+        "SUPPORT"
+      ],
+      "speed": 2,
+      "squad": "REDHAMMER",
       "released": "Y5S1"
     },
     "MELUSI": {
       "name": "Melusi",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "CAMERA",
+          "IMPACT"
+        ]
+      },
       "roles": [
         "INTEL",
         "CROWDCONTROL"
       ],
       "speed": 1,
       "squad": "WOLFGUARD",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "CAMERA",
-          "IMPACT"
-        ]
-      },
       "released": "Y5S2"
     },
     "ARUNI": {
       "name": "Aruni",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "DMR"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "BARBED",
+          "CAMERA"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "ANTIGADGET"
       ],
       "speed": 1,
       "squad": "NIGHTHAVEN",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "DMR"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "BARBED",
-          "CAMERA"
-        ]
-      },
       "released": "Y5S4"
     },
     "THUNDERBIRD": {
       "name": "Thunderbird",
-      "roles": [
-        "SUPPORT"
-      ],
-      "speed": 2,
-      "squad": "WOLFGUARD",
       "loadout": {
-        "primary": [
-          "AR",
-          "SG"
-        ],
-        "secondary": [
-          "SMG",
-          "HG"
-        ],
+        "weapons": {
+          "primary": [
+            "AR",
+            "SG"
+          ],
+          "secondary": [
+            "SMG",
+            "HG"
+          ]
+        },
         "gadgets": [
           "BARBED",
           "CAMERA",
           "SHIELD"
         ]
       },
+      "roles": [
+        "SUPPORT"
+      ],
+      "speed": 2,
+      "squad": "WOLFGUARD",
       "released": "Y6S2"
     },
     "THORN": {
       "name": "Thorn",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "SMG"
+          ]
+        },
+        "gadgets": [
+          "SHIELD",
+          "BARBED"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
       ],
       "speed": 2,
       "squad": "REDHAMMER",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "SMG"
-        ],
-        "gadgets": [
-          "SHIELD",
-          "BARBED"
-        ]
-      },
       "released": "Y6S4"
     },
     "AZAMI": {
       "name": "Azami",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SSG"
+          ],
+          "secondary": [
+            "DE"
+          ]
+        },
+        "gadgets": [
+          "BARBED",
+          "IMPACT"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "SUPPORT"
       ],
       "speed": 2,
       "squad": "VIPERSTRIKE",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SSG"
-        ],
-        "secondary": [
-          "DE"
-        ],
-        "gadgets": [
-          "BARBED",
-          "IMPACT"
-        ]
-      },
       "released": "Y7S1"
     },
     "SOLIS": {
       "name": "Solis",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "SMG"
+          ]
+        },
+        "gadgets": [
+          "IMPACT",
+          "CAMERA"
+        ]
+      },
       "roles": [
         "INTEL",
         "SUPPORT"
       ],
       "speed": 2,
       "squad": "GHOSTEYES",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "SMG"
-        ],
-        "gadgets": [
-          "IMPACT",
-          "CAMERA"
-        ]
-      },
       "released": "Y7S4"
     },
     "FENRIR": {
       "name": "Fenrir",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "BAI",
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "CAMERA",
+          "BARBED"
+        ]
+      },
       "roles": [
         "CROWDCONTROL",
         "TRAPPER"
       ],
       "speed": 2,
       "squad": "REDHAMMER",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "BAI",
-          "HG"
-        ],
-        "gadgets": [
-          "CAMERA",
-          "BARBED"
-        ]
-      },
       "released": "Y8S2"
     },
     "TUBARAO": {
       "name": "Tubarão",
+      "loadout": {
+        "weapons": {
+          "primary": [
+            "SMG",
+            "DMR"
+          ],
+          "secondary": [
+            "HG"
+          ]
+        },
+        "gadgets": [
+          "C4",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "CROWDCONTROL"
       ],
       "speed": 2,
       "squad": "WOLFGUARD",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "DMR"
-        ],
-        "secondary": [
-          "HG"
-        ],
-        "gadgets": [
-          "C4",
-          "BEEPER"
-        ]
-      },
       "released": "Y8S4"
     },
     "RECRUIT_DEF": {
       "name": "Recruit",
-      "roles": [
-        "SUPPORT"
-      ],
-      "speed": 2,
       "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "SMG"
-        ],
+        "weapons": {
+          "primary": [
+            "SMG",
+            "SG"
+          ],
+          "secondary": [
+            "HG",
+            "SMG"
+          ]
+        },
         "gadgets": [
           "C4",
           "IMPACT",
@@ -1729,6 +1887,10 @@
           "BLOCKER"
         ]
       },
+      "roles": [
+        "SUPPORT"
+      ],
+      "speed": 2,
       "released": "Y0S6",
       "unbannable": true
     }

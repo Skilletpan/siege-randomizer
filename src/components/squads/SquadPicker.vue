@@ -2,10 +2,11 @@
   <!-- Squad Picker -->
   <v-select
     v-bind="$attrs"
-    v-model="pickedSquad"
+    v-model="pick"
     :item-props="transformProps"
-    :items="Squad.LIST"
-    label="Squad"
+    :items="items"
+    :label="label"
+    :multiple="multiple"
   >
     <!-- Slot Passthrough -->
     <template
@@ -20,17 +21,17 @@
 
     <!-- Squad Emblem -->
     <template
-      v-if="pickedSquad && !$attrs.multiple"
+      v-if="pick && !multiple"
       #prepend-inner
     >
-      <squad-emblem :image="Squad.valueOf(pickedSquad).emblem" />
+      <squad-emblem :image="Squad.valueOf(pick).emblem" />
     </template>
 
     <!-- Squad Item -->
-    <template #item="{ props }">
-      <v-list-item v-bind="props">
+    <template #item="{ props: p }">
+      <v-list-item v-bind="p">
         <template #prepend>
-          <squad-emblem :image="props.prependAvatar" />
+          <squad-emblem :image="p.prependAvatar" />
         </template>
       </v-list-item>
     </template>
@@ -38,15 +39,36 @@
 </template>
 
 <script setup>
-import { shallowRef } from 'vue';
-
 import { Squad } from '@/models';
 
+// eslint-disable-next-line
+const props = defineProps({
+  /** The items to pick a squad from. */
+  items: {
+    default: Squad.LIST,
+    type: Array,
+    validator: (value) => value.every((v) => Squad.LIST.includes(v))
+  },
+
+  /** The label for the picker. */
+  label: {
+    default: 'Squad',
+    type: String
+  },
+
+  /** Whether multiple squads can be picked. */
+  multiple: Boolean
+});
+
 /**
- * The key of the currently picked squad.
- * @type {import('vue').ShallowRef<String>}
+ * The key of the currently picked squad(s).
+ * @type {import('vue').Ref<String|String[]>}
  */
-const pickedSquad = shallowRef(null);
+// eslint-disable-next-line
+const pick = defineModel({
+  default: null,
+  type: [String, Array]
+});
 
 /**
  * Transforms raw squads to list props.

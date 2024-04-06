@@ -2,19 +2,51 @@
   <v-app>
     <!-- App Bar -->
     <v-app-bar>
-      <v-app-bar-nav-icon @click="expandNavigation = !expandNavigation" />
+      <!-- Navigation Toggle -->
+      <v-app-bar-nav-icon @click="appSettings.expandNavigation = !appSettings.expandNavigation" />
+
+      <!-- Title -->
       <v-app-bar-title>Siege Randomizer</v-app-bar-title>
 
+      <!-- Actions -->
       <template #append>
-        <v-btn
-          icon="mdi-web"
-          @click="showMatchDrawer = !showMatchDrawer"
-        />
+        <v-toolbar-items>
+          <!-- Squad Settings Toggle -->
+          <v-btn>
+            <!-- Icon -->
+            <v-icon
+              icon="$squad"
+              size="x-large"
+              start
+            />
+
+            <!-- Text -->
+            <span class="font-weight-black text-body-1">
+              {{ SquadSettings.currentSquad.length }}/5
+            </span>
+
+            <!-- Squad Settings Dropdown -->
+            <squad-dropdown activator="parent" />
+          </v-btn>
+
+          <!-- Match Settings Toggle -->
+          <v-btn
+            v-if="true"
+            icon="mdi-web"
+            @click="MatchSettings.show = !MatchSettings.show"
+          />
+
+          <!-- App Settings Toggle -->
+          <v-btn
+            icon="$settings"
+            @click="AppSettings.show = true"
+          />
+        </v-toolbar-items>
       </template>
     </v-app-bar>
 
     <!-- Navigation Drawer -->
-    <navigation-drawer :rail="!expandNavigation" />
+    <navigation-drawer />
 
     <!-- Main Content -->
     <v-main>
@@ -22,26 +54,25 @@
     </v-main>
 
     <!-- Match Settings Drawer -->
-    <match-settings-drawer v-model="showMatchDrawer" />
+    <match-settings-drawer />
+
+    <!-- Settings Dialog -->
+    <app-settings-dialog />
   </v-app>
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { storeToRefs } from 'pinia';
 
-import { MatchSettingsDrawer, NavigationDrawer } from '@/components';
+import { AppSettingsDialog, MatchSettingsDrawer, NavigationDrawer, SquadDropdown } from '@/components';
+import { useAppSettings, useMatchSettings2, useSquadSettings } from '@/store';
 
-/**
- * Whether the navigation drawer should be expanded.
- * @type {import('vue').Ref<Boolean>}
- */
-const expandNavigation = ref(true);
+// Include settings
+const AppSettings = useAppSettings();
+const MatchSettings = useMatchSettings2();
+const SquadSettings = useSquadSettings();
 
-/**
- * Whether to show the match drawer.
- * @type {import('vue').Ref<Boolean>}
- */
-const showMatchDrawer = ref(false);
+const { appSettings } = storeToRefs(AppSettings);
 </script>
 
 <style>

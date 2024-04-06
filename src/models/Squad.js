@@ -7,10 +7,7 @@ export default class Squad extends MapModel {
     const rawSquads = require('@/data/squads.json');
 
     // Build squad instances from raw data
-    Object.entries(rawSquads).forEach(([key, squad]) => {
-      // Create squad instance
-      new Squad({ key, name: squad });
-    });
+    Object.entries(rawSquads).forEach(([key, squad]) => new Squad({ key, name: squad }));
 
     console.debug('Squads imported:', Squad.LIST);
   }
@@ -29,6 +26,7 @@ export default class Squad extends MapModel {
 
   // Instance properties
   #name;
+  #members;
   #emblem;
 
   /**
@@ -49,13 +47,16 @@ export default class Squad extends MapModel {
   get name() { return this.#name; }
 
   /** @returns {Operator[]} The members of the squad. */
-  get members() { return Operator.getOperators({ squad: this }); }
+  get members() {
+    // Loads members on first call
+    if (!this.#members) this.#members = Operator.LIST.filter((operator) => operator.squad === this);
+    return this.#members;
+  }
 
   /** @returns {string} The emblem of the squad. */
   get emblem() {
     // Loads the emblem on first call
     if (!this.#emblem) this.#emblem = require(`@/assets/squads/${this.key}.png`);
-
     return this.#emblem;
   }
 }

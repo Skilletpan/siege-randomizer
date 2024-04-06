@@ -2,8 +2,10 @@
   <!-- Map Picker -->
   <v-select
     v-bind="$attrs"
-    :items="SiegeMap.LIST"
-    label="Map"
+    v-model="pick"
+    :items="items"
+    :label="label"
+    :multiple="multiple"
   >
     <!-- Slot Passthrough -->
     <template
@@ -20,4 +22,26 @@
 
 <script setup>
 import { SiegeMap } from '@/models';
+
+// eslint-disable-next-line
+const props = defineProps({
+  /** The items to pick a map from. */
+  items: {
+    default: SiegeMap.LIST,
+    type: Array,
+    validator: (value) => value.every((v) => SiegeMap.LIST.includes(v))
+  },
+
+  /** The label for the picker. */
+  label: {
+    default: 'Map',
+    type: String
+  },
+
+  /** Whether multiple maps can be picked. */
+  multiple: Boolean
+});
+
+// eslint-disable-next-line
+const pick = defineModel({ type: [String, Array] });
 </script>

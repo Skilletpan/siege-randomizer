@@ -3,17 +3,17 @@
     "name": "Attack",
     "descriptor": "Attacker",
     "color": "attacker",
-    "icon": "mdi-sword-cross"
+    "icon": "$side-attack"
   },
   "ALL": {
     "name": "All",
     "color": "generic",
-    "icon": "mdi-infinity"
+    "icon": "$side-all"
   },
   "DEF": {
     "name": "Defense",
     "descriptor": "Defender",
     "color": "defender",
-    "icon": "mdi-chess-rook"
+    "icon": "$side-defense"
   }
 }

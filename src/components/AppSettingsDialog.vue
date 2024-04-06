@@ -1,12 +1,12 @@
 <template>
   <v-dialog
-    v-bind="$attrs"
+    v-model="AppSettings.show"
     width="700"
   >
     <v-card>
       <v-card-item class="px-6 py-4">
         <template #prepend>
-          <v-icon icon="mdi-cog" />
+          <v-icon icon="$settings" />
         </template>
         <v-card-title>App Settings</v-card-title>
       </v-card-item>
@@ -18,7 +18,7 @@
           <!-- Theme Picker -->
           <v-col cols="6">
             <v-select
-              v-model="theme"
+              v-model="AppSettings.theme"
               :clearable="false"
               :items="THEMES"
               label="Theme"
@@ -29,10 +29,10 @@
           <!-- Recent Players Toggle -->
           <v-col cols="6">
             <v-switch
-              v-model="storeRecentPlayers"
+              v-model="squadSettings.saveRecentPlayers"
               hide-details
               label="Store recent players"
-              prepend-icon="mdi-history"
+              prepend-icon="$player-recent"
             />
           </v-col>
         </v-row>
@@ -42,32 +42,19 @@
 </template>
 
 <script setup>
-import { storeToRefs } from 'pinia';
 import { shallowReadonly, watchEffect } from 'vue';
 import { useTheme } from 'vuetify';
 
-import { useAppSettings, useMatchSettings } from '@/store';
+import { useAppSettings, useSquadSettings } from '@/store';
+import { storeToRefs } from 'pinia';
 
 // Include settings
 const AppSettings = useAppSettings();
+const SquadSettings = useSquadSettings();
 
-// Extract refs from settings
-const { storeRecentPlayers, theme } = storeToRefs(AppSettings);
-const { storeSettings } = AppSettings;
-const { recentPlayerList } = storeToRefs(useMatchSettings());
+const { squadSettings } = storeToRefs(SquadSettings);
+
 const { name: vuetifyTheme } = useTheme().global;
-
-// Update app settings in local storage
-AppSettings.$subscribe((_, state) => {
-  // Update app settings
-  storeSettings();
-
-  // Remove recent players if `storeRecentPlayers` is disabled
-  if (!state.storeRecentPlayers) {
-    recentPlayerList.value.length = 0;
-    localStorage.removeItem('recent-players');
-  }
-});
 
 /**
  * The list of available themes.
@@ -80,5 +67,5 @@ const THEMES = shallowReadonly([
 ]);
 
 // Update theme
-watchEffect(() => { vuetifyTheme.value = theme.value; });
+watchEffect(() => { vuetifyTheme.value = AppSettings.theme; });
 </script>

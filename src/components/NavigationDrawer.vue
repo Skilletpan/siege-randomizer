@@ -1,52 +1,46 @@
 <template>
-  <v-navigation-drawer v-bind="$attrs">
-    <v-list nav>
-      <v-list-subheader v-if="!$attrs.rail">Randomizers</v-list-subheader>
+  <v-navigation-drawer :rail="!AppSettings.expandNavigation">
+    <v-list
+      class="fill-height"
+      nav
+    >
+      <v-list-subheader v-if="AppSettings.expandNavigation">Randomizers</v-list-subheader>
 
       <!-- Map Picker -->
       <v-list-item
-        prepend-icon="mdi-warehouse"
+        prepend-icon="$map"
         title="Map Picker"
         to="maps"
       />
 
       <!-- Operator Picker -->
       <v-list-item
-        prepend-icon="mdi-account"
+        prepend-icon="$operator"
         title="Operator Picker"
         to="operators"
       />
 
       <!-- Strat Roulette -->
       <v-list-item
-        prepend-icon="mdi-strategy"
+        prepend-icon="$strategy"
         title="Strat Roulette"
         to="strats"
       />
 
-      <v-divider class="my-1" />
+      <v-spacer />
 
       <!-- Settings -->
       <v-list-item
-        prepend-icon="mdi-cog"
+        prepend-icon="$settings"
         title="Settings"
-        @click="showAppSettings = true"
+        @click="AppSettings.show = true"
       />
     </v-list>
   </v-navigation-drawer>
-
-  <!-- App Settings -->
-  <app-settings-dialog v-model="showAppSettings" />
 </template>
 
 <script setup>
-import { shallowRef } from 'vue';
+import { useAppSettings } from '@/store';
 
-import { AppSettingsDialog } from '@/components';
-
-/**
- * Whether to show the app settings dialog.
- * @type {import('vue').ShallowRef<Boolean>}
- */
-const showAppSettings = shallowRef(false);
+const AppSettings = useAppSettings();
 </script>

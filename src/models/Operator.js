@@ -27,7 +27,14 @@ export default class Operator extends MapModel {
 
   /** @returns {Operator[]} A list of all operators. */
   static get LIST() {
-    return super.LIST.sort((o1, o2) => o1.valueOf().localeCompare(o2.valueOf()));
+    return super.LIST.sort((o1, o2) => {
+      const o1IsRecruit = o1.key.startsWith('RECRUIT');
+      const o2IsRecruit = o2.key.startsWith('RECRUIT');
+
+      if (o1IsRecruit !== o2IsRecruit) return o1IsRecruit - o2IsRecruit;
+      if (o1.released !== o2.released) return o1.released.localeCompare(o2.released);
+      return o1.side.key.localeCompare(o2.side.key);
+    });
   }
 
   /**
@@ -43,7 +50,7 @@ export default class Operator extends MapModel {
   #name;
   #side;
   #speed;
-  #roles = [];
+  #roles;
   #squad;
   #bannable;
   #released;
@@ -53,8 +60,7 @@ export default class Operator extends MapModel {
   #imageKey;
   #emblem;
   #portrait;
-  #easterEggs = [];
-  #hasLoadedEasterEggs = false;
+  #easterEggPortraits;
 
   /**
    * Creates a new Operator instance.
@@ -65,7 +71,7 @@ export default class Operator extends MapModel {
    * @param {string[]} rawOperator.roles      The role(s) of the operator.
    * @param {string}   rawOperator.side       The side of the operator.
    * @param {number}   rawOperator.speed      The speed of the operator.
-   * @param {?string}  [rawOperator.squad]    The squad of the operator.
+   * @param {string}   [rawOperator.squad]    The squad of the operator.
    * @param {Object}   rawOperator.loadout    The raw loadout data of the operator.
    * @param {string}   rawOperator.released   The year and season the operator was released.
    * @param {?boolean} rawOperator.unbannable Whether the operator is manually bannable.
@@ -77,7 +83,7 @@ export default class Operator extends MapModel {
     this.#name = rawOperator.name;
     this.#side = rawOperator.side;
     this.#speed = rawOperator.speed;
-    this.#roles.push(...rawOperator.roles);
+    this.#roles = Array.from(rawOperator.roles);
     this.#squad = rawOperator.squad || null;
     this.#loadout = new Loadout(rawOperator.loadout);
     this.#bannable = !rawOperator.unbannable;
@@ -99,13 +105,16 @@ export default class Operator extends MapModel {
   get health() { return 4 - this.#speed; }
 
   /** @returns {Role[]} The role(s) of the operator. */
-  get roles() { return Role.LIST.filter((role) => this.#roles.includes(role.key)); }
+  get roles() { return this.#roles.map((role) => Role.valueOf(role)); }
 
   /** @returns {Squad} The squad of the operator. */
-  get squad() { return Squad[this.#squad] || null; }
+  get squad() { return Squad.valueOf(this.#squad); }
 
   /** @returns {boolean} Whether the operator is manually bannable. */
   get bannable() { return this.#bannable; }
+
+  /** @returns {string} The release season of the operator. */
+  get released() { return this.#released; }
 
   /** @returns {Loadout} The loadout of the operator. */
   get loadout() { return this.#loadout; }
@@ -127,25 +136,22 @@ export default class Operator extends MapModel {
   /** @returns {string} The portrait of the operator with a 1 in 50 chance of loading an alternate portrait. */
   get easterEggPortrait() {
     // Loads the easter egg portraits on first call
-    if (!this.#hasLoadedEasterEggs) this.#loadEasterEggPortraits();
+    if (!this.#easterEggPortraits) {
+      this.#easterEggPortraits = [];
 
-    // 1 in 50 chance to set an alternate portrait if available
-    if (this.#easterEggs.length && Math.floor(Math.random() * 50) === 0) return MapModel.pickRandom(this.#easterEggs);
-
-    // Set default portrait
-    return this.portrait;
-  }
-
-  valueOf() { return `${this.#released}_${this.#side}`; }
-
-  /** Loads the easter egg portraits. */
-  #loadEasterEggPortraits() {
-    for (let counter = 1; ; counter++) {
-      try { this.#easterEggs.push(require(`@/assets/portraits/${this.#imageKey}_${counter}.png`)); }
-      catch (e) { break; }
+      for (let counter = 1; ; counter++) {
+        try { this.#easterEggPortraits.push(require(`@/assets/portraits/${this.#imageKey}_${counter}.png`)); }
+        catch (e) { break; }
+      }
     }
 
-    this.#hasLoadedEasterEggs = true;
+    // 1 in 50 chance to set an alternate portrait if available
+    if (this.#easterEggPortraits.length && Math.floor(Math.random() * 50) === 0) {
+      return MapModel.pickRandom(this.#easterEggPortraits);
+    }
+
+    // Return default portrait
+    return this.portrait;
   }
 
   /**
@@ -228,6 +234,68 @@ export default class Operator extends MapModel {
 
       return true;
     });
+  }
+
+  /**
+   * Finds operators by their properties.
+   * 
+   * @param {Object}            filters                                 The properties an operator should have.
+   * @param {Side|string}       [filters.side]                          The side an operator should be part of.
+   * @param {number[]}          [filters.speeds]                        The speed an operator should have.
+   * @param {number[]}          [filters.healths]                       The health the operator should have.
+   * @param {Role[]|string[]}   [filters.roles]                         The roles the operator should fulfill.
+   * @param {Squad[]|string[]}  [filters.squads]                        The squad the operator should be part of.
+   * @param {Weapon[]|string[]} [filters.weapons]                       The weapons the operator should have.
+   * @param {Weapon[]|string[]} [filters.primaryWeapons]                The primary weapons the operator should have.
+   * @param {Weapon[]|string[]} [filters.secondaryWeapons]              The secondary weapons the operator should have.
+   * @param {Gadget[]|string[]} [filters.gadgets]                       The gadgets the operator should have.
+   * @param {Object[]}          [filters.gadgetProperties]              The properties of one of the operator's gadgets.
+   * @param {boolean}           [filters.gadgetProperties[].deployable] Whether a gadget should be deployable.
+   * @param {boolean}           [filters.gadgetProperties[].electrical] Whether a gadget should be electrical.
+   * @param {boolean}           [filters.gadgetProperties[].lethal]     Whether a gadget should be lethal.
+   * @param {boolean}           [filters.gadgetProperties[].throwable]  Whether a gadget should be throwable.
+   * 
+   * @returns {Operator[]} The operators that fulfill the requirements.
+   */
+  static findOperators(filters) {
+    const { speeds, healths, gadgetProperties } = filters;
+
+    // Map model filters
+    const side = Side.valueOf(filters.side);
+    const roles = filters.roles ? filters.roles.map((r) => Role.valueOf(r)) : null;
+    const squads = filters.squads ? filters.squads.map((s) => Squad.valueOf(s)) : null;
+
+    const weapons = filters.weapons ? filters.weapons.map((w) => Weapon.valueOf(w)) : null;
+    const primaryWeapons = filters.primaryWeapons ? filters.primaryWeapons.map((w) => Weapon.valueOf(w)) : null;
+    const secondaryWeapons = filters.secondaryWeapons ? filters.secondaryWeapons.map((w) => Weapon.valueOf(w)) : null;
+    const gadgets = filters.gadgets ? filters.gadgets.map((g) => Gadget.valueOf(g)) : null;
+
+    // Filter and return operators
+    return Operator.LIST.filter((operator) => {
+      // Operator detail filters
+      if (side && operator.side !== side) return false;
+      if (speeds && !speeds.includes(operator.speed)) return false;
+      if (healths && !healths.includes(operator.health)) return false;
+      if (roles && !roles.every((r) => operator.roles.includes(r))) return false;
+      if (squads && !squads.includes(operator.squad)) return false;
+
+      // Loadout filters
+      if (weapons && !weapons.some((w) => operator.loadout.hasWeapon(w))) return false;
+      if (primaryWeapons && !primaryWeapons.some((w) => operator.loadout.hasWeapon(w, 'primary'))) return false;
+      if (secondaryWeapons && !secondaryWeapons.some((w) => operator.loadout.hasWeapon(w, 'secondary'))) return false;
+      if (gadgets && !gadgets.some((g) => operator.loadout.hasGadget(g))) return false;
+      if (gadgetProperties && !gadgetProperties.some((g) => operator.loadout.hasGadgetWithProperties(g))) return false;
+
+      return true;
+    });
+  }
+
+  static findOperators2(filters) {
+    const { speeds, healths, gadgetProperties } = filters;
+
+    const side = Side.valueOf(filters.side);
+
+    return Operator.LIST.filter((operator) => { return true; });
   }
 
   /**

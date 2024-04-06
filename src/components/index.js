@@ -1,8 +1,10 @@
 // Common
 import AppSettingsDialog from './AppSettingsDialog';
+import FilterDrawerItem from './FilterDrawerItem';
 import MatchSettingsDrawer from './MatchSettingsDrawer';
 import NavigationDrawer from './NavigationDrawer';
 import SidePool from './SidePool';
+import SquadDropdown from './SquadDropdown';
 
 // Displays
 import BaseDisplay from './displays/BaseDisplay';
@@ -10,6 +12,7 @@ import LabelRowDisplay from './displays/LabelRowDisplay';
 
 // Map
 import MapCard from './maps/MapCard';
+import MapFilterDrawer from './maps/MapFilterDrawer';
 import MapPicker from './maps/MapPicker';
 
 // Operator
@@ -25,16 +28,18 @@ import PlaylistPicker from './playlists/PlaylistPicker';
 import SquadPicker from './squads/SquadPicker';
 
 // Strat
-// import StratCard from './strats/StratCard';
-// import StratFilterDrawer from './strats/StratFilterDrawer';
-// import TagPicker from './strats/TagPicker';
+import StratCard from './strats/StratCard';
+import StratFilterDrawer from './strats/StratFilterDrawer';
+import TagPicker from './strats/TagPicker';
 
 export {
   // Common
   AppSettingsDialog,
+  FilterDrawerItem,
   MatchSettingsDrawer,
   NavigationDrawer,
   SidePool,
+  SquadDropdown,
 
   // Displays
   BaseDisplay,
@@ -42,6 +47,7 @@ export {
 
   // Map
   MapCard,
+  MapFilterDrawer,
   MapPicker,
 
   // Operator
@@ -57,7 +63,7 @@ export {
   SquadPicker,
 
   // Strat
-  // StratCard,
-  // StratFilterDrawer,
-  // TagPicker
+  StratCard,
+  StratFilterDrawer,
+  TagPicker
 };

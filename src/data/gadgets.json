@@ -2,85 +2,113 @@
   "BARBED": {
     "name": "Barbed Wire",
     "amount": 2,
-    "isDeployable": true
+    "properties": [
+      "DEPLOYABLE"
+    ]
   },
   "BEEPER": {
     "name": "Proximity Alarm",
     "amount": 2,
-    "isDeployable": true,
-    "isElectrical": true,
-    "isThrowable": true
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRICAL",
+      "THROWABLE"
+    ]
   },
   "BLOCKER": {
     "name": "Observation Blocker",
     "amount": 3,
-    "isDeployable": true,
-    "isElectrical": true
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRICAL"
+    ]
   },
   "BREACH": {
     "name": "Breach Charge",
     "amount": 3,
-    "isDeployable": true,
-    "isElectrical": true,
-    "isLethal": true
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRICAL",
+      "LETHAL"
+    ]
   },
   "C4": {
     "name": "Nitro Cell",
     "amount": 1,
-    "isDeployable": true,
-    "isElectrical": true,
-    "isLethal": true,
-    "isThrowable": true
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRICAL",
+      "LETHAL",
+      "THROWABLE"
+    ]
   },
   "CAMERA": {
     "name": "Bulletproof Camera",
     "amount": 1,
-    "isDeployable": true,
-    "isElectrical": true
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRICAL"
+    ]
   },
   "CLAYMORE": {
     "name": "Claymore",
     "amount": 2,
-    "isDeployable": true,
-    "isElectrical": true,
-    "isLethal": true
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRICAL",
+      "LETHAL"
+    ]
   },
   "EMP": {
     "name": "Impact EMP Grenade",
     "amount": 2,
-    "isThrowable": true
+    "properties": [
+      "THROWABLE"
+    ]
   },
   "FRAG": {
     "name": "Frag Grenade",
     "amount": 2,
-    "isLethal": true,
-    "isThrowable": true
+    "properties": [
+      "LETHAL",
+      "THROWABLE"
+    ]
   },
   "HARDBREACH": {
     "name": "Hard Breach Charge",
     "amount": 2,
-    "isElectrical": true,
-    "isLethal": true
+    "properties": [
+      "ELECTRICAL",
+      "LETHAL"
+    ]
   },
   "IMPACT": {
     "name": "Impact Grenade",
     "amount": 2,
-    "isLethal": true,
-    "isThrowable": true
+    "properties": [
+      "LETHAL",
+      "THROWABLE"
+    ]
   },
   "SHIELD": {
     "name": "Deployable Shield",
     "amount": 1,
-    "isDeployable": true
+    "properties": [
+      "DEPLOYABLE"
+    ]
   },
   "SMOKE": {
     "name": "Smoke Grenade",
     "amount": 2,
-    "isThrowable": true
+    "properties": [
+      "THROWABLE"
+    ]
   },
   "STUN": {
     "name": "Stun Grenade",
     "amount": 3,
-    "isThrowable": true
+    "properties": [
+      "THROWABLE"
+    ]
   }
 }

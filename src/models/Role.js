@@ -7,10 +7,7 @@ export default class Role extends MapModel {
     const rawRoles = require('@/data/roles.json');
 
     // Build role instances from raw data
-    Object.entries(rawRoles).forEach(([key, role]) => {
-      // Create role instance
-      new Role({ key, name: role });
-    });
+    Object.entries(rawRoles).forEach(([key, role]) => new Role({ key, name: role }));
 
     console.debug('Roles imported:', Role.LIST);
   }
@@ -29,6 +26,7 @@ export default class Role extends MapModel {
 
   // Instance properties
   #name;
+  #operators;
 
   /**
    * Creates a new Role instance.
@@ -48,5 +46,9 @@ export default class Role extends MapModel {
   get name() { return this.#name; }
 
   /** @returns {Operator[]} The operators fulfilling this role. */
-  get operators() { return Operator.getOperators({ roles: [this] }); }
+  get operators() {
+    // Stores operators on first call
+    if (!this.#operators) this.#operators = Operator.LIST.filter((operator) => operator.roles.includes(this));
+    return this.#operators;
+  }
 }

@@ -74,7 +74,7 @@ export class MapModel extends Model {
    * @returns {MapModel} The model item that corresponds to the provided item.
    */
   static valueOf(item) {
-    // Return null of no iteme was provided
+    // Return null if no item was provided
     if (!item) return null;
 
     // Try to parse string

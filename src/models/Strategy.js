@@ -59,29 +59,30 @@ export default class Strategy extends ListModel {
   // Instance properties
   #title;
   #tagline;
-  #rules = [];
+  #rules;
   #side;
-  #tags = [];
+  #tags;
 
-  #operatorFilter;
-  #requiredOperators = [];
-  #allowedOperators = [];
-  #disallowedOperators = [];
+  #operators;
+  #allowedOperators;
+  #disallowedOperators;
+  #requiredOperators;
 
   /**
    * Creates a new Strategy instance.
    * 
-   * @param {Object}            rawStrategy                     The raw strategy data.
-   * @param {number}            rawStrategy.id                  The ID of the strategy.
-   * @param {string}            rawStrategy.title               The title of the strategy.
-   * @param {string}            rawStrategy.tagline             The tagline of the strategy.
-   * @param {(Object|string)[]} rawStrategy.rules               The rules of the strategy.
-   * @param {?string}           rawStrategy.side                The side key of the strategy.
-   * @param {string[]}          rawStrategy.tags                The IDs of the tags of the strategy.
-   * @param {?string[]}         rawStrategy.requiredOperators   The IDs of the operators required by the strategy.
-   * @param {?Object}           rawStrategy.operatorFilter      The operator filter object to filter operators by.
-   * @param {?string[]}         rawStrategy.allowedOperators    The IDs of the operators allowed by the strategy.
-   * @param {?string[]}         rawStrategy.disallowedOperators The IDs of the operators disallowed by the strategy.
+   * @param {Object}            rawStrategy                        The raw strategy data.
+   * @param {number}            rawStrategy.id                     The ID of the strategy.
+   * @param {string}            rawStrategy.title                  The title of the strategy.
+   * @param {string}            rawStrategy.tagline                The tagline of the strategy.
+   * @param {(Object|string)[]} rawStrategy.rules                  The rules of the strategy.
+   * @param {string}            [rawStrategy.side]                 The side key of the strategy.
+   * @param {Object}            [rawStrategy.operators]            The operator settings of the strategy.
+   * @param {string[]}          [rawStrategy.operators.allowed]    The IDs of the operators allowed by the strategy.
+   * @param {string[]}          [rawStrategy.operators.disallowed] The IDs of the operators disallowed by the strategy.
+   * @param {string[]}          [rawStrategy.operators.required]   The IDs of the operators required by the strategy.
+   * @param {Object}            [rawStrategy.operators.filter]     The operator filter to filter operators by.
+   * @param {string[]}          rawStrategy.tags                   The IDs of the tags of the strategy.
    */
   constructor(rawStrategy) {
     super(rawStrategy.id, Strategy);
@@ -91,13 +92,9 @@ export default class Strategy extends ListModel {
     this.#tagline = rawStrategy.tagline;
     this.#side = rawStrategy.side || Side.ALL.key;
 
-    this.#rules.push(...rawStrategy.rules.map((r) => new Rule(r)));
-    this.#tags.push(...rawStrategy.tags);
-
-    this.#operatorFilter = rawStrategy.operatorFilter;
-    this.#requiredOperators.push(...(rawStrategy.requiredOperators || []));
-    this.#allowedOperators.push(...(rawStrategy.allowedOperators || []));
-    this.#disallowedOperators.push(...(rawStrategy.disallowedOperators || []));
+    this.#rules = Array.from(rawStrategy.rules.map((r) => new Rule(r)));
+    this.#operators = rawStrategy.operators || {};
+    this.#tags = Array.from(rawStrategy.tags);
   }
 
   /** @returns {string} The title of the strategy. */
@@ -119,47 +116,79 @@ export default class Strategy extends ListModel {
     return rules;
   }
 
-  /** @returns {{ [sideKey: string]: Operator[] }} The required operators of the strategy, split by side. */
-  get requiredOperators() {
-    const requiredOperators = {};
-    this.side.included.forEach(
-      (s) => requiredOperators[s.key] = Operator.LIST.filter(
-        (o) => this.#requiredOperators.includes(o.key) && o.side === s
-      )
-    );
-    return requiredOperators;
-  }
-
   /** @returns {{ [sideKey: string]: Operator[] }} The allowed operators of the strategy, split by side. */
   get allowedOperators() {
-    const allowedOperators = {};
-
-    const operators = [...this.#allowedOperators];
-    if (this.#operatorFilter) operators.push(...Operator.getOperators(this.#operatorFilter).map((o) => o.key));
-
-    this.side.included.forEach(
-      (s) => allowedOperators[s.key] = Operator.LIST.filter(
-        (o) => {
-          if (!operators.includes(o.key)) return false;
-          if (this.#requiredOperators.includes(o.key)) return false;
-          if (this.#disallowedOperators.includes(o.key)) return false;
-          if (o.side !== s) return false;
-          return true;
-        }
-      )
-    );
-
-    return allowedOperators;
+    // Run operator mapper on first call
+    if (!this.#allowedOperators) this.#mapOperators();
+    return this.#allowedOperators;
   }
 
   /** @returns {{ [sideKey: string]: Operator[] }} The disallowed operators of the strategy, split by side. */
   get disallowedOperators() {
-    const disallowedOperators = {};
-    this.side.included.forEach(
-      (s) => disallowedOperators[s.key] = Operator.LIST.filter(
-        (o) => this.#disallowedOperators.includes(o.key) && o.side === s
-      )
-    );
-    return disallowedOperators;
+    // Run operator mapper on first call
+    if (!this.#disallowedOperators) this.#mapOperators();
+    return this.#disallowedOperators;
+  }
+
+  /** @returns {{ [sideKey: string]: Operator[] }} The required operators of the strategy, split by side. */
+  get requiredOperators() {
+    // Run operator mapper on first call
+    if (!this.#requiredOperators) this.#mapOperators();
+    return this.#requiredOperators;
+  }
+
+  get filteredOperators() { return Operator.findOperators(this.#operators.filter); }
+
+  /** Builds the allowed, disallowed and required operator lists. */
+  #mapOperators() {
+    const { allowed, disallowed, filter, required } = this.#operators;
+
+    if (allowed && disallowed) console.warn(`${this.#title} uses allowed list and disallowed list at the same time!`);
+
+    // Run operator filter if present
+    const filteredOperators = filter ? Operator.findOperators(filter) : undefined;
+
+    // Create empty collections
+    const _allowed = { [Side.ATT.key]: [], [Side.DEF.key]: [] };
+    const _disallowed = { [Side.ATT.key]: [], [Side.DEF.key]: [] };
+    const _required = { [Side.ATT.key]: [], [Side.DEF.key]: [] };
+
+    Operator.LIST.forEach((operator) => {
+      // Skip operators of other side for strats for one side
+      if (!this.side.includes(operator.side)) return;
+
+      // Set explicitly required operators
+      if (required && required.includes(operator.key)) {
+        _required[operator.side.key].push(operator);
+        return;
+      }
+
+      // Set explicitly allowed operators
+      if (allowed && allowed.includes(operator.key)) {
+        _allowed[operator.side.key].push(operator);
+        return;
+      }
+
+      // Set explicitly disallowed operators
+      if (disallowed && disallowed.includes(operator.key)) {
+        _disallowed[operator.side.key].push(operator);
+        return;
+      }
+
+      // Set operators by filter
+      if (filter) {
+        if (filteredOperators.includes(operator)) _allowed[operator.side.key].push(operator);
+        else _disallowed[operator.side.key].push(operator);
+        return;
+      }
+
+      if (allowed) _disallowed[operator.side.key].push(operator);
+      else _allowed[operator.side.key].push(operator);
+    });
+
+    // Assign collections to instance properties
+    this.#allowedOperators = _allowed;
+    this.#disallowedOperators = _disallowed;
+    this.#requiredOperators = _required;
   }
 }
