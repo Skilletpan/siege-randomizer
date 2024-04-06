@@ -1,12 +1,13 @@
 import RAW_PLAYLISTS from '@/data/playlists_v2';
 import SiegeMap from './map';
 
-// Define playlist categories
-const CATEGORY = {
-  TACTICAL: 0,
-  QUICKPLAY: 1,
-  TRAINING: 2
-};
+// Playlist pre-mapping
+const PLAYLISTS = {};
+Object.entries(RAW_PLAYLISTS).forEach(([category, playlists]) => {
+  Object.entries(playlists).forEach(([playlistKey, playlist]) => {
+    PLAYLISTS[playlistKey] = { key: playlistKey, category, ...playlist };
+  });
+});
 
 export default class Playlist {
   // Instance Properties
@@ -16,17 +17,16 @@ export default class Playlist {
   #mapKeys;
 
   /**
-   * @param {string}   key                     The key of the playlist.
-   * @param {number}   category                The ID of the category of the playlist.
-   * @param {Object}   rawPlaylist             The raw playlist object.
-   * @param {string}   rawPlaylist.name        The name of the playlist.
-   * @param {string[]} rawPlaylist.maps        The keys of the maps in the playlist.
+   * @param {Object}                            rawPlaylist.key      The raw playlist object.
+   * @param {string}                            rawPlaylist.name     The name of the playlist.
+   * @param {string[]}                          rawPlaylist.maps     The keys of the maps in the playlist.
+   * @param {"TACTICAL"|"QUICKPLAY"|"TRAINING"} rawPlaylist.category The category of the playlist.
    */
-  constructor(key, category, rawPlaylist) {
-    this.#key = key;
-    this.#category = category;
+  constructor(rawPlaylist) {
+    this.#key = rawPlaylist.key;
     this.#name = rawPlaylist.name;
     this.#mapKeys = Array.from(rawPlaylist.maps);
+    this.#category = rawPlaylist.category;
   }
 
   /** @returns {string} The key of the playlist. */
@@ -36,13 +36,13 @@ export default class Playlist {
   get name() { return this.#name; }
 
   /** @returns {boolean} Whether this playlist belongs to the `TACTICAL` category. */
-  get isTactical() { return this.#category === CATEGORY.TACTICAL; }
+  get isTactical() { return this.#category === 'TACTICAL'; }
 
   /** @returns {boolean} Whether this playlist belongs to the `QUICKPLAY` category. */
-  get isQuickplay() { return this.#category === CATEGORY.QUICKPLAY; }
+  get isQuickplay() { return this.#category === 'QUICKPLAY'; }
 
   /** @returns {boolean} Whether this playlist belongs to the `TRAINING` category. */
-  get isTraining() { return this.#category === CATEGORY.TRAINING; }
+  get isTraining() { return this.#category === 'TRAINING'; }
 
   /** @returns {SiegeMap[]} The maps in the playlist. */
   get maps() { return this.#mapKeys.map((key) => SiegeMap[key]); }
@@ -51,20 +51,20 @@ export default class Playlist {
   static get LIST() { return Object.values(Playlist); }
 
   // Register Playlists
-  static COMPETITIVE = new Playlist('COMPETITIVE', CATEGORY.TACTICAL, RAW_PLAYLISTS.TACTICAL.COMPETITIVE);
-  static RANKED = new Playlist('RANKED', CATEGORY.TACTICAL, RAW_PLAYLISTS.TACTICAL.RANKED);
-  static STANDARD = new Playlist('STANDARD', CATEGORY.TACTICAL, RAW_PLAYLISTS.TACTICAL.STANDARD);
-  static QUICKMATCH = new Playlist('QUICKMATCH', CATEGORY.QUICKPLAY, RAW_PLAYLISTS.QUICKPLAY.QUICKMATCH);
-  static ROULETTE = new Playlist('ROULETTE', CATEGORY.QUICKPLAY, RAW_PLAYLISTS.QUICKPLAY.ROULETTE);
-  static F4A = new Playlist('F4A', CATEGORY.QUICKPLAY, RAW_PLAYLISTS.QUICKPLAY.F4A);
-  static DEATHMATCH = new Playlist('DEATHMATCH', CATEGORY.QUICKPLAY, RAW_PLAYLISTS.QUICKPLAY.DEATHMATCH);
-  static SNIPERS = new Playlist('SNIPERS', CATEGORY.QUICKPLAY, RAW_PLAYLISTS.QUICKPLAY.SNIPERS);
-  static GOLDENGUN = new Playlist('GOLDENGUN', CATEGORY.QUICKPLAY, RAW_PLAYLISTS.QUICKPLAY.GOLDENGUN);
-  static HEADSHOTS = new Playlist('HEADSHOTS', CATEGORY.QUICKPLAY, RAW_PLAYLISTS.QUICKPLAY.HEADSHOTS);
-  static AI_EASY = new Playlist('AI_EASY', CATEGORY.TRAINING, RAW_PLAYLISTS.TRAINING.AI_EASY);
-  static AI_HARD = new Playlist('AI_HARD', CATEGORY.TRAINING, RAW_PLAYLISTS.TRAINING.AI_HARD);
-  static LANDMARK = new Playlist('LANDMARK', CATEGORY.TRAINING, RAW_PLAYLISTS.TRAINING.LANDMARK);
-  static TARGET = new Playlist('TARGET', CATEGORY.TRAINING, RAW_PLAYLISTS.TRAINING.TARGET);
+  static COMPETITIVE = new Playlist(PLAYLISTS.COMPETITIVE);
+  static RANKED = new Playlist(PLAYLISTS.RANKED);
+  static STANDARD = new Playlist(PLAYLISTS.STANDARD);
+  static QUICKMATCH = new Playlist(PLAYLISTS.QUICKMATCH);
+  static ROULETTE = new Playlist(PLAYLISTS.ROULETTE);
+  static F4A = new Playlist(PLAYLISTS.F4A);
+  static DEATHMATCH = new Playlist(PLAYLISTS.DEATHMATCH);
+  static SNIPERS = new Playlist(PLAYLISTS.SNIPERS);
+  static GOLDENGUN = new Playlist(PLAYLISTS.GOLDENGUN);
+  static HEADSHOTS = new Playlist(PLAYLISTS.HEADSHOTS);
+  static AI_EASY = new Playlist(PLAYLISTS.AI_EASY);
+  static AI_HARD = new Playlist(PLAYLISTS.AI_HARD);
+  static LANDMARK = new Playlist(PLAYLISTS.LANDMARK);
+  static TARGET = new Playlist(PLAYLISTS.TARGET);
 };
 
 console.debug(Playlist.LIST);
