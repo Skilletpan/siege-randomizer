@@ -22,6 +22,8 @@ export default class OperatorRole {
   static get LIST() { return Object.values(OperatorRole); }
 
   // Register Operator Roles
+  static ATT = new OperatorRole('ATT', 'Attacker');
+  static DEF = new OperatorRole('DEF', 'Defender');
   static ANTIENTRY = new OperatorRole('ANTIENTRY', 'Anti-Entry');
   static ANTIGADGET = new OperatorRole('ANTIGADGET', 'Anti-Gadget');
   static BREACH = new OperatorRole('BREACH', 'Breach');
