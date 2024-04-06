@@ -1,4 +1,5 @@
 import loadImage from "@/utils/loadImage";
+import Playlist from "./playlist";
 
 export default class SiegeMap {
   // Instance properties
@@ -24,6 +25,9 @@ export default class SiegeMap {
 
   /** @returns {string} The URL of the thumbnail of the map. */
   get thumbnail() { return this.#thumbnail; }
+
+  /** @returns {Playlist[]} A list of all playlists containing this map. */
+  get playlists() { return Playlist.LIST.filter((playlist) => playlist.maps.includes(this)); }
 
   /** @returns {SiegeMap[]} A list of all maps. */
   static get LIST() { return Object.values(SiegeMap); }
