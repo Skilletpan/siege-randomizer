@@ -1,4 +1,5 @@
 import RAW_PLAYLISTS from '@/data/playlists_v2';
+
 import SiegeMap from './map';
 
 export default class Playlist {
