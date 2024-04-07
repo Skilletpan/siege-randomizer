@@ -1,14 +1,6 @@
 import RAW_PLAYLISTS from '@/data/playlists_v2';
 import SiegeMap from './map';
 
-// Playlist pre-mapping
-const PLAYLISTS = {};
-Object.entries(RAW_PLAYLISTS).forEach(([category, playlists]) => {
-  Object.entries(playlists).forEach(([playlistKey, playlist]) => {
-    PLAYLISTS[playlistKey] = { key: playlistKey, category, ...playlist };
-  });
-});
-
 export default class Playlist {
   // Instance Properties
   #key;
@@ -17,16 +9,17 @@ export default class Playlist {
   #mapKeys;
 
   /**
-   * @param {Object}                            rawPlaylist.key      The raw playlist object.
-   * @param {string}                            rawPlaylist.name     The name of the playlist.
-   * @param {string[]}                          rawPlaylist.maps     The keys of the maps in the playlist.
-   * @param {"TACTICAL"|"QUICKPLAY"|"TRAINING"} rawPlaylist.category The category of the playlist.
+   * @param {string}                            key               The key of the playlist.
+   * @param {"TACTICAL"|"QUICKPLAY"|"TRAINING"} category          The category of the playlist.
+   * @param {Object}                            playlistData      The raw playlist data.
+   * @param {string}                            playlistData.name The name of the playlist.
+   * @param {string[]}                          playlistData.maps The keys of the maps in the playlist.
    */
-  constructor(rawPlaylist) {
-    this.#key = rawPlaylist.key;
-    this.#name = rawPlaylist.name;
-    this.#mapKeys = Array.from(rawPlaylist.maps);
-    this.#category = rawPlaylist.category;
+  constructor(key, category, playlistData) {
+    this.#key = key;
+    this.#category = category;
+    this.#name = playlistData.name;
+    this.#mapKeys = Array.from(playlistData.maps);
   }
 
   /** @returns {string} The key of the playlist. */
@@ -51,20 +44,13 @@ export default class Playlist {
   static get LIST() { return Object.values(Playlist); }
 
   // Register Playlists
-  static COMPETITIVE = new Playlist(PLAYLISTS.COMPETITIVE);
-  static RANKED = new Playlist(PLAYLISTS.RANKED);
-  static STANDARD = new Playlist(PLAYLISTS.STANDARD);
-  static QUICKMATCH = new Playlist(PLAYLISTS.QUICKMATCH);
-  static ROULETTE = new Playlist(PLAYLISTS.ROULETTE);
-  static F4A = new Playlist(PLAYLISTS.F4A);
-  static DEATHMATCH = new Playlist(PLAYLISTS.DEATHMATCH);
-  static SNIPERS = new Playlist(PLAYLISTS.SNIPERS);
-  static GOLDENGUN = new Playlist(PLAYLISTS.GOLDENGUN);
-  static HEADSHOTS = new Playlist(PLAYLISTS.HEADSHOTS);
-  static AI_EASY = new Playlist(PLAYLISTS.AI_EASY);
-  static AI_HARD = new Playlist(PLAYLISTS.AI_HARD);
-  static LANDMARK = new Playlist(PLAYLISTS.LANDMARK);
-  static TARGET = new Playlist(PLAYLISTS.TARGET);
+  static {
+    Object.entries(RAW_PLAYLISTS).forEach(([category, playlists]) => {
+      Object.entries(playlists).forEach(([key, playlistData]) => {
+        this[key] = new Playlist(key, category, playlistData);
+      });
+    });
+  }
 }
 
 console.debug(Playlist.LIST);
