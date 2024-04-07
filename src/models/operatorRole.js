@@ -1,3 +1,5 @@
+import RAW_ROLES from '@/data/roles_v2';
+
 export default class OperatorRole {
   // Instance properties
   #key;
@@ -22,17 +24,11 @@ export default class OperatorRole {
   static get LIST() { return Object.values(OperatorRole); }
 
   // Register Operator Roles
-  static ATT = new OperatorRole('ATT', 'Attacker');
-  static DEF = new OperatorRole('DEF', 'Defender');
-  static ANTIENTRY = new OperatorRole('ANTIENTRY', 'Anti-Entry');
-  static ANTIGADGET = new OperatorRole('ANTIGADGET', 'Anti-Gadget');
-  static BREACH = new OperatorRole('BREACH', 'Breach');
-  static CROWDCONTROL = new OperatorRole('CROWDCONTROL', 'Crowd Control');
-  static FRONTLINE = new OperatorRole('FRONTLINE', 'Front Line');
-  static INTEL = new OperatorRole('INTEL', 'Intel');
-  static MAPCONTROL = new OperatorRole('MAPCONTROL', 'Map Control');
-  static SUPPORT = new OperatorRole('SUPPORT', 'Support');
-  static TRAPPER = new OperatorRole('TRAPPER', 'Trapper');
+  static {
+    Object.entries(RAW_ROLES).forEach(([key, name]) => {
+      this[key] = new OperatorRole(key, name);
+    });
+  }
 }
 
 console.debug(OperatorRole.LIST);
