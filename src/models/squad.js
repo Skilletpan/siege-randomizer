@@ -1,4 +1,5 @@
-import loadImage from "@/utils/loadImage";
+import RAW_SQUADS from '@/data/squads_v2';
+import loadImage from '@/utils/loadImage';
 
 export default class Squad {
   // Instance properties
@@ -29,11 +30,11 @@ export default class Squad {
   static get LIST() { return Object.values(Squad); }
 
   // Register Squads
-  static GHOSTEYES = new Squad('GHOSTEYES', 'Ghosteyes');
-  static NIGHTHAVEN = new Squad('NIGHTHAVEN', 'Nighthaven');
-  static REDHAMMER = new Squad('REDHAMMER', 'Redhammer');
-  static VIPERSTRIKE = new Squad('VIPERSTRIKE', 'Viperstrike');
-  static WOLFGUARD = new Squad('WOLFGUARD', 'Wolfguard');
+  static {
+    Object.entries(RAW_SQUADS).forEach(([key, name]) => {
+      this[key] = new Squad(key, name);
+    });
+  }
 }
 
 console.debug(Squad.LIST);
