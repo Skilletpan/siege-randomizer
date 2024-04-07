@@ -29,6 +29,9 @@ export default class Playlist {
   /** @returns {string} The name of the playlist. */
   get name() { return this.#name; }
 
+  /** @returns {"TACTICAL"|"QUICKPLAY"|"TRAINING"} The category of the playlist. */
+  get category() { return this.#category; }
+
   /** @returns {boolean} Whether this playlist belongs to the `TACTICAL` category. */
   get isTactical() { return this.#category === 'TACTICAL'; }
 
