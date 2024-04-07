@@ -1,5 +1,7 @@
-import loadImage from "@/utils/loadImage";
-import Playlist from "./playlist";
+import RAW_MAPS from '@/data/maps_v2';
+import loadImage from '@/utils/loadImage';
+
+import Playlist from './playlist';
 
 export default class SiegeMap {
   // Instance properties
@@ -36,32 +38,11 @@ export default class SiegeMap {
   static random() { return SiegeMap.LIST[Math.floor(Math.random() * SiegeMap.LIST.length)]; }
 
   // Register Maps
-  static HOUSE = new SiegeMap('HOUSE', 'House');
-  static OREGON = new SiegeMap('OREGON', 'Oregon');
-  static HEREFORD = new SiegeMap('HEREFORD', 'Hereford Base');
-  static CLUBHOUSE = new SiegeMap('CLUBHOUSE', 'Club House');
-  static PLANE = new SiegeMap('PLANE', 'Presidential Plane');
-  static CONSULATE = new SiegeMap('CONSULATE', 'Consulate');
-  static BANK = new SiegeMap('BANK', 'Bank');
-  static KANAL = new SiegeMap('KANAL', 'Kanal');
-  static CHALET = new SiegeMap('CHALET', 'Chalet');
-  static KAFE = new SiegeMap('KAFE', 'Kafe Dostoyevsky');
-  // static BARTLETT = new SiegeMap('BARTLETT', 'Bartlett University');
-  static YACHT = new SiegeMap('YACHT', 'Yacht');
-  static BORDER = new SiegeMap('BORDER', 'Border');
-  static FAVELA = new SiegeMap('FAVELA', 'Favela');
-  static SKYSCRAPER = new SiegeMap('SKYSCRAPER', 'Skyscraper');
-  static COASTLINE = new SiegeMap('COASTLINE', 'Coastline');
-  static THEMEPARK = new SiegeMap('THEMEPARK', 'Theme Park');
-  static TOWER = new SiegeMap('TOWER', 'Tower');
-  static VILLA = new SiegeMap('VILLA', 'Villa');
-  static FORTRESS = new SiegeMap('FORTRESS', 'Fortress');
-  static OUTBACK = new SiegeMap('OUTBACK', 'Outback');
-  static EMERALD = new SiegeMap('EMERALD', 'Emerald Plains');
-  static CLOSEQUARTER = new SiegeMap('CLOSEQUARTER', 'Close Quarter');
-  static STADIUM = new SiegeMap('STADIUM', 'Stadium Bravo');
-  static LABS = new SiegeMap('LABS', 'Nighthaven Labs');
-  static LAIR = new SiegeMap('LAIR', 'Lair');
+  static {
+    Object.entries(RAW_MAPS).forEach(([key, name]) => {
+      this[key] = new SiegeMap(key, name);
+    });
+  }
 }
 
 console.debug(SiegeMap.LIST);
