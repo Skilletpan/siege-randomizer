@@ -11,7 +11,7 @@ export default class Side {
   constructor(key, name) {
     this.#key = key;
     this.#name = name;
-    this.#icon = `$siege-${name.toLowerCase()}`;
+    this.#icon = `$siege-side-${name.toLowerCase()}`;
   }
 
   /** @returns {string} The key of the side. */
