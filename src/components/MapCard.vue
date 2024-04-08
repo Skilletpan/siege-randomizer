@@ -65,7 +65,7 @@ const props = defineProps({
 /**
  * The map to display.
  * 
- * If no map key is given via `model-value`, a random map is picked.
+ * If no map key is set in `props`, a random map is picked.
  * 
  * @type {import('vue').ComputedRef<SiegeMap>}
  */
