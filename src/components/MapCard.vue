@@ -5,11 +5,11 @@
   >
     <!-- Map Image -->
     <v-img
-      :alt="map.name"
+      :alt="`${map.name} thumbnail`"
       :aspect-ratio="16 / 9"
       :class="{ inactive, placeholder }"
       cover
-      :src="loadMapPreview(placeholder ? map.key : mapKey)"
+      :src="map.thumbnail"
     />
 
     <!-- Map Name -->
@@ -25,11 +25,11 @@
           text="Playlists"
         />
         <v-chip
-          v-for="p in playlists"
+          v-for="playlist in map.playlists"
+          :key="playlist.key"
           class="mb-2 mr-2"
-          :key="p.key"
           label
-          :text="p.name"
+          :text="playlist.name"
         />
       </v-card-text>
     </template>
@@ -39,43 +39,40 @@
 <script setup>
 import { computed } from 'vue';
 
-import { loadMapPreview } from '@/composables/imageLoader';
-import { MAPS, MAP_LIST, PLAYLIST_LIST } from '@/data';
+import { SiegeMap } from '@/models';
 
-// Define input properties
+// Component props
 const props = defineProps({
-  big: {
-    type: Boolean
-  },
+  /** Whether the card should be displayed bigger. */
+  big: Boolean,
 
-  inactive: {
-    type: Boolean
-  },
+  /** Whether the card should be displayed as inactive. */
+  inactive: Boolean,
 
-  detailed: {
-    default: false,
-    type: Boolean
-  },
+  /** Whether map details should be displayed. */
+  detailed: Boolean,
 
+  /** The key of the map to display. */
   mapKey: {
-    default: null,
     type: String,
-    validator: (v) => Object.keys(MAPS).includes(v)
+    validator: (v) => Object.keys(SiegeMap).includes(v)
   },
 
-  placeholder: {
-    default: false,
-    type: Boolean
-  }
+  /** Whether the card should be displayed as a placeholder. */
+  placeholder: Boolean
 });
 
-// Define computed properties
+/**
+ * The map to display.
+ * 
+ * If no map key is given via `model-value`, a random map is picked.
+ * 
+ * @type {import('vue').ComputedRef<SiegeMap>}
+ */
 const map = computed(() => {
-  if (!props.mapKey) return MAP_LIST[Math.floor(Math.random() * MAP_LIST.length)];
-  return MAPS[props.mapKey];
+  if (!props.mapKey) return SiegeMap.random();
+  return SiegeMap[props.mapKey];
 });
-
-const playlists = computed(() => PLAYLIST_LIST.filter((p) => p.maps.includes(props.mapKey)));
 </script>
 
 <style scoped>
