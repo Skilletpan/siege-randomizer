@@ -29,6 +29,6 @@ export default class Side {
   // Register Sides
   static ATT = new Side('ATT', 'Attack');
   static DEF = new Side('DEF', 'Defense');
-};
+}
 
 console.debug(Side.LIST);
