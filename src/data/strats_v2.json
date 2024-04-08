@@ -1,0 +1,846 @@
+[
+  {
+    "title": "1vX",
+    "tagline": "Clutch Masters",
+    "rules": [
+      "Only one player is active at a time.",
+      "Inactive players are not allowed to move, shoot, use cams etc.",
+      {
+        "text": "Inactive players wait their turn outside.",
+        "side": "ATT"
+      },
+      {
+        "text": "Inactive players are allowed to \"Hero Drone\", but not drone ahead of the active player.",
+        "side": "ATT"
+      },
+      {
+        "text": "Inactive players will find a hiding spot and wait their turn there.",
+        "side": "DEF"
+      }
+    ]
+  },
+  {
+    "title": "Advent Calendar",
+    "tagline": "Peekaboo!",
+    "rules": [
+      "Everyone picks a window or door and spawnpeeks."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Age Limit",
+    "tagline": "Let me see your identification, please!",
+    "rules": [
+      "Let the randomizer pick an operator.",
+      "You can only pick operators which were released before (or at the same time as) that operator."
+    ]
+  },
+  {
+    "title": "Alternate Arms",
+    "tagline": "What even are these?",
+    "rules": [
+      "Pick a random operator.",
+      "Equip a different main gun.",
+      "Equip a different secondary gun.",
+      "Equip a different secondary gadget."
+    ],
+    "operators": [
+      "!MONTAGNE",
+      "!GLAZ",
+      "!BLITZ",
+      "!CLASH",
+      "!KALI"
+    ]
+  },
+  {
+    "title": "Arnold Cut",
+    "tagline": "Hasta la Vista, Baby!",
+    "rules": [
+      "Everyone has to speak like Arnold Schwarzenegger."
+    ]
+  },
+  {
+    "title": "A Song of Ice and Fire",
+    "tagline": "My sweat is frozen.",
+    "rules": [
+      "Kill enemies that are frozen by Tubarão with fire."
+    ],
+    "operators": [
+      "*TACHANKA",
+      "*GOYO",
+      "*TUBARAO"
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "A Throwaway Joke",
+    "tagline": "And the kitchen sink!",
+    "rules": [
+      "Bring as many throwable primary and secondary gadgets as possible.",
+      "Shout \"YEET\" every time you throw one."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Back on the Sticks",
+    "tagline": "Report reverse XIMmer!",
+    "rules": [
+      "You must use a controller to play."
+    ]
+  },
+  {
+    "title": "Biene Maja",
+    "tagline": "The hive is coming!",
+    "rules": [
+      "Only bring operators with yellow icons.",
+      "Everyone follows Grim's lead.",
+      "Sing \"Biene Maja\" for the duration of the round."
+    ],
+    "operators": [
+      "*GRIM"
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Big Brother",
+    "tagline": "They see everything",
+    "rules": [
+      "Remaining operator brings a bulletproof camera.",
+      "Place all your cameras on site.",
+      "Hide on the other side of the building and watch the enemy on cams.",
+      "Red ping the enemy all the time.",
+      "You may retake site as soon as the defuser is planted or the hostage or site is being taken."
+    ],
+    "operators": [
+      "*VALKYRIE",
+      "*ECHO",
+      "*MAESTRO",
+      "*MOZZIE"
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Blackout",
+    "tagline": "No recharging your phone",
+    "rules": [
+      "Don't bring any electric gadgets.",
+      {
+        "text": "Keep your drones at spawn and immediately shoot them when the action phase starts.",
+        "side": "ATT"
+      },
+      {
+        "text": "As soon as you see anything electrical, shoot or EMP it and say \"Focking laser sights.\"",
+        "operator": "THATCHER"
+      },
+      {
+        "text": "Shoot all default cameras during prep phase.",
+        "side": "DEF"
+      }
+    ],
+    "operators": [
+      "*THATCHER",
+      "!SMOKE",
+      "!MUTE",
+      "!THERMITE",
+      "!TWITCH",
+      "!PULSE",
+      "!FUZE",
+      "!KAPKAN",
+      "!BLITZ",
+      "!IQ",
+      "!JAGER",
+      "!BANDIT",
+      "!VALKYRIE",
+      "!HIBANA",
+      "!ECHO",
+      "!JACKAL",
+      "!YING",
+      "!ELA",
+      "!DOKKAEBI",
+      "!VIGIL",
+      "!LION",
+      "!MAESTRO",
+      "!ALIBI",
+      "!CLASH",
+      "!NOMAD",
+      "!KAID",
+      "!MOZZIE",
+      "!NOKK",
+      "!WARDEN",
+      "!WAMAI",
+      "!IANA",
+      "!ACE",
+      "!MELUSI",
+      "!ZERO",
+      "!ARUNI",
+      "!FLORES",
+      "!THUNDERBIRD",
+      "!THORN",
+      "!SENS",
+      "!GRIM",
+      "!SOLIS",
+      "!BRAVA",
+      "!FENRIR",
+      "!RAM",
+      "!DEIMOS"
+    ]
+  },
+  {
+    "title": "Boomstick",
+    "tagline": "A deadly squad. Unless they're more than 5 meters away.",
+    "rules": [
+      "Only use shotguns.",
+      "If possible, bring secondary shotguns as well."
+    ]
+  },
+  {
+    "title": "Bravo Six, going dark!",
+    "tagline": "Hope you brought night vision goggles.",
+    "rules": [
+      "Set your in-game brightness to 10."
+    ]
+  },
+  {
+    "title": "C5",
+    "tagline": "Can you die from explosions? You'll have to C4 yourself.",
+    "rules": [
+      "Try to kill all attackers with C4s from below site.",
+      "You are only allowed to start shooting at people when all C4s are used up."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Counter Strike",
+    "tagline": "You missed? Skill issue.",
+    "rules": [
+      "Hipfire only. There is no ADS button."
+    ]
+  },
+  {
+    "title": "Da Vinci Cannon",
+    "tagline": "You don't need good aim if you shoot everywhere at once.",
+    "rules": [
+      "Set your in-game mouse sensitivity to 100 and your mouse DPI to the maximum.",
+      "Bring only LMGs.",
+      "Shoot entire magazines at a time."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Doktor's Curse",
+    "tagline": "The experiments are loose!",
+    "rules": [
+      "No guns allowed.",
+      "Make your traps and knives count."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Drone Strike",
+    "tagline": "\"Why do it yourself, when robots do it better?\" - Echo",
+    "rules": [
+      "Bring all of the drones.",
+      "You are only allowed to attack with your operators when all drones (normal drones or gadgets) are dead.",
+      "If they have Echo or Mozzie, don't destroy their drones."
+    ],
+    "operators": [
+      "*TWITCH",
+      "*FLORES",
+      "*BRAVA",
+      "*RAM"
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "East Take",
+    "tagline": "EAST TAAAAAKE!",
+    "rules": [
+      "Take site from the east side."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Feel the Burn",
+    "tagline": "Physical health is important.",
+    "rules": [
+      "After every kill, do 3 push-ups.",
+      "When you die, do 10 push-ups."
+    ]
+  },
+  {
+    "title": "G2 vs TT9",
+    "tagline": "\"They can only drone us if we move!\" -Alemao, probably",
+    "rules": [
+      "Don't move during preparation phase. No walking, no turning, no reinforcing, no shooting drones."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Grounded",
+    "tagline": "Take the stairs",
+    "rules": [
+      "You are not allowed to rappel, vault or climb ladders."
+    ],
+    "operators": [
+      "!AMARU"
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Hot Breach",
+    "tagline": "E3 2014 called. It wants its Siege trailer back.",
+    "rules": [
+      "Everyone brings breach charges.",
+      "Everyone picks a window and hot-breaches into the building at the same time."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Hot Drop Retake",
+    "tagline": "Strike from above",
+    "rules": [
+      "Wait on a hatch above site until the objective is being taken or defused.",
+      "As soon as the objective is being taken or defused, hot-drop the hatch and retake site."
+    ],
+    "operators": [
+      "*ARUNI"
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Hurr!",
+    "tagline": "My nose feels bigger.",
+    "rules": [
+      "You may only communicate with Minecraft villager noises."
+    ]
+  },
+  {
+    "title": "Iron Sights only",
+    "tagline": "What do you mean you can't see?",
+    "rules": [
+      "Unequip any sights on your guns."
+    ],
+    "operators": [
+      "!MONTAGNE",
+      "!GLAZ",
+      "!BLITZ",
+      "!KALI"
+    ]
+  },
+  {
+    "title": "King's Guard",
+    "tagline": "Rainbow Six: Secret Service",
+    "rules": [
+      {
+        "text": "Survive.",
+        "operator": "TACHANKA"
+      },
+      "Protect Tachanka at all costs.",
+      "As the leader of the Secret Service, everyone follows Warden's orders.",
+      "If Tachanka dies, the rest commits sudoku or surrenders themselves to the enemy."
+    ],
+    "operators": [
+      "*TACHANKA",
+      "*WARDEN"
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Labyrinth",
+    "tagline": "Environmental destruction? What is that?",
+    "rules": [
+      "Treat the map \"as-is\". You are not allowed to create any additional pathways, sightlines etc.",
+      "You are allowed to use pathways created by the other team.",
+      {
+        "text": "You are allowed to destroy barricades, but no walls or hatches.",
+        "side": "ATT"
+      },
+      {
+        "text": "You are not allowed to barricade any windows or doors. Leave the natural pathways open.",
+        "side": "DEF"
+      },
+      {
+        "text": "You are allowed to reinforce walls and hatches, but not destroy them.",
+        "side": "DEF"
+      }
+    ],
+    "operators": [
+      "!SLEDGE",
+      "!ASH",
+      "!THERMITE",
+      "!CASTLE",
+      "!BUCK",
+      "!HIBANA",
+      "!ZOFIA",
+      "!MAVERICK",
+      "!ORYX",
+      "!ACE",
+      "!AZAMI",
+      "!FLORES",
+      "!RAM"
+    ]
+  },
+  {
+    "title": "Leaky Roof",
+    "tagline": "It's raining in here!",
+    "rules": [
+      "Bring as much soft destruction as you can.",
+      "Destroy every desctructible floor above site."
+    ],
+    "operators": [
+      "*SLEDGE",
+      "*BUCK",
+      "*RAM"
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Lucky Luke",
+    "tagline": "Click faster than your shadow.",
+    "rules": [
+      "Only use handguns.",
+      "Machine pistols and secondary shotguns are disallowed.",
+      "Bonus points for Deagle and Revolver only."
+    ]
+  },
+  {
+    "title": "Might need this later",
+    "tagline": "When did I get 250 health potions?",
+    "rules": [
+      "Bring a lot of depletable utility.",
+      "Don't utilize it."
+    ],
+    "operators": [
+      "!PULSE",
+      "!CAVEIRA",
+      "!VIGIL",
+      "!CLASH",
+      "!WARDEN",
+      "!ORYX",
+      "!SOLIS"
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "No backing off!",
+    "tagline": "My W key is stuck!",
+    "rules": [
+      "As soon as Action Phase starts, you hold W.",
+      "Don't let go of W until you win or die."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Noob Team",
+    "tagline": "They wear matching outfits!",
+    "rules": [
+      "Everyone picks Recruit.",
+      "Everyone brings the same loadout."
+    ],
+    "operators": [
+      "*RECRUIT_ATT",
+      "*RECRUIT_DEF"
+    ]
+  },
+  {
+    "title": "One in the Chamber",
+    "tagline": "One tap",
+    "rules": [
+      "You may only shoot at enemies with one bullet in the chamber.",
+      "Use reload cancel to empty your magazines.",
+      "Shotguns are disallowed."
+    ],
+    "operators": [
+      "!KALI"
+    ]
+  },
+  {
+    "title": "One in the Chamber (extreme)",
+    "tagline": "One tap",
+    "rules": [
+      "You may only shoot at enemies with one bullet in the chamber.",
+      "Use reload cancel to empty your magazines.",
+      "You may only bring LMGs.",
+      "Secondary guns are disallowed."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Pacifist",
+    "tagline": "No defenders were hurt during the production of this round.",
+    "rules": [
+      "Win the round without hurting any enemies.",
+      "Don't bring any lethal gadgets.",
+      "Non-lethal gadgets are allowed (Airjab, EMP, Candela, Stun Grenades etc)."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Parkour",
+    "tagline": "Parkour!",
+    "rules": [
+      "You are not allowed to take stairs.",
+      "You can only change floors by rappelling or hatch dropping."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Phalanx",
+    "tagline": "The wall is moving!",
+    "rules": [
+      {
+        "text": "Make sure to bring your shield.",
+        "operator": "FUZE"
+      },
+      {
+        "text": "Immediately attach your shields when you don't have one on your gun.",
+        "operator": "BLACKBEARD"
+      },
+      {
+        "text": "If you run out of shields, you have to play behind one of your teammates.",
+        "operator": "BLACKBEARD"
+      },
+      {
+        "text": "When moving you must hold a shield in front of your face.",
+        "operator": "OSA"
+      },
+      {
+        "text": "To shoot, you must place your shield down first and shoot from behind it.",
+        "operator": "OSA"
+      },
+      {
+        "text": "If you run out of shields, you have to play behind one of your teammates.",
+        "operator": "OSA"
+      }
+    ],
+    "operators": [
+      "*MONTAGNE",
+      "*FUZE",
+      "*BLITZ",
+      "*BLACKBEARD",
+      "*OSA"
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Pistol Round",
+    "tagline": "Anyone drop me a Deagle?",
+    "rules": [
+      "You are only allowed to use semi-automatic pistols.",
+      {
+        "text": "Don't bring any shields.",
+        "side": "ATT"
+      }
+    ],
+    "operators": [
+      "!MONTAGNE",
+      "!BLITZ",
+      "!DOKKAEBI",
+      "!VIGIL",
+      "!AMARU",
+      "!KALI",
+      "!SOLIS"
+    ]
+  },
+  {
+    "title": "Pokémon",
+    "tagline": "Gotta catch 'em all!",
+    "rules": [
+      "Only kill enemies with impact grenades.",
+      "You are allowed to soften them up with your pistol."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Polyglot",
+    "tagline": "Basically, EU servers.",
+    "rules": [
+      "No two players may speak the same language."
+    ]
+  },
+  {
+    "title": "Privacy, Please!",
+    "tagline": "We are very shy.",
+    "rules": [
+      {
+        "text": "Use your jammers to prevent drones from entering.",
+        "operator": "MUTE"
+      },
+      {
+        "text": "Use your pests to prevent drones from entering. Shoot them as soon as you capture them.",
+        "operator": "MOZZIE"
+      },
+      "Reinforce every outside wall of site.",
+      "Reinforce every door and window you pass.",
+      "Don't create sightlines.",
+      "Deploy observation blockers everywhere.",
+      "Shoot every default camera.",
+      "Don't bring cameras."
+    ],
+    "operators": [
+      "*MUTE",
+      "!PULSE",
+      "!VALKYRIE",
+      "!ECHO",
+      "!MIRA",
+      "!MAESTRO",
+      "*MOZZIE"
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Red Light, Green Light",
+    "tagline": "Really takes the \"and\" out of \"Run and Gun\".",
+    "rules": [
+      "You may not shoot and move at the same time."
+    ]
+  },
+  {
+    "title": "Rooted",
+    "tagline": "Turret Mode engaged",
+    "rules": [
+      "Pick your spot. As soon as Action Phase starts, you are not allowed to move away."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Rush B",
+    "tagline": "Rush B",
+    "rules": [
+      "Rush B"
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Santa Claus",
+    "tagline": "We come bearing gifts!",
+    "rules": [
+      {
+        "text": "Place your Armor Plates outside the building for the attackers to take.",
+        "operator": "ROOK"
+      },
+      {
+        "text": "Place your Kona Stations outside the building for the attackers to use.",
+        "operator": "THUNDERBIRD"
+      },
+      "Let the attackers use the gifts unhindered. No camping the presents."
+    ],
+    "operators": [
+      "*ROOK",
+      "*THUNDERBIRD"
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Slow and Steady",
+    "tagline": "Very slow. Very very slow.",
+    "rules": [
+      "You can only move by Alt-walking."
+    ]
+  },
+  {
+    "title": "Sniper Squad",
+    "tagline": "Snjept",
+    "rules": [
+      "Bring DMRs with 3x scopes.",
+      "Only use primary guns."
+    ],
+    "operators": [
+      "*GLAZ",
+      "*KALI"
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "The Hunt",
+    "tagline": "\"A hunter always watches where he steps.\" - Kapkan",
+    "rules": [
+      "Place your traps, then hide closeby.",
+      "Don't take engagements directly. Play off your traps.",
+      "Bonus: Only get kills with your traps or knives."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "The Solo Queue Experience™",
+    "tagline": "Comms are toxic anyways.",
+    "rules": [
+      "No communication allowed. Mute yourself in-game and in Discord / TeamSpeak.",
+      "Write toxic messages to your teammates in team chat."
+    ]
+  },
+  {
+    "title": "Speedrun",
+    "tagline": "I am speed!",
+    "rules": [
+      "Bring only 3 speed operators.",
+      "Take the most direct route to site.",
+      "No roam clearing."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Spinbot",
+    "tagline": "We don't have better aim, we have MORE aim!",
+    "rules": [
+      "Set your in-game mouse sensitivity to 100 and your mouse DPI to the maximum."
+    ]
+  },
+  {
+    "title": "Splinter Cell",
+    "tagline": "Pew.",
+    "rules": [
+      "Only use silenced handguns.",
+      "Machine pistols, secondary shotguns, Deagle, revolvers and GONNE-6 are disallowed.",
+      {
+        "text": "Everyone follows Zero's lead.",
+        "side": "ATT"
+      },
+      {
+        "text": "Everyone follows Caveira's lead.",
+        "side": "DEF"
+      }
+    ],
+    "operators": [
+      "*ZERO",
+      "*CAVEIRA"
+    ]
+  },
+  {
+    "title": "Spotted!",
+    "tagline": "You can't hide!",
+    "rules": [
+      {
+        "text": "Track them.",
+        "operator": "JACKAL"
+      },
+      {
+        "text": "Call them.",
+        "operator": "DOKKAEBI"
+      },
+      {
+        "text": "Scan them.",
+        "operator": "LION"
+      },
+      {
+        "operator": "GRIM",
+        "text": "Bee them."
+      },
+      {
+        "operator": "DEIMOS",
+        "text": "Hunt them."
+      }
+    ],
+    "operators": [
+      "*JACKAL",
+      "*DOKKAEBI",
+      "*LION",
+      "*GRIM",
+      "*DEIMOS"
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Supressive Fire",
+    "tagline": "LMG mounted. And loaded. And unloaded. On everything.",
+    "rules": [
+      "Bring only LMGs.",
+      "As soon as you start shooting, you cannot stop until your magazine is empty."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Swiss Cheese",
+    "tagline": "Punch holes. Punch holes everywhere.",
+    "rules": [
+      "Make as many punch holes in reinforcable walls as possible.",
+      "Only shoot at people through punch holes."
+    ],
+    "operators": [
+      "!ARUNI"
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Switcheroo",
+    "tagline": "The room is safe! What do you mean they planted?",
+    "rules": [
+      "Completely reinforce a different site on the map.",
+      "The switched site can't share a room with the actual site (e.g. Kitchen / Dining and Kitchen / Meeting on Oregon)."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "The Floor is Lava",
+    "tagline": "Channel your inner Obi-Wan",
+    "rules": [
+      "As soon as Action Phase starts, you may only shoot from elevated positions.",
+      "You may only touch the lava to sprint directly to a new high ground."
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "The Snake",
+    "tagline": "snek 🐍",
+    "rules": [
+      "Inside the building, you are only allowed to move while prone.",
+      "You may stand up to shoot, but need to go prone again to continue moving."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "The Wimba Way",
+    "tagline": "Singing \"In the Jungle\" is always just a whim away.",
+    "rules": [
+      "Sing \"In the Jungle\" during the entire round."
+    ]
+  },
+  {
+    "title": "Thin Air",
+    "tagline": "Dutch mountaineering",
+    "rules": [
+      {
+        "text": "Roofs are off-limits.",
+        "side": "ATT"
+      },
+      "You are only allowed to prone on the top floor.",
+      "You are only allowed to crouch and prone on the second highest floor.",
+      "Any stance is allowed on lower floors."
+    ]
+  },
+  {
+    "title": "Welcome!",
+    "tagline": "We've got nothing to hide.",
+    "rules": [
+      "You may not reinforce any walls or barricade any doors.",
+      "Fully open every reinforcable wall on and between sites.",
+      {
+        "text": "Place Welcome Mats at as many entry points into site as possible.",
+        "operator": "FROST"
+      }
+    ],
+    "operators": [
+      "*FROST"
+    ],
+    "side": "DEF"
+  },
+  {
+    "title": "Wet Work",
+    "tagline": "Something smells here",
+    "rules": [
+      "You are only allowed to enter and exit the building through bathrooms."
+    ],
+    "side": "ATT"
+  },
+  {
+    "title": "Year 1 Turtle",
+    "tagline": "Site is Home. Site is Safe Space.",
+    "rules": [
+      "Bring only Pathfinder operators.",
+      "Reinforce every wall, door and window of site.",
+      "Sit in site for the entire round.",
+      "Pray they don't bring Fuze."
+    ],
+    "side": "DEF"
+  }
+]
