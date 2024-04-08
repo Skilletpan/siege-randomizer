@@ -75,7 +75,7 @@ export default class Strat {
   }
 
   /** @returns {Strat[]} A list of all strats. */
-  static get LIST() { return Object.values(Strat); };
+  static get LIST() { return Object.values(Strat); }
 
   // Register Strats
   static {
