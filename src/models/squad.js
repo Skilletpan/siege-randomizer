@@ -5,7 +5,7 @@ export default class Squad {
   // Instance properties
   #key;
   #name;
-  #thumbnail;
+  #emblem;
 
   /**
    * @param {string} key  The key of the squad.
@@ -14,7 +14,7 @@ export default class Squad {
   constructor(key, name) {
     this.#key = key;
     this.#name = name;
-    this.#thumbnail = loadImage('squads', `${key}.png`);
+    this.#emblem = loadImage('squads', `${key}.png`);
   }
 
   /** @returns {string} The key of the squad. */
@@ -23,8 +23,8 @@ export default class Squad {
   /** @returns {string} The name of the squad. */
   get name() { return this.#name; }
 
-  /** @returns {string} The URL of the thumbnail of the squad. */
-  get thumbnail() { return this.#thumbnail; }
+  /** @returns {string} The URL of the emblem of the squad. */
+  get emblem() { return this.#emblem; }
 
   /** @returns {Squad[]} A list of all squads. */
   static get LIST() { return Object.values(Squad); }
