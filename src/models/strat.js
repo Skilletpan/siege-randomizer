@@ -12,8 +12,10 @@ export default class Strat {
   #sideKey;
 
   #operatorKeys;
-  #bannedOperators;
+  #operators;
   #requiredOperators;
+  #allowedOperators;
+  #bannedOperators;
 
   /**
    * @param {number}            id                    The ID of the strat.
@@ -56,17 +58,15 @@ export default class Strat {
 
   /** @returns {Operator[]} The operators required by the strat. */
   get requiredOperators() {
+    // Map operators on first call
+    if (!this.#operators) this.#operators = Operator.findOperatorsByList(this.#operatorKeys);
+
     // Map required operators on first call
     if (!this.#requiredOperators) {
       this.#requiredOperators = {};
+      if (!this.#operators.required) return this.#requiredOperators;
 
-      this.#operatorKeys.forEach((operatorKey) => {
-        // Skip irrelevant operators
-        if (!operatorKey.startsWith('*')) return;
-
-        // Fetch operator
-        const operator = Operator[operatorKey.slice(1)];
-
+      this.#operators.required.forEach((operator) => {
         // Add operator to list
         if (!this.#requiredOperators[operator.side.key]) this.#requiredOperators[operator.side.key] = [];
         this.#requiredOperators[operator.side.key].push(operator);
@@ -76,19 +76,37 @@ export default class Strat {
     return this.#requiredOperators;
   }
 
+  /** @returns {Operator[]} The operators allowed in the strat. */
+  get allowedOperators() {
+    // Map operators on first call
+    if (!this.#operators) this.#operators = Operator.findOperatorsByList(this.#operatorKeys);
+
+    // Map allowed operators on first call
+    if (!this.#allowedOperators) {
+      this.#allowedOperators = {};
+      if (!this.#operators.allowed) return this.#allowedOperators;
+
+      this.#operators.allowed.forEach((operator) => {
+        // Add operator to list
+        if (!this.#allowedOperators[operator.side.key]) this.#allowedOperators[operator.side.key] = [];
+        this.#allowedOperators[operator.side.key].push(operator);
+      });
+    }
+
+    return this.#allowedOperators;
+  }
+
   /** @returns {Operator[]} The operators banned from the strat. */
   get bannedOperators() {
+    // Map operators on first call
+    if (!this.#operators) this.#operators = Operator.findOperatorsByList(this.#operatorKeys);
+
     // Map banned operators on first call
     if (!this.#bannedOperators) {
       this.#bannedOperators = {};
+      if (!this.#operators.banned) return this.#bannedOperators;
 
-      this.#operatorKeys.forEach((operatorKey) => {
-        // Skip irrelevant operators
-        if (!operatorKey.startsWith('!')) return;
-
-        // Fetch operator
-        const operator = Operator[operatorKey.slice(1)];
-
+      this.#operators.banned.forEach((operator) => {
         // Add operator to list
         if (!this.#bannedOperators[operator.side.key]) this.#bannedOperators[operator.side.key] = [];
         this.#bannedOperators[operator.side.key].push(operator);

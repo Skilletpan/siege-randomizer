@@ -1,5 +1,5 @@
 import RAW_OPERATORS from '@/data/operators_v2';
-import loadImage from "@/utils/loadImage";
+import loadImage from '@/utils/loadImage';
 
 import OperatorRole from './operatorRole';
 import Side from './side';
@@ -94,6 +94,59 @@ export default class Operator {
 
   /** @returns {Operator[]} A list of all operators. */
   static get LIST() { return Object.values(Operator); }
+
+  /**
+   * Filter operators into `required`, `allowed` and `banned`.
+   * 
+   * Keys of required operators are prefixed with `*`.
+   * Keys of banned operators are prefixed with `!`.
+   * 
+   * @param {string[]} operatorList The list of operator keys to build the lists from.
+   * 
+   * @returns {{ required?: Operator[], allowed: Operator[], banned: Operator[] }} The final operator lists.
+   */
+  static findOperatorsByList(operatorList) {
+    // Split operator keys
+    const required = [], allowed = [], banned = [];
+    operatorList.forEach((operatorKey) => {
+      if (operatorKey.startsWith('*')) required.push(operatorKey.slice(1));
+      else if (operatorKey.startsWith('!')) banned.push(operatorKey.slice(1));
+      else allowed.push(operatorKey);
+    });
+
+    // Catch mixed lists
+    if (allowed.length && banned.length) throw new Error('Can\'t use allowed and banned operators in the same list!');
+
+    // Filter operators
+    const operators = { allowed: [], banned: [] };
+    Operator.LIST.forEach((operator) => {
+      // Check for required operators
+      if (required.includes(operator.key)) {
+        if (!operators.required) operators.required = [];
+        operators.required.push(operator);
+        return;
+      }
+
+      // Build by allowed operators
+      if (allowed.length) {
+        if (allowed.includes(operator.key)) operators.allowed.push(operator);
+        else operators.banned.push(operator);
+        return;
+      }
+
+      // Build by banned operators
+      if (banned.length) {
+        if (banned.includes(operator.key)) operators.banned.push(operator);
+        else operators.allowed.push(operator);
+        return
+      }
+
+      // Operators are implicitly allowed
+      operators.allowed.push(operator);
+    });
+
+    return operators;
+  }
 
   /** @returns {Operator} A randomly picked operator. */
   static random() { return Operator.LIST[Math.floor(Math.random() * Operator.LIST.length)]; }

@@ -1,6 +1,7 @@
 import RAW_PLAYLISTS from '@/data/playlists';
 
 import SiegeMap from './map';
+import Operator from './operator';
 
 export default class Playlist {
   // Instance Properties
@@ -8,19 +9,23 @@ export default class Playlist {
   #category;
   #name;
   #mapKeys;
+  #operatorKeys;
+  #operators;
 
   /**
-   * @param {string}                            key               The key of the playlist.
-   * @param {"TACTICAL"|"QUICKPLAY"|"TRAINING"} category          The category of the playlist.
-   * @param {Object}                            playlistData      The raw playlist data.
-   * @param {string}                            playlistData.name The name of the playlist.
-   * @param {string[]}                          playlistData.maps The keys of the maps in the playlist.
+   * @param {string}                            key                      The key of the playlist.
+   * @param {"TACTICAL"|"QUICKPLAY"|"TRAINING"} category                 The category of the playlist.
+   * @param {Object}                            playlistData             The raw playlist data.
+   * @param {string}                            playlistData.name        The name of the playlist.
+   * @param {string[]}                          playlistData.maps        The keys of the maps in the playlist.
+   * @param {string[]}                          [playlistData.operators] The keys of the operators available in / banned from the playlist.
    */
   constructor(key, category, playlistData) {
     this.#key = key;
     this.#category = category;
     this.#name = playlistData.name;
     this.#mapKeys = Array.from(playlistData.maps);
+    this.#operatorKeys = Array.from(playlistData.operators || []);
   }
 
   /** @returns {string} The key of the playlist. */
@@ -43,6 +48,12 @@ export default class Playlist {
 
   /** @returns {SiegeMap[]} The maps in the playlist. */
   get maps() { return this.#mapKeys.map((key) => SiegeMap[key]); }
+
+  /** @returns {{ allowed: Operator[], banned: Operator[] }} The operator restrictions for the playlist. */
+  get operators() {
+    if (!this.#operators) this.#operators = Operator.findOperatorsByList(this.#operatorKeys);
+    return this.#operators;
+  }
 
   /** @returns {Playlist[]} A list of all playlists. */
   static get LIST() { return Object.values(Playlist); }

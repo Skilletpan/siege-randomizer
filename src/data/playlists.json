@@ -12,6 +12,10 @@
         "BORDER",
         "SKYSCRAPER",
         "LABS"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
       ]
     },
     "RANKED": {
@@ -33,6 +37,10 @@
         "EMERALD",
         "LABS",
         "LAIR"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
       ]
     },
     "STANDARD": {
@@ -54,6 +62,10 @@
         "EMERALD",
         "LABS",
         "LAIR"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
       ]
     }
   },
@@ -90,6 +102,10 @@
         "THEMEPARK",
         "COASTLINE",
         "FAVELA"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
       ]
     },
     "F4A": {
@@ -103,6 +119,13 @@
         "THEMEPARK",
         "EMERALD",
         "FAVELA"
+      ],
+      "operators": [
+        "!MONTAGNE",
+        "!BLITZ",
+        "!CLASH",
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
       ]
     },
     "DEATHMATCH": {
@@ -118,12 +141,23 @@
         "COASTLINE",
         "SKYSCRAPER",
         "FAVELA"
+      ],
+      "operators": [
+        "!MONTAGNE",
+        "!BLITZ",
+        "!CLASH",
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
       ]
     },
     "SNIPERS": {
       "name": "Snipers Only",
       "maps": [
         "HEREFORD"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
       ]
     },
     "GOLDENGUN": {
@@ -135,6 +169,10 @@
         "EMERALD",
         "SKYSCRAPER",
         "FAVELA"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
       ]
     },
     "HEADSHOTS": {
@@ -145,6 +183,10 @@
         "VILLA",
         "CLOSEQUARTER",
         "LABS"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
       ]
     }
   },
@@ -155,6 +197,20 @@
         "CLUBHOUSE",
         "OREGON",
         "CHALET"
+      ],
+      "operators": [
+        "SLEDGE",
+        "THATCHER",
+        "ASH",
+        "THERMITE",
+        "GLAZ",
+        "IQ",
+        "BUCK",
+        "JACKAL",
+        "FINKA",
+        "LION",
+        "IANA",
+        "RECRUIT_ATT"
       ]
     },
     "AI_HARD": {
@@ -166,6 +222,20 @@
         "CHALET",
         "KAFE",
         "CONSULATE"
+      ],
+      "operators": [
+        "SLEDGE",
+        "THATCHER",
+        "ASH",
+        "THERMITE",
+        "GLAZ",
+        "IQ",
+        "BUCK",
+        "JACKAL",
+        "FINKA",
+        "LION",
+        "IANA",
+        "RECRUIT_ATT"
       ]
     },
     "LANDMARK": {
