@@ -2,7 +2,6 @@ import OPERATORS from './operators.json';
 import ROLES from './roles.json';
 import SIDES from './sides.json';
 import SQUADS from './squads.json';
-import STRATS from './strats.json';
 
 // Build additional OPERATOR datasets
 const operators = {}, operatorList = [];
@@ -49,29 +48,6 @@ Object.entries(SQUADS)
     squadList.push(squadItem);
   });
 
-// Build STRAT dataset
-const stratList = STRATS.map((strat) => {
-  const stratItem = { ...strat, side: strat.side || sides.ALL.key };
-
-  stratItem.rules = strat.rules.map((rule) => {
-    const ruleItem = { side: null, value: null };
-
-    // Set rule value
-    if (typeof rule === 'string') ruleItem.value = rule;
-    else ruleItem.value = rule.value;
-
-    // Set rule side and operator
-    if (rule.operator) ruleItem.operator = rule.operator, ruleItem.side = operators[rule.operator].side;
-    else ruleItem.side = rule.side || strat.side || sides.ALL.key;
-
-    return ruleItem;
-  });
-
-  return stratItem;
-});
-
-console.debug(stratList);
-
 export {
   operators as OPERATORS,
   operatorList as OPERATOR_LIST,
@@ -80,6 +56,5 @@ export {
   sides as SIDES,
   sideList as SIDE_LIST,
   squads as SQUADS,
-  squadList as SQUAD_LIST,
-  stratList as STRATS
+  squadList as SQUAD_LIST
 };

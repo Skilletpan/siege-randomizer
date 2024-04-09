@@ -1,4 +1,4 @@
-import RAW_STRATS from '@/data/strats_v2';
+import RAW_STRATS from '@/data/strats';
 
 import Operator from './operator';
 import Side from './side';
