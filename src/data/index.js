@@ -1,5 +1,4 @@
 import OPERATORS from './operators.json';
-import PLAYLISTS from './playlists.json';
 import ROLES from './roles.json';
 import SIDES from './sides.json';
 import SQUADS from './squads.json';
@@ -17,17 +16,6 @@ Object.keys(OPERATORS).forEach((side) => {
       operatorList.push(operatorItem);
     });
 });
-
-// Build additional PLAYLIST datasets
-const playlists = {}, playlistList = [];
-Object.entries((PLAYLISTS))
-  .filter((entries) => !entries[1].disabled)
-  .forEach(([key, playlist]) => {
-    // Build and add playlist item
-    const playlistItem = { key, ...playlist };
-    playlists[key] = playlistItem;
-    playlistList.push(playlistItem);
-  });
 
 // Build additional ROLE datasets
 const roles = {}, roleList = [];
@@ -87,8 +75,6 @@ console.debug(stratList);
 export {
   operators as OPERATORS,
   operatorList as OPERATOR_LIST,
-  playlists as PLAYLISTS,
-  playlistList as PLAYLIST_LIST,
   roles as ROLES,
   roleList as ROLE_LIST,
   sides as SIDES,
