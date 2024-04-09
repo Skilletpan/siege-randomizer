@@ -9,6 +9,7 @@ export default class Strat {
   #title;
   #tagline;
   #rules;
+  #sideKey;
   #sideKeys;
 
   #operatorKeys;
@@ -29,6 +30,7 @@ export default class Strat {
     this.#title = stratData.title;
     this.#tagline = stratData.tagline;
     this.#rules = stratData.rules.map((rule) => typeof rule === 'string' ? { text: rule } : rule);
+    this.#sideKey = stratData.side;
     this.#sideKeys = stratData.side ? [stratData.side] : [Side.ATT.key, Side.DEF.key];
     this.#operatorKeys = Array.from(stratData.operators || []);
   }
@@ -51,15 +53,27 @@ export default class Strat {
     }));
   }
 
-  /** @returns {Side[]} The sides of the strat. */
-  get sides() { return this.#sideKeys.map((key) => Side[key]); }
+  /** @returns {Side} The side of the strat. */
+  get side() { return Side[this.#sideKey]; }
 
   /** @returns {Operator[]} The operators required by the strat. */
   get requiredOperators() {
     // Map required operators on first call
-    if (!this.#requiredOperators) this.#requiredOperators = this.#operatorKeys
-      .filter((operatorKey) => operatorKey.startsWith('*'))
-      .map((operatorKey) => Operator[operatorKey.slice(1)]);
+    if (!this.#requiredOperators) {
+      this.#requiredOperators = {};
+
+      this.#operatorKeys.forEach((operatorKey) => {
+        // Skip irrelevant operators
+        if (!operatorKey.startsWith('*')) return;
+
+        // Fetch operator
+        const operator = Operator[operatorKey.slice(1)];
+
+        // Add operator to list
+        if (!this.#requiredOperators[operator.side.key]) this.#requiredOperators[operator.side.key] = [];
+        this.#requiredOperators[operator.side.key].push(operator);
+      });
+    }
 
     return this.#requiredOperators;
   }
@@ -67,9 +81,21 @@ export default class Strat {
   /** @returns {Operator[]} The operators banned from the strat. */
   get bannedOperators() {
     // Map banned operators on first call
-    if (!this.#bannedOperators) this.#bannedOperators = this.#operatorKeys
-      .filter((operatorKey) => operatorKey.startsWith('!'))
-      .map((operatorKey) => Operator[operatorKey.slice(1)]);
+    if (!this.#bannedOperators) {
+      this.#bannedOperators = {};
+
+      this.#operatorKeys.forEach((operatorKey) => {
+        // Skip irrelevant operators
+        if (!operatorKey.startsWith('!')) return;
+
+        // Fetch operator
+        const operator = Operator[operatorKey.slice(1)];
+
+        // Add operator to list
+        if (!this.#bannedOperators[operator.side.key]) this.#bannedOperators[operator.side.key] = [];
+        this.#bannedOperators[operator.side.key].push(operator);
+      });
+    }
 
     return this.#bannedOperators;
   }
