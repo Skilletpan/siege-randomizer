@@ -8,8 +8,8 @@
       <v-col cols="auto">
         <strat-card
           v-if="picks.strat"
-          :side="picks.side"
-          :strat="picks.strat"
+          :side-key="picks.side"
+          :strat-id="picks.strat"
         />
       </v-col>
     </v-row>
@@ -22,13 +22,13 @@
       <!-- Randomize Buttons -->
       <v-col cols="auto">
         <v-btn
-          v-for="{ sideKey, icon } in SIDE_LIST.filter((s) => !!s.sideKey)"
-          :key="sideKey"
+          v-for="side in Side.LIST"
+          :key="side.key"
           class="mx-2"
           color="primary"
-          :icon="icon"
+          :icon="side.icon"
           size="x-large"
-          @click="pickRandomStrat(sideKey)"
+          @click="pickRandomStrat(side)"
         />
       </v-col>
     </v-row>
@@ -46,16 +46,16 @@
 
       <!-- Strat Pool Cards -->
       <v-col
-        v-for="(strat, index) in STRATS"
-        :key="index"
+        v-for="strat in Strat.LIST"
+        :key="strat.id"
         cols="3"
       >
         <v-card
           :title="strat.title"
-          @click="previewDialog.strat = strat; previewDialog.show = true;"
+          @click="previewDialog.strat = strat.id; previewDialog.show = true;"
         >
           <template v-slot:append>
-            <v-icon :icon="SIDES[strat.side].icon" />
+            <v-icon :icon="strat.side?.icon || '$siege-side-all'" />
           </template>
         </v-card>
       </v-col>
@@ -69,7 +69,7 @@
   >
     <strat-card
       preview
-      :strat="previewDialog.strat"
+      :strat-id="previewDialog.strat"
     />
   </v-dialog>
 </template>
@@ -79,14 +79,21 @@ import { ref } from 'vue';
 
 import { StratCard } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
-import { SIDES, SIDE_LIST, STRATS } from '@/data';
+import { Side, Strat } from '@/models';
 
-// Define dynamic properties
+/**
+ * The picked strat values.
+ * @type {import('vue').Ref<{ side: "ATT"|"DEF", strat: number }>}
+ */
 const picks = ref({
   side: null,
   strat: null
 });
 
+/**
+ * The preview dialog values.
+ * @type {import('vue').Ref<{ show: boolean, strat: number }>}
+ */
 const previewDialog = ref({
   show: false,
   strat: null
@@ -95,16 +102,16 @@ const previewDialog = ref({
 /**
  * Picks a random strategy from the pool.
  * 
- * @param {"ATT" | "DEF"} side The side to pick the strat for.
+ * @param {Side} side The side to pick the strat for.
  */
 function pickRandomStrat(side) {
-  picks.value.side = side;
+  picks.value.side = side.key;
 
-  const pool = STRATS.filter((s) => {
-    if (picks.value.strat && s.title === picks.value.strat.title) return false;
-    return s.side === side || s.side === SIDES.ALL.key;
+  const pool = Strat.LIST.filter((strat) => {
+    if (strat.id === picks.value.strat) return false;
+    return !strat.side || strat.side === side;
   });
 
-  [picks.value.strat] = pickRandom(pool);
+  picks.value.strat = pickRandom(pool)[0].id;
 }
 </script>
