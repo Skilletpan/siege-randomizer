@@ -11,6 +11,14 @@
           :side-key="picks.side"
           :strat-id="picks.strat"
         />
+
+        <!-- Placeholder Loader -->
+        <v-skeleton-loader
+          v-else
+          boilerplate
+          type="heading, subtitle, divider, list-item-avatar@3"
+          width="800"
+        />
       </v-col>
     </v-row>
 
