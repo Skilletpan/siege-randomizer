@@ -10,7 +10,6 @@ export default class Strat {
   #tagline;
   #rules;
   #sideKey;
-  #sideKeys;
 
   #operatorKeys;
   #bannedOperators;
@@ -31,7 +30,6 @@ export default class Strat {
     this.#tagline = stratData.tagline;
     this.#rules = stratData.rules.map((rule) => typeof rule === 'string' ? { text: rule } : rule);
     this.#sideKey = stratData.side;
-    this.#sideKeys = stratData.side ? [stratData.side] : [Side.ATT.key, Side.DEF.key];
     this.#operatorKeys = Array.from(stratData.operators || []);
   }
 
