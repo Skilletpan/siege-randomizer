@@ -1,4 +1,4 @@
-import RAW_MAPS from '@/data/maps_v2';
+import RAW_MAPS from '@/data/maps';
 import loadImage from '@/utils/loadImage';
 
 import Playlist from './playlist';

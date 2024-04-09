@@ -1,21 +1,9 @@
-import MAPS from './maps.json';
 import OPERATORS from './operators.json';
 import PLAYLISTS from './playlists.json';
 import ROLES from './roles.json';
 import SIDES from './sides.json';
 import SQUADS from './squads.json';
 import STRATS from './strats.json';
-
-// Build additional MAP datasets
-const maps = {}, mapList = [];
-Object.entries(MAPS)
-  .filter((entries) => !entries[1].disabled)
-  .forEach(([key, map]) => {
-    // Build and add map item
-    const mapItem = { key, ...map };
-    maps[key] = mapItem;
-    mapList.push(mapItem);
-  });
 
 // Build additional OPERATOR datasets
 const operators = {}, operatorList = [];
@@ -97,8 +85,6 @@ const stratList = STRATS.map((strat) => {
 console.debug(stratList);
 
 export {
-  maps as MAPS,
-  mapList as MAP_LIST,
   operators as OPERATORS,
   operatorList as OPERATOR_LIST,
   playlists as PLAYLISTS,

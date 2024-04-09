@@ -1,81 +1,27 @@
 {
-  "BANK": {
-    "name": "Bank"
-  },
-  "BARTLETT": {
-    "name": "Bartlett University",
-    "disabled": true
-  },
-  "BORDER": {
-    "name": "Border"
-  },
-  "CHALET": {
-    "name": "Chalet"
-  },
-  "CLOSEQUARTER": {
-    "name": "Close Quarter"
-  },
-  "CLUBHOUSE": {
-    "name": "Club House"
-  },
-  "COASTLINE": {
-    "name": "Coastline"
-  },
-  "CONSULATE": {
-    "name": "Consulate"
-  },
-  "EMERALD": {
-    "name": "Emerald Plains"
-  },
-  "FAVELA": {
-    "name": "Favela"
-  },
-  "FORTRESS": {
-    "name": "Fortress"
-  },
-  "HEREFORD": {
-    "name": "Hereford Base"
-  },
-  "HOUSE": {
-    "name": "House"
-  },
-  "KAFE": {
-    "name": "Kafe Dostoyevsky"
-  },
-  "KANAL": {
-    "name": "Kanal"
-  },
-  "LAIR": {
-    "name": "Lair"
-  },
-  "NIGHTHAVEN": {
-    "name": "Nighthaven Labs"
-  },
-  "OREGON": {
-    "name": "Oregon"
-  },
-  "OUTBACK": {
-    "name": "Outback"
-  },
-  "PLANE": {
-    "name": "Presidential Plane"
-  },
-  "SKYSCRAPER": {
-    "name": "Skyscraper"
-  },
-  "STADIUM": {
-    "name": "Stadium Bravo"
-  },
-  "THEMEPARK": {
-    "name": "Theme Park"
-  },
-  "TOWER": {
-    "name": "Tower"
-  },
-  "VILLA": {
-    "name": "Villa"
-  },
-  "YACHT": {
-    "name": "Yacht"
-  }
+  "HOUSE": "House",
+  "OREGON": "Oregon",
+  "HEREFORD": "Hereford Base",
+  "CLUBHOUSE": "Club House",
+  "PLANE": "Presidential Plane",
+  "CONSULATE": "Consulate",
+  "BANK": "Bank",
+  "KANAL": "Kanal",
+  "CHALET": "Chalet",
+  "KAFE": "Kafe Dostoyevsky",
+  "YACHT": "Yacht",
+  "BORDER": "Border",
+  "FAVELA": "Favela",
+  "SKYSCRAPER": "Skyscraper",
+  "COASTLINE": "Coastline",
+  "THEMEPARK": "Theme Park",
+  "TOWER": "Tower",
+  "VILLA": "Villa",
+  "FORTRESS": "Fortress",
+  "OUTBACK": "Outback",
+  "EMERALD": "Emerald Plains",
+  "CLOSEQUARTER": "Close Quarter",
+  "STADIUM": "Stadium",
+  "LABS": "Labs",
+  "LAIR": "Lair"
 }
