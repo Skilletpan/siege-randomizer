@@ -106,7 +106,7 @@
           clearable
           density="comfortable"
           hide-details
-          :items="ROLE_LIST.filter((r) => r.key !== settings.roles[i % 2])"
+          :items="OperatorRole.LIST.filter((r) => r.key !== settings.roles[i % 2])"
           item-title="name"
           item-value="key"
           label="Role"
@@ -136,7 +136,7 @@
           clearable
           density="comfortable"
           hide-details
-          :items="SQUAD_LIST"
+          :items="Squad.LIST"
           item-title="name"
           item-value="key"
           label="Squad"
@@ -150,7 +150,7 @@
             v-slot:append-inner
           >
             <v-avatar
-              :image="loadSquadEmblem(settings.squad)"
+              :image="Squad[settings.squad].emblem"
               rounded="0"
             />
           </template>
@@ -159,7 +159,7 @@
           <template v-slot:item="{ item, props }">
             <v-list-item
               v-bind="props"
-              :append-avatar="loadSquadEmblem(item.value)"
+              :append-avatar="item.raw.emblem"
             />
           </template>
         </v-select>
@@ -184,8 +184,9 @@
 <script setup>
 import { computed, ref, watch } from 'vue';
 
-import { loadEmblem, loadSquadEmblem } from '@/composables/imageLoader';
-import { OPERATORS, OPERATOR_LIST, ROLE_LIST, SQUAD_LIST } from '@/data';
+import { loadEmblem } from '@/composables/imageLoader';
+import { OPERATORS, OPERATOR_LIST } from '@/data';
+import { OperatorRole, Squad } from '@/models';
 
 // Define static properties
 const DEFAULT_PRESET = {
