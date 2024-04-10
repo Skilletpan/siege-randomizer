@@ -181,7 +181,7 @@
 </template>
 
 <script setup>
-import { computed, ref, watch, watchEffect } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 
 import { Operator, OperatorRole, Squad } from '@/models';
 
