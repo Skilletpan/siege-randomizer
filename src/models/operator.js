@@ -84,7 +84,7 @@ export default class Operator {
    */
   easterEggPortrait() {
     // Return easter egg portrait 1 in 50 times
-    if (this.#easterEggs.length > 0 && Math.floor(Math.random() * 50) > 0) {
+    if (this.#easterEggs.length > 0 && Math.floor(Math.random() * 50) === 0) {
       return this.#easterEggs[Math.floor(Math.random() * this.#easterEggs.length)];
     }
 
