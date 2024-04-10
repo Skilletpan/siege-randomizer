@@ -19,16 +19,19 @@
     <v-row class="justify-center pb-12">
       <v-col cols="auto">
         <!-- Randomize Buttons -->
-        <v-btn
-          v-for="{ key, icon, sideKey } in SIDE_LIST"
-          :key="`randomize_${key}`"
-          class="mb-4 mx-2"
-          color="primary"
-          :disabled="!operatorPool.length"
-          :icon="icon"
-          size="x-large"
-          @click="pickOperator(sideKey)"
-        />
+        <template
+          v-for="side, index in [Side.ATT, { icon: '$siege-side-all' }, Side.DEF]"
+          :key="index"
+        >
+          <v-btn
+            class="mb-4 mx-2"
+            color="primary"
+            :disabled="!operatorPool.length"
+            :icon="side.icon"
+            size="x-large"
+            @click="pickOperator(side.key)"
+          />
+        </template>
 
         <!-- Pick Amount Slider -->
         <v-slider
@@ -46,24 +49,24 @@
     <!-- Operator Pool -->
     <v-row>
       <template
-        v-for="{ descriptor, icon, sideKey } in SIDE_LIST"
-        :key="sideKey"
+        v-for="side, index in Side.LIST"
+        :key="side.key"
       >
-        <v-col v-if="sideKey">
+        <v-col>
           <!-- Side Title -->
           <h2 class="mb-4 text-center">
             <v-icon
-              :icon="icon"
+              :icon="side.icon"
               size="small"
               start
             />
-            {{ descriptor }}
+            {{ side.name }}
           </h2>
 
           <!-- Operator Items -->
           <v-row>
             <v-col
-              v-for="{ key, name } in operatorPool.filter((o) => o.side === sideKey)"
+              v-for="{ key, name } in operatorPool.filter((o) => o.side === side.key)"
               :key="key"
               cols="6"
             >
@@ -93,7 +96,7 @@
         </v-col>
 
         <v-divider
-          v-else
+          v-if="index === 0"
           vertical
         />
       </template>
@@ -125,7 +128,7 @@ import { ref } from 'vue';
 import { OperatorCard, OperatorFilterDrawer } from '@/components';
 import { loadEmblem } from '@/composables/imageLoader';
 import { pickRandom } from '@/composables/randomizer';
-import { SIDE_LIST } from '@/data';
+import { Side } from '@/models';
 
 // Define dynamic properties
 const filterDrawer = ref(null);
