@@ -70,7 +70,6 @@
           hide-details
           inset
           label="Duplicate Picks"
-          @update:model-value="emit('update:duplicates', $event)"
         />
       </v-list-item>
 
@@ -182,7 +181,7 @@
 </template>
 
 <script setup>
-import { computed, ref, watchEffect } from 'vue';
+import { computed, ref, watch, watchEffect } from 'vue';
 
 import { Operator, OperatorRole, Squad } from '@/models';
 
@@ -238,6 +237,9 @@ const emit = defineEmits([
   'update:duplicates',
   'update:operators'
 ]);
+
+// Emit duplicates setting update
+watchEffect(() => emit('update:duplicates', settings.value.duplicates));
 
 // Emit operator pool update
 watchEffect(() => { emit('update:operators', operatorPool.value); });
