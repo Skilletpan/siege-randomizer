@@ -35,7 +35,7 @@
           clearable
           density="comfortable"
           hide-details
-          :items="OPERATOR_LIST"
+          :items="Operator.LIST"
           item-title="name"
           item-value="key"
           label="Banned Operators"
@@ -53,7 +53,7 @@
           <template v-slot:item="{ item, props }">
             <v-list-item
               v-bind="props"
-              :append-avatar="loadEmblem(item.value)"
+              :append-avatar="item.raw.emblem"
             />
           </template>
         </v-select>
@@ -182,11 +182,9 @@
 </template>
 
 <script setup>
-import { computed, ref, watch } from 'vue';
+import { computed, ref, watchEffect } from 'vue';
 
-import { loadEmblem } from '@/composables/imageLoader';
-import { OPERATORS, OPERATOR_LIST } from '@/data';
-import { OperatorRole, Squad } from '@/models';
+import { Operator, OperatorRole, Squad } from '@/models';
 
 // Define static properties
 const DEFAULT_PRESET = {
@@ -199,19 +197,19 @@ const DEFAULT_PRESET = {
 
 const PRESETS = {
   Competitive: {
-    bans: [OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
+    bans: [Operator.RECRUIT_ATT.key, Operator.RECRUIT_DEF.key],
     modes: 'Competitive, Ranked, Standard'
   },
   Casual: {
     modes: 'Quick Match'
   },
   'Arcade 1': {
-    bans: [OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
+    bans: [Operator.RECRUIT_ATT.key, Operator.RECRUIT_DEF.key],
     duplicates: true,
     modes: 'Weapons Roulette, Golden Gun, Snipers Only'
   },
   'Arcade 2': {
-    bans: [OPERATORS.MONTAGNE.key, OPERATORS.BLITZ.key, OPERATORS.CLASH.key, OPERATORS.RECRUIT_ATT.key, OPERATORS.RECRUIT_DEF.key],
+    bans: [Operator.MONTAGNE.key, Operator.BLITZ.key, Operator.CLASH.key, Operator.RECRUIT_ATT.key, Operator.RECRUIT_DEF.key],
     duplicates: true,
     modes: 'Free for All, Deathmatch'
   }
@@ -224,12 +222,15 @@ const settings = ref(structuredClone(DEFAULT_PRESET));
 const operatorPool = computed(() => {
   const { bans, roles, speed, squad } = settings.value;
 
-  return OPERATOR_LIST.filter((o) => [
-    !bans.includes(o.key),                          // Bans
-    speed.includes(o.speed),                        // Speed
-    roles.every((r) => !r || o.roles.includes(r)),  // Roles
-    !squad || o.squad === squad                     // Squad
-  ].every((isTrue) => isTrue));
+  return Operator.LIST
+    .filter((o) => {
+      if (bans.includes(o.key)) return false;
+      if (!speed.includes(o.speed)) return false;
+      if (roles.some((r) => !!r && !o.roles.includes(OperatorRole[r]))) return false;
+      if (squad && o.squad?.key !== squad) return false;
+
+      return true;
+    }).map((o) => o.key);
 });
 
 // Define emits
@@ -239,11 +240,7 @@ const emit = defineEmits([
 ]);
 
 // Emit operator pool update
-watch(
-  operatorPool,
-  (newPool) => { emit('update:operators', newPool); },
-  { immediate: true }
-);
+watchEffect(() => { emit('update:operators', operatorPool.value); });
 
 /**
  * Adds an operator to the ban list.

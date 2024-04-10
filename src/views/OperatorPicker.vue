@@ -66,17 +66,17 @@
           <!-- Operator Items -->
           <v-row>
             <v-col
-              v-for="{ key, name } in operatorPool.filter((o) => o.side === side.key)"
-              :key="key"
+              v-for="operator in mappedOperatorPool.filter((o) => o.side === side)"
+              :key="operator.key"
               cols="6"
             >
               <!-- Operator Card -->
               <v-hover v-slot="{ isHovering, props }">
                 <v-card
                   v-bind="props"
-                  :prepend-avatar="loadEmblem(key)"
-                  :title="name"
-                  @click="previewOperator(key)"
+                  :prepend-avatar="operator.emblem"
+                  :title="operator.name"
+                  @click="previewOperator(operator.key)"
                 >
                   <!-- Ban Button -->
                   <template v-slot:append>
@@ -84,7 +84,7 @@
                       v-show="isHovering"
                       color="primary"
                       variant="text"
-                      @click.stop="filterDrawer.addBan(key)"
+                      @click.stop="filterDrawer.addBan(operator.key)"
                     >
                       Ban
                     </v-btn>
@@ -123,12 +123,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { OperatorCard, OperatorFilterDrawer } from '@/components';
-import { loadEmblem } from '@/composables/imageLoader';
 import { pickRandom } from '@/composables/randomizer';
-import { Side } from '@/models';
+import { Operator, Side } from '@/models';
 
 // Define dynamic properties
 const filterDrawer = ref(null);
@@ -144,17 +143,24 @@ const settings = ref({
 });
 
 /**
+ * Maps the operator keys to their operator.
+ * @type {import('vue').ComputedRef<Operator[]>}
+ */
+const mappedOperatorPool = computed(() => operatorPool.value.map((key) => Operator[key]));
+
+/**
  * Picks a random operator from the operator pool.
  * 
- * @param {"ATT" | "DEF"} [side=null] The side to pick the operator from.
+ * @param {"ATT"|"DEF"} [side=null] The side to pick the operator from.
  */
 function pickOperator(side = null) {
   const { duplicates, picks } = settings.value;
+  const _side = Side[side];
 
   // Apply filters
-  const pool = operatorPool.value
+  const pool = mappedOperatorPool.value
     .filter((o) => [
-      !side || o.side === side,
+      !side || o.side === _side,
       picks > 1 || pickedOperators.value.length !== 1 || o.key !== pickedOperators.value[0]
     ].every((isTrue) => isTrue))
     .map((o) => o.key);
