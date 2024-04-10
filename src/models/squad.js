@@ -1,4 +1,4 @@
-import RAW_SQUADS from '@/data/squads_v2';
+import RAW_SQUADS from '@/data/squads';
 import loadImage from '@/utils/loadImage';
 
 export default class Squad {

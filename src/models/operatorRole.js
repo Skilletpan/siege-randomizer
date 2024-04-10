@@ -1,4 +1,4 @@
-import RAW_ROLES from '@/data/roles_v2';
+import RAW_ROLES from '@/data/roles';
 
 export default class OperatorRole {
   // Instance properties
