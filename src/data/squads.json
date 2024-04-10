@@ -1,17 +1,7 @@
 {
-  "GHOSTEYES": {
-    "name": "Ghosteyes"
-  },
-  "NIGHTHAVEN": {
-    "name": "Nighthaven"
-  },
-  "REDHAMMER": {
-    "name": "Redhammer"
-  },
-  "VIPERSTRIKE": {
-    "name": "Viperstrike"
-  },
-  "WOLFGUARD": {
-    "name": "Wolfguard"
-  }
+  "GHOSTEYES": "Ghosteyes",
+  "NIGHTHAVEN": "Nighthaven",
+  "REDHAMMER": "Redhammer",
+  "VIPERSTRIKE": "Viperstrike",
+  "WOLFGUARD": "Wolfguard"
 }

@@ -9,20 +9,20 @@
       :aspect-ratio="3 / 5"
       :class="['align-end portrait text-center', { placeholder }]"
       cover
-      :src="loadPortrait(operator.key, placeholder)"
+      :src="portrait"
       :style="{ backgroundImage: loadBackgroundImage() }"
     >
       <!-- Operator Emblem -->
       <v-avatar
         v-if="!placeholder"
-        :image="loadEmblem(operator.key)"
+        :image="operator.emblem"
         rounded="0"
         size="80"
       />
     </v-img>
 
     <!-- Operator Name -->
-    <v-card-title class="text-center">{{ operator.name }}</v-card-title>
+    <v-card-title class="text-center">{{ placeholder ? '?' : operator.name }}</v-card-title>
 
     <!-- Operator Details -->
     <template v-if="!placeholder && detailed">
@@ -64,7 +64,7 @@
             class="d-block mt-3 text-caption"
             text="Roles"
           />
-          {{ operator.roles }}
+          {{ operator.roles.map((role) => role.name).join(' • ') }}
         </template>
 
         <!-- Squad -->
@@ -85,7 +85,7 @@
             cols="auto"
           >
             <v-avatar
-              :image="loadSquadEmblem(operator.squad.key)"
+              :image="operator.squad.emblem"
               rounded="0"
               size="small"
             />
@@ -99,41 +99,42 @@
 <script setup>
 import { computed } from 'vue';
 
-import { loadEmblem, loadPortrait, loadSquadEmblem } from '@/composables/imageLoader';
-import { MAP_LIST, OPERATORS, ROLES, SQUADS } from '@/data';
+import { Operator, SiegeMap } from '@/models';
 
-// Define input properties
+// Component props
 const props = defineProps({
-  detailed: {
-    default: false,
-    type: Boolean
-  },
+  /** Whether operator details should be displayed. */
+  detailed: Boolean,
 
-  placeholder: {
-    default: false,
-    type: Boolean
-  },
+  /** Whether the card should be displayed as a placeholder. */
+  placeholder: Boolean,
 
+  /** The key of the operator to display. */
   operatorKey: {
     type: String,
-    validator: (v) => Object.keys(OPERATORS).includes(v)
+    validator: (v) => Object.keys(Operator).includes(v)
   }
 });
 
-// Define computed properties
+/**
+ * The operator to display.
+ * 
+ * If no operator key is set in `props`, a random operator is picked.
+ * 
+ * @type {import('vue').ComputedRef<Operator>}
+ */
 const operator = computed(() => {
-  // Fetch operator
-  const operator = { name: '?', ...OPERATORS[props.operatorKey] };
+  if (!props.operatorKey) return Operator.random();
+  return Operator[props.operatorKey];
+});
 
-  // Map additional properties
-  if (!props.placeholder) {
-    operator.roles = operator.roles.map((r) => ROLES[r].name).join(' • ');
-    operator.squad = SQUADS[operator.squad];
-  } else {
-    operator.key = Object.keys(OPERATORS)[Math.floor(Math.random() * Object.keys(OPERATORS).length)];
-  }
-
-  return operator;
+/**
+ * The URL the operator portrait to display.
+ * @type {import('vue').ComputedRef<String>}
+ */
+const portrait = computed(() => {
+  if (props.placeholder) return operator.value.portrait;
+  return operator.value.easterEggPortrait();
 });
 
 /**
@@ -143,10 +144,7 @@ const operator = computed(() => {
  */
 function loadBackgroundImage() {
   if (props.placeholder) return 'none';
-
-  // Pick random map
-  const map = MAP_LIST[Math.floor(Math.random() * MAP_LIST.length)].key;
-  return `url(${new URL(`/src/assets/maps/${map}.jpg`, import.meta.url).href})`;
+  return `url(${SiegeMap.random().thumbnail})`;
 }
 </script>
 

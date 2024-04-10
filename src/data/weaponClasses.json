@@ -1,0 +1,15 @@
+{
+  "AR": "Assault Rifle",
+  "SMG": "Submachine Gun",
+  "LMG": "Light Machine Gun",
+  "SG": "Shotgun",
+  "SSG": "Slug Shotgun",
+  "DMR": "Marksman Rifle",
+  "MP": "Machine Pistol",
+  "HG": "Handgun",
+  "DE": "Deagle",
+  "REV": "Revolver",
+  "BAI": "Bailiff",
+  "HC": "Hand Cannon",
+  "SH": "Shield"
+}

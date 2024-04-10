@@ -40,15 +40,14 @@
 </template>
 
 <script setup>
-import { loadMapPreview, loadPortrait } from '@/composables/imageLoader';
-import { MAP_LIST, OPERATOR_LIST } from '@/data';
+import { Operator, SiegeMap } from '@/models';
 
 const TILES = [
   // Operators Tile
   {
     image: {
       position: '100% 30%',
-      src: loadPortrait(OPERATOR_LIST[Math.floor(Math.random() * OPERATOR_LIST.length)].key, true)
+      src: Operator.random().portrait
     },
     link: '/operators',
     sizes: {
@@ -63,7 +62,7 @@ const TILES = [
   // Maps Tile
   {
     image: {
-      src: loadMapPreview(MAP_LIST[Math.floor(Math.random() * MAP_LIST.length)].key)
+      src: SiegeMap.random().thumbnail
     },
     link: '/maps',
     sizes: {
