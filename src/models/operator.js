@@ -1,4 +1,4 @@
-import RAW_OPERATORS from '@/data/operators_v2';
+import RAW_OPERATORS from '@/data/operators';
 import loadImage from '@/utils/loadImage';
 
 import OperatorRole from './operatorRole';
