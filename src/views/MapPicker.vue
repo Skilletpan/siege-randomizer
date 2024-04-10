@@ -6,11 +6,19 @@
         cols="auto"
         offset="3"
       >
+        <!-- Picked Map Card -->
         <map-card
+          v-if="pickedMapKey"
           big
-          :map-key="pickedMap"
-          :placeholder="!pickedMap"
-          v-on="{ click: pickedMap ? () => { showPreview(pickedMap); } : null }"
+          :map-key="pickedMapKey"
+          @click="showPreview(pickedMapKey)"
+        />
+
+        <!-- Placeholder Map Card -->
+        <map-card
+          v-else
+          big
+          placeholder
         />
       </v-col>
 
@@ -23,10 +31,10 @@
         >
           <!-- Playlist Select -->
           <v-select
-            v-model="mapFilters.playlist"
+            v-model="pickedPlaylistKey"
             clearable
             hide-details
-            :items="PLAYLIST_LIST"
+            :items="Playlist.LIST"
             item-title="name"
             item-value="key"
             label="Playlist"
@@ -34,14 +42,19 @@
             placeholder="All Maps"
             variant="solo-filled"
           >
-            <template v-slot:item="{ index, props }">
-              <!-- Default Playlists Subheader -->
-              <v-list-subheader v-if="index === 0">Default Playlists</v-list-subheader>
+            <template v-slot:item="{ index, item, props }">
+              <!-- Playlist Category Subheaders -->
+              <template v-if="item.raw.category !== Playlist.LIST[index - 1]?.category">
+                <!-- Divider -->
+                <v-divider
+                  v-if="index > 0"
+                  class="my-2"
+                />
 
-              <!-- Arcade Playlists Subheader -->
-              <template v-if="index === PLAYLIST_LIST.findIndex((p) => p.isArcade)">
-                <v-divider class="my-2" />
-                <v-list-subheader>Arcade Playlists</v-list-subheader>
+                <!-- Playlist Category Subheader -->
+                <v-list-subheader class="text-capitalize">
+                  {{ item.raw.category.toLowerCase() }} Playlists
+                </v-list-subheader>
               </template>
 
               <!-- Item -->
@@ -54,7 +67,7 @@
             block
             class="mt-4"
             color="primary"
-            :text="pickedMap ? 'Repick' : 'Randomize'"
+            :text="pickedMapKey ? 'Repick' : 'Randomize'"
             @click="pickMap"
           />
         </v-card>
@@ -79,7 +92,6 @@
         cols="auto"
       >
         <map-card
-          :inactive="mapFilters.disabled.includes(m.key)"
           :map-key="m.key"
           @click="showPreview(m.key)"
         />
@@ -104,41 +116,46 @@ import { computed, ref } from 'vue';
 
 import { MapCard } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
-import { MAP_LIST, PLAYLISTS, PLAYLIST_LIST } from '@/data';
+import { Playlist, SiegeMap } from '@/models';
 
-// Define dynamic properties
-const pickedMap = ref(null);
+/**
+ * The key of the randomly picked map.
+ * @type {import('vue').Ref<String>}
+ */
+const pickedMapKey = ref(null);
 
-const mapFilters = ref({
-  disabled: [],
-  playlist: null
-});
+/**
+ * The key of the picked playlist.
+ * @type {import('vue').Ref<String>}
+ */
+const pickedPlaylistKey = ref(null);
 
+/** The values for the preview dialog to use. */
 const preview = ref({
   mapKey: null,
   show: false
 });
 
-// Define computed properties
+/**
+ * The pool of maps to pick from.
+ * @type {import('vue').ComputedRef<SiegeMap[]>}
+ */
 const mapPool = computed(() => {
-  if (!mapFilters.value.playlist) return MAP_LIST;
-  return MAP_LIST.filter((m) => PLAYLISTS[mapFilters.value.playlist].maps.includes(m.key));
+  if (pickedPlaylistKey.value) return Playlist[pickedPlaylistKey.value].maps;
+  return SiegeMap.LIST;
 });
 
-/**
- * Picks a random map from the map pool.
- */
+/** Picks a random map from the map pool. */
 function pickMap() {
-  const pool = mapPool.value
-    .filter((m) => {
-      if (m.key === pickedMap.value) return false;
-      return !mapFilters.value.disabled.includes(m.key);
-    })
-    .map((m) => m.key);
-
-  [pickedMap.value] = pickRandom(pool);
+  const pool = mapPool.value.filter((m) => m.key !== pickedMapKey.value);
+  pickedMapKey.value = pickRandom(pool)[0].key;
 }
 
+/**
+ * Shows a preview dialog for a map.
+ * 
+ * @param {string} mapKey The key of the map to preview.
+ */
 function showPreview(mapKey) {
   preview.value.mapKey = mapKey;
   preview.value.show = true;

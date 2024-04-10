@@ -3,7 +3,7 @@
     class="font-weight-bold"
     :color="negative ? 'error' : null"
     label
-    :prepend-avatar="loadEmblem(operator.key)"
+    :prepend-avatar="operator.emblem"
     :text="operator.name"
   />
 </template>
@@ -11,26 +11,24 @@
 <script setup>
 import { computed } from 'vue';
 
-import { loadEmblem } from '@/composables/imageLoader';
-import { OPERATORS } from '@/data';
+import { Operator } from '@/models';
 
-// Define input properties
+// Component props
 const props = defineProps({
-  negative: {
-    default: false,
-    type: Boolean
-  },
+  /** Whether the label should be displayed in red. */
+  negative: Boolean,
 
+  /** The key of the operator to display. */
   operatorKey: {
     required: true,
     type: String,
-    validator: (v) => Object.keys(OPERATORS).includes(v)
+    validator: (v) => Object.keys(Operator).includes(v)
   }
 });
 
-// Define dynamic properties
 /**
- * Fetches the operator data.
+ * The operator to display.
+ * @type {import('vue').ComputedRef<Operator>}
  */
-const operator = computed(() => OPERATORS[props.operatorKey]);
+const operator = computed(() => Operator[props.operatorKey]);
 </script>

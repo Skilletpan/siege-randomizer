@@ -19,16 +19,19 @@
     <v-row class="justify-center pb-12">
       <v-col cols="auto">
         <!-- Randomize Buttons -->
-        <v-btn
-          v-for="{ key, icon, sideKey } in SIDE_LIST"
-          :key="`randomize_${key}`"
-          class="mb-4 mx-2"
-          color="primary"
-          :disabled="!operatorPool.length"
-          :icon="icon"
-          size="x-large"
-          @click="pickOperator(sideKey)"
-        />
+        <template
+          v-for="side, index in [Side.ATT, { icon: '$siege-side-all' }, Side.DEF]"
+          :key="index"
+        >
+          <v-btn
+            class="mb-4 mx-2"
+            color="primary"
+            :disabled="!operatorPool.length"
+            :icon="side.icon"
+            size="x-large"
+            @click="pickOperator(side.key)"
+          />
+        </template>
 
         <!-- Pick Amount Slider -->
         <v-slider
@@ -46,34 +49,34 @@
     <!-- Operator Pool -->
     <v-row>
       <template
-        v-for="{ descriptor, icon, sideKey } in SIDE_LIST"
-        :key="sideKey"
+        v-for="side, index in Side.LIST"
+        :key="side.key"
       >
-        <v-col v-if="sideKey">
+        <v-col>
           <!-- Side Title -->
           <h2 class="mb-4 text-center">
             <v-icon
-              :icon="icon"
+              :icon="side.icon"
               size="small"
               start
             />
-            {{ descriptor }}
+            {{ side.name }}
           </h2>
 
           <!-- Operator Items -->
           <v-row>
             <v-col
-              v-for="{ key, name } in operatorPool.filter((o) => o.side === sideKey)"
-              :key="key"
+              v-for="operator in mappedOperatorPool.filter((o) => o.side === side)"
+              :key="operator.key"
               cols="6"
             >
               <!-- Operator Card -->
               <v-hover v-slot="{ isHovering, props }">
                 <v-card
                   v-bind="props"
-                  :prepend-avatar="loadEmblem(key)"
-                  :title="name"
-                  @click="previewOperator(key)"
+                  :prepend-avatar="operator.emblem"
+                  :title="operator.name"
+                  @click="previewOperator(operator.key)"
                 >
                   <!-- Ban Button -->
                   <template v-slot:append>
@@ -81,7 +84,7 @@
                       v-show="isHovering"
                       color="primary"
                       variant="text"
-                      @click.stop="filterDrawer.addBan(key)"
+                      @click.stop="filterDrawer.addBan(operator.key)"
                     >
                       Ban
                     </v-btn>
@@ -93,7 +96,7 @@
         </v-col>
 
         <v-divider
-          v-else
+          v-if="index === 0"
           vertical
         />
       </template>
@@ -120,12 +123,11 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { OperatorCard, OperatorFilterDrawer } from '@/components';
-import { loadEmblem } from '@/composables/imageLoader';
 import { pickRandom } from '@/composables/randomizer';
-import { SIDE_LIST } from '@/data';
+import { Operator, Side } from '@/models';
 
 // Define dynamic properties
 const filterDrawer = ref(null);
@@ -141,17 +143,24 @@ const settings = ref({
 });
 
 /**
+ * Maps the operator keys to their operator.
+ * @type {import('vue').ComputedRef<Operator[]>}
+ */
+const mappedOperatorPool = computed(() => operatorPool.value.map((key) => Operator[key]));
+
+/**
  * Picks a random operator from the operator pool.
  * 
- * @param {"ATT" | "DEF"} [side=null] The side to pick the operator from.
+ * @param {"ATT"|"DEF"} [side=null] The side to pick the operator from.
  */
 function pickOperator(side = null) {
   const { duplicates, picks } = settings.value;
+  const _side = Side[side];
 
   // Apply filters
-  const pool = operatorPool.value
+  const pool = mappedOperatorPool.value
     .filter((o) => [
-      !side || o.side === side,
+      !side || o.side === _side,
       picks > 1 || pickedOperators.value.length !== 1 || o.key !== pickedOperators.value[0]
     ].every((isTrue) => isTrue))
     .map((o) => o.key);
