@@ -7,6 +7,7 @@
     <v-list nav>
       <!-- To Home -->
       <v-list-item
+        :active="$route.name === 'home'"
         prepend-icon="mdi-home"
         title="Home"
         to="/"
@@ -16,6 +17,7 @@
 
       <!-- To Operator Picker -->
       <v-list-item
+        :active="$route.name === 'operator-picker'"
         prepend-icon="$siege-operators"
         title="Operators"
         to="/operators"
@@ -23,6 +25,7 @@
 
       <!-- To Map Picker -->
       <v-list-item
+        :active="$route.name === 'map-picker'"
         prepend-icon="$siege-map"
         title="Maps"
         to="/maps"
@@ -30,6 +33,7 @@
 
       <!-- To Strat Roulette -->
       <v-list-item
+        :active="$route.name === 'strat-picker'"
         prepend-icon="$siege-strategy"
         title="Strat Roulette"
         to="/strats"
@@ -39,6 +43,7 @@
 
       <!-- Settings -->
       <v-list-item
+        :active="false"
         prepend-icon="$settings"
         title="Settings"
       />
