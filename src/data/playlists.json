@@ -1,163 +1,274 @@
 {
-  "COMPETITIVE": {
-    "name": "Competitive",
-    "maps": [
-      "BANK",
-      "BORDER",
-      "CHALET",
-      "CLUBHOUSE",
-      "CONSULATE",
-      "KAFE",
-      "NIGHTHAVEN",
-      "OREGON",
-      "SKYSCRAPER"
-    ]
+  "TACTICAL": {
+    "COMPETITIVE": {
+      "name": "Competitive",
+      "maps": [
+        "OREGON",
+        "CLUBHOUSE",
+        "CONSULATE",
+        "BANK",
+        "CHALET",
+        "KAFE",
+        "BORDER",
+        "SKYSCRAPER",
+        "LABS"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
+      ]
+    },
+    "RANKED": {
+      "name": "Ranked",
+      "maps": [
+        "OREGON",
+        "CLUBHOUSE",
+        "CONSULATE",
+        "BANK",
+        "KANAL",
+        "CHALET",
+        "KAFE",
+        "BORDER",
+        "SKYSCRAPER",
+        "COASTLINE",
+        "THEMEPARK",
+        "VILLA",
+        "OUTBACK",
+        "EMERALD",
+        "LABS",
+        "LAIR"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
+      ]
+    },
+    "STANDARD": {
+      "name": "Standard",
+      "maps": [
+        "OREGON",
+        "CLUBHOUSE",
+        "CONSULATE",
+        "BANK",
+        "KANAL",
+        "CHALET",
+        "KAFE",
+        "BORDER",
+        "SKYSCRAPER",
+        "COASTLINE",
+        "THEMEPARK",
+        "VILLA",
+        "OUTBACK",
+        "EMERALD",
+        "LABS",
+        "LAIR"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
+      ]
+    }
   },
-  "RANKED": {
-    "name": "Ranked",
-    "maps": [
-      "BANK",
-      "BORDER",
-      "CHALET",
-      "CLUBHOUSE",
-      "COASTLINE",
-      "CONSULATE",
-      "EMERALD",
-      "KAFE",
-      "KANAL",
-      "LAIR",
-      "NIGHTHAVEN",
-      "OREGON",
-      "OUTBACK",
-      "SKYSCRAPER",
-      "THEMEPARK",
-      "VILLA"
-    ]
+  "QUICKPLAY": {
+    "QUICKMATCH": {
+      "name": "Quick Match",
+      "maps": [
+        "HOUSE",
+        "HEREFORD",
+        "CLUBHOUSE",
+        "PLANE",
+        "CONSULATE",
+        "BANK",
+        "CHALET",
+        "YACHT",
+        "FAVELA",
+        "COASTLINE",
+        "TOWER",
+        "VILLA",
+        "FORTRESS",
+        "EMERALD",
+        "STADIUM",
+        "LABS",
+        "LAIR"
+      ]
+    },
+    "ROULETTE": {
+      "name": "Weapon Roulette",
+      "maps": [
+        "VILLA",
+        "CLOSEQUARTER",
+        "LABS",
+        "LAIR",
+        "THEMEPARK",
+        "COASTLINE",
+        "FAVELA"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
+      ]
+    },
+    "F4A": {
+      "name": "Free for All",
+      "maps": [
+        "VILLA",
+        "CONSULATE",
+        "CLOSEQUARTER",
+        "LABS",
+        "LAIR",
+        "THEMEPARK",
+        "EMERALD",
+        "FAVELA"
+      ],
+      "operators": [
+        "!MONTAGNE",
+        "!BLITZ",
+        "!CLASH",
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
+      ]
+    },
+    "DEATHMATCH": {
+      "name": "Deathmatch",
+      "maps": [
+        "VILLA",
+        "CONSULATE",
+        "CLOSEQUARTER",
+        "LABS",
+        "LAIR",
+        "THEMEPARK",
+        "EMERALD",
+        "COASTLINE",
+        "SKYSCRAPER",
+        "FAVELA"
+      ],
+      "operators": [
+        "!MONTAGNE",
+        "!BLITZ",
+        "!CLASH",
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
+      ]
+    },
+    "SNIPERS": {
+      "name": "Snipers Only",
+      "maps": [
+        "HEREFORD"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
+      ]
+    },
+    "GOLDENGUN": {
+      "name": "Golden Gun",
+      "maps": [
+        "STADIUM",
+        "CLOSEQUARTER",
+        "LAIR",
+        "EMERALD",
+        "SKYSCRAPER",
+        "FAVELA"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
+      ]
+    },
+    "HEADSHOTS": {
+      "name": "Headshots Only",
+      "maps": [
+        "COASTLINE",
+        "THEMEPARK",
+        "VILLA",
+        "CLOSEQUARTER",
+        "LABS"
+      ],
+      "operators": [
+        "!RECRUIT_ATT",
+        "!RECRUIT_DEF"
+      ]
+    }
   },
-  "STANDARD": {
-    "name": "Standard",
-    "maps": [
-      "BANK",
-      "BORDER",
-      "CHALET",
-      "CLUBHOUSE",
-      "COASTLINE",
-      "CONSULATE",
-      "EMERALD",
-      "KAFE",
-      "KANAL",
-      "LAIR",
-      "NIGHTHAVEN",
-      "OREGON",
-      "OUTBACK",
-      "SKYSCRAPER",
-      "THEMEPARK",
-      "VILLA"
-    ]
-  },
-  "QUICKMATCH": {
-    "name": "Quick Match",
-    "maps": [
-      "BANK",
-      "BORDER",
-      "CHALET",
-      "CLUBHOUSE",
-      "COASTLINE",
-      "CONSULATE",
-      "EMERALD",
-      "FAVELA",
-      "FORTRESS",
-      "HEREFORD",
-      "HOUSE",
-      "KAFE",
-      "KANAL",
-      "LAIR",
-      "NIGHTHAVEN",
-      "OUTBACK",
-      "PLANE",
-      "STADIUM",
-      "TOWER",
-      "VILLA",
-      "YACHT"
-    ],
-    "modes": [
-      "BOMB",
-      "HOSTAGE",
-      "SECURE"
-    ]
-  },
-  "DEATHMATCH": {
-    "name": "Deathmatch",
-    "isArcade": true,
-    "maps": [
-      "CLOSEQUARTER",
-      "COASTLINE",
-      "CONSULATE",
-      "EMERALD",
-      "FAVELA",
-      "LAIR",
-      "NIGHTHAVEN",
-      "SKYSCRAPER",
-      "THEMEPARK",
-      "VILLA"
-    ]
-  },
-  "F4A": {
-    "name": "Free for All",
-    "isArcade": true,
-    "maps": [
-      "CLOSEQUARTER",
-      "CONSULATE",
-      "EMERALD",
-      "FAVELA",
-      "LAIR",
-      "NIGHTHAVEN",
-      "THEMEPARK",
-      "VILLA"
-    ]
-  },
-  "GOLDENGUN": {
-    "name": "Golden Gun",
-    "isArcade": true,
-    "maps": [
-      "CLOSEQUARTER",
-      "EMERALD",
-      "FAVELA",
-      "LAIR",
-      "SKYSCRAPER",
-      "STADIUM"
-    ]
-  },
-  "HEADSHOTS": {
-    "name": "Headshots Only",
-    "isArcade": true,
-    "maps": [
-      "CLOSEQUARTER",
-      "COASTLINE",
-      "NIGHTHAVEN",
-      "THEMEPARK",
-      "VILLA"
-    ],
-    "disabled": true
-  },
-  "SNIPERS": {
-    "name": "Snipers Only",
-    "isArcade": true,
-    "maps": [
-      "HEREFORD"
-    ]
-  },
-  "ROULETTE": {
-    "name": "Weapon Roulette",
-    "isArcade": true,
-    "maps": [
-      "CLOSEQUARTER",
-      "COASTLINE",
-      "FAVELA",
-      "LAIR",
-      "NIGHTHAVEN",
-      "THEMEPARK",
-      "VILLA"
-    ]
+  "TRAINING": {
+    "AI_EASY": {
+      "name": "Versus AI (Beginner)",
+      "maps": [
+        "CLUBHOUSE",
+        "OREGON",
+        "CHALET"
+      ],
+      "operators": [
+        "SLEDGE",
+        "THATCHER",
+        "ASH",
+        "THERMITE",
+        "GLAZ",
+        "IQ",
+        "BUCK",
+        "JACKAL",
+        "FINKA",
+        "LION",
+        "IANA",
+        "RECRUIT_ATT"
+      ]
+    },
+    "AI_HARD": {
+      "name": "Versus AI (Advanced)",
+      "maps": [
+        "CLUBHOUSE",
+        "OREGON",
+        "BANK",
+        "CHALET",
+        "KAFE",
+        "CONSULATE"
+      ],
+      "operators": [
+        "SLEDGE",
+        "THATCHER",
+        "ASH",
+        "THERMITE",
+        "GLAZ",
+        "IQ",
+        "BUCK",
+        "JACKAL",
+        "FINKA",
+        "LION",
+        "IANA",
+        "RECRUIT_ATT"
+      ]
+    },
+    "LANDMARK": {
+      "name": "Landmark Drill",
+      "maps": [
+        "LAIR",
+        "CLUBHOUSE",
+        "BANK",
+        "CONSULATE",
+        "CHALET",
+        "KAFE",
+        "OREGON",
+        "LABS",
+        "SKYSCRAPER",
+        "BORDER",
+        "COASTLINE"
+      ]
+    },
+    "TARGET": {
+      "name": "Target Drill",
+      "maps": [
+        "LAIR",
+        "CLUBHOUSE",
+        "BANK",
+        "CONSULATE",
+        "CHALET",
+        "KAFE",
+        "OREGON",
+        "LABS",
+        "SKYSCRAPER",
+        "BORDER",
+        "COASTLINE"
+      ]
+    }
   }
 }

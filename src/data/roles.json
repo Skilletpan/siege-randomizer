@@ -1,29 +1,11 @@
 {
-  "ANTIENTRY": {
-    "name": "Anti-Entry"
-  },
-  "ANTIGADGET": {
-    "name": "Anti-Gadget"
-  },
-  "BREACH": {
-    "name": "Breach"
-  },
-  "CROWDCONTROL": {
-    "name": "Crowd Control"
-  },
-  "FRONTLINE": {
-    "name": "Front Line"
-  },
-  "INTEL": {
-    "name": "Intel"
-  },
-  "MAPCONTROL": {
-    "name": "Map Control"
-  },
-  "SUPPORT": {
-    "name": "Support"
-  },
-  "TRAPPER": {
-    "name": "Trapper"
-  }
+  "ANTIENTRY": "Anti-Entry",
+  "ANTIGADGET": "Anti-Gadget",
+  "BREACH": "Breach",
+  "CROWDCONTROL": "Crowd Control",
+  "FRONTLINE": "Front Line",
+  "INTEL": "Intel",
+  "MAPCONTROL": "Map Control",
+  "SUPPORT": "Support",
+  "TRAPPER": "Trapper"
 }
