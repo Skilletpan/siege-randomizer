@@ -83,7 +83,6 @@
                   <template v-slot:append>
                     <v-btn
                       v-show="isHovering"
-                      color="primary"
                       variant="text"
                       @click.stop="filterDrawer.addBan(operator.key)"
                     >
