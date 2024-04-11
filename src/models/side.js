@@ -23,6 +23,9 @@ export default class Side {
   /** @returns {string} The icon of the side. */
   get icon() { return this.#icon; }
 
+  /** @returns {Side} The opposite side. */
+  get opposite() { return this === Side.ATT ? Side.DEF : Side.ATT; }
+
   /** @returns {Side[]} A list of all sides. */
   static get LIST() { return Object.values(Side); }
 

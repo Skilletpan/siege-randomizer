@@ -46,14 +46,19 @@
         :active="false"
         prepend-icon="$settings"
         title="Settings"
-      />
+        @click="showSettings = true"
+      >
+        <settings-dialog v-model="showSettings" />   
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
 
 <script setup>
-import { watchEffect } from 'vue';
+import { shallowRef, watchEffect } from 'vue';
 import { useDisplay } from 'vuetify';
+
+import SettingsDialog from './SettingsDialog.vue';
 
 // Extract Vuetify breakpoints
 const { mobile } = useDisplay();
@@ -63,6 +68,12 @@ const { mobile } = useDisplay();
  * @type {import('vue').ModelRef<Boolean>}
  */
 const show = defineModel({ type: Boolean });
+
+/**
+ * Whether to show the settings dialog.
+ * @type {import('vue').ShallowRef<Boolean>}
+ */
+const showSettings = shallowRef(false);
 
 // Toggles navigation visibility depending on screen size
 watchEffect(() => {
