@@ -48,7 +48,7 @@
         title="Settings"
         @click="showSettings = true"
       >
-        <settings-dialog v-model="showSettings" />   
+        <settings-dialog v-model="showSettings" />
       </v-list-item>
     </v-list>
   </v-navigation-drawer>

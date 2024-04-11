@@ -25,14 +25,20 @@
           >
             <!-- Select Field Avatar -->
             <template #append-inner>
-              <v-avatar :color="AppSettings.colors[side.key]" size="x-small" />
+              <v-avatar
+                :color="AppSettings.colors[side.key]"
+                size="x-small"
+              />
             </template>
 
             <!-- List Item Avatar -->
             <template #item="{ item, props }">
               <v-list-item v-bind="props">
                 <template #append>
-                  <v-avatar :color="item.value" size="x-small" />
+                  <v-avatar
+                    :color="item.value"
+                    size="x-small"
+                  />
                 </template>
               </v-list-item>
             </template>
