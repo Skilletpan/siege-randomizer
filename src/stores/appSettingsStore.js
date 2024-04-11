@@ -6,7 +6,6 @@ import { Side } from '@/models';
 
 // Load settings from localStorage
 const LOCAL_SETTINGS = JSON.parse(localStorage.getItem('app-settings'));
-console.log(LOCAL_SETTINGS);
 
 export default defineStore('appSettings', () => {
   /**
