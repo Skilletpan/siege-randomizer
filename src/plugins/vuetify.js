@@ -5,7 +5,7 @@ import 'vuetify/styles';
 
 export default createVuetify({
   defaults: {
-    VCombobox: {
+    VAutocomplete: {
       density: 'comfortable',
       hideDetails: true,
       persistentPlaceholder: true,
@@ -20,6 +20,7 @@ export default createVuetify({
   },
   icons: {
     aliases: {
+      'delete': 'mdi-delete',
       'settings': 'mdi-cog',
       'siege-map': 'mdi-map',
       'siege-operators': 'mdi-account-multiple',

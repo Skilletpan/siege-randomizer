@@ -56,6 +56,16 @@ export default defineStore('players', () => {
     }
   }
 
+  /**
+   * Removes a player from the `storedPlayers` list.
+   * 
+   * @param {string} playerName The player name to remove.
+   */
+  function removeRecentPlayer(playerName) {
+    const index = storedPlayers.value.indexOf(playerName);
+    if (index !== -1) storedPlayers.value.splice(index, 1);
+  }
+
   // Clear recent players list if setting changes
   watchEffect(() => {
     if (!AppSettings.storePlayerNames) storedPlayers.value.length = 0;
@@ -75,5 +85,11 @@ export default defineStore('players', () => {
     }));
   })
 
-  return { currentPlayers, storedPlayers, recentPlayers, addPlayer };
+  return {
+    currentPlayers,
+    storedPlayers,
+    recentPlayers,
+    addPlayer,
+    removeRecentPlayer
+  };
 });
