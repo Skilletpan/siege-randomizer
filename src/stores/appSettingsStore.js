@@ -12,9 +12,9 @@ const RAW_SETTINGS = {
 };
 
 // Load settings from localStorage
-const LOCAL_SETTINGS = JSON.parse(localStorage.getItem('app-settings')) || {};
+const LOCAL_SETTINGS = JSON.parse(localStorage.getItem('appSettings'));
 Object.keys(RAW_SETTINGS).forEach((key) => {
-  if (Object.hasOwn(LOCAL_SETTINGS, key)) RAW_SETTINGS[key] = LOCAL_SETTINGS[key];
+  if (LOCAL_SETTINGS && Object.hasOwn(LOCAL_SETTINGS, key)) RAW_SETTINGS[key] = LOCAL_SETTINGS[key];
 });
 
 export default defineStore('appSettings', () => {
@@ -35,7 +35,7 @@ export default defineStore('appSettings', () => {
 
   // Store settings in localStorage
   watchEffect(() => {
-    localStorage.setItem('app-settings', JSON.stringify({
+    localStorage.setItem('appSettings', JSON.stringify({
       attackColor: colors.value[Side.ATT.key],
       defenseColor: colors.value[Side.DEF.key],
       storePlayerNames: storePlayerNames.value

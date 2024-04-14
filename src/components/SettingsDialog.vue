@@ -53,7 +53,7 @@
           sm="6"
         >
           <v-switch
-            v-model="AppSettings.savePlayers"
+            v-model="AppSettings.storePlayerNames"
             color="primary"
             density="comfortable"
             hide-details
