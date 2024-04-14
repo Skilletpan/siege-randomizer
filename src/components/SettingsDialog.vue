@@ -10,11 +10,12 @@
       <v-card-text class="d-flex flex-wrap mx-n2">
         <!-- Side Color Pickers -->
         <v-col
-          v-for="side in Side.LIST"
+          v-for="side, index in Side.LIST"
           :key="side.key"
           class="pa-2"
           cols="12"
-          md="6"
+          sm="6"
+          :order-sm="index"
         >
           <v-select
             v-model="AppSettings.colors[side.key]"
@@ -44,6 +45,21 @@
             </template>
           </v-select>
         </v-col>
+
+        <!-- Player Name Storing Toggle -->
+        <v-col
+          class="pa-2"
+          cols="12"
+          sm="6"
+        >
+          <v-switch
+            v-model="AppSettings.savePlayers"
+            color="primary"
+            density="comfortable"
+            hide-details
+            label="Store Player Names"
+          />
+        </v-col>
       </v-card-text>
     </v-card>
   </v-dialog>
@@ -55,6 +71,7 @@ import COLORS from 'vuetify/util/colors';
 import { Side } from '@/models';
 import { useAppSettings } from '@/stores';
 
+// Register composables
 const AppSettings = useAppSettings();
 
 /** The available team color options. */
