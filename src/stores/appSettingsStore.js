@@ -6,9 +6,9 @@ import { Side } from '@/models';
 
 // Set default settings
 const RAW_SETTINGS = {
-  'attack-color': COLORS.blue.darken2,
-  'defense-color': COLORS.orange.darken2,
-  'store-players': true
+  attackColor: COLORS.blue.darken2,
+  defenseColor: COLORS.orange.darken2,
+  storePlayerNames: true
 };
 
 // Load settings from localStorage
@@ -23,22 +23,22 @@ export default defineStore('appSettings', () => {
    * @type {{ [sideKey: string]: string }}
    */
   const colors = ref({
-    [Side.ATT.key]: RAW_SETTINGS['attack-color'],
-    [Side.DEF.key]: RAW_SETTINGS['defense-color']
+    [Side.ATT.key]: RAW_SETTINGS.attackColor,
+    [Side.DEF.key]: RAW_SETTINGS.defenseColor
   });
 
   /**
    * Whether player names should be stored.
    * @type {import('vue').ShallowRef<Boolean>}
    */
-  const storePlayerNames = shallowRef(RAW_SETTINGS['store-players']);
+  const storePlayerNames = shallowRef(RAW_SETTINGS.storePlayerNames);
 
   // Store settings in localStorage
   watchEffect(() => {
     localStorage.setItem('app-settings', JSON.stringify({
-      'attack-color': colors.value[Side.ATT.key],
-      'defense-color': colors.value[Side.DEF.key],
-      'store-players': storePlayerNames.value
+      attackColor: colors.value[Side.ATT.key],
+      defenseColor: colors.value[Side.DEF.key],
+      storePlayerNames: storePlayerNames.value
     }));
   });
 
