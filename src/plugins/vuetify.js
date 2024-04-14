@@ -5,6 +5,12 @@ import 'vuetify/styles';
 
 export default createVuetify({
   defaults: {
+    VCombobox: {
+      density: 'comfortable',
+      hideDetails: true,
+      persistentPlaceholder: true,
+      variant: 'solo-filled'
+    },
     VSelect: {
       density: 'comfortable',
       hideDetails: true,

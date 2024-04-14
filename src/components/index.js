@@ -4,7 +4,8 @@ import NavigationDrawer from './NavigationDrawer';
 import OperatorCard from './OperatorCard';
 import OperatorFilterDrawer from './OperatorFilterDrawer';
 import OperatorLabel from './OperatorLabel';
-import SettingsDialog from './SettingsDialog.vue';
+import SettingsDialog from './SettingsDialog';
+import SquadList from './SquadList';
 import StratCard from './StratCard';
 
 export {
@@ -15,5 +16,6 @@ export {
   OperatorFilterDrawer,
   OperatorLabel,
   SettingsDialog,
+  SquadList,
   StratCard
 };
