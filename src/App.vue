@@ -13,7 +13,7 @@
             size="x-large"
           />
 
-          <squad-list />
+          <squad-menu />
         </v-btn>
       </v-toolbar-items>
     </v-app-bar>
@@ -31,7 +31,7 @@
 <script setup>
 import { shallowRef } from 'vue';
 
-import { NavigationDrawer, SquadList } from '@/components';
+import { NavigationDrawer, SquadMenu } from '@/components';
 
 /**
  * Whether to show the navigation drawer.

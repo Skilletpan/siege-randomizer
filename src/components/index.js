@@ -5,7 +5,7 @@ import OperatorCard from './OperatorCard';
 import OperatorFilterDrawer from './OperatorFilterDrawer';
 import OperatorLabel from './OperatorLabel';
 import SettingsDialog from './SettingsDialog';
-import SquadList from './SquadList';
+import SquadMenu from './SquadMenu';
 import StratCard from './StratCard';
 
 export {
@@ -16,6 +16,6 @@ export {
   OperatorFilterDrawer,
   OperatorLabel,
   SettingsDialog,
-  SquadList,
+  SquadMenu,
   StratCard
 };
