@@ -33,7 +33,7 @@
           v-for="side in Side.LIST"
           :key="side.key"
           class="mx-2"
-          color="primary"
+          :color="AppSettings.colors[side.key]"
           :icon="side.icon"
           size="x-large"
           @click="pickRandomStrat(side)"
@@ -59,6 +59,7 @@
         cols="3"
       >
         <v-card
+          :color="strat.side ? AppSettings.colors[strat.side.key] : 'side-all'"
           :title="strat.title"
           @click="previewDialog.strat = strat.id; previewDialog.show = true;"
         >
@@ -88,6 +89,9 @@ import { ref } from 'vue';
 import { StratCard } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
 import { Side, Strat } from '@/models';
+import { useAppSettings } from '@/stores';
+
+const AppSettings = useAppSettings();
 
 /**
  * The picked strat values.

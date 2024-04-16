@@ -1,0 +1,95 @@
+import { defineStore } from 'pinia';
+import { computed, ref, watchEffect } from 'vue';
+
+import useAppSettings from './appSettingsStore';
+
+// Set default values
+const RAW_VALUES = {
+  currentPlayers: [],
+  players: []
+};
+
+// Load values from localStorage and sessionStorage
+const LOCAL_VALUES = JSON.parse(localStorage.getItem('players')) || {};
+const SESSION_VALUES = JSON.parse(sessionStorage.getItem('players')) || {};
+Object.keys(RAW_VALUES).forEach((key) => {
+  if (LOCAL_VALUES && Object.hasOwn(LOCAL_VALUES, key)) RAW_VALUES[key] = LOCAL_VALUES[key];
+  else if (LOCAL_VALUES && Object.hasOwn(SESSION_VALUES, key)) RAW_VALUES[key] = SESSION_VALUES[key];
+});
+
+export default defineStore('players', () => {
+  // Register composables
+  const AppSettings = useAppSettings();
+
+  /**
+   * The list of currently active players.
+   * @type {import('vue').Ref<String[]>}
+   */
+  const currentPlayers = ref(RAW_VALUES.currentPlayers);
+
+  /**
+   * The list of stored player names.
+   * @type {import('vue').Ref<String[]>}
+   */
+  const storedPlayers = ref(RAW_VALUES.players);
+
+  /**
+   * The list of stored player names without current players.
+   * @type {import('vue').ComputedRef<String[]>}
+   */
+  const recentPlayers = computed(() => storedPlayers.value
+    .filter((player) => !currentPlayers.value.includes(player))
+    .sort()
+  );
+
+  /**
+   * Adds a player to the `currentPlayers` list.
+   * 
+   * @param {string} playerName The player name to add.
+   */
+  function addPlayer(playerName) {
+    currentPlayers.value.push(playerName);
+
+    // Store player name in localStorage for later reuse
+    if (AppSettings.storePlayerNames && !storedPlayers.value.includes(playerName)) {
+      storedPlayers.value.push(playerName);
+    }
+  }
+
+  /**
+   * Removes a player from the `storedPlayers` list.
+   * 
+   * @param {string} playerName The player name to remove.
+   */
+  function removeRecentPlayer(playerName) {
+    const index = storedPlayers.value.indexOf(playerName);
+    if (index !== -1) storedPlayers.value.splice(index, 1);
+  }
+
+  // Clear recent players list if setting changes
+  watchEffect(() => {
+    if (!AppSettings.storePlayerNames) storedPlayers.value.length = 0;
+  });
+
+  // Update player list in localStorage
+  watchEffect(() => {
+    localStorage.setItem('players', JSON.stringify({
+      players: storedPlayers.value
+    }));
+  });
+
+  // Update current player list in sessionStorage
+  watchEffect(() => {
+    sessionStorage.setItem('players', JSON.stringify({
+      currentPlayers: currentPlayers.value
+    }));
+  })
+
+  return {
+    currentPlayers,
+    storedPlayers,
+    recentPlayers,
+    addPlayer,
+    removeRecentPlayer
+  };
+});

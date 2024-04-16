@@ -4,6 +4,8 @@ import NavigationDrawer from './NavigationDrawer';
 import OperatorCard from './OperatorCard';
 import OperatorFilterDrawer from './OperatorFilterDrawer';
 import OperatorLabel from './OperatorLabel';
+import SettingsDialog from './SettingsDialog';
+import SquadMenu from './SquadMenu';
 import StratCard from './StratCard';
 
 export {
@@ -13,5 +15,7 @@ export {
   OperatorCard,
   OperatorFilterDrawer,
   OperatorLabel,
+  SettingsDialog,
+  SquadMenu,
   StratCard
 };

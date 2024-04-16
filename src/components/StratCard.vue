@@ -66,9 +66,9 @@
 
         <!-- Side Toggle -->
         <v-btn
-          color="primary"
-          :prepend-icon="displaySide === Side.ATT ? Side.DEF.icon : Side.ATT.icon"
-          :text="`${displaySide === Side.ATT ? Side.DEF.name : Side.ATT.name} Version`"
+          :color="AppSettings.colors[displaySide.opposite.key]"
+          :prepend-icon="displaySide.opposite.icon"
+          :text="`${displaySide.opposite.name} Version`"
           @click="togglePreviewSide"
         />
       </v-card-actions>
@@ -80,8 +80,11 @@
 import { computed, ref, watchEffect } from 'vue';
 
 import { Side, Strat } from '@/models';
+import { useAppSettings } from '@/stores';
 
 import OperatorLabel from './OperatorLabel';
+
+const AppSettings = useAppSettings();
 
 // Component props
 const props = defineProps({
