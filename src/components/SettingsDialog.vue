@@ -3,10 +3,7 @@
     v-model="show"
     max-width="700"
   >
-    <v-card
-      prepend-icon="$settings"
-      title="Settings"
-    >
+    <v-card title="Settings">
       <v-card-text class="d-flex flex-wrap mx-n2">
         <!-- Side Color Pickers -->
         <v-col
