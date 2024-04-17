@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia';
-import { computed, ref, watchEffect } from 'vue';
+import { ref, watchEffect } from 'vue';
 
 import useAppSettings from './appSettingsStore';
 
@@ -34,26 +34,18 @@ export default defineStore('players', () => {
   const storedPlayers = ref(RAW_VALUES.players);
 
   /**
-   * The list of stored player names without current players.
-   * @type {import('vue').ComputedRef<String[]>}
-   */
-  const recentPlayers = computed(() => storedPlayers.value
-    .filter((player) => !currentPlayers.value.includes(player))
-    .sort()
-  );
-
-  /**
-   * Adds a player to the `currentPlayers` list.
+   * Adds a player to the `storedPlayers` list.
    * 
    * @param {string} playerName The player name to add.
    */
   function addPlayer(playerName) {
-    currentPlayers.value.push(playerName);
+    // Abort if `storePlayerNames` is disabled
+    if (!AppSettings.storePlayerNames) return;
 
-    // Store player name in localStorage for later reuse
-    if (AppSettings.storePlayerNames && !storedPlayers.value.includes(playerName)) {
-      storedPlayers.value.push(playerName);
-    }
+    // Add player name to list
+    const _players = new Set(Array.from(storedPlayers.value));
+    _players.add(playerName);
+    storedPlayers.value = Array.from(_players).sort();
   }
 
   /**
@@ -61,7 +53,7 @@ export default defineStore('players', () => {
    * 
    * @param {string} playerName The player name to remove.
    */
-  function removeRecentPlayer(playerName) {
+  function removePlayer(playerName) {
     const index = storedPlayers.value.indexOf(playerName);
     if (index !== -1) storedPlayers.value.splice(index, 1);
   }
@@ -88,8 +80,7 @@ export default defineStore('players', () => {
   return {
     currentPlayers,
     storedPlayers,
-    recentPlayers,
     addPlayer,
-    removeRecentPlayer
+    removePlayer
   };
 });

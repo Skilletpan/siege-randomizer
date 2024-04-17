@@ -5,7 +5,7 @@
     location="bottom right"
     width="300"
   >
-    <v-list>
+    <v-list class="rounded-t-0">
       <!-- Current Players List -->
       <v-list-item>
         <v-list class="border-thin py-0 rounded">
@@ -51,9 +51,10 @@
           v-model="playerInput.value"
           v-model:search="playerInput.search"
           clear-on-select
-          :items="Players.recentPlayers"
+          :items="recentPlayers"
           label="Add Player"
           multiple
+          no-data-text="No players"
           placeholder="Player Name"
           @keyup.enter="addPlayer(playerInput.search)"
           @update:model-value="addPlayer($event[0])"
@@ -69,7 +70,7 @@
                     density="comfortable"
                     icon="$delete"
                     variant="flat"
-                    @click.stop="Players.removeRecentPlayer(item.value)"
+                    @click.stop="Players.removePlayer(item.value)"
                   />
                 </v-list-item-action>
               </template>
@@ -82,7 +83,7 @@
 </template>
 
 <script setup>
-import { ref } from 'vue';
+import { computed, ref } from 'vue';
 
 import { usePlayers } from '@/stores';
 
@@ -99,14 +100,23 @@ const playerInput = ref({
 });
 
 /**
+ * The list of stored players with current players filtered out.
+ * @type {import('vue').ComputedRef<String[]>}
+ */
+const recentPlayers = computed(() => Players.storedPlayers.filter((p) => !Players.currentPlayers.includes(p)));
+
+/**
  * Adds a player name to the `currentPlayers` list.
  * 
  * @param {string} playerName The player name to add.
  */
 function addPlayer(playerName) {
-  if (playerName && playerName.length >= 3 && !Players.currentPlayers.includes(playerName)) {
+  if (playerName?.length >= 3 && !Players.currentPlayers.includes(playerName)) {
+    // Add player name to list and storage
+    Players.currentPlayers.push(playerName);
     Players.addPlayer(playerName);
 
+    // Reset player name input
     playerInput.value.value.length = 0;
     playerInput.value.search = null;
   }
