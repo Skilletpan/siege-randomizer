@@ -25,7 +25,7 @@
                 <v-btn
                   density="comfortable"
                   icon="$delete"
-                  variant="flat"
+                  variant="plain"
                   @click="Players.currentPlayers.splice(index, 1)"
                 />
               </v-list-item-action>
