@@ -39,6 +39,14 @@
         to="/strats"
       />
 
+      <!-- To Team Picker -->
+      <v-list-item
+        :active="$route.name === 'team-picker'"
+        prepend-icon="mdi-account-group"
+        title="Team Picker"
+        to="/teams"
+      />
+
       <v-divider class="my-1" />
 
       <!-- Settings -->

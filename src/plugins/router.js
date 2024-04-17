@@ -1,6 +1,6 @@
 import { createRouter, createWebHashHistory } from 'vue-router';
 
-import { Home, MapPicker, OperatorPicker, StratPicker, UnderConstruction } from '@/views';
+import { Home, MapPicker, OperatorPicker, StratPicker, TeamPicker } from '@/views';
 
 export default createRouter({
   history: createWebHashHistory(process.env.BASE_URL),
@@ -28,7 +28,7 @@ export default createRouter({
     {
       path: '/teams',
       name: 'team-picker',
-      component: UnderConstruction
+      component: TeamPicker
     }
   ]
 });
