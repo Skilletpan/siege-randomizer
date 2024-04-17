@@ -47,27 +47,16 @@
         v-if="Players.currentPlayers.length < 5"
         class="mt-2"
       >
-        <player-input
-          v-model="Players.currentPlayers"
-          :items="recentPlayers"
-        />
+        <player-input v-model="Players.currentPlayers" />
       </v-list-item>
     </v-list>
   </v-menu>
 </template>
 
 <script setup>
-import { computed } from 'vue';
-
 import { PlayerInput } from '@/components';
 import { usePlayers } from '@/stores';
 
 // Register composables
 const Players = usePlayers();
-
-/**
- * The list of stored players with current players filtered out.
- * @type {import('vue').ComputedRef<String[]>}
- */
-const recentPlayers = computed(() => Players.storedPlayers.filter((p) => !Players.currentPlayers.includes(p)));
 </script>

@@ -69,7 +69,9 @@ const input = ref({
  * The player name items to choose from.
  * @type {import('vue').ComputedRef<String[]>}
  */
-const inputItems = computed(() => props.items || Players.storedPlayers);
+const inputItems = computed(() => (props.items || Players.storedPlayers)
+  .filter((player) => !players.value.includes(player))
+);
 
 /**
  * Adds a player name to the list.
