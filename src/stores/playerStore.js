@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia';
-import { ref, watchEffect } from 'vue';
+import { defineStore, storeToRefs } from 'pinia';
+import { ref, watch, watchEffect } from 'vue';
 
 import useAppSettings from './appSettingsStore';
 
@@ -26,6 +26,12 @@ export default defineStore('players', () => {
    * @type {import('vue').Ref<String[]>}
    */
   const currentPlayers = ref(RAW_VALUES.currentPlayers);
+
+  /**
+   * Whether player names should be stored.
+   * @type {import('vue').Ref<Boolean>}
+   */
+  const storePlayerNames = storeToRefs(AppSettings).storePlayerNames;
 
   /**
    * The list of stored player names.
@@ -58,9 +64,10 @@ export default defineStore('players', () => {
     if (index !== -1) storedPlayers.value.splice(index, 1);
   }
 
-  // Clear recent players list if setting changes
-  watchEffect(() => {
-    if (!AppSettings.storePlayerNames) storedPlayers.value.length = 0;
+  // Clear or fill stored players list if setting changes
+  watch(storePlayerNames, (storePlayerNames) => {
+    if (!storePlayerNames) storedPlayers.value.length = 0;
+    else storedPlayers.value = Array.from(currentPlayers.value).sort();
   });
 
   // Update player list in localStorage

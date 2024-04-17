@@ -4,6 +4,7 @@
     v-model="input.value"
     v-model:search="input.search"
     clear-on-select
+    :hide-no-data="!AppSettings.storePlayerNames"
     :items="inputItems"
     label="Add Player"
     multiple
@@ -37,9 +38,10 @@
 <script setup>
 import { computed, ref } from 'vue';
 
-import { usePlayers } from '@/stores';
+import { useAppSettings, usePlayers } from '@/stores';
 
 // Register composables
+const AppSettings = useAppSettings();
 const Players = usePlayers();
 
 /**
