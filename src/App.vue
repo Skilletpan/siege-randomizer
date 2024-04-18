@@ -7,11 +7,8 @@
 
       <v-toolbar-items class="pr-3">
         <!-- Squad Menu -->
-        <v-btn>
-          <v-icon
-            icon="mdi-account-group"
-            size="x-large"
-          />
+        <v-btn icon>
+          <v-icon icon="mdi-account-group" />
 
           <squad-menu />
         </v-btn>

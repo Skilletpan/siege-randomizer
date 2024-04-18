@@ -2,7 +2,7 @@
   <v-menu
     activator="parent"
     :close-on-content-click="false"
-    location="bottom right"
+    location="bottom left"
     width="300"
   >
     <v-list class="rounded-t-0">
