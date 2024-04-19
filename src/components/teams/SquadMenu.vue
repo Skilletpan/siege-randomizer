@@ -22,6 +22,7 @@
           >
             <template #append>
               <v-list-item-action end>
+                <!-- Remove Player Button -->
                 <v-btn
                   density="comfortable"
                   icon="$delete"
