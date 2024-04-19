@@ -1,5 +1,5 @@
-import { defineStore } from 'pinia';
-import { computed, ref, watchEffect } from 'vue';
+import { defineStore, storeToRefs } from 'pinia';
+import { ref, watch, watchEffect } from 'vue';
 
 import useAppSettings from './appSettingsStore';
 
@@ -28,32 +28,30 @@ export default defineStore('players', () => {
   const currentPlayers = ref(RAW_VALUES.currentPlayers);
 
   /**
+   * Whether player names should be stored.
+   * @type {import('vue').Ref<Boolean>}
+   */
+  const storePlayerNames = storeToRefs(AppSettings).storePlayerNames;
+
+  /**
    * The list of stored player names.
    * @type {import('vue').Ref<String[]>}
    */
   const storedPlayers = ref(RAW_VALUES.players);
 
   /**
-   * The list of stored player names without current players.
-   * @type {import('vue').ComputedRef<String[]>}
-   */
-  const recentPlayers = computed(() => storedPlayers.value
-    .filter((player) => !currentPlayers.value.includes(player))
-    .sort()
-  );
-
-  /**
-   * Adds a player to the `currentPlayers` list.
+   * Adds a player to the `storedPlayers` list.
    * 
    * @param {string} playerName The player name to add.
    */
   function addPlayer(playerName) {
-    currentPlayers.value.push(playerName);
+    // Abort if `storePlayerNames` is disabled
+    if (!AppSettings.storePlayerNames) return;
 
-    // Store player name in localStorage for later reuse
-    if (AppSettings.storePlayerNames && !storedPlayers.value.includes(playerName)) {
-      storedPlayers.value.push(playerName);
-    }
+    // Add player name to list
+    const _players = new Set(Array.from(storedPlayers.value));
+    _players.add(playerName);
+    storedPlayers.value = Array.from(_players).sort();
   }
 
   /**
@@ -61,14 +59,15 @@ export default defineStore('players', () => {
    * 
    * @param {string} playerName The player name to remove.
    */
-  function removeRecentPlayer(playerName) {
+  function removePlayer(playerName) {
     const index = storedPlayers.value.indexOf(playerName);
     if (index !== -1) storedPlayers.value.splice(index, 1);
   }
 
-  // Clear recent players list if setting changes
-  watchEffect(() => {
-    if (!AppSettings.storePlayerNames) storedPlayers.value.length = 0;
+  // Clear or fill stored players list if setting changes
+  watch(storePlayerNames, (storePlayerNames) => {
+    if (!storePlayerNames) storedPlayers.value.length = 0;
+    else storedPlayers.value = Array.from(currentPlayers.value).sort();
   });
 
   // Update player list in localStorage
@@ -88,8 +87,7 @@ export default defineStore('players', () => {
   return {
     currentPlayers,
     storedPlayers,
-    recentPlayers,
     addPlayer,
-    removeRecentPlayer
+    removePlayer
   };
 });

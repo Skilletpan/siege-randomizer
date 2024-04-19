@@ -21,6 +21,7 @@ export default createVuetify({
   icons: {
     aliases: {
       'delete': 'mdi-delete',
+      'randomize': 'mdi-dice-multiple-outline',
       'settings': 'mdi-cog',
       'siege-map': 'mdi-map',
       'siege-operators': 'mdi-account-multiple',
