@@ -1,8 +1,5 @@
 <template>
-  <v-card
-    color="grey-darken-4"
-    :width="big ? 500 : 300"
-  >
+  <v-card :width="big ? 500 : 300">
     <!-- Map Image -->
     <v-img
       :alt="`${map.name} thumbnail`"

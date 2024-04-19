@@ -3,11 +3,16 @@
     <!-- App Bar -->
     <v-app-bar>
       <v-app-bar-nav-icon @click="showNavigation = !showNavigation" />
-      <v-app-bar-title
-        class="cursor-pointer"
-        text="Siege Randomizer"
-        @click="$router.push('/')"
-      />
+      <v-app-bar-title text="Siege Randomizer" />
+
+      <v-toolbar-items class="pr-3">
+        <!-- Squad Menu -->
+        <v-btn icon>
+          <v-icon icon="mdi-account-group" />
+
+          <squad-menu />
+        </v-btn>
+      </v-toolbar-items>
     </v-app-bar>
 
     <!-- Navigation Drawer -->
@@ -23,7 +28,7 @@
 <script setup>
 import { shallowRef } from 'vue';
 
-import { NavigationDrawer } from '@/components';
+import { NavigationDrawer, SquadMenu } from '@/components';
 
 /**
  * Whether to show the navigation drawer.

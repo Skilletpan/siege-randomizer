@@ -20,14 +20,14 @@
       <v-col cols="auto">
         <!-- Randomize Buttons -->
         <template
-          v-for="side, index in [Side.ATT, { icon: '$siege-side-all' }, Side.DEF]"
+          v-for="side, index in [Side.ATT, {}, Side.DEF]"
           :key="index"
         >
           <v-btn
             class="mb-4 mx-2"
-            color="primary"
+            :color="side.key ? AppSettings.colors[side.key] : 'side-all'"
             :disabled="!operatorPool.length"
-            :icon="side.icon"
+            :icon="side.icon || '$siege-side-all'"
             size="x-large"
             @click="pickOperator(side.key)"
           />
@@ -74,6 +74,7 @@
               <v-hover v-slot="{ isHovering, props }">
                 <v-card
                   v-bind="props"
+                  :color="AppSettings.colors[operator.side.key]"
                   :prepend-avatar="operator.emblem"
                   :title="operator.name"
                   @click="previewOperator(operator.key)"
@@ -82,7 +83,6 @@
                   <template v-slot:append>
                     <v-btn
                       v-show="isHovering"
-                      color="primary"
                       variant="text"
                       @click.stop="filterDrawer.addBan(operator.key)"
                     >
@@ -128,6 +128,9 @@ import { computed, ref } from 'vue';
 import { OperatorCard, OperatorFilterDrawer } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
 import { Operator, Side } from '@/models';
+import { useAppSettings } from '@/stores';
+
+const AppSettings = useAppSettings();
 
 // Define dynamic properties
 const filterDrawer = ref(null);
