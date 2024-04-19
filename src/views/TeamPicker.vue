@@ -82,6 +82,15 @@
                 :value="side.key"
               />
             </v-tabs>
+
+            <v-toolbar-items>
+              <!-- Set as Squad Button -->
+              <v-btn
+                :disabled="teams[Side.LIST.indexOf(Side[teamTab])].length === 0"
+                icon="mdi-account-group"
+                @click="Players.currentPlayers = Array.from(teams[Side.LIST.indexOf(Side[teamTab])])"
+              />
+            </v-toolbar-items>
           </v-toolbar>
 
           <v-window v-model="teamTab">
