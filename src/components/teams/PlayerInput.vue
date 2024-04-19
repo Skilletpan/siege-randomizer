@@ -5,7 +5,7 @@
     v-model:search="input.search"
     clear-on-select
     :hide-no-data="!AppSettings.storePlayerNames"
-    :items="inputItems"
+    :items="items"
     label="Add Player"
     multiple
     no-data-text="No players"
@@ -50,12 +50,6 @@ const Players = usePlayers();
  */
 const players = defineModel({ type: Array, default: [] });
 
-// Component props
-const props = defineProps({
-  /** The player name items to pick from.  */
-  items: Array
-});
-
 /**
  * The input values.
  * @type {import('vue').Ref<{ value: string[], search: string }>}
@@ -69,9 +63,7 @@ const input = ref({
  * The player name items to choose from.
  * @type {import('vue').ComputedRef<String[]>}
  */
-const inputItems = computed(() => (props.items || Players.storedPlayers)
-  .filter((player) => !players.value.includes(player))
-);
+const items = computed(() => Players.storedPlayers.filter((player) => !players.value.includes(player)));
 
 /**
  * Adds a player name to the list.
