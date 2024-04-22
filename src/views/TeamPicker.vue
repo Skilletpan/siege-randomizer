@@ -47,8 +47,8 @@
 
             <!-- Empty Slot Item -->
             <v-card-item
-              v-for="index in (5 - teams[index].length)"
-              :key="index"
+              v-for="index2 in (5 - teams[index].length)"
+              :key="index2"
               class="font-italic text-grey"
             >
               Empty
@@ -111,8 +111,8 @@
 
               <!-- Empty Slot Item -->
               <v-card-item
-                v-for="index in (5 - teams[index].length)"
-                :key="index"
+                v-for="index2 in (5 - teams[index].length)"
+                :key="index2"
                 class="font-italic text-grey"
               >
                 Empty
