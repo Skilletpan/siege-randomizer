@@ -67,11 +67,12 @@ function getItemValue(item, propertyPath) {
 }
 
 /**
+ * Walks the property path to the first array and returns the array and the remaining property path.
  * 
  * @param {*}        item         The item to find the array in.
  * @param {string[]} propertyPath The path of the array item to get.
  * 
- * @returns {{ itemArray: *, itemPropertyPath: string[] }} The item array and item property path.
+ * @returns {{ itemArray: any[], itemPropertyPath: string[] }} The item array and item property path.
  */
 function getItemArray(item, propertyPath) {
   const results = { itemPropertyPath: null };
