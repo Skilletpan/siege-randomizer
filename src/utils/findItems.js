@@ -20,7 +20,7 @@ export default function findItems(pool, filterSets) {
     const propertyPath = filter.property?.split('.') || [];
 
     // Non-array checks
-    if (filter.method === 'equals' || filter.method === 'includes', filter.method === 'included') {
+    if (filter.method === 'equals' || filter.method === 'includes' || filter.method === 'included') {
       // Get item value
       const itemValue = getItemValue(item, propertyPath);
 
