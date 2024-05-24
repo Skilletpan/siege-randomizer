@@ -1,11 +1,10 @@
 /**
  * @typedef {Object} FilterObject An object that defines a filter parameter.
  * 
- * @property {*}                                             value      The value to compare to the item value.
- * @property {string}                                        [property] The item property to compare the value to.
- *                                                                      If omitted, the item itself is used.
- * @property {"equals"|"includes"|"included"|"some"|"every"} method     The method to compare the value with the item.
- * @property {boolean}                                       [negative] Whether the comparison result should be inverted.
+ * @property {*}                   value             The value to compare to the item value.
+ * @property {string}              [property]        The path to the item property to compare the value to.
+ * @property {"equals"|"included"} [method="equals"] The method to compare the value with the item.
+ * @property {boolean}             [negative]        Whether the comparison result should be inverted.
  */
 
 /**
@@ -19,77 +18,56 @@ export default function findItems(pool, filterSets) {
     // Split property path
     const propertyPath = filter.property?.split('.') || [];
 
-    // Non-array checks
-    if (filter.method === 'equals' || filter.method === 'includes' || filter.method === 'included') {
-      // Get item value
-      const itemValue = getItemValue(item, propertyPath);
+    // Check if the item matches the filter
+    const isMatch = matchItemValue(item, propertyPath, filter.value, filter.method);
 
-      // Match item value to filter value
-      switch (filter.method) {
-        // Simple comparison
-        case 'equals':
-          return (itemValue === filter.value) === !filter.negative;
-
-        // Item Value includes Filter Value
-        case 'includes':
-          return (itemValue.includes(filter.value)) === !filter.negative;
-
-        // Filter Value includes Item Value
-        case 'included':
-          return (filter.value.includes(itemValue)) === !filter.negative;
-      }
-    }
-
-    // Array checks
-    const { itemArray, itemPropertyPath } = getItemArray(item, propertyPath);
-
-    // Match array item values to filter value
-    const isMatch = itemArray[filter.method]((arrayItem) => {
-      const itemValue = getItemValue(arrayItem, itemPropertyPath);
-      return itemValue === filter.value;
-    });
+    // DEBUG: Log result
+    console.debug(
+      'Item:', item,
+      '\nFilter:', filter.property || 'this', filter.method || 'equals', filter.value,
+      '\nMatches:', isMatch,
+      '\nNegative Check:', Boolean(filter.negative)
+    );
 
     // Return result
-    return isMatch === !filter.negative;
+    return filter.negative ? !isMatch : isMatch;
   })));
 }
 
 /**
- * Walks the property path and returns the value at the end.
+ * Recursively walks the property path and returns whether the value(s) at the end matches the filter.
  * 
- * @param {*}        item         The item to get the value from.
- * @param {string[]} propertyPath The path to the property to get.
+ * @param {*}                   item                    The item to check.
+ * @param {string[]}            propertyPath            The property path to walk.
+ * @param {*}                   filterValue             The value to checek against.
+ * @param {"equals"|"included"} [filterMethod="equals"] How the comparison is made.
  * 
- * @returns {*} The found item value. 
+ * @returns {boolean} Whether the item matches the filter.
  */
-function getItemValue(item, propertyPath) {
-  return propertyPath.reduce((previousValue, currentProperty) => previousValue?.[currentProperty], item);
-}
+function matchItemValue(item, propertyPath, filterValue, filterMethod = 'equals') {
+  // Match item value against filter value at the end of the property path
+  if (propertyPath.length === 0 || !item) {
+    switch (filterMethod) {
+      // Item Value is equal to Filter Value
+      case 'equals':
+        return item === filterValue;
 
-/**
- * Walks the property path to the first array and returns the array and the remaining property path.
- * 
- * @param {*}        item         The item to find the array in.
- * @param {string[]} propertyPath The path of the array item to get.
- * 
- * @returns {{ itemArray: any[], itemPropertyPath: string[] }} The item array and item property path.
- */
-function getItemArray(item, propertyPath) {
-  const results = { itemPropertyPath: null };
+      // Filter Value includes Item Value
+      case 'included':
+        return filterValue.includes(item);
+    }
+  }
 
-  results.itemArray = propertyPath.reduce((previousValue, currentProperty, index) => {
-    // Skip if array has been found
-    if (Array.isArray(previousValue)) return previousValue;
+  // Check for array properties
+  const arrayMethod = /(?<=\[)some|every(?=\])/.exec(propertyPath[0])?.[0];
+  if (arrayMethod) {
+    // Parse property name
+    const propertyName = propertyPath[0].replace(`[${arrayMethod}]`, '');
 
-    // Get current item value
-    const currentValue = previousValue?.[currentProperty];
+    // Check remaining property path on array items
+    return item[propertyName][arrayMethod]((arrayItem) => matchItemValue(arrayItem, propertyPath.slice(1), filterValue, filterMethod));
+  }
 
-    // Set item property path if array has been found
-    if (Array.isArray(currentValue)) results.itemPropertyPath = propertyPath.slice(index + 1);
-
-    // Return current item value
-    return currentValue;
-  }, item);
-
-  return results;
+  // Check next step in property path
+  return matchItemValue(item[propertyPath[0]], propertyPath.slice(1), filterValue, filterMethod);
 }
