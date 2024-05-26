@@ -176,10 +176,13 @@
         "IQ",
         "BUCK",
         "BLACKBEARD",
+        "HIBANA",
         "JACKAL",
         "FINKA",
         "LION",
-        "IANA"
+        "IANA",
+        "ACE",
+        "DEIMOS"
       ]
     },
     "AI_HARD": {
@@ -190,9 +193,12 @@
         "BANK",
         "CHALET",
         "KAFE",
-        "CONSULATE"
+        "CONSULATE",
+        "COASTLINE",
+        "LABS"
       ],
       "operators": [
+        "STRIKER",
         "SLEDGE",
         "THATCHER",
         "ASH",
@@ -200,11 +206,14 @@
         "GLAZ",
         "IQ",
         "BUCK",
+        "BLACKBEARD",
+        "HIBANA",
         "JACKAL",
         "FINKA",
         "LION",
         "IANA",
-        "STRIKER"
+        "ACE",
+        "DEIMOS"
       ]
     },
     "LANDMARK": {
@@ -238,6 +247,10 @@
         "BORDER",
         "COASTLINE"
       ]
+    },
+    "ENDLESS": {
+      "name": "Endless Drill",
+      "maps": []
     }
   }
 }
