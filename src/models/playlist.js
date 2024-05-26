@@ -43,16 +43,27 @@ export default class Playlist {
   /** @returns {boolean} Whether this playlist belongs to the `QUICKPLAY` category. */
   get isQuickplay() { return this.#category === 'QUICKPLAY'; }
 
+  /** @returns {boolean} Whether this playlist is an arcade playlist. */
+  get isArcade() { return this.#category === 'QUICKPLAY' && this !== Playlist.QUICKMATCH; }
+
   /** @returns {boolean} Whether this playlist belongs to the `TRAINING` category. */
   get isTraining() { return this.#category === 'TRAINING'; }
 
   /** @returns {SiegeMap[]} The maps in the playlist. */
   get maps() { return this.#mapKeys.map((key) => SiegeMap[key]); }
 
-  /** @returns {{ allowed: Operator[], banned: Operator[] }} The operator restrictions for the playlist. */
-  get operators() {
+  /** @returns {Operator[]} The operators allowed in this playlist. */
+  get allowedOperators() {
+    // Fetch operators on first call
     if (!this.#operators) this.#operators = Operator.findOperatorsByList(this.#operatorKeys);
-    return this.#operators;
+    return this.#operators.allowed;
+  }
+
+  /** @returns {Operator[]} The operators banned from this playlist. */
+  get bannedOperators() {
+    // Fetch operators on first call
+    if (!this.#operators) this.#operators = Operator.findOperatorsByList(this.#operatorKeys);
+    return this.#operators.banned;
   }
 
   /** @returns {Playlist[]} A list of all playlists. */

@@ -8,14 +8,20 @@ import MapCard from './MapCard';
 
 // Operators
 import OperatorCard from './OperatorCard';
-import OperatorFilterDrawer from './OperatorFilterDrawer';
+import OperatorFilterDrawer from './operators/OperatorFilterDrawer';
 import OperatorLabel from './OperatorLabel';
+
+// Playlists
+import PlaylistPicker from './playlists/PlaylistPicker';
+
+// Squads
+import SquadPicker from './squad/SquadPicker';
 
 // Strats
 import StratCard from './StratCard';
 
 // Players and Teams
-import PlayerInput from './teams/PlayerInput.vue';
+import PlayerInput from './teams/PlayerInput';
 import SquadMenu from './teams/SquadMenu';
 
 export {
@@ -26,7 +32,9 @@ export {
   OperatorFilterDrawer,
   OperatorLabel,
   PlayerInput,
+  PlaylistPicker,
   SettingsDialog,
   SquadMenu,
+  SquadPicker,
   StratCard
 };
