@@ -12,10 +12,6 @@
         "BORDER",
         "SKYSCRAPER",
         "LABS"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
       ]
     },
     "RANKED": {
@@ -37,10 +33,6 @@
         "EMERALD",
         "LABS",
         "LAIR"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
       ]
     },
     "STANDARD": {
@@ -62,10 +54,6 @@
         "EMERALD",
         "LABS",
         "LAIR"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
       ]
     }
   },
@@ -102,10 +90,6 @@
         "THEMEPARK",
         "COASTLINE",
         "FAVELA"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
       ]
     },
     "F4A": {
@@ -123,9 +107,7 @@
       "operators": [
         "!MONTAGNE",
         "!BLITZ",
-        "!CLASH",
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
+        "!CLASH"
       ]
     },
     "DEATHMATCH": {
@@ -145,19 +127,13 @@
       "operators": [
         "!MONTAGNE",
         "!BLITZ",
-        "!CLASH",
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
+        "!CLASH"
       ]
     },
     "SNIPERS": {
       "name": "Snipers Only",
       "maps": [
         "HEREFORD"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
       ]
     },
     "GOLDENGUN": {
@@ -169,10 +145,6 @@
         "EMERALD",
         "SKYSCRAPER",
         "FAVELA"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
       ]
     },
     "HEADSHOTS": {
@@ -183,10 +155,6 @@
         "VILLA",
         "CLOSEQUARTER",
         "LABS"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
       ]
     }
   },
@@ -199,6 +167,7 @@
         "CHALET"
       ],
       "operators": [
+        "STRIKER",
         "SLEDGE",
         "THATCHER",
         "ASH",
@@ -206,11 +175,11 @@
         "GLAZ",
         "IQ",
         "BUCK",
+        "BLACKBEARD",
         "JACKAL",
         "FINKA",
         "LION",
-        "IANA",
-        "RECRUIT_ATT"
+        "IANA"
       ]
     },
     "AI_HARD": {
@@ -235,7 +204,7 @@
         "FINKA",
         "LION",
         "IANA",
-        "RECRUIT_ATT"
+        "STRIKER"
       ]
     },
     "LANDMARK": {
