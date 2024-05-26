@@ -16,7 +16,7 @@ export default class SiegeMap {
   constructor(key, name) {
     this.#key = key;
     this.#name = name;
-    this.#thumbnail = loadImage('maps', `${key}.jpg`);
+    this.#thumbnail = loadImage('maps', `${key}.png`) || loadImage('maps', `${key}.jpg`);
   }
 
   /** @returns {string} The key of the map. */
