@@ -64,7 +64,7 @@ export default class Operator {
   /** @returns {string} The name of the operator. */
   get name() { return this.#name; }
 
-  /** @returns {string} The side of the operator. */
+  /** @returns {Side} The side of the operator. */
   get side() { return Side[this.#sideKey]; }
 
   /** @returns {{ primary: WeaponClass[], secondary: WeaponClass[], gadgets: Gadget[] }} The loadout of the operator. */
