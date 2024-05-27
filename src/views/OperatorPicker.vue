@@ -95,7 +95,7 @@
   <!-- Operator Filter Drawer -->
   <operator-filter-drawer
     v-model:pick-amount="pickerSettings.pickAmount"
-    v-model:use-squad="pickerSettings.useSquads"
+    v-model:use-squad="pickerSettings.useSquad"
     v-model:pick-duplicates="pickerSettings.pickDuplicates"
     v-model:playlist="matchSettings.playlist"
     v-model:operator-bans="matchSettings.operatorBans"
@@ -125,22 +125,23 @@ import { computed, ref } from 'vue';
 import { OperatorCard, OperatorFilterDrawer } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
 import { Operator, Playlist, Side } from '@/models';
-import { useAppSettings } from '@/stores';
+import { useAppSettings, usePlayers } from '@/stores';
 import findItems from '@/utils/findItems';
 
 // Register composables
 const AppSettings = useAppSettings();
+const Players = usePlayers();
 
 /**
  * The settings for the operator picker.
- * @type {import('vue').Ref<{ pickAmount: number, useSquads: boolean, pickDuplicates: boolean }>}
+ * @type {import('vue').Ref<{ pickAmount: number, useSquad: boolean, pickDuplicates: boolean }>}
  */
 const pickerSettings = ref({
   /** The amount of operators to pick. */
-  pickAmount: 1,
+  pickAmount: Math.max(Players.currentPlayers.length, 1),
 
   /** Whether to use the current squad to determine pick amount.  */
-  useSquad: false,
+  useSquad: Players.currentPlayers.length > 0,
 
   /** Whether duplicate picks are allowed. */
   pickDuplicates: false

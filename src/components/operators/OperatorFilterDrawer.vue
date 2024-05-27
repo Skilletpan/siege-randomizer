@@ -278,7 +278,6 @@ const pickAmount = defineModel('pickAmount', { default: 1, type: Number });
  * @type {import('vue').ModelRef<Boolean>}
  */
 const useSquad = defineModel('useSquad', { default: 1, type: Boolean });
-useSquad.value = Players.currentPlayers.length > 0;
 
 // Update pick amount if squad setting or squad size changes
 watchEffect(() => {
