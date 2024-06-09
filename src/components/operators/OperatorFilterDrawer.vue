@@ -38,8 +38,11 @@
       </v-list-item>
 
       <!-- Use Squad -->
-      <v-list-item @click="useSquad = !useSquad">
-        Use Current Squad
+      <v-list-item
+        v-if="Players.currentPlayers.length > 0"
+        title="Use Current Squad"
+        @click="useSquad = !useSquad"
+      >
         <template #prepend>
           <v-list-item-action>
             <v-switch
@@ -55,9 +58,10 @@
       <!-- Pick Duplicates -->
       <v-list-item
         :disabled="!!playlist"
+        :subtitle="playlist ? 'Set by Playlist' : null"
+        title="Allow Duplicate Picks"
         @click="pickDuplicates = !pickDuplicates"
       >
-        Duplicate Picks
         <template #prepend>
           <v-list-item-action>
             <v-switch
