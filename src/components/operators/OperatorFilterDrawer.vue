@@ -286,7 +286,11 @@ const useSquad = defineModel('useSquad', { default: 1, type: Boolean });
 // Update pick amount if squad setting or squad size changes
 watchEffect(() => {
   if (useSquad.value) {
+    // Update pick amount according to squad size
     pickAmount.value = Math.max(Players.currentPlayers.length, 1);
+
+    // Reset `useSquad` when squad is emptied
+    if (Players.currentPlayers.length === 0) useSquad.value = false;
   }
 });
 
