@@ -2,6 +2,25 @@
   "ATT": {
     "STRIKER": {
       "name": "Striker",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE",
+          "EMP",
+          "FRAG",
+          "HARDBREACH",
+          "SMOKE",
+          "STUN"
+        ]
+      },
       "roles": [
         "SUPPORT"
       ],
@@ -846,6 +865,25 @@
   "DEF": {
     "SENTRY": {
       "name": "Sentry",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "MP",
+          "SG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "CAMERA",
+          "SHIELD",
+          "BLOCKER",
+          "IMPACT",
+          "C4",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "SUPPORT"
       ],
@@ -1600,7 +1638,7 @@
           "MP"
         ],
         "gadgets": [
-          "IMPACT",
+          "BEEPER",
           "CAMERA"
         ]
       },
@@ -1624,7 +1662,7 @@
         ],
         "gadgets": [
           "CAMERA",
-          "BARBED"
+          "BLOCKER"
         ]
       },
       "roles": [
