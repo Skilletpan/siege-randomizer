@@ -38,20 +38,29 @@
     "STANDARD": {
       "name": "Standard",
       "maps": [
+        "HOUSE",
         "OREGON",
+        "HEREFORD",
         "CLUBHOUSE",
+        "PLANE",
         "CONSULATE",
         "BANK",
         "KANAL",
         "CHALET",
         "KAFE",
+        "YACHT",
         "BORDER",
+        "FAVELA",
         "SKYSCRAPER",
         "COASTLINE",
         "THEMEPARK",
+        "TOWER",
         "VILLA",
+        "FORTRESS",
         "OUTBACK",
         "EMERALD",
+        "ALPHA",
+        "BRAVO",
         "LABS",
         "LAIR"
       ]
@@ -62,6 +71,7 @@
       "name": "Quick Match",
       "maps": [
         "HOUSE",
+        "OREGON",
         "HEREFORD",
         "CLUBHOUSE",
         "PLANE",
@@ -70,12 +80,15 @@
         "CHALET",
         "YACHT",
         "FAVELA",
+        "SKYSCRAPER",
         "COASTLINE",
+        "THEMEPARK",
         "TOWER",
         "VILLA",
         "FORTRESS",
         "EMERALD",
-        "STADIUM",
+        "ALPHA",
+        "BRAVO",
         "LABS",
         "LAIR"
       ]
@@ -83,26 +96,30 @@
     "ROULETTE": {
       "name": "Weapon Roulette",
       "maps": [
-        "VILLA",
         "CLOSEQUARTER",
-        "LABS",
-        "LAIR",
-        "THEMEPARK",
+        "ALPHA",
+        "BRAVO",
+        "FAVELA",
         "COASTLINE",
-        "FAVELA"
+        "OUTBACK",
+        "THEMEPARK",
+        "LABS",
+        "LAIR"
       ]
     },
     "F4A": {
       "name": "Free for All",
       "maps": [
-        "VILLA",
-        "CONSULATE",
         "CLOSEQUARTER",
-        "LABS",
-        "LAIR",
+        "ALPHA",
+        "BORDER",
+        "OREGON",
+        "COASTLINE",
+        "VILLA",
         "THEMEPARK",
-        "EMERALD",
-        "FAVELA"
+        "LABS",
+        "CONSULATE",
+        "LAIR"
       ],
       "operators": [
         "!MONTAGNE",
@@ -113,16 +130,16 @@
     "DEATHMATCH": {
       "name": "Deathmatch",
       "maps": [
-        "VILLA",
-        "CONSULATE",
         "CLOSEQUARTER",
-        "LABS",
-        "LAIR",
-        "THEMEPARK",
-        "EMERALD",
-        "COASTLINE",
+        "ALPHA",
+        "BORDER",
+        "CLUBHOUSE",
         "SKYSCRAPER",
-        "FAVELA"
+        "VILLA",
+        "THEMEPARK",
+        "LABS",
+        "CONSULATE",
+        "LAIR"
       ],
       "operators": [
         "!MONTAGNE",
@@ -139,12 +156,15 @@
     "GOLDENGUN": {
       "name": "Golden Gun",
       "maps": [
-        "STADIUM",
         "CLOSEQUARTER",
-        "LAIR",
+        "ALPHA",
+        "BRAVO",
+        "FAVELA",
+        "COASTLINE",
+        "OUTBACK",
         "EMERALD",
         "SKYSCRAPER",
-        "FAVELA"
+        "LAIR"
       ]
     },
     "HEADSHOTS": {
