@@ -7,7 +7,7 @@
     item-value="key"
     label="Squad"
   >
-    <!-- Prepend Avatar -->
+    <!-- Squad Avatar -->
     <template
       #append-inner
       v-if="squad"
