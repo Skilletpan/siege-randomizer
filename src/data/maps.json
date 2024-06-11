@@ -21,7 +21,8 @@
   "OUTBACK": "Outback",
   "EMERALD": "Emerald Plains",
   "CLOSEQUARTER": "Close Quarter",
-  "STADIUM": "Stadium",
   "LABS": "Labs",
-  "LAIR": "Lair"
+  "LAIR": "Lair",
+  "ALPHA": "Stadium Alpha",
+  "BRAVO": "Stadium Bravo"
 }
