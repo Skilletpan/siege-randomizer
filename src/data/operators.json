@@ -1,5 +1,12 @@
 {
   "ATT": {
+    "STRIKER": {
+      "name": "Striker",
+      "roles": [
+        "SUPPORT"
+      ],
+      "speed": 2
+    },
     "SLEDGE": {
       "name": "Sledge",
       "roles": [
@@ -320,16 +327,16 @@
         "MAPCONTROL"
       ],
       "speed": 2
-    },
-    "RECRUIT_ATT": {
-      "name": "Recruit (Attack)",
+    }
+  },
+  "DEF": {
+    "SENTRY": {
+      "name": "Sentry",
       "roles": [
         "SUPPORT"
       ],
       "speed": 2
-    }
-  },
-  "DEF": {
+    },
     "SMOKE": {
       "name": "Smoke",
       "roles": [
@@ -640,13 +647,6 @@
       ],
       "speed": 2,
       "squad": "WOLFGUARD"
-    },
-    "RECRUIT_DEF": {
-      "name": "Recruit (Defense)",
-      "roles": [
-        "SUPPORT"
-      ],
-      "speed": 2
     }
   }
 }

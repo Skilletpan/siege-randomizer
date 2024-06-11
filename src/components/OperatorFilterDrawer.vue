@@ -196,19 +196,17 @@ const DEFAULT_PRESET = {
 
 const PRESETS = {
   Competitive: {
-    bans: [Operator.RECRUIT_ATT.key, Operator.RECRUIT_DEF.key],
     modes: 'Competitive, Ranked, Standard'
   },
   Casual: {
     modes: 'Quick Match'
   },
   'Arcade 1': {
-    bans: [Operator.RECRUIT_ATT.key, Operator.RECRUIT_DEF.key],
     duplicates: true,
     modes: 'Weapons Roulette, Golden Gun, Snipers Only'
   },
   'Arcade 2': {
-    bans: [Operator.MONTAGNE.key, Operator.BLITZ.key, Operator.CLASH.key, Operator.RECRUIT_ATT.key, Operator.RECRUIT_DEF.key],
+    bans: [Operator.MONTAGNE.key, Operator.BLITZ.key, Operator.CLASH.key],
     duplicates: true,
     modes: 'Free for All, Deathmatch'
   }
