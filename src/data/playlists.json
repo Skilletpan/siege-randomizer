@@ -59,10 +59,10 @@
         "FORTRESS",
         "OUTBACK",
         "EMERALD",
-        "ALPHA",
-        "BRAVO",
         "LABS",
-        "LAIR"
+        "LAIR",
+        "ALPHA",
+        "BRAVO"
       ]
     }
   },
@@ -87,10 +87,10 @@
         "VILLA",
         "FORTRESS",
         "EMERALD",
-        "ALPHA",
-        "BRAVO",
         "LABS",
-        "LAIR"
+        "LAIR",
+        "ALPHA",
+        "BRAVO"
       ]
     },
     "ROULETTE": {
@@ -182,8 +182,8 @@
     "AI_EASY": {
       "name": "Versus AI (Beginner)",
       "maps": [
-        "CLUBHOUSE",
         "OREGON",
+        "CLUBHOUSE",
         "CHALET"
       ],
       "operators": [
@@ -208,12 +208,12 @@
     "AI_HARD": {
       "name": "Versus AI (Advanced)",
       "maps": [
-        "CLUBHOUSE",
         "OREGON",
+        "CLUBHOUSE",
+        "CONSULATE",
         "BANK",
         "CHALET",
         "KAFE",
-        "CONSULATE",
         "COASTLINE",
         "LABS"
       ],
@@ -270,7 +270,19 @@
     },
     "ENDLESS": {
       "name": "Endless Drill",
-      "maps": []
+      "maps": [
+        "LAIR",
+        "CLUBHOUSE",
+        "BANK",
+        "CONSULATE",
+        "CHALET",
+        "KAFE",
+        "OREGON",
+        "LABS",
+        "SKYSCRAPER",
+        "BORDER",
+        "COASTLINE"
+      ]
     }
   }
 }
