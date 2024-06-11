@@ -92,40 +92,16 @@
 
       <!-- Operator Ban Picker -->
       <v-list-item>
-        <v-autocomplete
+        <operator-picker
           v-model="operatorBans"
-          clearable
-          clear-on-select
           :hide-details="!playlist?.bannedOperators.length"
           :hint="`${playlist?.bannedOperators.length} banned by playlist`"
           :items="bannableOperators"
-          item-title="name"
-          item-value="key"
           label="Operator Bans"
           multiple
           persistent-hint
           placeholder="None"
-        >
-          <!-- Selection Text -->
-          <template #selection="{ index, item }">
-            <template v-if="index === 0">
-              <template v-if="operatorBans.length > 1">{{ operatorBans.length }} selected</template>
-              <template v-else>{{ item.title }}</template>
-            </template>
-          </template>
-
-          <!-- Operator Item -->
-          <template #item="{ item, props }">
-            <v-list-item v-bind="props">
-              <template #prepend>
-                <v-avatar
-                  :image="toRaw(item.raw).emblem"
-                  rounded="0"
-                />
-              </template>
-            </v-list-item>
-          </template>
-        </v-autocomplete>
+        />
       </v-list-item>
 
       <v-divider class="mt-2" />
@@ -262,9 +238,9 @@
 </template>
 
 <script setup>
-import { computed, toRaw, watch, watchEffect } from 'vue';
+import { computed, watch, watchEffect } from 'vue';
 
-import { PlaylistPicker, SquadPicker } from '@/components';
+import { OperatorPicker, PlaylistPicker, SquadPicker } from '@/components';
 import { Gadget, Operator, OperatorRole, Playlist, Squad, WeaponClass } from '@/models';
 import { usePlayers } from '@/stores';
 

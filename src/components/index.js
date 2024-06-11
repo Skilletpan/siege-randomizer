@@ -10,6 +10,7 @@ import MapCard from './MapCard';
 import OperatorCard from './operators/OperatorCard';
 import OperatorFilterDrawer from './operators/OperatorFilterDrawer';
 import OperatorLabel from './OperatorLabel';
+import OperatorPicker from './operators/OperatorPicker';
 
 // Playlists
 import PlaylistPicker from './playlists/PlaylistPicker';
@@ -31,6 +32,7 @@ export {
   OperatorCard,
   OperatorFilterDrawer,
   OperatorLabel,
+  OperatorPicker,
   PlayerInput,
   PlaylistPicker,
   SettingsDialog,
