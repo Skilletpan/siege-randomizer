@@ -3,6 +3,7 @@
     "STRIKER": {
       "name": "Striker",
       "roles": [
+        "SUPPORT"
       ],
       "speed": 2
     },
