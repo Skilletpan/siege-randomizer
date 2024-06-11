@@ -1,5 +1,12 @@
 {
   "ATT": {
+    "STRIKER": {
+      "name": "Striker",
+      "roles": [
+        "SUPPORT"
+      ],
+      "speed": 2
+    },
     "SLEDGE": {
       "name": "Sledge",
       "loadout": {
@@ -834,37 +841,16 @@
         "MAPCONTROL"
       ],
       "speed": 2
-    },
-    "RECRUIT_ATT": {
-      "name": "Recruit (Attack)",
-      "loadout": {
-        "primary": [
-          "AR",
-          "DMR",
-          "LMG"
-        ],
-        "secondary": [
-          "HG",
-          "HG",
-          "MP"
-        ],
-        "gadgets": [
-          "FRAG",
-          "SMOKE",
-          "HARDBREACH",
-          "EMP",
-          "BREACH",
-          "STUN",
-          "CLAYMORE"
-        ]
-      },
+    }
+  },
+  "DEF": {
+    "SENTRY": {
+      "name": "Sentry",
       "roles": [
         "SUPPORT"
       ],
       "speed": 2
-    }
-  },
-  "DEF": {
+    },
     "SMOKE": {
       "name": "Smoke",
       "loadout": {
@@ -1669,32 +1655,6 @@
       ],
       "speed": 2,
       "squad": "WOLFGUARD"
-    },
-    "RECRUIT_DEF": {
-      "name": "Recruit (Defense)",
-      "loadout": {
-        "primary": [
-          "SMG",
-          "SG"
-        ],
-        "secondary": [
-          "HG",
-          "MP"
-        ],
-        "gadgets": [
-          "C4",
-          "IMPACT",
-          "BEEPER",
-          "CAMERA",
-          "BARBED",
-          "SHIELD",
-          "BLOCKER"
-        ]
-      },
-      "roles": [
-        "SUPPORT"
-      ],
-      "speed": 2
     }
   }
 }

@@ -44,18 +44,8 @@ export default class Operator {
     this.#squadKey = operatorData.squad;
 
     // Load images
-    const imageKey = key.replace(/_(ATT|DEF)/, '');
-    this.#emblem = loadImage('emblems', `${imageKey}.png`);
-    this.#portrait = loadImage('portraits', `${imageKey}.png`);
-    this.#easterEggs = [];
-
-    // Find all easter egg portraits
-    for (let counter = 1; ; counter++) {
-      const url = loadImage('portraits', `${imageKey}_${counter}.png`);
-
-      if (url) this.#easterEggs.push(url);
-      else break;
-    }
+    this.#emblem = loadImage('emblems', `${key}.png`);
+    this.#portrait = loadImage('portraits', `${key}.png`);
   }
 
   /** @returns {string} The key of the operator. */
@@ -100,6 +90,19 @@ export default class Operator {
    * @returns {string} The URL of a randomly picked portrait of the operator.
    */
   easterEggPortrait() {
+    // Look for easter egg portraits on first call
+    if (!this.#easterEggs) {
+      this.#easterEggs = [];
+
+      // Find all easter egg portraits
+      for (let counter = 1; ; counter++) {
+        const url = loadImage('portraits', `${this.#key}_${counter}.png`);
+  
+        if (url) this.#easterEggs.push(url);
+        else break;
+      }
+    }
+  
     // Return easter egg portrait 1 in 50 times
     if (this.#easterEggs.length > 0 && Math.floor(Math.random() * 50) === 0) {
       return this.#easterEggs[Math.floor(Math.random() * this.#easterEggs.length)];

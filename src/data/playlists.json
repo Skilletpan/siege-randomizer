@@ -12,10 +12,6 @@
         "BORDER",
         "SKYSCRAPER",
         "LABS"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
       ]
     },
     "RANKED": {
@@ -37,35 +33,36 @@
         "EMERALD",
         "LABS",
         "LAIR"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
       ]
     },
     "STANDARD": {
       "name": "Standard",
       "maps": [
+        "HOUSE",
         "OREGON",
+        "HEREFORD",
         "CLUBHOUSE",
+        "PLANE",
         "CONSULATE",
         "BANK",
         "KANAL",
         "CHALET",
         "KAFE",
+        "YACHT",
         "BORDER",
+        "FAVELA",
         "SKYSCRAPER",
         "COASTLINE",
         "THEMEPARK",
+        "TOWER",
         "VILLA",
+        "FORTRESS",
         "OUTBACK",
         "EMERALD",
         "LABS",
-        "LAIR"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
+        "LAIR",
+        "ALPHA",
+        "BRAVO"
       ]
     }
   },
@@ -74,6 +71,7 @@
       "name": "Quick Match",
       "maps": [
         "HOUSE",
+        "OREGON",
         "HEREFORD",
         "CLUBHOUSE",
         "PLANE",
@@ -82,97 +80,91 @@
         "CHALET",
         "YACHT",
         "FAVELA",
+        "SKYSCRAPER",
         "COASTLINE",
+        "THEMEPARK",
         "TOWER",
         "VILLA",
         "FORTRESS",
         "EMERALD",
-        "STADIUM",
         "LABS",
-        "LAIR"
+        "LAIR",
+        "ALPHA",
+        "BRAVO"
       ]
     },
     "ROULETTE": {
       "name": "Weapon Roulette",
       "maps": [
-        "VILLA",
         "CLOSEQUARTER",
-        "LABS",
-        "LAIR",
-        "THEMEPARK",
+        "ALPHA",
+        "BRAVO",
+        "FAVELA",
         "COASTLINE",
-        "FAVELA"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
+        "OUTBACK",
+        "THEMEPARK",
+        "LABS",
+        "LAIR"
       ]
     },
     "F4A": {
       "name": "Free for All",
       "maps": [
-        "VILLA",
-        "CONSULATE",
         "CLOSEQUARTER",
-        "LABS",
-        "LAIR",
+        "ALPHA",
+        "BORDER",
+        "OREGON",
+        "COASTLINE",
+        "VILLA",
         "THEMEPARK",
-        "EMERALD",
-        "FAVELA"
+        "LABS",
+        "CONSULATE",
+        "LAIR"
       ],
       "operators": [
         "!MONTAGNE",
         "!BLITZ",
-        "!CLASH",
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
+        "!CLASH"
       ]
     },
     "DEATHMATCH": {
       "name": "Deathmatch",
       "maps": [
-        "VILLA",
-        "CONSULATE",
         "CLOSEQUARTER",
-        "LABS",
-        "LAIR",
-        "THEMEPARK",
-        "EMERALD",
-        "COASTLINE",
+        "ALPHA",
+        "BORDER",
+        "CLUBHOUSE",
         "SKYSCRAPER",
-        "FAVELA"
+        "VILLA",
+        "THEMEPARK",
+        "LABS",
+        "CONSULATE",
+        "LAIR"
       ],
       "operators": [
         "!MONTAGNE",
         "!BLITZ",
-        "!CLASH",
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
+        "!CLASH"
       ]
     },
     "SNIPERS": {
       "name": "Snipers Only",
       "maps": [
         "HEREFORD"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
       ]
     },
     "GOLDENGUN": {
       "name": "Golden Gun",
       "maps": [
-        "STADIUM",
         "CLOSEQUARTER",
-        "LAIR",
+        "ALPHA",
+        "BRAVO",
+        "FAVELA",
+        "COASTLINE",
+        "OUTBACK",
         "EMERALD",
         "SKYSCRAPER",
-        "FAVELA"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
+        "LAIR"
       ]
     },
     "HEADSHOTS": {
@@ -183,10 +175,6 @@
         "VILLA",
         "CLOSEQUARTER",
         "LABS"
-      ],
-      "operators": [
-        "!RECRUIT_ATT",
-        "!RECRUIT_DEF"
       ]
     }
   },
@@ -194,11 +182,12 @@
     "AI_EASY": {
       "name": "Versus AI (Beginner)",
       "maps": [
-        "CLUBHOUSE",
         "OREGON",
+        "CLUBHOUSE",
         "CHALET"
       ],
       "operators": [
+        "STRIKER",
         "SLEDGE",
         "THATCHER",
         "ASH",
@@ -206,24 +195,30 @@
         "GLAZ",
         "IQ",
         "BUCK",
+        "BLACKBEARD",
+        "HIBANA",
         "JACKAL",
         "FINKA",
         "LION",
         "IANA",
-        "RECRUIT_ATT"
+        "ACE",
+        "DEIMOS"
       ]
     },
     "AI_HARD": {
       "name": "Versus AI (Advanced)",
       "maps": [
-        "CLUBHOUSE",
         "OREGON",
+        "CLUBHOUSE",
+        "CONSULATE",
         "BANK",
         "CHALET",
         "KAFE",
-        "CONSULATE"
+        "COASTLINE",
+        "LABS"
       ],
       "operators": [
+        "STRIKER",
         "SLEDGE",
         "THATCHER",
         "ASH",
@@ -231,11 +226,14 @@
         "GLAZ",
         "IQ",
         "BUCK",
+        "BLACKBEARD",
+        "HIBANA",
         "JACKAL",
         "FINKA",
         "LION",
         "IANA",
-        "RECRUIT_ATT"
+        "ACE",
+        "DEIMOS"
       ]
     },
     "LANDMARK": {
@@ -256,6 +254,22 @@
     },
     "TARGET": {
       "name": "Target Drill",
+      "maps": [
+        "LAIR",
+        "CLUBHOUSE",
+        "BANK",
+        "CONSULATE",
+        "CHALET",
+        "KAFE",
+        "OREGON",
+        "LABS",
+        "SKYSCRAPER",
+        "BORDER",
+        "COASTLINE"
+      ]
+    },
+    "ENDLESS": {
+      "name": "Endless Drill",
       "maps": [
         "LAIR",
         "CLUBHOUSE",

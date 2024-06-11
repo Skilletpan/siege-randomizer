@@ -431,18 +431,6 @@
     "side": "ATT"
   },
   {
-    "title": "Noob Team",
-    "tagline": "They wear matching outfits!",
-    "rules": [
-      "Everyone picks Recruit.",
-      "Everyone brings the same loadout."
-    ],
-    "operators": [
-      "*RECRUIT_ATT",
-      "*RECRUIT_DEF"
-    ]
-  },
-  {
     "title": "One in the Chamber",
     "tagline": "One tap",
     "rules": [
