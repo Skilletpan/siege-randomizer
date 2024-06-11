@@ -7,7 +7,7 @@ import SettingsDialog from './SettingsDialog';
 import MapCard from './MapCard';
 
 // Operators
-import OperatorCard from './OperatorCard';
+import OperatorCard from './operators/OperatorCard';
 import OperatorFilterDrawer from './operators/OperatorFilterDrawer';
 import OperatorLabel from './OperatorLabel';
 

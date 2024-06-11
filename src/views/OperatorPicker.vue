@@ -1,16 +1,17 @@
 <template>
   <v-container>
     <!-- Operator Cards -->
-    <v-row class="justify-center flex-nowrap pt-12">
+    <v-row class="justify-center flex-nowrap overflow-x-auto pt-12">
       <v-col
         v-for="i in pickerSettings.pickAmount"
         :key="`portrait_${i}`"
         class="operator-card"
       >
+        <!-- Picked Operator Card -->
         <operator-card
-          :operator-key="pickedOperators[i - 1]"
-          :placeholder="!pickedOperators[i - 1]"
-          @click="previewOperator(pickedOperators[i - 1])"
+          v-model="pickedOperators[i - 1]"
+          :player="pickerSettings.useSquad ? Players.currentPlayers[i - 1] : null"
+          @click="pickedOperators[i - 1] ? previewOperator(pickedOperators[i - 1]) : pickOperator()"
         />
       </v-col>
     </v-row>
@@ -110,11 +111,11 @@
   <!-- Operator Preview Dialog -->
   <v-dialog
     v-model="previewDialog.show"
-    width="auto"
+    width="300"
   >
     <operator-card
+      v-model="previewDialog.operatorKey"
       detailed
-      :operator-key="previewDialog.operatorKey"
     />
   </v-dialog>
 </template>
@@ -264,6 +265,8 @@ function previewOperator(operatorKey) {
 
 <style scoped>
 .operator-card {
+  flex-basis: 1;
   max-width: calc(100% / 5);
+  min-width: 200px;
 }
 </style>
