@@ -2,7 +2,9 @@
   <v-autocomplete
     v-model="operator"
     v-model:search="search"
+    auto-select-first
     clearable
+    :clear-on-select="multiple"
     :items="items"
     item-title="name"
     item-value="key"
