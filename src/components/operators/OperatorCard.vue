@@ -62,9 +62,9 @@
         <!-- Operator Details Tab -->
         <v-window-item :value="DETAIL_TABS[0]">
           <!-- Speed and Health -->
-          <v-card-item class="px-4 py-3">
+          <v-card-item class="pb-3 pt-2 px-4">
             <v-label
-              class="d-block mb-1 mt-n1 text-caption"
+              class="d-block mb-1 text-caption"
               text="Speed and Health"
             />
             <v-chip
@@ -81,9 +81,9 @@
           </v-card-item>
 
           <!-- Roles -->
-          <v-card-item class="pb-3 pt-1 px-4">
+          <v-card-item class="pb-3 pt-0 px-4">
             <v-label
-              class="d-block mb-1 mt-n1 text-caption"
+              class="d-block mb-1 text-caption"
               text="Roles"
             />
             <div class="ma-n1">
@@ -101,10 +101,10 @@
           <!-- Squad -->
           <v-card-item
             v-if="operator.squad"
-            class="pb-3 pt-1 px-4"
+            class="pb-3 pt-0 px-4"
           >
             <v-label
-              class="d-block mt-n1 text-caption"
+              class="d-block text-caption"
               text="Squad"
             />
 
@@ -126,11 +126,11 @@
           <v-card-item
             v-for="index in 3"
             :key="index"
-            class="px-4"
-            :class="index === 1 ? 'py-3' : 'pb-3 pt-1'"
+            class="pb-3 px-4"
+            :class="index === 1 ? 'pt-2' : 'pt-0'"
           >
             <v-label
-              class="d-block mb-1 mt-n1 text-caption"
+              class="d-block mb-1 text-caption"
               :text="['Primary Weapons', 'Secondary Weapons', 'Gadgets'][index - 1]"
             />
             <div class="ma-n1">
