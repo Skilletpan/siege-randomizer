@@ -74,7 +74,7 @@
                     <v-btn
                       v-show="isHovering"
                       variant="text"
-                      @click.stop="matchSettings.operatorBans.push(operator.key)"
+                      @click.stop="operatorSettings.bans.push(operator.key)"
                     >
                       Ban
                     </v-btn>
@@ -95,11 +95,11 @@
 
   <!-- Operator Filter Drawer -->
   <operator-filter-drawer
+    v-model:preset="pickerSettings.preset"
+    v-model:pick-duplicates="pickerSettings.pickDuplicates"
     v-model:pick-amount="pickerSettings.pickAmount"
     v-model:use-squad="pickerSettings.useSquad"
-    v-model:pick-duplicates="pickerSettings.pickDuplicates"
-    v-model:playlist="matchSettings.playlist"
-    v-model:operator-bans="matchSettings.operatorBans"
+    v-model:bans="operatorSettings.bans"
     v-model:speed="operatorSettings.speed"
     v-model:roles="operatorSettings.roles"
     v-model:squad="operatorSettings.squad"
@@ -135,36 +135,30 @@ const Players = usePlayers();
 
 /**
  * The settings for the operator picker.
- * @type {import('vue').Ref<{ pickAmount: number, useSquad: boolean, pickDuplicates: boolean }>}
+ * @type {import('vue').Ref<{ preset: string, pickAmount: number, useSquad: boolean, pickDuplicates: boolean }>}
  */
 const pickerSettings = ref({
+  /** The the key of the playlist to use as preset. */
+  preset: null,
+
+  /** Whether duplicate picks are allowed. */
+  pickDuplicates: false,
+
   /** The amount of operators to pick. */
   pickAmount: Math.max(Players.currentPlayers.length, 1),
 
   /** Whether to use the current squad to determine pick amount.  */
-  useSquad: Players.currentPlayers.length > 0,
-
-  /** Whether duplicate picks are allowed. */
-  pickDuplicates: false
-});
-
-/**
- * The match settings.
- * @type {import('vue').Ref<{ playlist: string, operatorBans: string[] }>}
- */
-const matchSettings = ref({
-  /** The key of the picked playlist. */
-  playlist: null,
-
-  /** The keys of the banned operators. */
-  operatorBans: []
+  useSquad: Players.currentPlayers.length > 0
 });
 
 /**
  * The operator filter values.
- * @type {import('vue').Ref<{ speed: number[], roles: string[], squad: string }>}
+ * @type {import('vue').Ref<{ bans: string[], speed: number[], roles: string[], squad: string }>}
  */
 const operatorSettings = ref({
+  /** The keys of the banned operators. */
+  bans: [],
+
   /** The speeds of the operators. */
   speed: [1, 2, 3],
 
@@ -195,14 +189,14 @@ const loadoutSettings = ref({
  * @type {import('vue').ComputedRef<Operator[]>}
  */
 const operatorPool = computed(() => {
-  const { playlist, operatorBans } = matchSettings.value;
-  const { speed, roles, squad } = operatorSettings.value;
+  const { preset } = pickerSettings.value;
+  const { bans, speed, roles, squad } = operatorSettings.value;
   const { primary, secondary, gadgets } = loadoutSettings.value;
 
   // Set filters
   const filters = [];
-  if (playlist) filters.push({ method: 'included', value: Playlist[playlist].bannedOperators, negative: true });
-  if (operatorBans.length) filters.push({ property: 'key', method: 'included', value: operatorBans, negative: true });
+  if (preset) filters.push({ method: 'included', value: Playlist[preset].bannedOperators, negative: true });
+  if (bans.length) filters.push({ property: 'key', method: 'included', value: bans, negative: true });
   if (speed.length < 3) filters.push({ property: 'speed', method: 'included', value: speed });
   roles.forEach((key) => { filters.push({ property: 'roles[some].key', value: key }) });
   if (squad) filters.push({ property: 'squad.key', value: squad });

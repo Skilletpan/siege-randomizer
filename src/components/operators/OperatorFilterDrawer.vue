@@ -10,8 +10,39 @@
         title="Picker Settings"
       />
 
+      <!-- Preset Selector -->
+      <v-list-item>
+        <playlist-picker
+          v-model="preset"
+          label="Preset"
+          placeholder="Custom"
+        />
+      </v-list-item>
+
+      <!-- Pick Duplicates -->
+      <v-list-item
+        :disabled="!!preset"
+        :subtitle="preset ? 'Set by Playlist' : null"
+        title="Allow Duplicate Picks"
+        @click="pickDuplicates = !pickDuplicates"
+      >
+        <template #prepend>
+          <v-list-item-action>
+            <v-switch
+              v-model="pickDuplicates"
+              color="primary"
+              density="comfortable"
+              hide-details
+            />
+          </v-list-item-action>
+        </template>
+      </v-list-item>
+
       <!-- Pick Amount -->
-      <v-list-item :disabled="useSquad">
+      <v-list-item
+        :class="{ 'mb-2': Players.currentPlayers.length === 0 }"
+        :disabled="useSquad"
+      >
         <v-card color="#FFFFFF10">
           <v-label
             class="ml-4 text-caption"
@@ -55,62 +86,27 @@
         </template>
       </v-list-item>
 
-      <!-- Pick Duplicates -->
-      <v-list-item
-        :disabled="!!playlist"
-        :subtitle="playlist ? 'Set by Playlist' : null"
-        title="Allow Duplicate Picks"
-        @click="pickDuplicates = !pickDuplicates"
-      >
-        <template #prepend>
-          <v-list-item-action>
-            <v-switch
-              v-model="pickDuplicates"
-              color="primary"
-              density="comfortable"
-              hide-details
-            />
-          </v-list-item-action>
-        </template>
-      </v-list-item>
-
       <v-divider />
-
-      <!-- Match Settings -->
-      <v-list-subheader
-        class="mb-n1"
-        title="Match Settings"
-      />
-
-      <!-- Playlist Selector -->
-      <v-list-item>
-        <playlist-picker
-          v-model="playlist"
-          placeholder="Custom"
-        />
-      </v-list-item>
-
-      <!-- Operator Ban Picker -->
-      <v-list-item>
-        <operator-picker
-          v-model="operatorBans"
-          :hide-details="!playlist?.bannedOperators.length"
-          :hint="`${playlist?.bannedOperators.length} banned by playlist`"
-          :items="bannableOperators"
-          label="Operator Bans"
-          multiple
-          persistent-hint
-          placeholder="None"
-        />
-      </v-list-item>
-
-      <v-divider class="mt-2" />
 
       <!-- Operator Filters -->
       <v-list-subheader
         class="mb-n1"
         title="Operator Filters"
       />
+
+      <!-- Operator Ban Picker -->
+      <v-list-item>
+        <operator-picker
+          v-model="bans"
+          :hide-details="!preset?.bannedOperators.length"
+          :hint="`${preset?.bannedOperators.length} banned by playlist`"
+          :items="bannableOperators"
+          label="Bans"
+          multiple
+          persistent-hint
+          placeholder="None"
+        />
+      </v-list-item>
 
       <!-- Operator Speed -->
       <v-list-item>
@@ -233,6 +229,19 @@
           </template>
         </v-select>
       </v-list-item>
+
+      <v-divider class="mb-1 mt-2" />
+
+      <!-- Reset Button -->
+      <v-list-item>
+        <v-btn
+          block
+          color="error"
+          text="Reset"
+          variant="tonal"
+          @click="resetSettings"
+        />
+      </v-list-item>
     </v-list>
   </v-navigation-drawer>
 </template>
@@ -248,6 +257,22 @@ import { usePlayers } from '@/stores';
 const Players = usePlayers();
 
 /**
+ * The playlist settings to use.
+ * @type {import('vue').ModelRef<Playlist>}
+ */
+const preset = defineModel('preset', {
+  get: (playlistKey) => Playlist[playlistKey] || null,
+  type: String,
+  validator: (v) => Object.keys(Playlist).includes(v)
+});
+
+/**
+ * Whether duplicate operator picks are allowed.
+ * @type {import('vue').ModelRef<Boolean>}
+ */
+const pickDuplicates = defineModel('pickDuplicates', { type: Boolean });
+
+/**
  * The amount of operators to pick.
  * @type {import('vue').ModelRef<Number>}
  */
@@ -259,62 +284,15 @@ const pickAmount = defineModel('pickAmount', { default: 1, type: Number });
  */
 const useSquad = defineModel('useSquad', { default: 1, type: Boolean });
 
-// Update pick amount if squad setting or squad size changes
-watchEffect(() => {
-  if (useSquad.value) {
-    // Update pick amount according to squad size
-    pickAmount.value = Math.max(Players.currentPlayers.length, 1);
-
-    // Reset `useSquad` when squad is emptied
-    if (Players.currentPlayers.length === 0) useSquad.value = false;
-  }
-});
-
-/**
- * Whether duplicate operator picks are allowed.
- * @type {import('vue').ModelRef<Boolean>}
- */
-const pickDuplicates = defineModel('pickDuplicates', { type: Boolean });
-
-/**
- * The playlist settings to use.
- * @type {import('vue').ModelRef<Playlist>}
- */
-const playlist = defineModel('playlist', {
-  get: (playlistKey) => Playlist[playlistKey] || null,
-  type: String,
-  validator: (v) => Object.keys(Playlist).includes(v)
-});
-
-// Watch for playlist updates
-watch(playlist, (newPlaylist) => {
-  if (newPlaylist) {
-    // Set duplicate picks
-    pickDuplicates.value = newPlaylist.isArcade;
-
-    // Remove playlist banned operators from manual ban list
-    operatorBans.value = operatorBans.value.filter((operator) => !newPlaylist.bannedOperators.includes(operator));
-  }
-});
-
 /**
  * The manually banned operators.
  * @type {import('vue').ModelRef<Operator[]>}
  */
-const operatorBans = defineModel('operatorBans', {
+const bans = defineModel('bans', {
   default: [],
   get: (operatorKeys) => operatorKeys.map((operatorKey) => Operator[operatorKey]),
   type: Array,
   validator: (v) => v.every((_v) => Object.keys(Operator).includes(_v))
-});
-
-/**
- * The manually bannable operators.
- * @type {import('vue').ComputedRef<Operator[]>}
- */
-const bannableOperators = computed(() => {
-  if (playlist.value) return playlist.value.allowedOperators;
-  return Operator.LIST;
 });
 
 /**
@@ -380,4 +358,57 @@ const gadgets = defineModel('gadgets', {
   type: Array,
   validator: (v) => v.every((_v) => Object.keys(Gadget).includes(_v))
 });
+
+/**
+ * The manually bannable operators.
+ * @type {import('vue').ComputedRef<Operator[]>}
+ */
+const bannableOperators = computed(() => {
+  if (preset.value) return preset.value.allowedOperators;
+  return Operator.LIST;
+});
+
+// Watch for preset updates
+watch(preset, (newPlaylist) => {
+  if (newPlaylist) {
+    // Set duplicate picks
+    pickDuplicates.value = newPlaylist.isArcade;
+
+    // Remove playlist banned operators from manual ban list
+    bans.value = bans.value.filter((operator) => !newPlaylist.bannedOperators.includes(operator));
+  }
+});
+
+// Update pick amount if squad setting or squad size changes
+watchEffect(() => {
+  if (useSquad.value) {
+    // Update pick amount according to squad size
+    pickAmount.value = Math.max(Players.currentPlayers.length, 1);
+
+    // Reset `useSquad` when squad is emptied
+    if (Players.currentPlayers.length === 0) useSquad.value = false;
+  }
+});
+
+/**
+ * Resets all filters to their default value.
+ * 
+ * Squad settings are preserved.
+ */
+function resetSettings() {
+  // Picker settings
+  preset.value = null;
+  pickDuplicates.value = false;
+
+  // Operator filters
+  bans.value = [];
+  speed.value = [1, 2, 3];
+  roles.value = [];
+  squad.value = null;
+
+  // Loadout filters
+  primaryWeapons.value = [];
+  secondaryWeapons.value = [];
+  gadgets.value = [];
+}
 </script>
