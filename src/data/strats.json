@@ -79,6 +79,38 @@
       "Bring as many throwable primary and secondary gadgets as possible.",
       "Shout \"YEET\" every time you throw one."
     ],
+    "operators": [
+      [
+        {
+          "property": "key",
+          "method": "included",
+          "value": [
+            "SENTRY",
+            "SMOKE",
+            "VALKYRIE",
+            "ECHO",
+            "LESION",
+            "ELA",
+            "ALIBI",
+            "KAID",
+            "WAMAI",
+            "THORN",
+            "AZAMI",
+            "FENRIR",
+            "TUBARAO"
+          ]
+        },
+        {
+          "property": "loadout.gadgets[some].key",
+          "method": "included",
+          "value": [
+            "BEEPER",
+            "C4",
+            "IMPACT"
+          ]
+        }
+      ]
+    ],
     "side": "DEF"
   },
   {
@@ -97,7 +129,13 @@
       "Sing \"Biene Maja\" for the duration of the round."
     ],
     "operators": [
-      "*GRIM"
+      "*GRIM",
+      "BLITZ",
+      "IQ",
+      "BLACKBEARD",
+      "LION",
+      "FINKA",
+      "OSA"
     ],
     "side": "ATT"
   },
@@ -115,7 +153,12 @@
       "*VALKYRIE",
       "*ECHO",
       "*MAESTRO",
-      "*MOZZIE"
+      [
+        {
+          "property": "loadout.gadgets[some].key",
+          "value": "CAMERA"
+        }
+      ]
     ],
     "side": "DEF"
   },
@@ -191,6 +234,20 @@
     "rules": [
       "Only use shotguns.",
       "If possible, bring secondary shotguns as well."
+    ],
+    "operators": [
+      [
+        {
+          "property": "loadout.primary[some].key",
+          "value": "SG"
+        }
+      ],
+      [
+        {
+          "property": "loadout.secondary[some].key",
+          "value": "SG"
+        }
+      ]
     ]
   },
   {
@@ -206,6 +263,14 @@
     "rules": [
       "Try to kill all attackers with C4s from below site.",
       "You are only allowed to start shooting at people when all C4s are used up."
+    ],
+    "operators": [
+      [
+        {
+          "property": "loadout.gadgets[some].key",
+          "value": "C4"
+        }
+      ]
     ],
     "side": "DEF"
   },
@@ -223,6 +288,14 @@
       "Set your in-game mouse sensitivity to 100 and your mouse DPI to the maximum.",
       "Bring only LMGs.",
       "Shoot entire magazines at a time."
+    ],
+    "operators": [
+      [
+        {
+          "property": "loadout.primary[some].key",
+          "value": "LMG"
+        }
+      ]
     ],
     "side": "ATT"
   },
@@ -292,6 +365,14 @@
     "rules": [
       "Everyone brings breach charges.",
       "Everyone picks a window and hot-breaches into the building at the same time."
+    ],
+    "operators": [
+      [
+        {
+          "property": "loadout.gadgets[some].key",
+          "value": "BREACH"
+        }
+      ]
     ],
     "side": "ATT"
   },
@@ -390,7 +471,25 @@
     "operators": [
       "*SLEDGE",
       "*BUCK",
-      "*RAM"
+      "*RAM",
+      [
+        {
+          "property": "loadout.primary[some].key",
+          "value": "SG"
+        }
+      ],
+      [
+        {
+          "property": "loadout.secondary[some].key",
+          "value": "SG"
+        }
+      ],
+      [
+        {
+          "property": "loadout.gadgets[some].key",
+          "value": "BREACH"
+        }
+      ]
     ],
     "side": "ATT"
   },
@@ -398,9 +497,15 @@
     "title": "Lucky Luke",
     "tagline": "Click faster than your shadow.",
     "rules": [
-      "Only use handguns.",
-      "Machine pistols and secondary shotguns are disallowed.",
-      "Bonus points for Deagle and Revolver only."
+      "Only use revolvers."
+    ],
+    "operators": [
+      [
+        {
+          "property": "loadout.secondary[some].key",
+          "value": "REV"
+        }
+      ]
     ]
   },
   {
@@ -450,6 +555,14 @@
       "Use reload cancel to empty your magazines.",
       "You may only bring LMGs.",
       "Secondary guns are disallowed."
+    ],
+    "operators": [
+      [
+        {
+          "property": "loadout.primary[some].key",
+          "value": "LMG"
+        }
+      ]
     ],
     "side": "ATT"
   },
@@ -521,13 +634,23 @@
       }
     ],
     "operators": [
-      "!MONTAGNE",
-      "!BLITZ",
-      "!DOKKAEBI",
-      "!VIGIL",
-      "!AMARU",
-      "!KALI",
-      "!SOLIS"
+      [
+        {
+          "property": "loadout.secondary[some].key",
+          "method": "included",
+          "value": [
+            "HG",
+            "DE",
+            "REV"
+          ]
+        },
+        {
+          "property": "loadout.primary[every].key",
+          "method": "equals",
+          "value": "SH",
+          "negative": true
+        }
+      ]
     ]
   },
   {
@@ -536,6 +659,14 @@
     "rules": [
       "Only kill enemies with impact grenades.",
       "You are allowed to soften them up with your pistol."
+    ],
+    "operators": [
+      [
+        {
+          "property": "loadout.gadgets[some].key",
+          "value": "IMPACT"
+        }
+      ]
     ],
     "side": "DEF"
   },
@@ -567,12 +698,26 @@
     ],
     "operators": [
       "*MUTE",
-      "!PULSE",
-      "!VALKYRIE",
-      "!ECHO",
-      "!MIRA",
-      "!MAESTRO",
-      "*MOZZIE"
+      "*MOZZIE",
+      [
+        {
+          "property": "key",
+          "method": "included",
+          "value": [
+            "PULSE",
+            "VALKYRIE",
+            "ECHO",
+            "MIRA",
+            "MAESTRO",
+            "SOLIS"
+          ],
+          "negative": true
+        },
+        {
+          "property": "loadout.gadgets[some].key",
+          "value": "BLOCKER"
+        }
+      ]
     ],
     "side": "DEF"
   },
@@ -635,7 +780,13 @@
     ],
     "operators": [
       "*GLAZ",
-      "*KALI"
+      "*KALI",
+      [
+        {
+          "property": "loadout.primary[some].key",
+          "value": "DMR"
+        }
+      ]
     ],
     "side": "ATT"
   },
@@ -646,6 +797,17 @@
       "Place your traps, then hide closeby.",
       "Don't take engagements directly. Play off your traps.",
       "Bonus: Only get kills with your traps or knives."
+    ],
+    "operators": [
+      "KAPKAN",
+      "FROST",
+      "LESION",
+      "ELA",
+      "ALIBI",
+      "GOYO",
+      "MELUSI",
+      "THORN",
+      "FENRIR"
     ],
     "side": "DEF"
   },
@@ -664,6 +826,14 @@
       "Bring only 3 speed operators.",
       "Take the most direct route to site.",
       "No roam clearing."
+    ],
+    "operators": [
+      [
+        {
+          "property": "speed",
+          "value": 3
+        }
+      ]
     ],
     "side": "ATT"
   },
@@ -691,7 +861,13 @@
     ],
     "operators": [
       "*ZERO",
-      "*CAVEIRA"
+      "*CAVEIRA",
+      [
+        {
+          "property": "loadout.secondary[some].key",
+          "value": "HG"
+        }
+      ]
     ]
   },
   {
@@ -734,6 +910,14 @@
     "rules": [
       "Bring only LMGs.",
       "As soon as you start shooting, you cannot stop until your magazine is empty."
+    ],
+    "operators": [
+      [
+        {
+          "property": "loadout.primary[some].key",
+          "value": "LMG"
+        }
+      ]
     ],
     "side": "ATT"
   },
@@ -828,6 +1012,18 @@
       "Reinforce every wall, door and window of site.",
       "Sit in site for the entire round.",
       "Pray they don't bring Fuze."
+    ],
+    "operators": [
+      "SMOKE",
+      "MUTE",
+      "CASTLE",
+      "PULSE",
+      "DOC",
+      "ROOK",
+      "KAPKAN",
+      "TACHANKA",
+      "JAGER",
+      "BANDIT"
     ],
     "side": "DEF"
   }

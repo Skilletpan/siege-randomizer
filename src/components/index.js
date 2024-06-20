@@ -9,7 +9,7 @@ import MapCard from './MapCard';
 // Operators
 import OperatorCard from './operators/OperatorCard';
 import OperatorFilterDrawer from './operators/OperatorFilterDrawer';
-import OperatorLabel from './OperatorLabel';
+import OperatorLabel from './operators/OperatorLabel';
 import OperatorPicker from './operators/OperatorPicker';
 
 // Playlists
@@ -19,7 +19,7 @@ import PlaylistPicker from './playlists/PlaylistPicker';
 import SquadPicker from './squad/SquadPicker';
 
 // Strats
-import StratCard from './StratCard';
+import StratCard from './strats/StratCard';
 
 // Players and Teams
 import PlayerInput from './teams/PlayerInput';

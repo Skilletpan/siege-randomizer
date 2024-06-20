@@ -8,8 +8,8 @@
       <v-col cols="auto">
         <strat-card
           v-if="picks.strat"
-          :side-key="picks.side"
-          :strat-id="picks.strat"
+          v-model="picks.strat"
+          v-model:side="picks.side"
         />
 
         <!-- Placeholder Loader -->
@@ -77,8 +77,8 @@
     width="auto"
   >
     <strat-card
+      v-model="previewDialog.strat"
       preview
-      :strat-id="previewDialog.strat"
     />
   </v-dialog>
 </template>
