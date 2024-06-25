@@ -166,46 +166,24 @@
 
       <!-- Primary Weapons -->
       <v-list-item>
-        <v-select
+        <weapon-picker
           v-model="primaryWeapons"
-          clearable
-          :items="WeaponClass.LIST"
-          item-title="name"
-          item-value="key"
           label="Primary Weapons"
           multiple
           placeholder="Any"
-        >
-          <!-- Selection Text -->
-          <template #selection="{ index, item }">
-            <template v-if="index === 0">
-              <template v-if="primaryWeapons.length > 1">{{ primaryWeapons.length }} selected</template>
-              <template v-else>{{ item.title }}</template>
-            </template>
-          </template>
-        </v-select>
+          primary
+        />
       </v-list-item>
 
       <!-- Secondary Weapons -->
       <v-list-item>
-        <v-select
+        <weapon-picker
           v-model="secondaryWeapons"
-          clearable
-          :items="WeaponClass.LIST"
-          item-title="name"
-          item-value="key"
           label="Secondary Weapons"
           multiple
           placeholder="Any"
-        >
-          <!-- Selection Text -->
-          <template #selection="{ index, item }">
-            <template v-if="index === 0">
-              <template v-if="secondaryWeapons.length > 1">{{ secondaryWeapons.length }} selected</template>
-              <template v-else>{{ item.title }}</template>
-            </template>
-          </template>
-        </v-select>
+          secondary
+        />
       </v-list-item>
 
       <!-- Gadgets -->
@@ -249,7 +227,7 @@
 <script setup>
 import { computed, watch, watchEffect } from 'vue';
 
-import { OperatorPicker, PlaylistPicker, SquadPicker } from '@/components';
+import { OperatorPicker, PlaylistPicker, SquadPicker, WeaponPicker } from '@/components';
 import { Gadget, Operator, OperatorRole, Playlist, Squad, WeaponClass } from '@/models';
 import { usePlayers } from '@/stores';
 

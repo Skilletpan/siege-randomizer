@@ -25,6 +25,9 @@ import StratCard from './strats/StratCard';
 import PlayerInput from './teams/PlayerInput';
 import SquadMenu from './teams/SquadMenu';
 
+// Weapons
+import WeaponPicker from './weapons/WeaponPicker.vue';
+
 export {
   MapCard,
   MatchDrawer,
@@ -38,5 +41,6 @@ export {
   SettingsDialog,
   SquadMenu,
   SquadPicker,
-  StratCard
+  StratCard,
+  WeaponPicker
 };
