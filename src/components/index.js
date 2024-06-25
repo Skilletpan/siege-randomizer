@@ -1,5 +1,4 @@
 // Common
-import MatchDrawer from './MatchDrawer';
 import NavigationDrawer from './NavigationDrawer';
 import SettingsDialog from './SettingsDialog';
 
@@ -30,7 +29,6 @@ import WeaponPicker from './weapons/WeaponPicker.vue';
 
 export {
   MapCard,
-  MatchDrawer,
   NavigationDrawer,
   OperatorCard,
   OperatorFilterDrawer,
