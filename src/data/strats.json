@@ -45,11 +45,13 @@
       "Equip a different secondary gadget."
     ],
     "operators": [
-      "!MONTAGNE",
-      "!GLAZ",
-      "!BLITZ",
-      "!CLASH",
-      "!KALI"
+      [
+        {
+          "property": "loadout.primary.length",
+          "value": 1,
+          "negative": true
+        }
+      ]
     ]
   },
   {
@@ -233,13 +235,17 @@
     "tagline": "A deadly squad. Unless they're more than 5 meters away.",
     "rules": [
       "Only use shotguns.",
-      "If possible, bring secondary shotguns as well."
+      "If possible, bring double shotguns."
     ],
     "operators": [
       [
         {
           "property": "loadout.primary[some].key",
-          "value": "SG"
+          "method": "included",
+          "value": [
+            "SG",
+            "SSG"
+          ]
         }
       ],
       [
@@ -405,7 +411,8 @@
       "!MONTAGNE",
       "!GLAZ",
       "!BLITZ",
-      "!KALI"
+      "!KALI",
+      "!DEIMOS"
     ]
   },
   {
