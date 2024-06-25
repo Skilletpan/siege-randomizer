@@ -98,8 +98,8 @@
       <v-list-item>
         <operator-picker
           v-model="bans"
-          :hide-details="!preset?.bannedOperators.length"
-          :hint="`${preset?.bannedOperators.length} banned by playlist`"
+          :hide-details="!Playlist[preset]?.bannedOperators.length"
+          :hint="`${Playlist[preset]?.bannedOperators.length} banned by playlist`"
           :items="bannableOperators"
           label="Bans"
           multiple
@@ -257,11 +257,10 @@ import { usePlayers } from '@/stores';
 const Players = usePlayers();
 
 /**
- * The playlist settings to use.
- * @type {import('vue').ModelRef<Playlist>}
+ * The key of the playlist to use the settings from.
+ * @type {import('vue').ModelRef<String>}
  */
 const preset = defineModel('preset', {
-  get: (playlistKey) => Playlist[playlistKey] || null,
   type: String,
   validator: (v) => Object.keys(Playlist).includes(v)
 });
@@ -276,21 +275,23 @@ const pickDuplicates = defineModel('pickDuplicates', { type: Boolean });
  * The amount of operators to pick.
  * @type {import('vue').ModelRef<Number>}
  */
-const pickAmount = defineModel('pickAmount', { default: 1, type: Number });
+const pickAmount = defineModel('pickAmount', {
+  default: 1,
+  type: Number
+});
 
 /**
  * Whether to use the current squad to determine the pick amount.
  * @type {import('vue').ModelRef<Boolean>}
  */
-const useSquad = defineModel('useSquad', { default: 1, type: Boolean });
+const useSquad = defineModel('useSquad', { type: Boolean });
 
 /**
- * The manually banned operators.
- * @type {import('vue').ModelRef<Operator[]>}
+ * The keys of the manually banned operators.
+ * @type {import('vue').ModelRef<String[]>}
  */
 const bans = defineModel('bans', {
   default: [],
-  get: (operatorKeys) => operatorKeys.map((operatorKey) => Operator[operatorKey]),
   type: Array,
   validator: (v) => v.every((_v) => Object.keys(Operator).includes(_v))
 });
@@ -306,55 +307,50 @@ const speed = defineModel('speed', {
 });
 
 /**
- * The roles of the operators.
+ * The keys of the roles of the operators.
  * @type {import('vue').ModelRef<OperatorRole[]>}
  */
 const roles = defineModel('roles', {
   default: [],
-  get: (roleKeys) => roleKeys.map((roleKey) => OperatorRole[roleKey]),
   type: Array,
   validator: (v) => v.every((_v) => Object.keys(OperatorRole).includes(_v))
 });
 
 /**
- * The squad of the operators.
- * @type {import('vue').ModelRef<Squad>}
+ * The key of the squad of the operators.
+ * @type {import('vue').ModelRef<String>}
  */
 const squad = defineModel('squad', {
-  get: (squadKey) => Squad[squadKey] || null,
   type: String,
   validator: (v) => Object.keys(Squad).includes(v)
 });
 
 /**
- * The primary weapons of the operators.
- * @type {import('vue').ModelRef<WeaponClass[]>}
+ * The keys of the primary weapons of the operators.
+ * @type {import('vue').ModelRef<String[]>}
  */
 const primaryWeapons = defineModel('primaryWeapons', {
   default: [],
-  get: (primaryWeaponKeys) => primaryWeaponKeys.map((primaryWeaponKey) => WeaponClass[primaryWeaponKey]),
   type: Array,
   validator: (v) => v.every((_v) => Object.keys(WeaponClass).includes(_v))
 });
 
 /**
- * The secondary weapons of the operators.
- * @type {import('vue').ModelRef<WeaponClass[]>}
+ * The keys of the secondary weapons of the operators.
+ * @type {import('vue').ModelRef<String[]>}
  */
 const secondaryWeapons = defineModel('secondaryWeapons', {
   default: [],
-  get: (secondaryWeaponKeys) => secondaryWeaponKeys.map((secondaryWeaponKey) => WeaponClass[secondaryWeaponKey]),
   type: Array,
   validator: (v) => v.every((_v) => Object.keys(WeaponClass).includes(_v))
 });
 
 /**
- * The gadgets of the operators.
- * @type {import('vue').ModelRef<Gadget[]>}
+ * The keys of the gadgets of the operators.
+ * @type {import('vue').ModelRef<String[]>}
  */
 const gadgets = defineModel('gadgets', {
   default: [],
-  get: (gadgetKeys) => gadgetKeys.map((gadgetKey) => Gadget[gadgetKey]),
   type: Array,
   validator: (v) => v.every((_v) => Object.keys(Gadget).includes(_v))
 });
@@ -364,18 +360,20 @@ const gadgets = defineModel('gadgets', {
  * @type {import('vue').ComputedRef<Operator[]>}
  */
 const bannableOperators = computed(() => {
-  if (preset.value) return preset.value.allowedOperators;
+  if (preset.value) return Playlist[preset.value].allowedOperators;
   return Operator.LIST;
 });
 
 // Watch for preset updates
-watch(preset, (newPlaylist) => {
-  if (newPlaylist) {
+watch(preset, (playlistKey) => {
+  if (playlistKey) {
+    const playlist = Playlist[playlistKey];
+
     // Set duplicate picks
-    pickDuplicates.value = newPlaylist.isArcade;
+    pickDuplicates.value = playlist.isArcade;
 
     // Remove playlist banned operators from manual ban list
-    bans.value = bans.value.filter((operator) => !newPlaylist.bannedOperators.includes(operator));
+    bans.value = bans.value.filter((operatorKey) => !playlist.bannedOperators.includes(Operator[operatorKey]));
   }
 });
 
@@ -401,14 +399,14 @@ function resetSettings() {
   pickDuplicates.value = false;
 
   // Operator filters
-  bans.value = [];
+  bans.value.length = 0;
   speed.value = [1, 2, 3];
-  roles.value = [];
+  roles.value.length = 0;
   squad.value = null;
 
   // Loadout filters
-  primaryWeapons.value = [];
-  secondaryWeapons.value = [];
-  gadgets.value = [];
+  primaryWeapons.value.length = 0;
+  secondaryWeapons.value.length = 0;
+  gadgets.value.length = 0;
 }
 </script>

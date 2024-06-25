@@ -1,6 +1,6 @@
 <template>
   <v-select
-    v-model="squad"
+    v-model="picked"
     clearable
     :items="Squad.LIST"
     item-title="name"
@@ -10,10 +10,10 @@
     <!-- Squad Avatar -->
     <template
       #append-inner
-      v-if="squad"
+      v-if="picked"
     >
       <v-avatar
-        :image="Squad[squad].emblem"
+        :image="Squad[picked].emblem"
         rounded="0"
         size="small"
       />
@@ -35,13 +35,14 @@
 </template>
 
 <script setup>
-import { shallowRef } from 'vue';
-
 import { Squad } from '@/models';
 
 /**
- * The key of the picked squad.
- * @type {import('vue').ShallowRef<String>}
+ * The key(s) of the picked squad(s);
+ * @type {import('vue').ModelRef<String>}
  */
-const squad = shallowRef(null);
+const picked = defineModel({
+  type: String,
+  validator: (v) => Object.keys(Squad).includes(v)
+});
 </script>

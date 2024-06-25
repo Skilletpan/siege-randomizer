@@ -1,6 +1,6 @@
 <template>
   <v-autocomplete
-    v-model="operator"
+    v-model="picked"
     v-model:search="search"
     auto-select-first
     clearable
@@ -14,10 +14,10 @@
     <!-- Operator Avatar -->
     <template
       #append-inner
-      v-if="operator && !multiple"
+      v-if="picked && !multiple"
     >
       <v-avatar
-        :image="Operator[operator].emblem"
+        :image="Operator[picked].emblem"
         rounded="0"
       />
     </template>
@@ -28,7 +28,7 @@
       v-if="multiple"
     >
       <template v-if="index === 0">
-        <template v-if="operator.length > 1">{{ operator.length }} selected</template>
+        <template v-if="picked.length > 1">{{ picked.length }} selected</template>
         <template v-else>{{ item.title }}</template>
       </template>
     </template>
@@ -62,6 +62,24 @@ import { computed, shallowRef, toRaw } from 'vue';
 import { Operator, Side } from '@/models';
 
 /**
+ * The key(s) of the picked operator(s).
+ * @type {import('vue').ModelRef<String | String[]>}
+ */
+const picked = defineModel({
+  default: (_props) => {
+    if (_props.multiple) return [];
+    return null;
+  },
+  type: [String, Array],
+  validator: (v, _props) => {
+    const keys = Object.keys(Operator);
+
+    if (_props.multiple) return v.every((_v) => keys.includes(_v));
+    return keys.includes(v);
+  }
+});
+
+/**
  * The props of the component.
  * @type {{ readonly items: Operator[], readonly multiple: boolean }}
  */
@@ -76,12 +94,6 @@ const props = defineProps({
   /** Whether multiple operators can be picked. */
   multiple: Boolean
 });
-
-/**
- * The key(s) of the picked operator(s).
- * @type {import('vue').ShallowRef<String | String[]>}
- */
-const operator = shallowRef(null);
 
 /**
  * The current search value.
