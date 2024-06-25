@@ -91,6 +91,7 @@ import { pickRandom } from '@/composables/randomizer';
 import { Side, Strat } from '@/models';
 import { useAppSettings } from '@/stores';
 
+// Register composables
 const AppSettings = useAppSettings();
 
 /**
