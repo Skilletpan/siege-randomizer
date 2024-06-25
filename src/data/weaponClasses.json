@@ -1,15 +1,53 @@
 {
-  "AR": "Assault Rifle",
-  "SMG": "Submachine Gun",
-  "LMG": "Light Machine Gun",
-  "SG": "Shotgun",
-  "SSG": "Slug Shotgun",
-  "DMR": "Marksman Rifle",
-  "MP": "Machine Pistol",
-  "HG": "Handgun",
-  "DE": "Deagle",
-  "REV": "Revolver",
-  "BAI": "Bailiff",
-  "HC": "Hand Cannon",
-  "SH": "Shield"
+  "AR": {
+    "name": "Assault Rifle",
+    "slot": "PRIMARY"
+  },
+  "SMG": {
+    "name": "Submachine Gun",
+    "slot": "PRIMARY"
+  },
+  "LMG": {
+    "name": "Light Machine Gun",
+    "slot": "PRIMARY"
+  },
+  "SG": {
+    "name": "Shotgun"
+  },
+  "SSG": {
+    "name": "Slug Shotgun",
+    "slot": "PRIMARY"
+  },
+  "DMR": {
+    "name": "Marksman Rifle",
+    "slot": "PRIMARY"
+  },
+  "MP": {
+    "name": "Machine Pistol",
+    "slot": "SECONDARY"
+  },
+  "HG": {
+    "name": "Handgun",
+    "slot": "SECONDARY"
+  },
+  "DE": {
+    "name": "Deagle",
+    "slot": "SECONDARY"
+  },
+  "REV": {
+    "name": "Revolver",
+    "slot": "SECONDARY"
+  },
+  "BAI": {
+    "name": "Bailiff",
+    "slot": "SECONDARY"
+  },
+  "HC": {
+    "name": "Hand Cannon",
+    "slot": "SECONDARY"
+  },
+  "SH": {
+    "name": "Shield",
+    "slot": "PRIMARY"
+  }
 }

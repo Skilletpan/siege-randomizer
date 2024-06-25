@@ -2,6 +2,25 @@
   "ATT": {
     "STRIKER": {
       "name": "Striker",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE",
+          "EMP",
+          "FRAG",
+          "HARDBREACH",
+          "SMOKE",
+          "STUN"
+        ]
+      },
       "roles": [
         "SUPPORT"
       ],
@@ -9,6 +28,20 @@
     },
     "SLEDGE": {
       "name": "Sledge",
+      "loadout": {
+        "primary": [
+          "SG",
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "FRAG",
+          "STUN",
+          "EMP"
+        ]
+      },
       "roles": [
         "BREACH",
         "ANTIGADGET"
@@ -18,6 +51,20 @@
     },
     "THATCHER": {
       "name": "Thatcher",
+      "loadout": {
+        "primary": [
+          "AR",
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "SUPPORT"
@@ -27,6 +74,20 @@
     },
     "ASH": {
       "name": "Ash",
+      "loadout": {
+        "primary": [
+          "AR",
+          "AR"
+        ],
+        "secondary": [
+          "HG",
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "BREACH",
         "FRONTLINE"
@@ -36,6 +97,20 @@
     },
     "THERMITE": {
       "name": "Thermite",
+      "loadout": {
+        "primary": [
+          "SG",
+          "AR"
+        ],
+        "secondary": [
+          "HG",
+          "HG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "STUN"
+        ]
+      },
       "roles": [
         "BREACH",
         "SUPPORT"
@@ -45,6 +120,21 @@
     },
     "TWITCH": {
       "name": "Twitch",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "REV"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -54,6 +144,20 @@
     },
     "MONTAGNE": {
       "name": "Montagne",
+      "loadout": {
+        "primary": [
+          "SH"
+        ],
+        "secondary": [
+          "HG",
+          "REV"
+        ],
+        "gadgets": [
+          "HARDBREACH",
+          "SMOKE",
+          "EMP"
+        ]
+      },
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -63,6 +167,21 @@
     },
     "GLAZ": {
       "name": "Glaz",
+      "loadout": {
+        "primary": [
+          "DMR"
+        ],
+        "secondary": [
+          "HG",
+          "HC",
+          "MP"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "FRAG",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -72,6 +191,22 @@
     },
     "FUZE": {
       "name": "Fuze",
+      "loadout": {
+        "primary": [
+          "SH",
+          "LMG",
+          "AR"
+        ],
+        "secondary": [
+          "HG",
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "HARDBREACH",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "ANTIGADGET"
       ],
@@ -80,6 +215,18 @@
     },
     "BLITZ": {
       "name": "Blitz",
+      "loadout": {
+        "primary": [
+          "SH"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "BREACH"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -89,6 +236,21 @@
     },
     "IQ": {
       "name": "IQ",
+      "loadout": {
+        "primary": [
+          "AR",
+          "AR",
+          "LMG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE",
+          "FRAG"
+        ]
+      },
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -98,6 +260,20 @@
     },
     "BUCK": {
       "name": "Buck",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR"
+        ],
+        "secondary": [
+          "HG",
+          "HC"
+        ],
+        "gadgets": [
+          "STUN",
+          "HARDBREACH"
+        ]
+      },
       "roles": [
         "BREACH",
         "SUPPORT"
@@ -107,6 +283,20 @@
     },
     "BLACKBEARD": {
       "name": "Blackbeard",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR"
+        ],
+        "secondary": [
+          "DE"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "STUN",
+          "FRAG"
+        ]
+      },
       "roles": [
         "SUPPORT"
       ],
@@ -115,6 +305,21 @@
     },
     "CAPITAO": {
       "name": "Capitão",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG"
+        ],
+        "secondary": [
+          "HG",
+          "HC"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "HARDBREACH",
+          "EMP"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -124,6 +329,20 @@
     },
     "HIBANA": {
       "name": "Hibana",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "MP"
+        ],
+        "gadgets": [
+          "STUN",
+          "BREACH"
+        ]
+      },
       "roles": [
         "BREACH",
         "FRONTLINE"
@@ -133,6 +352,21 @@
     },
     "JACKAL": {
       "name": "Jackal",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "INTEL",
         "MAPCONTROL"
@@ -142,6 +376,19 @@
     },
     "YING": {
       "name": "Ying",
+      "loadout": {
+        "primary": [
+          "LMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "HARDBREACH",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -151,6 +398,19 @@
     },
     "ZOFIA": {
       "name": "Zofia",
+      "loadout": {
+        "primary": [
+          "LMG",
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "BREACH",
         "ANTIGADGET"
@@ -160,6 +420,22 @@
     },
     "DOKKAEBI": {
       "name": "Dokkaebi",
+      "loadout": {
+        "primary": [
+          "DMR",
+          "SSG"
+        ],
+        "secondary": [
+          "MP",
+          "MP",
+          "HC"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "STUN",
+          "EMP"
+        ]
+      },
       "roles": [
         "INTEL",
         "MAPCONTROL"
@@ -169,6 +445,22 @@
     },
     "LION": {
       "name": "Lion",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR",
+          "SG"
+        ],
+        "secondary": [
+          "REV",
+          "HG"
+        ],
+        "gadgets": [
+          "STUN",
+          "CLAYMORE",
+          "FRAG"
+        ]
+      },
       "roles": [
         "INTEL",
         "MAPCONTROL"
@@ -178,6 +470,22 @@
     },
     "FINKA": {
       "name": "Finka",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "HG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "STUN",
+          "FRAG"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "SUPPORT"
@@ -187,6 +495,20 @@
     },
     "MAVERICK": {
       "name": "Maverick",
+      "loadout": {
+        "primary": [
+          "DMR",
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "STUN",
+          "CLAYMORE",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "BREACH",
         "FRONTLINE"
@@ -196,6 +518,20 @@
     },
     "NOMAD": {
       "name": "Nomad",
+      "loadout": {
+        "primary": [
+          "AR",
+          "AR"
+        ],
+        "secondary": [
+          "REV",
+          "HG"
+        ],
+        "gadgets": [
+          "STUN",
+          "BREACH"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -205,6 +541,21 @@
     },
     "GRIDLOCK": {
       "name": "Gridlock",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG"
+        ],
+        "secondary": [
+          "SG",
+          "HG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "EMP",
+          "FRAG"
+        ]
+      },
       "roles": [
         "SUPPORT",
         "MAPCONTROL"
@@ -214,6 +565,21 @@
     },
     "NOKK": {
       "name": "Nøkk",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "DE"
+        ],
+        "gadgets": [
+          "FRAG",
+          "HARDBREACH",
+          "EMP"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -223,6 +589,21 @@
     },
     "AMARU": {
       "name": "Amaru",
+      "loadout": {
+        "primary": [
+          "LMG",
+          "SG"
+        ],
+        "secondary": [
+          "MP",
+          "SG",
+          "HC"
+        ],
+        "gadgets": [
+          "HARDBREACH",
+          "STUN"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -232,6 +613,20 @@
     },
     "KALI": {
       "name": "Kali",
+      "loadout": {
+        "primary": [
+          "DMR"
+        ],
+        "secondary": [
+          "MP",
+          "MP",
+          "HG"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "BREACH"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "SUPPORT"
@@ -241,6 +636,20 @@
     },
     "IANA": {
       "name": "Iana",
+      "loadout": {
+        "primary": [
+          "AR",
+          "AR"
+        ],
+        "secondary": [
+          "HG",
+          "HC"
+        ],
+        "gadgets": [
+          "EMP",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "INTEL"
@@ -250,6 +659,19 @@
     },
     "ACE": {
       "name": "Ace",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BREACH",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "BREACH",
         "ANTIGADGET"
@@ -259,6 +681,20 @@
     },
     "ZERO": {
       "name": "Zero",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "HC"
+        ],
+        "gadgets": [
+          "HARDBREACH",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -268,6 +704,19 @@
     },
     "FLORES": {
       "name": "Flores",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "STUN",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -277,6 +726,20 @@
     },
     "OSA": {
       "name": "Osa",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SMG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "CLAYMORE",
+          "FRAG",
+          "EMP"
+        ]
+      },
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -286,6 +749,20 @@
     },
     "SENS": {
       "name": "Sens",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "HARDBREACH",
+          "CLAYMORE",
+          "FRAG"
+        ]
+      },
       "roles": [
         "SUPPORT",
         "MAPCONTROL"
@@ -295,6 +772,21 @@
     },
     "GRIM": {
       "name": "Grim",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "BAI"
+        ],
+        "gadgets": [
+          "EMP",
+          "CLAYMORE",
+          "HARDBREACH"
+        ]
+      },
       "roles": [
         "FRONTLINE",
         "MAPCONTROL"
@@ -304,6 +796,20 @@
     },
     "BRAVA": {
       "name": "Brava",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR"
+        ],
+        "secondary": [
+          "SG",
+          "HG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "CLAYMORE"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -313,6 +819,20 @@
     },
     "RAM": {
       "name": "Ram",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "STUN",
+          "SMOKE"
+        ]
+      },
       "roles": [
         "BREACH",
         "ANTIGADGET"
@@ -322,6 +842,19 @@
     },
     "DEIMOS": {
       "name": "Deimos",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "REV"
+        ],
+        "gadgets": [
+          "FRAG",
+          "HARDBREACH"
+        ]
+      },
       "roles": [
         "INTEL",
         "MAPCONTROL"
@@ -332,6 +865,25 @@
   "DEF": {
     "SENTRY": {
       "name": "Sentry",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "MP",
+          "SG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "CAMERA",
+          "SHIELD",
+          "BLOCKER",
+          "IMPACT",
+          "C4",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "SUPPORT"
       ],
@@ -339,6 +891,20 @@
     },
     "SMOKE": {
       "name": "Smoke",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "MP"
+        ],
+        "gadgets": [
+          "BARBED",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -348,6 +914,20 @@
     },
     "MUTE": {
       "name": "Mute",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "MP"
+        ],
+        "gadgets": [
+          "C4",
+          "CAMERA"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "CROWDCONTROL"
@@ -357,6 +937,21 @@
     },
     "CASTLE": {
       "name": "Castle",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "SG",
+          "HG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "SUPPORT"
@@ -366,6 +961,21 @@
     },
     "PULSE": {
       "name": "Pulse",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "HG"
+        ],
+        "gadgets": [
+          "C4",
+          "SHIELD",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -375,6 +985,22 @@
     },
     "DOC": {
       "name": "Doc",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "REV",
+          "BAI"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "BARBED"
+        ]
+      },
       "roles": [
         "SUPPORT"
       ],
@@ -383,6 +1009,22 @@
     },
     "ROOK": {
       "name": "Rook",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "REV",
+          "HG"
+        ],
+        "gadgets": [
+          "BEEPER",
+          "IMPACT",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "SUPPORT"
       ],
@@ -391,6 +1033,20 @@
     },
     "KAPKAN": {
       "name": "Kapkan",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "HG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "C4"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -400,6 +1056,22 @@
     },
     "TACHANKA": {
       "name": "Tachanka",
+      "loadout": {
+        "primary": [
+          "LMG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "HG",
+          "MP"
+        ],
+        "gadgets": [
+          "BARBED",
+          "SHIELD",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "CROWDCONTROL"
@@ -409,6 +1081,19 @@
     },
     "JAGER": {
       "name": "Jäger",
+      "loadout": {
+        "primary": [
+          "SG",
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "SUPPORT"
@@ -418,6 +1103,19 @@
     },
     "BANDIT": {
       "name": "Bandit",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "C4"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "ANTIGADGET"
@@ -427,6 +1125,20 @@
     },
     "FROST": {
       "name": "Frost",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "SHIELD"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -436,6 +1148,19 @@
     },
     "VALKYRIE": {
       "name": "Valkyrie",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "DE"
+        ],
+        "gadgets": [
+          "IMPACT",
+          "C4"
+        ]
+      },
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -445,6 +1170,20 @@
     },
     "CAVEIRA": {
       "name": "Caveira",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "IMPACT",
+          "BEEPER",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "INTEL",
         "CROWDCONTROL"
@@ -454,6 +1193,20 @@
     },
     "ECHO": {
       "name": "Echo",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "MP"
+        ],
+        "gadgets": [
+          "IMPACT",
+          "SHIELD"
+        ]
+      },
       "roles": [
         "INTEL",
         "CROWDCONTROL"
@@ -463,6 +1216,20 @@
     },
     "MIRA": {
       "name": "Mira",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "BEEPER",
+          "C4"
+        ]
+      },
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -472,6 +1239,20 @@
     },
     "LESION": {
       "name": "Lesion",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "SG"
+        ],
+        "gadgets": [
+          "BLOCKER",
+          "CAMERA"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -481,6 +1262,20 @@
     },
     "ELA": {
       "name": "Ela",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "SHIELD",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "CROWDCONTROL",
         "TRAPPER"
@@ -490,6 +1285,20 @@
     },
     "VIGIL": {
       "name": "Vigil",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SSG"
+        ],
+        "secondary": [
+          "MP",
+          "MP"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "IMPACT"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "CROWDCONTROL"
@@ -499,6 +1308,21 @@
     },
     "MAESTRO": {
       "name": "Maestro",
+      "loadout": {
+        "primary": [
+          "LMG",
+          "SSG"
+        ],
+        "secondary": [
+          "BAI",
+          "REV"
+        ],
+        "gadgets": [
+          "BARBED",
+          "IMPACT",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -508,6 +1332,20 @@
     },
     "ALIBI": {
       "name": "Alibi",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SSG"
+        ],
+        "secondary": [
+          "REV",
+          "BAI"
+        ],
+        "gadgets": [
+          "BEEPER",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "INTEL",
         "TRAPPER"
@@ -517,6 +1355,21 @@
     },
     "CLASH": {
       "name": "Clash",
+      "loadout": {
+        "primary": [
+          "SH"
+        ],
+        "secondary": [
+          "SG",
+          "MP",
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "IMPACT",
+          "SHIELD"
+        ]
+      },
       "roles": [
         "INTEL",
         "CROWDCONTROL"
@@ -526,6 +1379,21 @@
     },
     "KAID": {
       "name": "Kaid",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SSG"
+        ],
+        "secondary": [
+          "REV",
+          "REV"
+        ],
+        "gadgets": [
+          "C4",
+          "BARBED",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "ANTIGADGET"
@@ -535,6 +1403,19 @@
     },
     "MOZZIE": {
       "name": "Mozzie",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SMG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "C4"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -544,6 +1425,21 @@
     },
     "WARDEN": {
       "name": "Warden",
+      "loadout": {
+        "primary": [
+          "SG",
+          "SMG"
+        ],
+        "secondary": [
+          "HG",
+          "MP"
+        ],
+        "gadgets": [
+          "SHIELD",
+          "C4",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "INTEL"
@@ -553,6 +1449,20 @@
     },
     "GOYO": {
       "name": "Goyo",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SSG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BEEPER",
+          "CAMERA",
+          "IMPACT"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -562,6 +1472,20 @@
     },
     "WAMAI": {
       "name": "Wamai",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SMG"
+        ],
+        "secondary": [
+          "REV",
+          "HG"
+        ],
+        "gadgets": [
+          "IMPACT",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "TRAPPER"
@@ -571,6 +1495,20 @@
     },
     "ORYX": {
       "name": "Oryx",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "BAI",
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "SUPPORT"
       ],
@@ -579,6 +1517,19 @@
     },
     "MELUSI": {
       "name": "Melusi",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "IMPACT"
+        ]
+      },
       "roles": [
         "INTEL",
         "CROWDCONTROL"
@@ -588,6 +1539,19 @@
     },
     "ARUNI": {
       "name": "Aruni",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "DMR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "CAMERA"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "ANTIGADGET"
@@ -597,6 +1561,21 @@
     },
     "THUNDERBIRD": {
       "name": "Thunderbird",
+      "loadout": {
+        "primary": [
+          "AR",
+          "SG"
+        ],
+        "secondary": [
+          "MP",
+          "HG"
+        ],
+        "gadgets": [
+          "BARBED",
+          "CAMERA",
+          "SHIELD"
+        ]
+      },
       "roles": [
         "SUPPORT"
       ],
@@ -605,6 +1584,20 @@
     },
     "THORN": {
       "name": "Thorn",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "HG",
+          "MP"
+        ],
+        "gadgets": [
+          "SHIELD",
+          "BARBED"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "TRAPPER"
@@ -614,6 +1607,19 @@
     },
     "AZAMI": {
       "name": "Azami",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SSG"
+        ],
+        "secondary": [
+          "DE"
+        ],
+        "gadgets": [
+          "BARBED",
+          "IMPACT"
+        ]
+      },
       "roles": [
         "ANTIENTRY",
         "SUPPORT"
@@ -623,6 +1629,19 @@
     },
     "SOLIS": {
       "name": "Solis",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "MP"
+        ],
+        "gadgets": [
+          "BEEPER",
+          "CAMERA"
+        ]
+      },
       "roles": [
         "INTEL",
         "SUPPORT"
@@ -632,6 +1651,20 @@
     },
     "FENRIR": {
       "name": "Fenrir",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SG"
+        ],
+        "secondary": [
+          "BAI",
+          "HG"
+        ],
+        "gadgets": [
+          "CAMERA",
+          "BLOCKER"
+        ]
+      },
       "roles": [
         "CROWDCONTROL",
         "TRAPPER"
@@ -641,6 +1674,19 @@
     },
     "TUBARAO": {
       "name": "Tubarão",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "DMR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "C4",
+          "BEEPER"
+        ]
+      },
       "roles": [
         "ANTIGADGET",
         "CROWDCONTROL"
