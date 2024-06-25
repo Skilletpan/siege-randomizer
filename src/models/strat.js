@@ -1,4 +1,5 @@
 import RAW_STRATS from '@/data/strats';
+import findItems from '@/utils/findItems';
 
 import Operator from './operator';
 import Side from './side';
@@ -11,20 +12,18 @@ export default class Strat {
   #rules;
   #sideKey;
 
-  #operatorKeys;
+  #operatorKeys = [];
+  #operatorFilters = [];
   #operators;
-  #requiredOperators;
-  #allowedOperators;
-  #bannedOperators;
 
   /**
-   * @param {number}            id                    The ID of the strat.
-   * @param {Object}            stratData             The raw strat data.
-   * @param {string}            stratData.title       The title of the strat.
-   * @param {string}            stratData.tagline     The tagline of the strat.
-   * @param {(string|Object)[]} stratData.rules       The rules of the strat.
-   * @param {string}            [stratData.side]      The key of the side of the strat.
-   * @param {string[]}          [stratData.operators] The keys of the operators specified in the strat.
+   * @param {number}              id                    The ID of the strat.
+   * @param {Object}              stratData             The raw strat data.
+   * @param {string}              stratData.title       The title of the strat.
+   * @param {string}              stratData.tagline     The tagline of the strat.
+   * @param {(string|Object)[]}   stratData.rules       The rules of the strat.
+   * @param {string}              [stratData.side]      The key of the side of the strat.
+   * @param {(string|Object[])[]} [stratData.operators] The keys of the operators specified in the strat.
    */
   constructor(id, stratData) {
     this.#id = id;
@@ -32,7 +31,11 @@ export default class Strat {
     this.#tagline = stratData.tagline;
     this.#rules = stratData.rules.map((rule) => typeof rule === 'string' ? { text: rule } : rule);
     this.#sideKey = stratData.side;
-    this.#operatorKeys = Array.from(stratData.operators || []);
+
+    (stratData.operators || []).forEach((item) => {
+      if (typeof item === 'string') this.#operatorKeys.push(item);
+      else this.#operatorFilters.push(item);
+    });
   }
 
   /** @returns {number} The ID of the strat. */
@@ -56,64 +59,84 @@ export default class Strat {
   /** @returns {Side} The side of the strat. */
   get side() { return Side[this.#sideKey]; }
 
-  /** @returns {Operator[]} The operators required by the strat. */
+  /** @returns {{ ATT: Operator[], DEF: Operator[] }} The operators required by the strat. */
   get requiredOperators() {
-    // Map operators on first call
-    if (!this.#operators) this.#operators = Operator.findOperatorsByList(this.#operatorKeys);
-
-    // Map required operators on first call
-    if (!this.#requiredOperators) {
-      this.#requiredOperators = {};
-      if (!this.#operators.required) return this.#requiredOperators;
-
-      this.#operators.required.forEach((operator) => {
-        // Add operator to list
-        if (!this.#requiredOperators[operator.side.key]) this.#requiredOperators[operator.side.key] = [];
-        this.#requiredOperators[operator.side.key].push(operator);
-      });
-    }
-
-    return this.#requiredOperators;
+    // Fetch operators on first call
+    if (!this.#operators) this.#getOperators();
+    return this.#operators.required;
   }
 
-  /** @returns {Operator[]} The operators allowed in the strat. */
+  /** @returns {{ ATT: Operator[], DEF: Operator[] }} The operators allowed in the strat. */
   get allowedOperators() {
-    // Map operators on first call
-    if (!this.#operators) this.#operators = Operator.findOperatorsByList(this.#operatorKeys);
-
-    // Map allowed operators on first call
-    if (!this.#allowedOperators) {
-      this.#allowedOperators = {};
-      if (!this.#operators.allowed) return this.#allowedOperators;
-
-      this.#operators.allowed.forEach((operator) => {
-        // Add operator to list
-        if (!this.#allowedOperators[operator.side.key]) this.#allowedOperators[operator.side.key] = [];
-        this.#allowedOperators[operator.side.key].push(operator);
-      });
-    }
-
-    return this.#allowedOperators;
+    // Fetch operators on first call
+    if (!this.#operators) this.#getOperators();
+    return this.#operators.allowed;
   }
 
-  /** @returns {Operator[]} The operators banned from the strat. */
+  /** @returns {{ ATT: Operator[], DEF: Operator[] }} The operators banned from the strat. */
   get bannedOperators() {
-    // Map operators on first call
-    if (!this.#operators) this.#operators = Operator.findOperatorsByList(this.#operatorKeys);
+    // Fetch operators on first call
+    if (!this.#operators) this.#getOperators();
+    return this.#operators.banned;
+  }
 
-    // Map banned operators on first call
-    if (!this.#bannedOperators) {
-      this.#bannedOperators = {};
-      if (!this.#operators.banned) return this.#bannedOperators;
+  /** Builds the `required`, `allowed` and `banned` operator lists. */
+  #getOperators() {
+    this.#operators = {
+      required: { [Side.ATT.key]: [], [Side.DEF.key]: [] },
+      allowed: { [Side.ATT.key]: [], [Side.DEF.key]: [] },
+      banned: { [Side.ATT.key]: [], [Side.DEF.key]: [] }
+    };
 
-      this.#operators.banned.forEach((operator) => {
-        // Add operator to list
-        if (!this.#bannedOperators[operator.side.key]) this.#bannedOperators[operator.side.key] = [];
-        this.#bannedOperators[operator.side.key].push(operator);
-      });
+    const requiredOperators = [];
+    const allowedOperators = [];
+    const bannedOperators = [];
+    const filteredOperators = [];
+
+    // Map operator keys
+    this.#operatorKeys.forEach((key) => {
+      if (key.startsWith('*')) requiredOperators.push(key.slice(1));
+      else if (key.startsWith('!')) bannedOperators.push(key.slice(1));
+      else allowedOperators.push(key);
+    });
+
+    // Run operator filters
+    if (this.#operatorFilters.length) {
+      filteredOperators.push(...findItems(Operator.LIST, this.#operatorFilters));
     }
 
-    return this.#bannedOperators;
+    // Build operator lists
+    Operator.LIST.forEach((operator) => {
+      // Find required operators
+      if (this.#operatorKeys.includes(`*${operator.key}`)) {
+        this.#operators.required[operator.side.key].push(operator);
+        return;
+      }
+
+      // Find explicitly banned operators
+      if (bannedOperators.length) {
+        if (bannedOperators.includes(operator.key)) this.#operators.banned[operator.side.key].push(operator);
+        else this.#operators.allowed[operator.side.key].push(operator);
+        return;
+      }
+
+      // Find explicitly allowed operators
+      if (allowedOperators.length) {
+        if (allowedOperators.includes(operator.key)) this.#operators.allowed[operator.side.key].push(operator);
+        else this.#operators.banned[operator.side.key].push(operator);
+        return;
+      }
+
+      // Find filtered operators
+      if (this.#operatorFilters.length) {
+        if (filteredOperators.includes(operator)) this.#operators.allowed[operator.side.key].push(operator);
+        else this.#operators.banned[operator.side.key].push(operator);
+        return;
+      }
+
+      // Operator is implicitly allowed
+      this.#operators.allowed[operator.side.key].push(operator);
+    });
   }
 
   /** @returns {Strat[]} A list of all strats. */
