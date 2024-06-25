@@ -3,6 +3,12 @@ import RAW_PLAYLISTS from '@/data/playlists';
 import SiegeMap from './map';
 import Operator from './operator';
 
+/**
+ * @typedef Category The category keys of the playlist.
+ * 
+ * @type {"TACTICAL"|"QUICKPLAY"|"ARCADE"|"AI"|"TRAINING"}
+ */
+
 export default class Playlist {
   // Instance Properties
   #key;
@@ -13,12 +19,12 @@ export default class Playlist {
   #operators;
 
   /**
-   * @param {string}                            key                      The key of the playlist.
-   * @param {"TACTICAL"|"QUICKPLAY"|"TRAINING"} category                 The category of the playlist.
-   * @param {Object}                            playlistData             The raw playlist data.
-   * @param {string}                            playlistData.name        The name of the playlist.
-   * @param {string[]}                          playlistData.maps        The keys of the maps in the playlist.
-   * @param {string[]}                          [playlistData.operators] The keys of the operators available in / banned from the playlist.
+   * @param {string}   key                      The key of the playlist.
+   * @param {Category} category                 The category of the playlist.
+   * @param {Object}   playlistData             The raw playlist data.
+   * @param {string}   playlistData.name        The name of the playlist.
+   * @param {string[]} playlistData.maps        The keys of the maps in the playlist.
+   * @param {string[]} [playlistData.operators] The keys of the operators available in / banned from the playlist.
    */
   constructor(key, category, playlistData) {
     this.#key = key;
@@ -34,20 +40,23 @@ export default class Playlist {
   /** @returns {string} The name of the playlist. */
   get name() { return this.#name; }
 
-  /** @returns {"TACTICAL"|"QUICKPLAY"|"TRAINING"} The category of the playlist. */
+  /** @returns {Category} The category of the playlist. */
   get category() { return this.#category; }
 
   /** @returns {boolean} Whether this playlist belongs to the `TACTICAL` category. */
   get isTactical() { return this.#category === 'TACTICAL'; }
 
   /** @returns {boolean} Whether this playlist belongs to the `QUICKPLAY` category. */
-  get isQuickplay() { return this.#category === 'QUICKPLAY'; }
+  get isQuickplay() { return this.#category === 'QUICKPLAY' || this.#category === 'ARCADE'; }
 
-  /** @returns {boolean} Whether this playlist is an arcade playlist. */
-  get isArcade() { return this.#category === 'QUICKPLAY' && this !== Playlist.QUICKMATCH; }
+  /** @returns {boolean} Whether this playlist is an Arcade playlist. */
+  get isArcade() { return this.#category === 'ARCADE'; }
 
   /** @returns {boolean} Whether this playlist belongs to the `TRAINING` category. */
-  get isTraining() { return this.#category === 'TRAINING'; }
+  get isTraining() { return this.#category === 'TRAINING' || this.#category === 'AI'; }
+
+  /** @returns {boolean} Whether is playlist is a Versus AI playlist. */
+  get isVersusAI() { return this.#category === 'AI'; }
 
   /** @returns {SiegeMap[]} The maps in the playlist. */
   get maps() { return this.#mapKeys.map((key) => SiegeMap[key]); }

@@ -92,7 +92,9 @@
         "ALPHA",
         "BRAVO"
       ]
-    },
+    }
+  },
+  "ARCADE": {
     "ROULETTE": {
       "name": "Weapon Roulette",
       "maps": [
@@ -178,7 +180,7 @@
       ]
     }
   },
-  "TRAINING": {
+  "AI": {
     "AI_EASY": {
       "name": "Versus AI (Beginner)",
       "maps": [
@@ -235,7 +237,9 @@
         "ACE",
         "DEIMOS"
       ]
-    },
+    }
+  },
+  "TRAINING": {
     "LANDMARK": {
       "name": "Landmark Drill",
       "maps": [
