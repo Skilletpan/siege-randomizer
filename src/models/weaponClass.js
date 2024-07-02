@@ -4,14 +4,18 @@ export default class WeaponClass {
   // Instance properties
   #key;
   #name;
+  #slot;
 
   /**
-   * @param {string} key  The key of the weapon class.
-   * @param {string} name The name of the weapon class.
+   * @param {string}                key               The key of the weapon class.
+   * @param {Object}                weaponData        The raw weapon class data.
+   * @param {string}                weaponData.name   The name of the weapon class.
+   * @param {"PRIMARY"|"SECONDARY"} [weaponData.slot] The slot of the weapon class.
    */
-  constructor(key, name) {
+  constructor(key, weaponData) {
     this.#key = key;
-    this.#name = name;
+    this.#name = weaponData.name;
+    this.#slot = weaponData.slot;
   }
 
   /** @returns {string} The key of the weapon class. */
@@ -19,6 +23,12 @@ export default class WeaponClass {
 
   /** @returns {string} The name of the weapon class. */
   get name() { return this.#name; }
+
+  /** @returns {boolean} Whether the weapon class is a primary weapon. */
+  get isPrimary() { return !this.#slot || this.#slot === 'PRIMARY'; }
+
+  /** @returns {boolean} Whether the weapon class is a secondary weapon. */
+  get isSecondary() { return !this.#slot || this.#slot === 'SECONDARY'; }
 
   /** @returns {WeaponClass[]} A list of all weapon classes. */
   static get LIST() { return Object.values(WeaponClass); }

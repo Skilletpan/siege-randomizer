@@ -1,15 +1,18 @@
 import RAW_OPERATORS from '@/data/operators';
 import loadImage from '@/utils/loadImage';
 
+import Gadget from './gadget';
 import OperatorRole from './operatorRole';
 import Side from './side';
 import Squad from './squad';
+import WeaponClass from './weaponClass';
 
 export default class Operator {
   // Instance properties
   #key;
   #name;
   #sideKey;
+  #loadoutKeys;
   #roleKeys;
   #speed;
   #squadKey;
@@ -19,35 +22,30 @@ export default class Operator {
   #easterEggs;
 
   /**
-   * @param {string}   key                  The key of the operator.
-   * @param {string}   side                 The key of the side of the operator.
-   * @param {Object}   operatorData         The raw operator data.
-   * @param {string}   operatorData.name    The name of the operator.
-   * @param {string[]} operatorData.roles   The keys of the roles of the operator.
-   * @param {number}   operatorData.speed   The speed of the operator.
-   * @param {string}   [operatorData.squad] The key of the squad of the operator.
+   * @param {string}   key                            The key of the operator.
+   * @param {string}   side                           The key of the side of the operator.
+   * @param {Object}   operatorData                   The raw operator data.
+   * @param {string}   operatorData.name              The name of the operator.
+   * @param {Object}   operatorData.loadout           The keys of the loadout items of the operator.
+   * @param {string[]} operatorData.loadout.primary   The keys of the primary weapon classes of the operator.
+   * @param {string[]} operatorData.loadout.secondary The keys of the secondary weapon classes of the operator.
+   * @param {string[]} operatorData.loadout.gadgets   The keys of the gadgets of the operator.
+   * @param {string[]} operatorData.roles             The keys of the roles of the operator.
+   * @param {number}   operatorData.speed             The speed of the operator.
+   * @param {string}   [operatorData.squad]           The key of the squad of the operator.
    */
   constructor(key, side, operatorData) {
     this.#key = key;
     this.#name = operatorData.name;
     this.#sideKey = side;
+    this.#loadoutKeys = operatorData.loadout;
     this.#roleKeys = Array.from(operatorData.roles);
     this.#speed = operatorData.speed;
     this.#squadKey = operatorData.squad;
 
     // Load images
-    const imageKey = key.replace(/_(ATT|DEF)/, '');
-    this.#emblem = loadImage('emblems', `${imageKey}.png`);
-    this.#portrait = loadImage('portraits', `${imageKey}.png`);
-    this.#easterEggs = [];
-
-    // Find all easter egg portraits
-    for (let counter = 1; ; counter++) {
-      const url = loadImage('portraits', `${imageKey}_${counter}.png`);
-
-      if (url) this.#easterEggs.push(url);
-      else break;
-    }
+    this.#emblem = loadImage('emblems', `${key}.png`);
+    this.#portrait = loadImage('portraits', `${key}.png`);
   }
 
   /** @returns {string} The key of the operator. */
@@ -56,8 +54,17 @@ export default class Operator {
   /** @returns {string} The name of the operator. */
   get name() { return this.#name; }
 
-  /** @returns {string} The side of the operator. */
+  /** @returns {Side} The side of the operator. */
   get side() { return Side[this.#sideKey]; }
+
+  /** @returns {{ primary: WeaponClass[], secondary: WeaponClass[], gadgets: Gadget[] }} The loadout of the operator. */
+  get loadout() {
+    return {
+      primary: this.#loadoutKeys.primary.map((key) => WeaponClass[key]),
+      secondary: this.#loadoutKeys.secondary.map((key) => WeaponClass[key]),
+      gadgets: this.#loadoutKeys.gadgets.map((key) => Gadget[key])
+    };
+  }
 
   /** @returns {OperatorRole[]} The roles of the operator. */
   get roles() { return this.#roleKeys.map((key) => OperatorRole[key]); }
@@ -83,6 +90,19 @@ export default class Operator {
    * @returns {string} The URL of a randomly picked portrait of the operator.
    */
   easterEggPortrait() {
+    // Look for easter egg portraits on first call
+    if (!this.#easterEggs) {
+      this.#easterEggs = [];
+
+      // Find all easter egg portraits
+      for (let counter = 1; ; counter++) {
+        const url = loadImage('portraits', `${this.#key}_${counter}.png`);
+  
+        if (url) this.#easterEggs.push(url);
+        else break;
+      }
+    }
+  
     // Return easter egg portrait 1 in 50 times
     if (this.#easterEggs.length > 0 && Math.floor(Math.random() * 50) === 0) {
       return this.#easterEggs[Math.floor(Math.random() * this.#easterEggs.length)];
