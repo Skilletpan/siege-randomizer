@@ -1,48 +1,65 @@
 <template>
   <v-card>
     <!-- Operator Portrait -->
-    <v-img
-      alt="Operator portrait"
-      cover
-      :src="{ aspect: 3 / 5, src: portrait }"
-      v-bind="portraitBackground"
-    >
-      <div
-        v-if="!!operator"
-        class="d-flex flex-column h-100 justify-end"
-      >
-        <!-- Operator Emblem -->
-        <v-avatar
-          class="align-self-center portrait-emblem"
-          :image="operator.emblem"
-          rounded="0"
-        />
-
-        <v-card-item class="portrait-text py-2 text-center">
-          <!-- Operator Name -->
-          <v-card-title
-            class="font-weight-black"
-            :style="{ color: AppSettings.colors[operator.side.key] }"
+    <v-hover :disabled="!onRepick">
+      <template #default="{ isHovering, props: p }">
+        <v-img
+          alt="Operator portrait"
+          cover
+          :src="{ aspect: 3 / 5, src: portrait }"
+          :style="portraitBackground"
+          v-bind="p"
+        >
+          <div
+            v-if="!!operator"
+            class="d-flex flex-column h-100"
           >
-            {{ operator.name }}
-          </v-card-title>
+            <!-- Repick Button -->
+            <v-btn
+              v-show="isHovering"
+              class="align-self-end ma-2"
+              color="red"
+              density="comfortable"
+              icon="mdi-refresh"
+              @click.stop="$emit('repick')"
+            />
 
-          <!-- Player Name -->
-          <v-card-subtitle v-if="player">{{ player }}</v-card-subtitle>
-        </v-card-item>
-      </div>
+            <v-spacer />
 
-      <!-- Randomize Icon -->
-      <div
-        v-else
-        class="align-center d-flex flex-column h-100 justify-center portrait-randomize-icon-background"
-      >
-        <v-icon
-          icon="$randomize"
-          size="80"
-        />
-      </div>
-    </v-img>
+            <!-- Operator Emblem -->
+            <v-avatar
+              class="align-self-center portrait-emblem"
+              :image="operator.emblem"
+              rounded="0"
+            />
+
+            <v-card-item class="portrait-text py-2 text-center">
+              <!-- Operator Name -->
+              <v-card-title
+                class="font-weight-black"
+                :style="{ color: AppSettings.colors[operator.side.key] }"
+              >
+                {{ operator.name }}
+              </v-card-title>
+
+              <!-- Player Name -->
+              <v-card-subtitle v-if="player">{{ player }}</v-card-subtitle>
+            </v-card-item>
+          </div>
+
+          <!-- Randomize Icon -->
+          <div
+            v-else
+            class="align-center d-flex flex-column h-100 justify-center portrait-randomize-icon-background"
+          >
+            <v-icon
+              icon="$randomize"
+              size="80"
+            />
+          </div>
+        </v-img>
+      </template>
+    </v-hover>
 
     <!-- Operator Details -->
     <template v-if="detailed && !!operator">
@@ -178,7 +195,10 @@ const props = defineProps({
   detailed: { type: Boolean },
 
   /** The player the operator is assigned to. */
-  player: { type: String }
+  player: { type: String },
+
+  /** The function to run when the repick button is pressed. */
+  onRepick: { type: Function }
 });
 
 /**
@@ -203,11 +223,9 @@ const portraitBackground = computed(() => {
 
   // Set a random map thumbnail as portrait background
   return {
-    style: {
-      backgroundImage: `url(${SiegeMap.random().thumbnail})`,
-      backgroundPosition: 'center',
-      backgroundSize: 'cover'
-    }
+    backgroundImage: `url(${SiegeMap.random().thumbnail})`,
+    backgroundPosition: 'center',
+    backgroundSize: 'cover'
   };
 });
 
