@@ -17,7 +17,7 @@
             <!-- Repick Button -->
             <v-btn
               v-show="isHovering"
-              class="align-self-end ma-2"
+              class="align-self-end mr-2 mt-2"
               color="red"
               density="comfortable"
               icon="mdi-refresh"
