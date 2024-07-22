@@ -97,12 +97,12 @@ export default class Operator {
       // Find all easter egg portraits
       for (let counter = 1; ; counter++) {
         const url = loadImage('portraits', `${this.#key}_${counter}.png`);
-  
+
         if (url) this.#easterEggs.push(url);
         else break;
       }
     }
-  
+
     // Return easter egg portrait 1 in 50 times
     if (this.#easterEggs.length > 0 && Math.floor(Math.random() * 50) === 0) {
       return this.#easterEggs[Math.floor(Math.random() * this.#easterEggs.length)];

@@ -19,30 +19,8 @@
         />
       </v-list-item>
 
-      <!-- Pick Duplicates -->
-      <v-list-item
-        :disabled="!!preset"
-        :subtitle="preset ? 'Set by Playlist' : null"
-        title="Allow Duplicate Picks"
-        @click="pickDuplicates = !pickDuplicates"
-      >
-        <template #prepend>
-          <v-list-item-action>
-            <v-switch
-              v-model="pickDuplicates"
-              color="primary"
-              density="comfortable"
-              hide-details
-            />
-          </v-list-item-action>
-        </template>
-      </v-list-item>
-
       <!-- Pick Amount -->
-      <v-list-item
-        :class="{ 'mb-2': Players.currentPlayers.length === 0 }"
-        :disabled="useSquad"
-      >
+      <v-list-item :disabled="useSquad">
         <v-card color="#FFFFFF10">
           <v-label
             class="ml-4 text-caption"
@@ -66,6 +44,52 @@
             </v-btn>
           </v-btn-toggle>
         </v-card>
+      </v-list-item>
+
+      <!-- Repick Cooldown -->
+      <v-list-item>
+        <v-card color="#FFFFFF10">
+          <v-label
+            class="ml-4 text-caption"
+            text="Repick Cooldown"
+          />
+          <v-btn-toggle
+            v-model="repickCooldown"
+            class="d-flex flex-row rounded-t-0"
+            color="primary"
+            density="compact"
+            mandatory
+            variant="text"
+          >
+            <v-btn
+              v-for="amount in [0, 1, 3, 5, 10]"
+              :key="amount"
+              class="flex-grow-1"
+              :icon="`mdi-numeric-${amount}`"
+              :value="amount"
+            >
+            </v-btn>
+          </v-btn-toggle>
+        </v-card>
+      </v-list-item>
+
+      <!-- Pick Duplicates -->
+      <v-list-item
+        :disabled="!!preset"
+        :subtitle="preset ? 'Set by Playlist' : null"
+        title="Allow Duplicate Picks"
+        @click="pickDuplicates = !pickDuplicates"
+      >
+        <template #prepend>
+          <v-list-item-action>
+            <v-switch
+              v-model="pickDuplicates"
+              color="primary"
+              density="comfortable"
+              hide-details
+            />
+          </v-list-item-action>
+        </template>
       </v-list-item>
 
       <!-- Use Squad -->
@@ -244,12 +268,6 @@ const preset = defineModel('preset', {
 });
 
 /**
- * Whether duplicate operator picks are allowed.
- * @type {import('vue').ModelRef<Boolean>}
- */
-const pickDuplicates = defineModel('pickDuplicates', { type: Boolean });
-
-/**
  * The amount of operators to pick.
  * @type {import('vue').ModelRef<Number>}
  */
@@ -257,6 +275,21 @@ const pickAmount = defineModel('pickAmount', {
   default: 1,
   type: Number
 });
+
+/**
+ * The amount of picks until an operator can be picked again for the same player.
+ * @type {import('vue').ModelRef<Number>}
+ */
+const repickCooldown = defineModel('repickCooldown', {
+  default: 5,
+  type: Number
+});
+
+/**
+ * Whether duplicate operator picks are allowed.
+ * @type {import('vue').ModelRef<Boolean>}
+ */
+const pickDuplicates = defineModel('pickDuplicates', { type: Boolean });
 
 /**
  * Whether to use the current squad to determine the pick amount.
@@ -374,6 +407,7 @@ watchEffect(() => {
 function resetSettings() {
   // Picker settings
   preset.value = null;
+  repickCooldown.value = 5;
   pickDuplicates.value = false;
 
   // Operator filters
