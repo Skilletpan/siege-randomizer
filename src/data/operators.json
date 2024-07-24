@@ -266,8 +266,7 @@
           "DMR"
         ],
         "secondary": [
-          "HG",
-          "HC"
+          "HG"
         ],
         "gadgets": [
           "STUN",
@@ -1211,7 +1210,7 @@
         "INTEL",
         "CROWDCONTROL"
       ],
-      "speed": 2,
+      "speed": 1,
       "squad": "VIPERSTRIKE"
     },
     "MIRA": {
@@ -1273,7 +1272,7 @@
         "gadgets": [
           "BARBED",
           "SHIELD",
-          "BLOCKER"
+          "IMPACT"
         ]
       },
       "roles": [
