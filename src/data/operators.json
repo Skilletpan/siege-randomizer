@@ -1522,7 +1522,8 @@
           "SG"
         ],
         "secondary": [
-          "HG"
+          "HG",
+          "SG"
         ],
         "gadgets": [
           "CAMERA",
