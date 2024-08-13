@@ -3,15 +3,15 @@
     "STRIKER": {
       "name": "Striker",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "LMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "SG"
         ],
-        "gadgets": [
+        "secondaryGadgets": [
           "BREACH",
           "CLAYMORE",
           "EMP",
@@ -29,14 +29,19 @@
     "SLEDGE": {
       "name": "Sledge",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SG",
           "AR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Breaching Hammer",
+          "uses": 25,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "FRAG",
           "STUN",
           "EMP"
@@ -52,15 +57,20 @@
     "THATCHER": {
       "name": "Thatcher",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "AR",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "EMP Grenade",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BREACH",
           "CLAYMORE"
         ]
@@ -75,15 +85,20 @@
     "ASH": {
       "name": "Ash",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "AR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Breaching Round",
+          "ammunition": 2,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BREACH",
           "CLAYMORE"
         ]
@@ -98,15 +113,20 @@
     "THERMITE": {
       "name": "Thermite",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SG",
           "AR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Exothermic Charge",
+          "amount": 2,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "SMOKE",
           "STUN"
         ]
@@ -121,16 +141,21 @@
     "TWITCH": {
       "name": "Twitch",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "DMR",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "REV"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Shock Drone",
+          "amount": 2,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CLAYMORE",
           "SMOKE"
         ]
@@ -145,14 +170,18 @@
     "MONTAGNE": {
       "name": "Montagne",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SH"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "REV"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Le Roc Shield",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "HARDBREACH",
           "SMOKE",
           "EMP"
@@ -168,15 +197,19 @@
     "GLAZ": {
       "name": "Glaz",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "DMR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "HC",
           "MP"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Flip Sight",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "SMOKE",
           "FRAG",
           "CLAYMORE"
@@ -192,16 +225,21 @@
     "FUZE": {
       "name": "Fuze",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SH",
           "LMG",
           "AR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Cluster Charge",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BREACH",
           "HARDBREACH",
           "SMOKE"
@@ -216,13 +254,18 @@
     "BLITZ": {
       "name": "Blitz",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SH"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "G52-Tactical Shield",
+          "uses": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "SMOKE",
           "BREACH"
         ]
@@ -237,15 +280,19 @@
     "IQ": {
       "name": "IQ",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "AR",
           "LMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Electronics Detector",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BREACH",
           "CLAYMORE",
           "FRAG"
@@ -261,14 +308,19 @@
     "BUCK": {
       "name": "Buck",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "DMR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Skeleton Key",
+          "ammunition": 31,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "STUN",
           "HARDBREACH"
         ]
@@ -283,14 +335,19 @@
     "BLACKBEARD": {
       "name": "Blackbeard",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "DMR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "DE"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Rifle-Shield",
+          "amount": 2,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CLAYMORE",
           "STUN",
           "FRAG"
@@ -305,15 +362,20 @@
     "CAPITAO": {
       "name": "Capitão",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "LMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "HC"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Tactical Crossbow",
+          "ammunition": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CLAYMORE",
           "HARDBREACH",
           "EMP"
@@ -329,15 +391,20 @@
     "HIBANA": {
       "name": "Hibana",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "MP"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "X-KAIROS",
+          "ammunition": 18,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "STUN",
           "BREACH"
         ]
@@ -352,16 +419,21 @@
     "JACKAL": {
       "name": "Jackal",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "SG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Eyenox Model III",
+          "uses": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CLAYMORE",
           "SMOKE"
         ]
@@ -376,14 +448,19 @@
     "YING": {
       "name": "Ying",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "LMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Candela",
+          "amount": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "HARDBREACH",
           "SMOKE"
         ]
@@ -398,14 +475,19 @@
     "ZOFIA": {
       "name": "Zofia",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "LMG",
           "AR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "KS79 LIFELINE",
+          "ammunition": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BREACH",
           "CLAYMORE"
         ]
@@ -420,16 +502,21 @@
     "DOKKAEBI": {
       "name": "Dokkaebi",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "DMR",
           "SSG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "MP",
           "MP",
           "HC"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Logic Bomb",
+          "uses": 2,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "SMOKE",
           "STUN",
           "EMP"
@@ -445,16 +532,21 @@
     "LION": {
       "name": "Lion",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "DMR",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "REV",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "EE-ONE-D",
+          "uses": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "STUN",
           "CLAYMORE",
           "FRAG"
@@ -470,16 +562,21 @@
     "FINKA": {
       "name": "Finka",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "LMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Adrenal Surge",
+          "uses": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "SMOKE",
           "STUN",
           "FRAG"
@@ -495,14 +592,19 @@
     "MAVERICK": {
       "name": "Maverick",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "DMR",
           "AR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Breaching Torch",
+          "ammunition": 6,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "STUN",
           "CLAYMORE",
           "SMOKE"
@@ -518,15 +620,20 @@
     "NOMAD": {
       "name": "Nomad",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "AR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "REV",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Airjab Launcher",
+          "ammunition": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "STUN",
           "BREACH"
         ]
@@ -541,15 +648,20 @@
     "GRIDLOCK": {
       "name": "Gridlock",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "LMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "SG",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Trax Stingers",
+          "amount": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "SMOKE",
           "EMP",
           "FRAG"
@@ -565,15 +677,19 @@
     "NOKK": {
       "name": "Nøkk",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "DE"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "HEL Presence Reduction",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "FRAG",
           "HARDBREACH",
           "EMP"
@@ -589,16 +705,21 @@
     "AMARU": {
       "name": "Amaru",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "LMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "MP",
           "SG",
           "HC"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Garra Hook",
+          "uses": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "HARDBREACH",
           "STUN"
         ]
@@ -613,15 +734,20 @@
     "KALI": {
       "name": "Kali",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "DMR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "MP",
           "MP",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "LV Explosive Lance",
+          "ammunition": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CLAYMORE",
           "BREACH"
         ]
@@ -636,15 +762,19 @@
     "IANA": {
       "name": "Iana",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "AR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "HC"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Gemini Replicator",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "EMP",
           "SMOKE"
         ]
@@ -659,14 +789,19 @@
     "ACE": {
       "name": "Ace",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "S.E.L.M.A. Aqua Breacher",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BREACH",
           "CLAYMORE"
         ]
@@ -681,15 +816,20 @@
     "ZERO": {
       "name": "Zero",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "SMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "HC"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Argus Launcher",
+          "ammunition": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "HARDBREACH",
           "CLAYMORE"
         ]
@@ -704,14 +844,19 @@
     "FLORES": {
       "name": "Flores",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "DMR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "RCE-Ratero Charge",
+          "amount": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "STUN",
           "CLAYMORE"
         ]
@@ -726,14 +871,19 @@
     "OSA": {
       "name": "Osa",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "SMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Talon-8 Shield",
+          "amount": 2,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CLAYMORE",
           "FRAG",
           "EMP"
@@ -749,14 +899,19 @@
     "SENS": {
       "name": "Sens",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "DMR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "R.O.U. Projector System",
+          "amount": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "HARDBREACH",
           "CLAYMORE",
           "FRAG"
@@ -772,15 +927,20 @@
     "GRIM": {
       "name": "Grim",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "BAI"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Kawan Hive Launcher",
+          "ammunition": 5,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "EMP",
           "CLAYMORE",
           "HARDBREACH"
@@ -796,15 +956,20 @@
     "BRAVA": {
       "name": "Brava",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "DMR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "SG",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Kludge Drone",
+          "amount": 2,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "SMOKE",
           "CLAYMORE"
         ]
@@ -819,15 +984,20 @@
     "RAM": {
       "name": "Ram",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "LMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "SG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "BU-GI Auto Breacher",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "STUN",
           "SMOKE"
         ]
@@ -842,14 +1012,19 @@
     "DEIMOS": {
       "name": "Deimos",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "REV"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Deathmark Tracker",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "FRAG",
           "HARDBREACH"
         ]
@@ -865,15 +1040,15 @@
     "SENTRY": {
       "name": "Sentry",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "MP",
           "SG"
         ],
-        "gadgets": [
+        "secondaryGadgets": [
           "BARBED",
           "CAMERA",
           "SHIELD",
@@ -891,15 +1066,20 @@
     "SMOKE": {
       "name": "Smoke",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "MP"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Remote Gas Grenade",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BARBED",
           "BEEPER"
         ]
@@ -914,15 +1094,20 @@
     "MUTE": {
       "name": "Mute",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "MP"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Signal Disruptor",
+          "amount": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "C4",
           "CAMERA"
         ]
@@ -937,16 +1122,21 @@
     "CASTLE": {
       "name": "Castle",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "SG",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Armor Panel",
+          "amount": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CAMERA",
           "BEEPER"
         ]
@@ -961,15 +1151,19 @@
     "PULSE": {
       "name": "Pulse",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SG",
           "SMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Cardiac Sensor",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "C4",
           "SHIELD",
           "BLOCKER"
@@ -985,17 +1179,22 @@
     "DOC": {
       "name": "Doc",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SG",
           "SMG",
           "SMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "REV",
           "BAI"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Stim Pistol",
+          "ammunition": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CAMERA",
           "BARBED"
         ]
@@ -1009,16 +1208,20 @@
     "ROOK": {
       "name": "Rook",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "REV",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Armor Pack",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BEEPER",
           "IMPACT",
           "BLOCKER"
@@ -1033,15 +1236,20 @@
     "KAPKAN": {
       "name": "Kapkan",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Entry Denial Device",
+          "amount": 5,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CAMERA",
           "C4"
         ]
@@ -1056,16 +1264,21 @@
     "TACHANKA": {
       "name": "Tachanka",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "LMG",
           "SMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "HG",
           "MP"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Shumikha Launcher",
+          "ammunition": 14,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BARBED",
           "SHIELD",
           "BEEPER"
@@ -1081,14 +1294,19 @@
     "JAGER": {
       "name": "Jäger",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SG",
           "AR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Active Defense",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CAMERA",
           "BLOCKER"
         ]
@@ -1103,14 +1321,19 @@
     "BANDIT": {
       "name": "Bandit",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Shock Wire",
+          "amount": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BARBED",
           "C4"
         ]
@@ -1125,15 +1348,20 @@
     "FROST": {
       "name": "Frost",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SG",
           "SMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "SG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Welcome Mat",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CAMERA",
           "SHIELD"
         ]
@@ -1148,14 +1376,19 @@
     "VALKYRIE": {
       "name": "Valkyrie",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "DE"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Black Eye",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "IMPACT",
           "C4"
         ]
@@ -1170,14 +1403,18 @@
     "CAVEIRA": {
       "name": "Caveira",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Silent Step",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "IMPACT",
           "BEEPER",
           "BLOCKER"
@@ -1193,15 +1430,20 @@
     "ECHO": {
       "name": "Echo",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SG",
           "SMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "MP"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Yokai",
+          "amount": 2,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "IMPACT",
           "SHIELD"
         ]
@@ -1216,15 +1458,20 @@
     "MIRA": {
       "name": "Mira",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "SG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Black Mirror",
+          "amount": 2,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BEEPER",
           "C4"
         ]
@@ -1239,15 +1486,20 @@
     "LESION": {
       "name": "Lesion",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SG",
           "SMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "SG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Gu",
+          "amount": 7,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BLOCKER",
           "CAMERA"
         ]
@@ -1262,14 +1514,19 @@
     "ELA": {
       "name": "Ela",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Grzmot Mine",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BARBED",
           "SHIELD",
           "IMPACT"
@@ -1285,15 +1542,19 @@
     "VIGIL": {
       "name": "Vigil",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SSG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "MP",
           "MP"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "ERC-7",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CAMERA",
           "IMPACT"
         ]
@@ -1308,15 +1569,20 @@
     "MAESTRO": {
       "name": "Maestro",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "LMG",
           "SSG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "BAI",
           "REV"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Evil Eye",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BARBED",
           "IMPACT",
           "BLOCKER"
@@ -1332,15 +1598,20 @@
     "ALIBI": {
       "name": "Alibi",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SSG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "REV",
           "BAI"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Prisma",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BEEPER",
           "BLOCKER"
         ]
@@ -1355,15 +1626,19 @@
     "CLASH": {
       "name": "Clash",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SH"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "SG",
           "MP",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "CCE Shield",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BARBED",
           "IMPACT",
           "SHIELD"
@@ -1379,15 +1654,20 @@
     "KAID": {
       "name": "Kaid",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SSG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "REV",
           "REV"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Rtila Electroclaw",
+          "amount": 2,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "C4",
           "BARBED",
           "BLOCKER"
@@ -1403,14 +1683,19 @@
     "MOZZIE": {
       "name": "Mozzie",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "SMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Pest Launcher",
+          "ammunition": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BARBED",
           "C4"
         ]
@@ -1425,15 +1710,19 @@
     "WARDEN": {
       "name": "Warden",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SG",
           "SMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "MP"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Glance Smart Glasses",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "SHIELD",
           "C4",
           "BLOCKER"
@@ -1449,14 +1738,19 @@
     "GOYO": {
       "name": "Goyo",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SSG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Volcán Canister",
+          "amount": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BEEPER",
           "CAMERA",
           "IMPACT"
@@ -1472,15 +1766,20 @@
     "WAMAI": {
       "name": "Wamai",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "SMG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "REV",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Mag-NET System",
+          "amount": 6,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "IMPACT",
           "BEEPER"
         ]
@@ -1495,15 +1794,19 @@
     "ORYX": {
       "name": "Oryx",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "BAI",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Remah Dash",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BARBED",
           "BEEPER"
         ]
@@ -1517,15 +1820,20 @@
     "MELUSI": {
       "name": "Melusi",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "SG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Banshee Sonic Defense",
+          "amount": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CAMERA",
           "IMPACT"
         ]
@@ -1540,14 +1848,19 @@
     "ARUNI": {
       "name": "Aruni",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "DMR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Surya Gate",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BARBED",
           "CAMERA"
         ]
@@ -1562,15 +1875,20 @@
     "THUNDERBIRD": {
       "name": "Thunderbird",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "MP",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Kóna Station",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BARBED",
           "CAMERA",
           "SHIELD"
@@ -1585,15 +1903,20 @@
     "THORN": {
       "name": "Thorn",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG",
           "MP"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Razorbloom Shell",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "SHIELD",
           "BARBED"
         ]
@@ -1608,14 +1931,19 @@
     "AZAMI": {
       "name": "Azami",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SSG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "DE"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Kiba Barrier",
+          "amount": 5,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BARBED",
           "IMPACT"
         ]
@@ -1630,14 +1958,18 @@
     "SOLIS": {
       "name": "Solis",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "MP"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "SPEC-IO Electro-Sensor",
+          "properties": []
+        },
+        "secondaryGadgets": [
           "BEEPER",
           "CAMERA"
         ]
@@ -1652,15 +1984,20 @@
     "FENRIR": {
       "name": "Fenrir",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "SG"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "BAI",
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "F-NATT Dread Mine",
+          "amount": 4,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "CAMERA",
           "BLOCKER"
         ]
@@ -1675,14 +2012,19 @@
     "TUBARAO": {
       "name": "Tubarão",
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "SMG",
           "DMR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
-        "gadgets": [
+        "primaryGadget": {
+          "name": "Zoto Canister",
+          "amount": 3,
+          "properties": []
+        },
+        "secondaryGadgets": [
           "C4",
           "BEEPER"
         ]
