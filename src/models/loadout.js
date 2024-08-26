@@ -1,7 +1,11 @@
 import Gadget from './gadget';
 import WeaponClass from './weaponClass';
 
-/** The loadout of an operator. */
+/**
+ * The loadout of an operator.
+ * 
+ * Operator loadouts include primary weapons, secondary weapons and gadgets.
+ */
 export default class Loadout {
   // Instance properties
   #primaryWeaponKeys;

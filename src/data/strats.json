@@ -47,7 +47,7 @@
     "operators": [
       [
         {
-          "property": "loadout.primary.length",
+          "property": "loadout.primaryWeapons.length",
           "value": 1,
           "negative": true
         }
@@ -240,18 +240,12 @@
     "operators": [
       [
         {
-          "property": "loadout.primary[some].key",
+          "property": "loadout.weapons[some].key",
           "method": "included",
           "value": [
             "SG",
             "SSG"
           ]
-        }
-      ],
-      [
-        {
-          "property": "loadout.secondary[some].key",
-          "value": "SG"
         }
       ]
     ]
@@ -298,7 +292,7 @@
     "operators": [
       [
         {
-          "property": "loadout.primary[some].key",
+          "property": "loadout.primaryWeapons[some].key",
           "value": "LMG"
         }
       ]
@@ -481,13 +475,7 @@
       "*RAM",
       [
         {
-          "property": "loadout.primary[some].key",
-          "value": "SG"
-        }
-      ],
-      [
-        {
-          "property": "loadout.secondary[some].key",
+          "property": "loadout.weapons[some].key",
           "value": "SG"
         }
       ],
@@ -509,7 +497,7 @@
     "operators": [
       [
         {
-          "property": "loadout.secondary[some].key",
+          "property": "loadout.secondaryWeapons[some].key",
           "value": "REV"
         }
       ]
@@ -566,7 +554,7 @@
     "operators": [
       [
         {
-          "property": "loadout.primary[some].key",
+          "property": "loadout.primaryWeapons[some].key",
           "value": "LMG"
         }
       ]
@@ -643,7 +631,7 @@
     "operators": [
       [
         {
-          "property": "loadout.secondary[some].key",
+          "property": "loadout.secondaryWeapons[some].key",
           "method": "included",
           "value": [
             "HG",
@@ -652,7 +640,7 @@
           ]
         },
         {
-          "property": "loadout.primary[every].key",
+          "property": "loadout.primaryWeapons[every].key",
           "method": "equals",
           "value": "SH",
           "negative": true
@@ -790,7 +778,7 @@
       "*KALI",
       [
         {
-          "property": "loadout.primary[some].key",
+          "property": "loadout.primaryWeapons[some].key",
           "value": "DMR"
         }
       ]
@@ -871,7 +859,7 @@
       "*CAVEIRA",
       [
         {
-          "property": "loadout.secondary[some].key",
+          "property": "loadout.secondaryWeapons[some].key",
           "value": "HG"
         }
       ]
@@ -921,7 +909,7 @@
     "operators": [
       [
         {
-          "property": "loadout.primary[some].key",
+          "property": "loadout.primaryWeapons[some].key",
           "value": "LMG"
         }
       ]

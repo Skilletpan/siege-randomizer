@@ -254,8 +254,8 @@ const operatorPool = computed(() => {
   if (speed.length < 3) filters.push({ property: 'speed', method: 'included', value: speed });
   roles.forEach((key) => { filters.push({ property: 'roles[some].key', value: key }) });
   if (squad) filters.push({ property: 'squad.key', value: squad });
-  primary.forEach((key) => { filters.push({ property: 'loadout.primary[some].key', value: key }) });
-  secondary.forEach((key) => { filters.push({ property: 'loadout.secondary[some].key', value: key }) });
+  primary.forEach((key) => { filters.push({ property: 'loadout.primaryWeapons[some].key', value: key }) });
+  secondary.forEach((key) => { filters.push({ property: 'loadout.secondaryWeapons[some].key', value: key }) });
   gadgets.forEach((key) => { filters.push({ property: 'loadout.gadgets[some].key', value: key }) });
 
   // Find operators
