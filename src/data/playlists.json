@@ -3,7 +3,6 @@
     "COMPETITIVE": {
       "name": "Competitive",
       "maps": [
-        "OREGON",
         "CLUBHOUSE",
         "CONSULATE",
         "BANK",
@@ -11,7 +10,8 @@
         "KAFE",
         "BORDER",
         "SKYSCRAPER",
-        "LABS"
+        "LABS",
+        "LAIR"
       ]
     },
     "RANKED": {
