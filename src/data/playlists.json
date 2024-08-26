@@ -190,21 +190,37 @@
       ],
       "operators": [
         "STRIKER",
+        "SENTRY",
         "SLEDGE",
         "THATCHER",
+        "MUTE",
         "ASH",
         "THERMITE",
+        "PULSE",
+        "DOC",
+        "ROOK",
         "GLAZ",
+        "KAPKAN",
         "IQ",
+        "JAGER",
+        "BANDIT",
         "BUCK",
         "BLACKBEARD",
+        "VALKYRIE",
         "HIBANA",
         "JACKAL",
-        "FINKA",
+        "VIGIL",
         "LION",
+        "FINKA",
+        "KAID",
+        "WARDEN",
+        "WAMAI",
         "IANA",
         "ACE",
-        "DEIMOS"
+        "THUNDERBIRD",
+        "SOLIS",
+        "DEIMOS",
+        "SKOPOS"
       ]
     },
     "AI_HARD": {
@@ -221,21 +237,37 @@
       ],
       "operators": [
         "STRIKER",
+        "SENTRY",
         "SLEDGE",
         "THATCHER",
+        "MUTE",
         "ASH",
         "THERMITE",
+        "PULSE",
+        "DOC",
+        "ROOK",
         "GLAZ",
+        "KAPKAN",
         "IQ",
+        "JAGER",
+        "BANDIT",
         "BUCK",
         "BLACKBEARD",
+        "VALKYRIE",
         "HIBANA",
         "JACKAL",
-        "FINKA",
+        "VIGIL",
         "LION",
+        "FINKA",
+        "KAID",
+        "WARDEN",
+        "WAMAI",
         "IANA",
         "ACE",
-        "DEIMOS"
+        "THUNDERBIRD",
+        "SOLIS",
+        "DEIMOS",
+        "SKOPOS"
       ]
     }
   },
@@ -253,7 +285,13 @@
         "LABS",
         "SKYSCRAPER",
         "BORDER",
-        "COASTLINE"
+        "COASTLINE",
+        "KANAL",
+        "OUTBACK",
+        "VILLA",
+        "THEMEPARK",
+        "EMERALD",
+        "TOWER"
       ]
     },
     "TARGET": {
@@ -269,7 +307,13 @@
         "LABS",
         "SKYSCRAPER",
         "BORDER",
-        "COASTLINE"
+        "COASTLINE",
+        "KANAL",
+        "OUTBACK",
+        "VILLA",
+        "THEMEPARK",
+        "EMERALD",
+        "TOWER"
       ]
     }
   }
