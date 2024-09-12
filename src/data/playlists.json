@@ -3,6 +3,7 @@
     "COMPETITIVE": {
       "name": "Competitive",
       "maps": [
+        "OREGON",
         "CLUBHOUSE",
         "CONSULATE",
         "BANK",
@@ -10,8 +11,7 @@
         "KAFE",
         "BORDER",
         "SKYSCRAPER",
-        "LABS",
-        "LAIR"
+        "LABS"
       ]
     },
     "RANKED": {
@@ -190,37 +190,21 @@
       ],
       "operators": [
         "STRIKER",
-        "SENTRY",
         "SLEDGE",
         "THATCHER",
-        "MUTE",
         "ASH",
         "THERMITE",
-        "PULSE",
-        "DOC",
-        "ROOK",
         "GLAZ",
-        "KAPKAN",
         "IQ",
-        "JAGER",
-        "BANDIT",
         "BUCK",
         "BLACKBEARD",
-        "VALKYRIE",
         "HIBANA",
         "JACKAL",
-        "VIGIL",
-        "LION",
         "FINKA",
-        "KAID",
-        "WARDEN",
-        "WAMAI",
+        "LION",
         "IANA",
         "ACE",
-        "THUNDERBIRD",
-        "SOLIS",
-        "DEIMOS",
-        "SKOPOS"
+        "DEIMOS"
       ]
     },
     "AI_HARD": {
@@ -237,37 +221,21 @@
       ],
       "operators": [
         "STRIKER",
-        "SENTRY",
         "SLEDGE",
         "THATCHER",
-        "MUTE",
         "ASH",
         "THERMITE",
-        "PULSE",
-        "DOC",
-        "ROOK",
         "GLAZ",
-        "KAPKAN",
         "IQ",
-        "JAGER",
-        "BANDIT",
         "BUCK",
         "BLACKBEARD",
-        "VALKYRIE",
         "HIBANA",
         "JACKAL",
-        "VIGIL",
-        "LION",
         "FINKA",
-        "KAID",
-        "WARDEN",
-        "WAMAI",
+        "LION",
         "IANA",
         "ACE",
-        "THUNDERBIRD",
-        "SOLIS",
-        "DEIMOS",
-        "SKOPOS"
+        "DEIMOS"
       ]
     }
   },
@@ -285,13 +253,7 @@
         "LABS",
         "SKYSCRAPER",
         "BORDER",
-        "COASTLINE",
-        "KANAL",
-        "OUTBACK",
-        "VILLA",
-        "THEMEPARK",
-        "EMERALD",
-        "TOWER"
+        "COASTLINE"
       ]
     },
     "TARGET": {
@@ -307,13 +269,7 @@
         "LABS",
         "SKYSCRAPER",
         "BORDER",
-        "COASTLINE",
-        "KANAL",
-        "OUTBACK",
-        "VILLA",
-        "THEMEPARK",
-        "EMERALD",
-        "TOWER"
+        "COASTLINE"
       ]
     },
     "ENDLESS": {
@@ -329,12 +285,7 @@
         "LABS",
         "SKYSCRAPER",
         "BORDER",
-        "COASTLINE",
-        "KANAL",
-        "OUTBACK",
-        "VILLA",
-        "THEMEPARK",
-        "EMERALD"
+        "COASTLINE"
       ]
     }
   }
