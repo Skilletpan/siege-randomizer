@@ -315,6 +315,28 @@
         "EMERALD",
         "TOWER"
       ]
+    },
+    "ENDLESS": {
+      "name": "Endless Drill",
+      "maps": [
+        "LAIR",
+        "CLUBHOUSE",
+        "BANK",
+        "CONSULATE",
+        "CHALET",
+        "KAFE",
+        "OREGON",
+        "LABS",
+        "SKYSCRAPER",
+        "BORDER",
+        "COASTLINE",
+        "KANAL",
+        "OUTBACK",
+        "VILLA",
+        "THEMEPARK",
+        "EMERALD",
+        "TOWER"
+      ]
     }
   }
 }
