@@ -2057,11 +2057,15 @@
     },
     "SKOPOS": {
       "name": "Skopós",
+      "ability": {
+        "name": "V10 Pantheon Shells",
+        "properties": []
+      },
       "loadout": {
-        "primary": [
+        "primaryWeapons": [
           "AR"
         ],
-        "secondary": [
+        "secondaryWeapons": [
           "HG"
         ],
         "gadgets": [
