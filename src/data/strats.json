@@ -227,7 +227,8 @@
       "!BRAVA",
       "!FENRIR",
       "!RAM",
-      "!DEIMOS"
+      "!DEIMOS",
+      "!SKOPOS"
     ]
   },
   {
@@ -517,7 +518,8 @@
       "!CLASH",
       "!WARDEN",
       "!ORYX",
-      "!SOLIS"
+      "!SOLIS",
+      "!SKOPOS"
     ],
     "side": "DEF"
   },

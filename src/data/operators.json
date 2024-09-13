@@ -2054,6 +2054,27 @@
       ],
       "speed": 2,
       "squad": "WOLFGUARD"
+    },
+    "SKOPOS": {
+      "name": "Skopós",
+      "loadout": {
+        "primary": [
+          "AR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "IMPACT",
+          "BEEPER"
+        ]
+      },
+      "roles": [
+        "INTEL",
+        "SUPPORT"
+      ],
+      "speed": 2,
+      "squad": "WOLFGUARD"
     }
   }
 }
