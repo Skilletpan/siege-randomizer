@@ -406,7 +406,7 @@
           "HG"
         ],
         "gadgets": [
-          "BREACH",
+          "HARDBREACH",
           "CLAYMORE"
         ]
       },
@@ -623,7 +623,8 @@
         ],
         "gadgets": [
           "CLAYMORE",
-          "BREACH"
+          "BREACH",
+          "SMOKE"
         ]
       },
       "roles": [
@@ -1412,7 +1413,8 @@
         ],
         "gadgets": [
           "BARBED",
-          "C4"
+          "C4",
+          "IMPACT"
         ]
       },
       "roles": [
