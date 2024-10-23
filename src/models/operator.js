@@ -1,87 +1,121 @@
 import RAW_OPERATORS from '@/data/operators';
 import loadImage from '@/utils/loadImage';
 
-import Gadget from './gadget';
+import Ability from './ability';
+import Loadout from './loadout';
 import OperatorRole from './operatorRole';
 import Side from './side';
 import Squad from './squad';
-import WeaponClass from './weaponClass';
 
+/** A Siege operator. */
 export default class Operator {
   // Instance properties
   #key;
   #name;
   #sideKey;
-  #loadoutKeys;
   #roleKeys;
   #speed;
   #squadKey;
+
+  #ability;
+  #loadout;
 
   #emblem;
   #portrait;
   #easterEggs;
 
   /**
-   * @param {string}   key                            The key of the operator.
-   * @param {string}   side                           The key of the side of the operator.
-   * @param {Object}   operatorData                   The raw operator data.
-   * @param {string}   operatorData.name              The name of the operator.
-   * @param {Object}   operatorData.loadout           The keys of the loadout items of the operator.
-   * @param {string[]} operatorData.loadout.primary   The keys of the primary weapon classes of the operator.
-   * @param {string[]} operatorData.loadout.secondary The keys of the secondary weapon classes of the operator.
-   * @param {string[]} operatorData.loadout.gadgets   The keys of the gadgets of the operator.
-   * @param {string[]} operatorData.roles             The keys of the roles of the operator.
-   * @param {number}   operatorData.speed             The speed of the operator.
-   * @param {string}   [operatorData.squad]           The key of the squad of the operator.
+   * @param {string}   key                  The key of the operator.
+   * @param {string}   side                 The key of the side of the operator.
+   * @param {Object}   operatorData         The raw operator data.
+   * @param {string}   operatorData.name    The name of the operator.
+   * @param {Object}   operatorData.ability The operator ability data.
+   * @param {Object}   operatorData.loadout The operator loadout data.
+   * @param {string[]} operatorData.roles   The keys of the roles of the operator.
+   * @param {number}   operatorData.speed   The speed of the operator.
+   * @param {string}   [operatorData.squad] The key of the squad the operator belongs to.
    */
   constructor(key, side, operatorData) {
     this.#key = key;
     this.#name = operatorData.name;
     this.#sideKey = side;
-    this.#loadoutKeys = operatorData.loadout;
     this.#roleKeys = Array.from(operatorData.roles);
     this.#speed = operatorData.speed;
     this.#squadKey = operatorData.squad;
+
+    // Build unique ability and loadout
+    if (operatorData.ability) this.#ability = new Ability(operatorData.ability);
+    this.#loadout = new Loadout(operatorData.loadout);
 
     // Load images
     this.#emblem = loadImage('emblems', `${key}.png`);
     this.#portrait = loadImage('portraits', `${key}.png`);
   }
 
-  /** @returns {string} The key of the operator. */
+  /**
+   * The key of the operator.
+   * @type {string}
+   */
   get key() { return this.#key; }
 
-  /** @returns {string} The name of the operator. */
+  /**
+   * The name of the operator.
+   * @type {string}
+   */
   get name() { return this.#name; }
 
-  /** @returns {Side} The side of the operator. */
+  /**
+   * The side of the operator.
+   * @type {Side}
+   */
   get side() { return Side[this.#sideKey]; }
 
-  /** @returns {{ primary: WeaponClass[], secondary: WeaponClass[], gadgets: Gadget[] }} The loadout of the operator. */
-  get loadout() {
-    return {
-      primary: this.#loadoutKeys.primary.map((key) => WeaponClass[key]),
-      secondary: this.#loadoutKeys.secondary.map((key) => WeaponClass[key]),
-      gadgets: this.#loadoutKeys.gadgets.map((key) => Gadget[key])
-    };
-  }
+  /**
+   * The unique ability of the operator.
+   * @type {Ability}
+   */
+  get ability() { return this.#ability; }
 
-  /** @returns {OperatorRole[]} The roles of the operator. */
+  /**
+   * The loadout of the operator.
+   * @type {Loadout}
+   */
+  get loadout() { return this.#loadout; }
+
+  /**
+   * The roles of the operator.
+   * @type {OperatorRole[]}
+   */
   get roles() { return this.#roleKeys.map((key) => OperatorRole[key]); }
 
-  /** @returns {number} The speed of the operator. */
+  /**
+   * The speed of the operator.
+   * @type {number}
+   */
   get speed() { return this.#speed; }
 
-  /** @returns {Squad} The squad of the operator. */
-  get squad() { return Squad[this.#squadKey]; }
-
-  /** @returns {number} The health of the operator. */
+  /**
+   * The health of the operator.
+   * @type {number}
+   */
   get health() { return 4 - this.#speed; }
 
-  /** @returns {string} The URL of the emblem of the operator. */
+  /**
+   * The squad the operator belongs to.
+   * @type {Squad}
+   */
+  get squad() { return Squad[this.#squadKey]; }
+
+  /**
+   * The URL of the emblem of the operator.
+   * @type {string}
+   */
   get emblem() { return this.#emblem; }
 
-  /** @returns {string} The URL of the portrait of the operator. */
+  /**
+   * The URL of the portrait of the operator.
+   * @type {string}
+   */
   get portrait() { return this.#portrait; }
 
   /**
@@ -112,7 +146,10 @@ export default class Operator {
     return this.#portrait;
   }
 
-  /** @returns {Operator[]} A list of all operators. */
+  /**
+   * A list of all operators.
+   * @type {Operator[]}
+   */
   static get LIST() { return Object.values(Operator); }
 
   /**
