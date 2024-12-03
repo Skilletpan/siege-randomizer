@@ -53,6 +53,6 @@
   },
   "STUN": {
     "name": "Stun Grenade",
-    "amount": 3
+    "amount": 2
   }
 }
