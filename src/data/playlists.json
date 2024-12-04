@@ -222,7 +222,7 @@
         "IANA",
         "ACE",
         "THUNDERBIRD",
-        "SOLIS",
+        "THORN",
         "DEIMOS",
         "SKOPOS"
       ]
@@ -273,7 +273,7 @@
         "IANA",
         "ACE",
         "THUNDERBIRD",
-        "SOLIS",
+        "THORN",
         "DEIMOS",
         "SKOPOS"
       ]
@@ -299,7 +299,11 @@
         "VILLA",
         "THEMEPARK",
         "EMERALD",
-        "TOWER"
+        "TOWER",
+        "BRAVO",
+        "FORTRESS",
+        "HOUSE",
+        "ALPHA"
       ]
     },
     "TARGET": {
@@ -321,28 +325,11 @@
         "VILLA",
         "THEMEPARK",
         "EMERALD",
-        "TOWER"
-      ]
-    },
-    "ENDLESS": {
-      "name": "Endless Drill",
-      "maps": [
-        "LAIR",
-        "CLUBHOUSE",
-        "BANK",
-        "CONSULATE",
-        "CHALET",
-        "KAFE",
-        "OREGON",
-        "LABS",
-        "SKYSCRAPER",
-        "BORDER",
-        "COASTLINE",
-        "KANAL",
-        "OUTBACK",
-        "VILLA",
-        "THEMEPARK",
-        "EMERALD"
+        "TOWER",
+        "BRAVO",
+        "FORTRESS",
+        "HOUSE",
+        "ALPHA"
       ]
     }
   }
