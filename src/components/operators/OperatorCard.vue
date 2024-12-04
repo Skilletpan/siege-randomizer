@@ -145,6 +145,7 @@
             :key="index"
             class="pb-3 px-4"
             :class="index === 1 ? 'pt-2' : 'pt-0'"
+            v-show="operator.loadout[['primary', 'secondary', 'gadgets'][index - 1]].length > 0"
           >
             <v-label
               class="d-block mb-1 text-caption"
