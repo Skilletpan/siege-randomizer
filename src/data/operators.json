@@ -284,12 +284,11 @@
       "name": "Blackbeard",
       "loadout": {
         "primary": [
-          "SH"
-        ],
-        "secondary": [
+          "SH",
           "AR",
           "DMR"
         ],
+        "secondary": [],
         "gadgets": [
           "FRAG",
           "CLAYMORE"

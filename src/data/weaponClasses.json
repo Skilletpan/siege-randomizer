@@ -1,6 +1,7 @@
 {
   "AR": {
-    "name": "Assault Rifle"
+    "name": "Assault Rifle",
+    "slot": "PRIMARY"
   },
   "SMG": {
     "name": "Submachine Gun",
@@ -18,7 +19,8 @@
     "slot": "PRIMARY"
   },
   "DMR": {
-    "name": "Marksman Rifle"
+    "name": "Marksman Rifle",
+    "slot": "PRIMARY"
   },
   "MP": {
     "name": "Machine Pistol",
