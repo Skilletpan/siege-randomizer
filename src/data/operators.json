@@ -291,12 +291,13 @@
           "DMR"
         ],
         "gadgets": [
-          "CLAYMORE",
-          "FRAG"
+          "FRAG",
+          "CLAYMORE"
         ]
       },
       "roles": [
-        "SUPPORT"
+        "BREACH",
+        "FRONTLINE"
       ],
       "speed": 1,
       "squad": "REDHAMMER"
