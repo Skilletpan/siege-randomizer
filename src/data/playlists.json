@@ -197,10 +197,13 @@
         "ASH",
         "THERMITE",
         "PULSE",
+        "MONTAGNE",
         "DOC",
         "ROOK",
         "GLAZ",
+        "FUZE",
         "KAPKAN",
+        "BLITZ",
         "IQ",
         "JAGER",
         "BANDIT",
@@ -209,6 +212,7 @@
         "VALKYRIE",
         "HIBANA",
         "JACKAL",
+        "YING",
         "VIGIL",
         "LION",
         "FINKA",
@@ -218,7 +222,7 @@
         "IANA",
         "ACE",
         "THUNDERBIRD",
-        "SOLIS",
+        "THORN",
         "DEIMOS",
         "SKOPOS"
       ]
@@ -244,10 +248,13 @@
         "ASH",
         "THERMITE",
         "PULSE",
+        "MONTAGNE",
         "DOC",
         "ROOK",
         "GLAZ",
+        "FUZE",
         "KAPKAN",
+        "BLITZ",
         "IQ",
         "JAGER",
         "BANDIT",
@@ -256,6 +263,7 @@
         "VALKYRIE",
         "HIBANA",
         "JACKAL",
+        "YING",
         "VIGIL",
         "LION",
         "FINKA",
@@ -265,7 +273,7 @@
         "IANA",
         "ACE",
         "THUNDERBIRD",
-        "SOLIS",
+        "THORN",
         "DEIMOS",
         "SKOPOS"
       ]
@@ -291,7 +299,11 @@
         "VILLA",
         "THEMEPARK",
         "EMERALD",
-        "TOWER"
+        "TOWER",
+        "BRAVO",
+        "FORTRESS",
+        "HOUSE",
+        "ALPHA"
       ]
     },
     "TARGET": {
@@ -313,28 +325,11 @@
         "VILLA",
         "THEMEPARK",
         "EMERALD",
-        "TOWER"
-      ]
-    },
-    "ENDLESS": {
-      "name": "Endless Drill",
-      "maps": [
-        "LAIR",
-        "CLUBHOUSE",
-        "BANK",
-        "CONSULATE",
-        "CHALET",
-        "KAFE",
-        "OREGON",
-        "LABS",
-        "SKYSCRAPER",
-        "BORDER",
-        "COASTLINE",
-        "KANAL",
-        "OUTBACK",
-        "VILLA",
-        "THEMEPARK",
-        "EMERALD"
+        "TOWER",
+        "BRAVO",
+        "FORTRESS",
+        "HOUSE",
+        "ALPHA"
       ]
     }
   }

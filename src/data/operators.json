@@ -284,22 +284,21 @@
       "name": "Blackbeard",
       "loadout": {
         "primary": [
+          "SH",
           "AR",
           "DMR"
         ],
-        "secondary": [
-          "DE"
-        ],
+        "secondary": [],
         "gadgets": [
-          "CLAYMORE",
-          "STUN",
-          "FRAG"
+          "FRAG",
+          "CLAYMORE"
         ]
       },
       "roles": [
-        "SUPPORT"
+        "BREACH",
+        "FRONTLINE"
       ],
-      "speed": 2,
+      "speed": 1,
       "squad": "REDHAMMER"
     },
     "CAPITAO": {
@@ -1570,7 +1569,8 @@
         ],
         "secondary": [
           "MP",
-          "HG"
+          "HG",
+          "SG"
         ],
         "gadgets": [
           "BARBED",
