@@ -344,22 +344,21 @@
       },
       "loadout": {
         "primaryWeapons": [
+          "SH",
           "AR",
           "DMR"
         ],
-        "secondaryWeapons": [
-          "DE"
-        ],
+        "secondaryWeapons": [],
         "gadgets": [
-          "CLAYMORE",
-          "STUN",
-          "FRAG"
+          "FRAG",
+          "CLAYMORE"
         ]
       },
       "roles": [
-        "SUPPORT"
+        "BREACH",
+        "FRONTLINE"
       ],
-      "speed": 2,
+      "speed": 1,
       "squad": "REDHAMMER"
     },
     "CAPITAO": {
@@ -1907,7 +1906,8 @@
         ],
         "secondaryWeapons": [
           "MP",
-          "HG"
+          "HG",
+          "SG"
         ],
         "gadgets": [
           "BARBED",

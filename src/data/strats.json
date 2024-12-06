@@ -453,6 +453,7 @@
       "!THERMITE",
       "!CASTLE",
       "!BUCK",
+      "!BLACKBEARD",
       "!HIBANA",
       "!ZOFIA",
       "!MAVERICK",
@@ -589,14 +590,6 @@
       {
         "text": "Make sure to bring your shield.",
         "operator": "FUZE"
-      },
-      {
-        "text": "Immediately attach your shields when you don't have one on your gun.",
-        "operator": "BLACKBEARD"
-      },
-      {
-        "text": "If you run out of shields, you have to play behind one of your teammates.",
-        "operator": "BLACKBEARD"
       },
       {
         "text": "When moving you must hold a shield in front of your face.",
