@@ -6,6 +6,7 @@ import SettingsDialog from './SettingsDialog';
 import MapCard from './MapCard';
 
 // Operators
+import AbilityTooltip from './operators/AbilityTooltip.vue';
 import OperatorCard from './operators/OperatorCard';
 import OperatorFilterDrawer from './operators/OperatorFilterDrawer';
 import OperatorLabel from './operators/OperatorLabel';
@@ -30,6 +31,7 @@ import WeaponPicker from './weapons/WeaponPicker.vue';
 export {
   MapCard,
   NavigationDrawer,
+  AbilityTooltip,
   OperatorCard,
   OperatorFilterDrawer,
   OperatorLabel,

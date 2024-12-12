@@ -1,58 +1,119 @@
 {
   "BARBED": {
     "name": "Barbed Wire",
-    "amount": 2
+    "amount": 2,
+    "properties": [
+      "DEPLOYABLE"
+    ]
   },
   "BEEPER": {
     "name": "Proximity Alarm",
-    "amount": 2
+    "amount": 2,
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRIC",
+      "THROWABLE"
+    ]
   },
   "BLOCKER": {
     "name": "Observation Blocker",
-    "amount": 3
+    "amount": 3,
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRIC"
+    ]
   },
   "BREACH": {
     "name": "Breach Charge",
-    "amount": 3
+    "amount": 3,
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRIC",
+      "EXPLOSIVE"
+    ]
   },
   "C4": {
     "name": "Nitro Cell",
-    "amount": 1
+    "amount": 1,
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRIC",
+      "EXPLOSIVE",
+      "LETHAL",
+      "THROWABLE"
+    ]
   },
   "CAMERA": {
     "name": "Bulletproof Camera",
-    "amount": 1
+    "amount": 1,
+    "properties": [
+      "CONTROLLABLE",
+      "DEPLOYABLE",
+      "ELECTRIC"
+    ]
   },
   "CLAYMORE": {
     "name": "Claymore",
-    "amount": 2
+    "amount": 2,
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRIC",
+      "EXPLOSIVE",
+      "LETHAL"
+    ]
   },
   "EMP": {
     "name": "Impact EMP Grenade",
-    "amount": 2
+    "amount": 2,
+    "properties": [
+      "THROWABLE"
+    ]
   },
   "FRAG": {
     "name": "Frag Grenade",
-    "amount": 2
+    "amount": 2,
+    "properties": [
+      "EXPLOSIVE",
+      "LETHAL",
+      "THROWABLE"
+    ]
   },
   "HARDBREACH": {
     "name": "Hard Breach Charge",
-    "amount": 2
+    "amount": 2,
+    "properties": [
+      "DEPLOYABLE",
+      "ELECTRIC",
+      "EXPLOSIVE"
+    ]
   },
   "IMPACT": {
     "name": "Impact Grenade",
-    "amount": 2
+    "amount": 2,
+    "properties": [
+      "EXPLOSIVE",
+      "THROWABLE"
+    ]
   },
   "SHIELD": {
     "name": "Deployable Shield",
-    "amount": 1
+    "amount": 1,
+    "properties": [
+      "DEPLOYABLE"
+    ]
   },
   "SMOKE": {
     "name": "Smoke Grenade",
-    "amount": 2
+    "amount": 2,
+    "properties": [
+      "THROWABLE"
+    ]
   },
   "STUN": {
     "name": "Stun Grenade",
-    "amount": 2
+    "amount": 2,
+    "properties": [
+      "THROWABLE"
+    ]
   }
 }
