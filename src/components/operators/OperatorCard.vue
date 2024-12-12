@@ -5,8 +5,10 @@
       <template #default="{ isHovering, props: p }">
         <v-img
           alt="Operator portrait"
+          :aspect-ratio="detailed ? 1 / 1.35 : 3 / 5"
           cover
-          :src="{ aspect: 3 / 5, src: portrait }"
+          position="100% 0%"
+          :src="portrait"
           :style="portraitBackground"
           v-bind="p"
         >
@@ -71,99 +73,140 @@
         density="comfortable"
         grow
         :items="DETAIL_TABS"
-      />
+      >
+        <template #item="{ item }">
+          <v-divider />
 
-      <v-divider />
+          <v-tabs-window-item :value="item.value">
+            <!-- Operator Details -->
+            <template v-if="item.value === DETAIL_TABS[0]">
+              <!-- Speed and Health -->
+              <v-card-item class="pb-3 pt-2 px-4">
+                <v-label
+                  class="d-block mb-1 text-caption"
+                  text="Speed and Health"
+                />
+                <v-chip
+                  v-for="value, index in [operator.speed, operator.health]"
+                  :key="index"
+                  class="justify-center"
+                  :class="[`w-${value * 25}`, ['rounded-e-0', 'rounded-s-0'][index]]"
+                  :color="['green-darken-2', 'blue-darken-2'][index]"
+                  label
+                  variant="flat"
+                >
+                  <v-icon :icon="['mdi-speedometer', 'mdi-hospital-box-outline'][index]" />
+                </v-chip>
+              </v-card-item>
 
-      <v-window v-model="detailTab">
-        <!-- Operator Details Tab -->
-        <v-window-item :value="DETAIL_TABS[0]">
-          <!-- Speed and Health -->
-          <v-card-item class="pb-3 pt-2 px-4">
-            <v-label
-              class="d-block mb-1 text-caption"
-              text="Speed and Health"
-            />
-            <v-chip
-              v-for="value, index in [operator.speed, operator.health]"
-              :key="index"
-              class="justify-center"
-              :class="[`w-${value * 25}`, ['rounded-e-0', 'rounded-s-0'][index]]"
-              :color="['green-darken-2', 'blue-darken-2'][index]"
-              label
-              variant="flat"
-            >
-              <v-icon :icon="['mdi-speedometer', 'mdi-hospital-box-outline'][index]" />
-            </v-chip>
-          </v-card-item>
+              <!-- Roles -->
+              <v-card-item class="pb-3 pt-0 px-4">
+                <v-label
+                  class="d-block mb-1 text-caption"
+                  text="Roles"
+                />
+                <div class="ma-n1">
+                  <v-chip
+                    v-for="role in operator.roles"
+                    :key="role.key"
+                    class="ma-1"
+                    label
+                    size="small"
+                    :text="role.name"
+                  />
+                </div>
+              </v-card-item>
 
-          <!-- Roles -->
-          <v-card-item class="pb-3 pt-0 px-4">
-            <v-label
-              class="d-block mb-1 text-caption"
-              text="Roles"
-            />
-            <div class="ma-n1">
-              <v-chip
-                v-for="role in operator.roles"
-                :key="role.key"
-                class="ma-1"
-                label
-                size="small"
-                :text="role.name"
-              />
-            </div>
-          </v-card-item>
+              <!-- Squad -->
+              <v-card-item
+                v-if="operator.squad"
+                class="pb-3 pt-0 px-4"
+              >
+                <v-label
+                  class="d-block text-caption"
+                  text="Squad"
+                />
 
-          <!-- Squad -->
-          <v-card-item
-            v-if="operator.squad"
-            class="pb-3 pt-0 px-4"
-          >
-            <v-label
-              class="d-block text-caption"
-              text="Squad"
-            />
+                {{ operator.squad.name }}
 
-            {{ operator.squad.name }}
-
-            <template #append>
-              <v-avatar
-                :image="operator.squad.emblem"
-                rounded="0"
-                size="small"
-              />
+                <template #append>
+                  <v-avatar
+                    :image="operator.squad.emblem"
+                    rounded="0"
+                    size="small"
+                  />
+                </template>
+              </v-card-item>
             </template>
-          </v-card-item>
-        </v-window-item>
 
-        <!-- Operator Loadout Tab -->
-        <v-window-item :value="DETAIL_TABS[1]">
-          <!-- Primary Weapons, Secondary Weapons and Gadgets -->
-          <v-card-item
-            v-for="index in 3"
-            :key="index"
-            class="pb-3 px-4"
-            :class="index === 1 ? 'pt-2' : 'pt-0'"
-            v-show="operator.loadout[['primary', 'secondary', 'gadgets'][index - 1]].length > 0"
-          >
-            <v-label
-              class="d-block mb-1 text-caption"
-              :text="['Primary Weapons', 'Secondary Weapons', 'Gadgets'][index - 1]"
-            />
-            <div class="ma-n1">
-              <v-chip
-                v-for="item in operator.loadout[['primary', 'secondary', 'gadgets'][index - 1]]"
-                :key="item.key"
-                class="ma-1"
-                label
-                size="small"
-                :text="item.name"
-              />
-            </div>
-          </v-card-item>
-        </v-window-item>
-      </v-window>
+            <!-- Operator Loadout -->
+            <template v-if="item.value === DETAIL_TABS[1]">
+              <!-- Primary / Secondary Weapons -->
+              <v-card-item
+                v-for="label, index in ['Primary Weapons', 'Secondary Weapons']"
+                :key="index"
+                class="pb-3 px-4"
+                :class="index === 0 ? 'pt-2' : 'pt-0'"
+              >
+                <v-label
+                  class="d-block mb-1 text-caption"
+                  :text="label"
+                />
+                <div class="ma-n1">
+                  <v-chip
+                    v-for="weapon in operator.loadout[['primaryWeapons', 'secondaryWeapons'][index]]"
+                    :key="weapon.key"
+                    class="ma-1"
+                    label
+                    size="small"
+                    :text="weapon.name"
+                  />
+                </div>
+              </v-card-item>
+
+              <!-- Primary Gadget -->
+              <v-card-item
+                v-if="!!operator.ability"
+                class="pb-3 pt-0 px-4"
+              >
+                <v-label
+                  class="d-block mb-1 text-caption"
+                  text="Primary Gadget"
+                />
+                <div class="ma-n1">
+                  <v-chip
+                    class="ma-1"
+                    label
+                    size="small"
+                  >
+                    {{ operator.ability.displayName }}
+
+                    <ability-tooltip :ability="operator.ability" />
+                  </v-chip>
+                </div>
+              </v-card-item>
+
+              <!-- Secondary Gadgets -->
+              <v-card-item class="pb-3 pt-0 px-4">
+                <v-label
+                  class="d-block mb-1 text-caption"
+                  text="Secondary Gadgets"
+                />
+                <div class="ma-n1">
+                  <v-chip
+                    v-for="gadget in operator.loadout.gadgets"
+                    :key="gadget.key"
+                    class="ma-1"
+                    label
+                    size="small"
+                    :text="gadget.displayName"
+                  />
+                </div>
+              </v-card-item>
+            </template>
+          </v-tabs-window-item>
+        </template>
+      </v-tabs>
     </template>
   </v-card>
 </template>
@@ -171,6 +214,7 @@
 <script setup>
 import { computed, shallowReadonly, shallowRef } from 'vue';
 
+import { AbilityTooltip } from '@/components';
 import { Operator, SiegeMap } from '@/models';
 import { useAppSettings } from '@/stores';
 
@@ -189,7 +233,7 @@ const operator = defineModel({
 
 /**
  * The props of the component.
- * @type {{ readonly detailed: boolean, readonly player: string }}
+ * @type {{ readonly detailed: boolean, readonly player: string, readonly onRepick: Function }}
  */
 const props = defineProps({
   /** Whether to display the operator details. */

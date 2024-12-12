@@ -1,3 +1,7 @@
+const AbilityProperty = Object.freeze({
+  ELECTRIC: 'electric'
+});
+
 /** The unique ability or gadget of an operator. */
 export default class Ability {
   // Instance properties
@@ -54,7 +58,7 @@ export default class Ability {
 
   /**
    * The properties of the ability.
-   * @type {AbilityProperty[]}
+   * @type {string[]}
    */
   get properties() { return this.#properties.includes(); }
 
