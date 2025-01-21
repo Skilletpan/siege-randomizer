@@ -143,7 +143,7 @@
         "!CLASH"
       ]
     },
-    "DEATHMATCH": {
+    "TDM": {
       "name": "Team Deathmatch",
       "maps": [
         "CONSULATE",
