@@ -14,6 +14,15 @@
         "LAIR"
       ]
     },
+    "CUP": {
+      "name": "Siege Cup",
+      "maps": [
+        "CONSULATE",
+        "BORDER",
+        "CHALET",
+        "SKYSCRAPER"
+      ]
+    },
     "RANKED": {
       "name": "Ranked",
       "maps": [
@@ -59,10 +68,10 @@
         "FORTRESS",
         "OUTBACK",
         "EMERALD",
+        "BRAVO",
         "LABS",
         "LAIR",
-        "ALPHA",
-        "BRAVO"
+        "ALPHA"
       ]
     }
   },
@@ -77,8 +86,11 @@
         "PLANE",
         "CONSULATE",
         "BANK",
+        "KANAL",
         "CHALET",
+        "KAFE",
         "YACHT",
+        "BORDER",
         "FAVELA",
         "SKYSCRAPER",
         "COASTLINE",
@@ -86,11 +98,12 @@
         "TOWER",
         "VILLA",
         "FORTRESS",
+        "OUTBACK",
         "EMERALD",
+        "BRAVO",
         "LABS",
         "LAIR",
-        "ALPHA",
-        "BRAVO"
+        "ALPHA"
       ]
     }
   },
@@ -99,84 +112,70 @@
       "name": "Weapon Roulette",
       "maps": [
         "CLOSEQUARTER",
+        "COASTLINE",
+        "FAVELA",
+        "LABS",
+        "THEMEPARK",
+        "LAIR",
         "ALPHA",
         "BRAVO",
-        "FAVELA",
-        "COASTLINE",
-        "OUTBACK",
-        "THEMEPARK",
-        "LABS",
-        "LAIR"
+        "OUTBACK"
       ]
     },
     "F4A": {
       "name": "Free for All",
       "maps": [
         "CLOSEQUARTER",
+        "LABS",
+        "CONSULATE",
+        "VILLA",
+        "THEMEPARK",
+        "LAIR",
         "ALPHA",
         "BORDER",
         "OREGON",
-        "COASTLINE",
-        "VILLA",
-        "THEMEPARK",
-        "LABS",
-        "CONSULATE",
-        "LAIR"
+        "COASTLINE"
       ],
       "operators": [
         "!MONTAGNE",
         "!BLITZ",
+        "!BLACKBEARD",
         "!CLASH"
       ]
     },
-    "DEATHMATCH": {
-      "name": "Deathmatch",
+    "TDM": {
+      "name": "Team Deathmatch",
       "maps": [
+        "CONSULATE",
+        "LAIR",
+        "SKYSCRAPER",
         "CLOSEQUARTER",
+        "THEMEPARK",
+        "VILLA",
+        "LABS",
         "ALPHA",
         "BORDER",
-        "CLUBHOUSE",
-        "SKYSCRAPER",
-        "VILLA",
-        "THEMEPARK",
-        "LABS",
-        "CONSULATE",
-        "LAIR"
+        "CLUBHOUSE"
       ],
       "operators": [
         "!MONTAGNE",
         "!BLITZ",
+        "!BLACKBEARD",
         "!CLASH"
-      ]
-    },
-    "SNIPERS": {
-      "name": "Snipers Only",
-      "maps": [
-        "HEREFORD"
       ]
     },
     "GOLDENGUN": {
       "name": "Golden Gun",
       "maps": [
         "CLOSEQUARTER",
-        "ALPHA",
         "BRAVO",
         "FAVELA",
-        "COASTLINE",
-        "OUTBACK",
         "EMERALD",
         "SKYSCRAPER",
-        "LAIR"
-      ]
-    },
-    "HEADSHOTS": {
-      "name": "Headshots Only",
-      "maps": [
+        "LAIR",
+        "ALPHA",
         "COASTLINE",
-        "THEMEPARK",
-        "VILLA",
-        "CLOSEQUARTER",
-        "LABS"
+        "OUTBACK"
       ]
     }
   },
