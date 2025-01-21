@@ -46,7 +46,7 @@
         "BREACH",
         "ANTIGADGET"
       ],
-      "speed": 1,
+      "speed": 2,
       "squad": "REDHAMMER"
     },
     "THATCHER": {
@@ -169,7 +169,7 @@
       "name": "Glaz",
       "loadout": {
         "primary": [
-          "DMR"
+          "SR"
         ],
         "secondary": [
           "HG",
@@ -270,7 +270,7 @@
         ],
         "gadgets": [
           "STUN",
-          "HARDBREACH"
+          "CLAYMORE"
         ]
       },
       "roles": [
@@ -613,7 +613,7 @@
       "name": "Kali",
       "loadout": {
         "primary": [
-          "DMR"
+          "SR"
         ],
         "secondary": [
           "MP",
@@ -824,8 +824,7 @@
           "LMG"
         ],
         "secondary": [
-          "HG",
-          "SG"
+          "HG"
         ],
         "gadgets": [
           "STUN",
@@ -1043,7 +1042,7 @@
         ],
         "gadgets": [
           "CAMERA",
-          "C4"
+          "BARBED"
         ]
       },
       "roles": [
