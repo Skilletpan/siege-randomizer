@@ -22,6 +22,10 @@
     "name": "Marksman Rifle",
     "slot": "PRIMARY"
   },
+  "SR": {
+    "name": "Sniper Rifle",
+    "slot": "PRIMARY"
+  },
   "MP": {
     "name": "Machine Pistol",
     "slot": "SECONDARY"
