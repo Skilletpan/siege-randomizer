@@ -223,7 +223,8 @@
         "THUNDERBIRD",
         "THORN",
         "DEIMOS",
-        "SKOPOS"
+        "SKOPOS",
+        "RAUORA"
       ]
     },
     "AI_HARD": {
@@ -274,7 +275,8 @@
         "THUNDERBIRD",
         "THORN",
         "DEIMOS",
-        "SKOPOS"
+        "SKOPOS",
+        "RAUORA"
       ]
     }
   },
@@ -302,7 +304,11 @@
         "BRAVO",
         "FORTRESS",
         "HOUSE",
-        "ALPHA"
+        "ALPHA",
+        "PLANE",
+        "YACHT",
+        "FAVELA",
+        "HEREFORD"
       ]
     },
     "TARGET": {
@@ -328,7 +334,12 @@
         "BRAVO",
         "FORTRESS",
         "HOUSE",
-        "ALPHA"
+        "ALPHA",
+        "ALPHA",
+        "PLANE",
+        "YACHT",
+        "FAVELA",
+        "HEREFORD"
       ]
     }
   }
