@@ -858,6 +858,29 @@
         "MAPCONTROL"
       ],
       "speed": 2
+    },
+    "RAUORA": {
+      "name": "Rauora",
+      "loadout": {
+        "primary": [
+          "DMR",
+          "LMG"
+        ],
+        "secondary": [
+          "MP",
+          "HG"
+        ],
+        "gadgets": [
+          "SMOKE",
+          "BREACH"
+        ]
+      },
+      "roles": [
+        "SUPPORT",
+        "MAPCONTROL"
+      ],
+      "speed": 2,
+      "squad": "VIPERSTRIKE"
     }
   },
   "DEF": {
