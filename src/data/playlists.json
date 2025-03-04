@@ -305,10 +305,9 @@
         "FORTRESS",
         "HOUSE",
         "ALPHA",
-        "PLANE",
-        "YACHT",
         "FAVELA",
-        "HEREFORD"
+        "PLANE",
+        "YACHT"
       ]
     },
     "TARGET": {
@@ -335,11 +334,9 @@
         "FORTRESS",
         "HOUSE",
         "ALPHA",
-        "ALPHA",
-        "PLANE",
-        "YACHT",
         "FAVELA",
-        "HEREFORD"
+        "PLANE",
+        "YACHT"
       ]
     }
   }
