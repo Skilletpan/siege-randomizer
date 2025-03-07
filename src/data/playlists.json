@@ -49,7 +49,6 @@
       "maps": [
         "HOUSE",
         "OREGON",
-        "HEREFORD",
         "CLUBHOUSE",
         "PLANE",
         "CONSULATE",
@@ -81,7 +80,6 @@
       "maps": [
         "HOUSE",
         "OREGON",
-        "HEREFORD",
         "CLUBHOUSE",
         "PLANE",
         "CONSULATE",
@@ -223,7 +221,8 @@
         "THUNDERBIRD",
         "THORN",
         "DEIMOS",
-        "SKOPOS"
+        "SKOPOS",
+        "RAUORA"
       ]
     },
     "AI_HARD": {
@@ -274,7 +273,8 @@
         "THUNDERBIRD",
         "THORN",
         "DEIMOS",
-        "SKOPOS"
+        "SKOPOS",
+        "RAUORA"
       ]
     }
   },
@@ -302,7 +302,10 @@
         "BRAVO",
         "FORTRESS",
         "HOUSE",
-        "ALPHA"
+        "ALPHA",
+        "FAVELA",
+        "PLANE",
+        "YACHT"
       ]
     },
     "TARGET": {
@@ -328,7 +331,10 @@
         "BRAVO",
         "FORTRESS",
         "HOUSE",
-        "ALPHA"
+        "ALPHA",
+        "FAVELA",
+        "PLANE",
+        "YACHT"
       ]
     }
   }
