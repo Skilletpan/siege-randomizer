@@ -84,8 +84,6 @@
 <script setup lang="ts">
 import { useDisplay } from 'vuetify';
 
-import * as Stores from '@/stores';
-
 const { mobile } = useDisplay();
 
 const versionNumber = import.meta.env.VITE_VERSION;
@@ -96,15 +94,4 @@ const ROUTES = [
   { title: 'Maps', path: '/maps', icon: 'mdi-domain' },
   { title: 'Strats', path: '/strats', icon: 'mdi-strategy' }
 ];
-
-// async function loadData() {
-//   await Stores.useSeasonStore().fetchSeasons();
-//   await Stores.useLevelStore().fetchLevels();
-//   await Stores.useGadgetStore().fetchGadgets();
-//   await Stores.useWeaponStore().fetchWeapons();
-//   await Stores.useOperatorStore().fetchOperators();
-//   await Stores.usePlaylistStore().fetchPlaylists();
-// }
-
-// loadData();
 </script>
