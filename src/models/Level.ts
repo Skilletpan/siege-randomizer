@@ -11,11 +11,14 @@ export default class Level {
   /** The location of the level. */
   readonly location: string;
 
-  /** The release season of the level. */
-  readonly release: Season;
+  /** The metadata of the level. */
+  readonly metadata: {
+    /** The release season of the level. */
+    release: Season;
 
-  /** The rework season of the level. */
-  readonly rework?: Season;
+    /** The rework season of the level. */
+    rework?: Season;
+  }
 
   /** The URL of the thumbnail of the level. */
   readonly thumbnail: URL;
@@ -25,16 +28,14 @@ export default class Level {
    * 
    * @param key      The key of the level.
    * @param name     The name of the level.
-   * @param release  The release season of the level.
    * @param location The location of the level.
-   * @param rework   The rework season of the level.
+   * @param metadata The metadata of the level.
    */
-  constructor(key: string, name: string, location: string, release: Season, rework?: Season) {
+  constructor(key: string, name: string, location: string, metadata: { release: Season, rework?: Season }) {
     this.key = key;
     this.name = name;
     this.location = location;
-    this.release = release;
-    this.rework = rework;
+    this.metadata = metadata;
 
     this.thumbnail = AssetLoader.createAssetURL('levels', `${key}.jpg`);
   }

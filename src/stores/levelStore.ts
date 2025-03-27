@@ -9,8 +9,11 @@ type LevelResponse = {
   [key: string]: {
     name: string;
     location: string;
-    release: string;
-    rework?: string;
+    metadata: {
+      disabled?: boolean;
+      release: string;
+      rework?: string;
+    }
   };
 }
 
@@ -43,13 +46,21 @@ export default defineStore('levelStore', () => {
 
     // Map raw data to level objects
     Object.entries(rawData).forEach(([key, level]) => {
-      const release = toRaw(SeasonStore.SEASONS[level.release]);
-      const rework = level.rework ? toRaw(SeasonStore.SEASONS[level.rework]) : undefined;
+      // Skip disabled maps
+      if (level.metadata.disabled) return;
 
+      // Map release/rework season
+      const metadata = {
+        release: toRaw(SeasonStore.SEASONS[level.metadata.release]),
+        rework: level.metadata.rework ? toRaw(SeasonStore.SEASONS[level.metadata.rework]) : undefined
+      };
+
+      // Add level countries to list
       const country = level.location.split(', ').reverse()[0];
       if (!COUNTRIES.value.includes(country)) COUNTRIES.value.push(country);
 
-      LEVELS.value[key] = new Level(key, level.name, level.location, release, rework);
+      // Create level and add it to the collection
+      LEVELS.value[key] = new Level(key, level.name, level.location, metadata);
     });
 
     // Sort countries array
