@@ -5,6 +5,7 @@ import Playlist from './Playlist';
 import Season from './Season';
 import Side from './Side';
 import Squad from './Squad';
+import Strategy from './Strategy';
 import Weapon from './Weapon';
 
 export {
@@ -15,5 +16,6 @@ export {
   Season,
   Side,
   Squad,
+  Strategy,
   Weapon
 }
