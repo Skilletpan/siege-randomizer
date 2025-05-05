@@ -16,7 +16,7 @@ export default defineStore('seasonStore', () => {
   const SEASONS = ref<{ [key: string]: Season }>({});
 
   /** A list of all seasons. */
-  const SEASON_LIST = computed<Season[]>(() => Object.values(SEASONS.value).map((season) => toRaw(season)));
+  const SEASON_LIST = computed<Season[]>(() => Object.values(SEASONS.value));
 
   /** Fetches season data from the data source. */
   async function fetchSeasons() {
@@ -27,12 +27,12 @@ export default defineStore('seasonStore', () => {
     const rawData = await AssetLoader.loadData<SeasonResponse>('seasons.json');
 
     // Map raw data to season objects
-    Object.entries(rawData).forEach(([seasonKey, seasonName]) => {
-      SEASONS.value[seasonKey] = new Season(seasonKey, seasonName);
+    Object.entries(rawData).forEach(([seasonKey, seasonName], seasonNumber) => {
+      SEASONS.value[seasonKey] = new Season(seasonKey, seasonName, seasonNumber);
     });
 
     isFetched.value = true;
-    console.debug(SEASON_LIST.value);
+    console.debug(SEASON_LIST.value.map((season) => toRaw(season)));
   }
 
   return {

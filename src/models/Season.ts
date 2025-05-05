@@ -14,10 +14,9 @@ export default class Season {
    * @param key  The key of the season.
    * @param name The display name of the season.
    */
-  constructor(key: string, name: string) {
+  constructor(key: string, name: string, value: number) {
     this.key = key;
     this.name = name;
-
-    this.value = Number(this.key.replace(/[A-Z]/gi, ''));
+    this.value = value;
   }
 }
