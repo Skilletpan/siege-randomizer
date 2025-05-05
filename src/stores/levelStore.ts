@@ -10,10 +10,11 @@ type LevelResponse = {
     name: string;
     location: string;
     metadata: {
+      bannable?: boolean;
       disabled?: boolean;
       release: string;
       rework?: string;
-    }
+    };
   };
 }
 
@@ -28,10 +29,17 @@ export default defineStore('levelStore', () => {
   const LEVELS = ref<{ [key: string]: Level }>({});
 
   /** A list of all levels. */
-  const LEVEL_LIST = computed<Level[]>(() => Object.values(LEVELS.value).map((level) => toRaw(level)));
+  const LEVEL_LIST = computed<Level[]>(() => Object.values(LEVELS.value));
 
   /** A list of all level locations. */
-  const COUNTRIES = ref<string[]>([]);
+  const COUNTRIES = computed<string[]>(() => LEVEL_LIST.value
+    .reduce((array: string[], level) => {
+      const country = level.location.split(', ').at(-1);
+      if (country && !array.includes(country)) array.push(country);
+      return array;
+    }, [])
+    .sort()
+  );
 
   /** Fetches level data from the data source. */
   async function fetchLevels() {
@@ -46,28 +54,20 @@ export default defineStore('levelStore', () => {
 
     // Map raw data to level objects
     Object.entries(rawData).forEach(([key, level]) => {
-      // Skip disabled maps
-      if (level.metadata.disabled) return;
-
       // Map release/rework season
       const metadata = {
-        release: toRaw(SeasonStore.SEASONS[level.metadata.release]),
-        rework: level.metadata.rework ? toRaw(SeasonStore.SEASONS[level.metadata.rework]) : undefined
+        bannable: level.metadata.bannable ?? true,
+        disabled: level.metadata.disabled ?? false,
+        release: SeasonStore.SEASONS[level.metadata.release],
+        rework: level.metadata.rework ? SeasonStore.SEASONS[level.metadata.rework] : undefined
       };
-
-      // Add level countries to list
-      const country = level.location.split(', ').reverse()[0];
-      if (!COUNTRIES.value.includes(country)) COUNTRIES.value.push(country);
 
       // Create level and add it to the collection
       LEVELS.value[key] = new Level(key, level.name, level.location, metadata);
     });
 
-    // Sort countries array
-    COUNTRIES.value.sort();
-
     isFetched.value = true;
-    console.debug(LEVEL_LIST.value);
+    console.debug(LEVEL_LIST.value.map((level) => toRaw(level)));
     console.debug(toRaw(COUNTRIES.value));
   }
 
