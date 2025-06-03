@@ -381,7 +381,7 @@ watch(preset, (playlistKey) => {
     const playlist = Playlist[playlistKey];
 
     // Set duplicate picks
-    pickDuplicates.value = playlist.isArcade;
+    pickDuplicates.value = playlist.isArcade || playlist.isDeathmatch;
 
     // Remove playlist banned operators from manual ban list
     bans.value = bans.value.filter((operatorKey) => !playlist.bannedOperators.includes(Operator[operatorKey]));

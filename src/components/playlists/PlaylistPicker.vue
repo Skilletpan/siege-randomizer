@@ -44,10 +44,11 @@ const props = defineProps({
  * @type {import('vue').ComputedRef<{ [index: number]: string }>}
  */
 const subheaders = computed(() => ({
+  [props.items.findIndex((playlist) => playlist.isCompetitive)]: 'Competitive',
   [props.items.findIndex((playlist) => playlist.isTactical)]: 'Tactical',
   [props.items.findIndex((playlist) => playlist.isQuickplay)]: 'Quickplay',
   [props.items.findIndex((playlist) => playlist.isArcade)]: 'Arcade',
-  [props.items.findIndex((playlist) => playlist.isVersusAI)]: 'Versus AI',
-  [props.items.findIndex((playlist) => playlist.isTraining && !playlist.isVersusAI)]: 'Training'
+  [props.items.findIndex((playlist) => playlist.isDeathmatch)]: 'Deathmatch',
+  [props.items.findIndex((playlist) => playlist.isTraining)]: 'Training'
 }));
 </script>

@@ -6,7 +6,7 @@ import Operator from './operator';
 /**
  * @typedef Category The category keys of the playlist.
  * 
- * @type {"TACTICAL"|"QUICKPLAY"|"ARCADE"|"AI"|"TRAINING"}
+ * @type {"COMPETITIVE"|"TACTICAL"|"QUICKPLAY"|"ARCADE"|"DEATHMATCH"|"TRAINING"}
  */
 
 export default class Playlist {
@@ -43,20 +43,23 @@ export default class Playlist {
   /** @returns {Category} The category of the playlist. */
   get category() { return this.#category; }
 
+  /** @returns {boolean} Whether this playlist belongs to the `COMPETITIVE` category. */
+  get isCompetitive() { return this.#category === 'COMPETITIVE'; }
+
   /** @returns {boolean} Whether this playlist belongs to the `TACTICAL` category. */
   get isTactical() { return this.#category === 'TACTICAL'; }
 
   /** @returns {boolean} Whether this playlist belongs to the `QUICKPLAY` category. */
   get isQuickplay() { return this.#category === 'QUICKPLAY' || this.#category === 'ARCADE'; }
 
-  /** @returns {boolean} Whether this playlist is an Arcade playlist. */
+  /** @returns {boolean} Whether this playlist belongs to the `ARCADE` category. */
   get isArcade() { return this.#category === 'ARCADE'; }
 
-  /** @returns {boolean} Whether this playlist belongs to the `TRAINING` category. */
-  get isTraining() { return this.#category === 'TRAINING' || this.#category === 'AI'; }
+  /** @returns {boolean} Whether this playlist belongs to the `DEATHMATCH` category. */
+  get isDeathmatch() { return this.#category === 'DEATHMATCH'; }
 
-  /** @returns {boolean} Whether is playlist is a Versus AI playlist. */
-  get isVersusAI() { return this.#category === 'AI'; }
+  /** @returns {boolean} Whether this playlist belongs to the `TRAINING` category. */
+  get isTraining() { return this.#category === 'TRAINING'; }
 
   /** @returns {SiegeMap[]} The maps in the playlist. */
   get maps() { return this.#mapKeys.map((key) => SiegeMap[key]); }
