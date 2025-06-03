@@ -35,7 +35,7 @@
             variant="text"
           >
             <v-btn
-              v-for="amount in 5"
+              v-for="amount in 6"
               :key="amount"
               class="flex-grow-1"
               :icon="`mdi-numeric-${amount}`"
