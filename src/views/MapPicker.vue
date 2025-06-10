@@ -30,37 +30,10 @@
           max-width="300"
         >
           <!-- Playlist Select -->
-          <v-select
+          <playlist-picker
             v-model="pickedPlaylistKey"
-            clearable
-            hide-details
-            :items="Playlist.LIST"
-            item-title="name"
-            item-value="key"
-            label="Playlist"
-            persistent-placeholder
             placeholder="All Maps"
-            variant="solo-filled"
-          >
-            <template v-slot:item="{ index, item, props }">
-              <!-- Playlist Category Subheaders -->
-              <template v-if="item.raw.category !== Playlist.LIST[index - 1]?.category">
-                <!-- Divider -->
-                <v-divider
-                  v-if="index > 0"
-                  class="my-2"
-                />
-
-                <!-- Playlist Category Subheader -->
-                <v-list-subheader class="text-capitalize">
-                  {{ item.raw.category.toLowerCase() }} Playlists
-                </v-list-subheader>
-              </template>
-
-              <!-- Item -->
-              <v-list-item v-bind="props" />
-            </template>
-          </v-select>
+          />
 
           <!-- Pick Button -->
           <v-btn
@@ -114,7 +87,7 @@
 <script setup>
 import { computed, ref } from 'vue';
 
-import { MapCard } from '@/components';
+import { MapCard, PlaylistPicker } from '@/components';
 import { pickRandom } from '@/composables/randomizer';
 import { Playlist, SiegeMap } from '@/models';
 

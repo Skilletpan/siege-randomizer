@@ -21,7 +21,8 @@
         "CLUBHOUSE",
         "BANK",
         "CONSULATE"
-      ]
+      ],
+      "disabled": true
     }
   },
   "TACTICAL": {
@@ -106,7 +107,19 @@
         "ALPHA"
       ]
     },
-    "DUAL": {
+    "DISCOVERY": {
+      "name": "Discovery",
+      "maps": [
+        "BANK",
+        "BORDER",
+        "CHALET",
+        "KAFE",
+        "CLUBHOUSE"
+      ]
+    }
+  },
+  "DUAL_FRONT": {
+    "DUAL_FRONT": {
       "name": "Dual Front",
       "maps": [
         "DISTRICT"
@@ -153,6 +166,20 @@
     }
   },
   "ARCADE": {
+    "GOLDEN_GUN": {
+      "name": "Golden Gun",
+      "maps": [
+        "CLOSEQUARTER",
+        "BRAVO",
+        "FAVELA",
+        "EMERALD",
+        "SKYSCRAPER",
+        "LAIR",
+        "ALPHA",
+        "COASTLINE",
+        "OUTBACK"
+      ]
+    },
     "ROULETTE": {
       "name": "Weapon Roulette",
       "maps": [
@@ -164,20 +191,6 @@
         "LAIR",
         "ALPHA",
         "BRAVO",
-        "OUTBACK"
-      ]
-    },
-    "GOLDENGUN": {
-      "name": "Golden Gun",
-      "maps": [
-        "CLOSEQUARTER",
-        "BRAVO",
-        "FAVELA",
-        "EMERALD",
-        "SKYSCRAPER",
-        "LAIR",
-        "ALPHA",
-        "COASTLINE",
         "OUTBACK"
       ]
     }
@@ -285,17 +298,23 @@
         "YACHT"
       ]
     },
+    "ENLISTED": {
+      "name": "Enlisted",
+      "maps": [],
+      "operators": [],
+      "disabled": true
+    },
     "FIELD": {
       "name": "Field Training",
       "maps": [
-        "CLUBHOUSE",
         "OREGON",
+        "CLUBHOUSE",
+        "CONSULATE",
         "BANK",
         "CHALET",
         "KAFE",
-        "CONSULATE",
-        "LABS",
-        "COASTLINE"
+        "COASTLINE",
+        "LABS"
       ],
       "operators": [
         "STRIKER",

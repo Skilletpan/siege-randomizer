@@ -52,6 +52,9 @@ export default class Playlist {
   /** @returns {boolean} Whether this playlist belongs to the `QUICKPLAY` category. */
   get isQuickplay() { return this.#category === 'QUICKPLAY' || this.#category === 'ARCADE'; }
 
+  /** @returns {boolean} Whether this playlist belongs to the `QUICKPLAY` category. */
+  get isDualFront() { return this.#category === 'DUAL_FRONT'; }
+
   /** @returns {boolean} Whether this playlist belongs to the `ARCADE` category. */
   get isArcade() { return this.#category === 'ARCADE'; }
 
@@ -85,6 +88,7 @@ export default class Playlist {
   static {
     Object.entries(RAW_PLAYLISTS).forEach(([category, playlists]) => {
       Object.entries(playlists).forEach(([key, playlistData]) => {
+        if (playlistData.disabled) return;
         this[key] = new Playlist(key, category, playlistData);
       });
     });
