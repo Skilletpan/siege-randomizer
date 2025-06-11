@@ -1,7 +1,7 @@
 {
-  "TACTICAL": {
-    "COMPETITIVE": {
-      "name": "Competitive",
+  "COMPETITIVE": {
+    "PRO": {
+      "name": "Pro League",
       "maps": [
         "CLUBHOUSE",
         "CONSULATE",
@@ -17,12 +17,15 @@
     "CUP": {
       "name": "Siege Cup",
       "maps": [
-        "CONSULATE",
-        "BORDER",
-        "CHALET",
-        "SKYSCRAPER"
-      ]
-    },
+        "KAFE",
+        "CLUBHOUSE",
+        "BANK",
+        "CONSULATE"
+      ],
+      "disabled": true
+    }
+  },
+  "TACTICAL": {
     "RANKED": {
       "name": "Ranked",
       "maps": [
@@ -44,8 +47,8 @@
         "LAIR"
       ]
     },
-    "STANDARD": {
-      "name": "Standard",
+    "UNRANKED": {
+      "name": "Unranked",
       "maps": [
         "HOUSE",
         "OREGON",
@@ -103,9 +106,80 @@
         "LAIR",
         "ALPHA"
       ]
+    },
+    "DISCOVERY": {
+      "name": "Discovery",
+      "maps": [
+        "BANK",
+        "BORDER",
+        "CHALET",
+        "KAFE",
+        "CLUBHOUSE"
+      ]
+    }
+  },
+  "DUAL_FRONT": {
+    "DUAL_FRONT": {
+      "name": "Dual Front",
+      "maps": [
+        "DISTRICT"
+      ],
+      "operators": [
+        "STRIKER",
+        "SENTRY",
+        "SLEDGE",
+        "THATCHER",
+        "SMOKE",
+        "MUTE",
+        "ASH",
+        "THERMITE",
+        "CASTLE",
+        "PULSE",
+        "MONTAGNE",
+        "TWITCH",
+        "DOC",
+        "GLAZ",
+        "FUZE",
+        "KAPKAN",
+        "IQ",
+        "BANDIT",
+        "FROST",
+        "VALKYRIE",
+        "CAPITAO",
+        "HIBANA",
+        "LESION",
+        "ELA",
+        "VIGIL",
+        "MAESTRO",
+        "MAVERICK",
+        "NOMAD",
+        "WARDEN",
+        "AMARU",
+        "KALI",
+        "WAMAI",
+        "MELUSI",
+        "OSA",
+        "AZAMI",
+        "SENS",
+        "GRIM"
+      ]
     }
   },
   "ARCADE": {
+    "GOLDEN_GUN": {
+      "name": "Golden Gun",
+      "maps": [
+        "CLOSEQUARTER",
+        "BRAVO",
+        "FAVELA",
+        "EMERALD",
+        "SKYSCRAPER",
+        "LAIR",
+        "ALPHA",
+        "COASTLINE",
+        "OUTBACK"
+      ]
+    },
     "ROULETTE": {
       "name": "Weapon Roulette",
       "maps": [
@@ -119,7 +193,9 @@
         "BRAVO",
         "OUTBACK"
       ]
-    },
+    }
+  },
+  "DEATHMATCH": {
     "F4A": {
       "name": "Free for All",
       "maps": [
@@ -160,121 +236,6 @@
         "!BLITZ",
         "!BLACKBEARD",
         "!CLASH"
-      ]
-    },
-    "GOLDENGUN": {
-      "name": "Golden Gun",
-      "maps": [
-        "CLOSEQUARTER",
-        "BRAVO",
-        "FAVELA",
-        "EMERALD",
-        "SKYSCRAPER",
-        "LAIR",
-        "ALPHA",
-        "COASTLINE",
-        "OUTBACK"
-      ]
-    }
-  },
-  "AI": {
-    "AI_EASY": {
-      "name": "Versus AI (Beginner)",
-      "maps": [
-        "OREGON",
-        "CLUBHOUSE",
-        "CHALET"
-      ],
-      "operators": [
-        "STRIKER",
-        "SENTRY",
-        "SLEDGE",
-        "THATCHER",
-        "MUTE",
-        "ASH",
-        "THERMITE",
-        "PULSE",
-        "MONTAGNE",
-        "DOC",
-        "ROOK",
-        "GLAZ",
-        "FUZE",
-        "KAPKAN",
-        "BLITZ",
-        "IQ",
-        "JAGER",
-        "BANDIT",
-        "BUCK",
-        "BLACKBEARD",
-        "VALKYRIE",
-        "HIBANA",
-        "JACKAL",
-        "YING",
-        "VIGIL",
-        "LION",
-        "FINKA",
-        "KAID",
-        "WARDEN",
-        "WAMAI",
-        "IANA",
-        "ACE",
-        "THUNDERBIRD",
-        "THORN",
-        "DEIMOS",
-        "SKOPOS",
-        "RAUORA"
-      ]
-    },
-    "AI_HARD": {
-      "name": "Versus AI (Advanced)",
-      "maps": [
-        "OREGON",
-        "CLUBHOUSE",
-        "CONSULATE",
-        "BANK",
-        "CHALET",
-        "KAFE",
-        "COASTLINE",
-        "LABS"
-      ],
-      "operators": [
-        "STRIKER",
-        "SENTRY",
-        "SLEDGE",
-        "THATCHER",
-        "MUTE",
-        "ASH",
-        "THERMITE",
-        "PULSE",
-        "MONTAGNE",
-        "DOC",
-        "ROOK",
-        "GLAZ",
-        "FUZE",
-        "KAPKAN",
-        "BLITZ",
-        "IQ",
-        "JAGER",
-        "BANDIT",
-        "BUCK",
-        "BLACKBEARD",
-        "VALKYRIE",
-        "HIBANA",
-        "JACKAL",
-        "YING",
-        "VIGIL",
-        "LION",
-        "FINKA",
-        "KAID",
-        "WARDEN",
-        "WAMAI",
-        "IANA",
-        "ACE",
-        "THUNDERBIRD",
-        "THORN",
-        "DEIMOS",
-        "SKOPOS",
-        "RAUORA"
       ]
     }
   },
@@ -335,6 +296,65 @@
         "FAVELA",
         "PLANE",
         "YACHT"
+      ]
+    },
+    "ENLISTED": {
+      "name": "Enlisted",
+      "maps": [],
+      "operators": [],
+      "disabled": true
+    },
+    "FIELD": {
+      "name": "Field Training",
+      "maps": [
+        "OREGON",
+        "CLUBHOUSE",
+        "CONSULATE",
+        "BANK",
+        "CHALET",
+        "KAFE",
+        "COASTLINE",
+        "LABS"
+      ],
+      "operators": [
+        "STRIKER",
+        "SENTRY",
+        "SLEDGE",
+        "THATCHER",
+        "MUTE",
+        "ASH",
+        "THERMITE",
+        "PULSE",
+        "MONTAGNE",
+        "DOC",
+        "ROOK",
+        "GLAZ",
+        "FUZE",
+        "KAPKAN",
+        "BLITZ",
+        "IQ",
+        "JAGER",
+        "BANDIT",
+        "BUCK",
+        "BLACKBEARD",
+        "VALKYRIE",
+        "HIBANA",
+        "JACKAL",
+        "YING",
+        "VIGIL",
+        "LION",
+        "FINKA",
+        "CLASH",
+        "KAID",
+        "WARDEN",
+        "WAMAI",
+        "IANA",
+        "ACE",
+        "THUNDERBIRD",
+        "THORN",
+        "DEIMOS",
+        "SKOPOS",
+        "RAUORA"
       ]
     }
   }

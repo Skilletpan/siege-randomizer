@@ -45,7 +45,7 @@
 
       <!-- Player Input -->
       <v-list-item
-        v-if="Players.currentPlayers.length < 5"
+        v-if="Players.currentPlayers.length < 6"
         class="mt-2"
       >
         <player-input v-model="Players.currentPlayers" />

@@ -8,8 +8,8 @@
           "LMG"
         ],
         "secondary": [
-          "HG",
-          "SG"
+          "SG",
+          "HG"
         ],
         "gadgets": [
           "BREACH",
@@ -30,8 +30,8 @@
       "name": "Sledge",
       "loadout": {
         "primary": [
-          "SG",
-          "AR"
+          "AR",
+          "SG"
         ],
         "secondary": [
           "HG"
@@ -61,8 +61,8 @@
           "HG"
         ],
         "gadgets": [
-          "BREACH",
-          "CLAYMORE"
+          "CLAYMORE",
+          "BREACH"
         ]
       },
       "roles": [
@@ -84,8 +84,8 @@
           "HG"
         ],
         "gadgets": [
-          "BREACH",
-          "CLAYMORE"
+          "CLAYMORE",
+          "BREACH"
         ]
       },
       "roles": [
@@ -99,8 +99,8 @@
       "name": "Thermite",
       "loadout": {
         "primary": [
-          "SG",
-          "AR"
+          "AR",
+          "SG"
         ],
         "secondary": [
           "HG",
@@ -153,9 +153,9 @@
           "REV"
         ],
         "gadgets": [
-          "HARDBREACH",
+          "EMP",
           "SMOKE",
-          "EMP"
+          "HARDBREACH"
         ]
       },
       "roles": [
@@ -173,8 +173,8 @@
         ],
         "secondary": [
           "HG",
-          "HC",
-          "MP"
+          "MP",
+          "HC"
         ],
         "gadgets": [
           "SMOKE",
@@ -194,8 +194,8 @@
       "loadout": {
         "primary": [
           "SH",
-          "LMG",
-          "AR"
+          "AR",
+          "LMG"
         ],
         "secondary": [
           "HG",
@@ -238,17 +238,17 @@
       "name": "IQ",
       "loadout": {
         "primary": [
+          "LMG",
           "AR",
-          "AR",
-          "LMG"
+          "AR"
         ],
         "secondary": [
           "HG"
         ],
         "gadgets": [
-          "BREACH",
+          "FRAG",
           "CLAYMORE",
-          "FRAG"
+          "BREACH"
         ]
       },
       "roles": [
@@ -313,9 +313,9 @@
           "HC"
         ],
         "gadgets": [
-          "CLAYMORE",
           "HARDBREACH",
-          "EMP"
+          "EMP",
+          "CLAYMORE"
         ]
       },
       "roles": [
@@ -333,12 +333,12 @@
           "SG"
         ],
         "secondary": [
-          "HG",
-          "MP"
+          "MP",
+          "HG"
         ],
         "gadgets": [
-          "STUN",
-          "BREACH"
+          "BREACH",
+          "STUN"
         ]
       },
       "roles": [
@@ -357,8 +357,8 @@
           "SG"
         ],
         "secondary": [
-          "HG",
-          "SG"
+          "SG",
+          "HG"
         ],
         "gadgets": [
           "CLAYMORE",
@@ -398,8 +398,8 @@
       "name": "Zofia",
       "loadout": {
         "primary": [
-          "LMG",
-          "AR"
+          "AR",
+          "LMG"
         ],
         "secondary": [
           "HG"
@@ -430,8 +430,8 @@
         ],
         "gadgets": [
           "SMOKE",
-          "STUN",
-          "EMP"
+          "EMP",
+          "STUN"
         ]
       },
       "roles": [
@@ -450,13 +450,13 @@
           "SG"
         ],
         "secondary": [
-          "REV",
-          "HG"
+          "HG",
+          "REV"
         ],
         "gadgets": [
+          "FRAG",
           "STUN",
-          "CLAYMORE",
-          "FRAG"
+          "CLAYMORE"
         ]
       },
       "roles": [
@@ -479,9 +479,9 @@
           "HG"
         ],
         "gadgets": [
+          "FRAG",
           "SMOKE",
-          "STUN",
-          "FRAG"
+          "STUN"
         ]
       },
       "roles": [
@@ -495,15 +495,15 @@
       "name": "Maverick",
       "loadout": {
         "primary": [
-          "DMR",
-          "AR"
+          "AR",
+          "DMR"
         ],
         "secondary": [
           "HG"
         ],
         "gadgets": [
-          "STUN",
           "CLAYMORE",
+          "STUN",
           "SMOKE"
         ]
       },
@@ -522,12 +522,12 @@
           "AR"
         ],
         "secondary": [
-          "REV",
+          "HG",
           "HG"
         ],
         "gadgets": [
-          "STUN",
-          "BREACH"
+          "BREACH",
+          "STUN"
         ]
       },
       "roles": [
@@ -550,8 +550,8 @@
         ],
         "gadgets": [
           "SMOKE",
-          "EMP",
-          "FRAG"
+          "FRAG",
+          "EMP"
         ]
       },
       "roles": [
@@ -573,9 +573,9 @@
           "DE"
         ],
         "gadgets": [
-          "FRAG",
+          "EMP",
           "HARDBREACH",
-          "EMP"
+          "FRAG"
         ]
       },
       "roles": [
@@ -593,13 +593,13 @@
           "SG"
         ],
         "secondary": [
-          "MP",
           "SG",
+          "MP",
           "HC"
         ],
         "gadgets": [
-          "HARDBREACH",
-          "STUN"
+          "STUN",
+          "HARDBREACH"
         ]
       },
       "roles": [
@@ -667,8 +667,8 @@
           "HG"
         ],
         "gadgets": [
-          "BREACH",
-          "CLAYMORE"
+          "CLAYMORE",
+          "BREACH"
         ]
       },
       "roles": [
@@ -712,8 +712,8 @@
           "HG"
         ],
         "gadgets": [
-          "STUN",
-          "CLAYMORE"
+          "CLAYMORE",
+          "STUN"
         ]
       },
       "roles": [
@@ -757,9 +757,9 @@
           "HG"
         ],
         "gadgets": [
+          "FRAG",
           "HARDBREACH",
-          "CLAYMORE",
-          "FRAG"
+          "CLAYMORE"
         ]
       },
       "roles": [
@@ -777,13 +777,13 @@
           "SG"
         ],
         "secondary": [
-          "HG",
-          "BAI"
+          "BAI",
+          "HG"
         ],
         "gadgets": [
+          "HARDBREACH",
           "EMP",
-          "CLAYMORE",
-          "HARDBREACH"
+          "CLAYMORE"
         ]
       },
       "roles": [
@@ -805,8 +805,8 @@
           "HG"
         ],
         "gadgets": [
-          "SMOKE",
-          "CLAYMORE"
+          "CLAYMORE",
+          "SMOKE"
         ]
       },
       "roles": [
@@ -914,12 +914,12 @@
       "name": "Smoke",
       "loadout": {
         "primary": [
-          "SMG",
-          "SG"
+          "SG",
+          "SMG"
         ],
         "secondary": [
-          "HG",
-          "MP"
+          "MP",
+          "HG"
         ],
         "gadgets": [
           "BARBED",
@@ -937,12 +937,12 @@
       "name": "Mute",
       "loadout": {
         "primary": [
-          "SMG",
-          "SG"
+          "SG",
+          "SMG"
         ],
         "secondary": [
-          "HG",
-          "MP"
+          "MP",
+          "HG"
         ],
         "gadgets": [
           "C4",
@@ -964,8 +964,8 @@
           "SG"
         ],
         "secondary": [
-          "HG",
           "SG",
+          "HG",
           "HG"
         ],
         "gadgets": [
@@ -984,8 +984,8 @@
       "name": "Pulse",
       "loadout": {
         "primary": [
-          "SG",
-          "SMG"
+          "SMG",
+          "SG"
         ],
         "secondary": [
           "HG",
@@ -1008,14 +1008,14 @@
       "name": "Doc",
       "loadout": {
         "primary": [
-          "SG",
           "SMG",
-          "SMG"
+          "SMG",
+          "SG"
         ],
         "secondary": [
-          "HG",
+          "BAI",
           "REV",
-          "BAI"
+          "HG"
         ],
         "gadgets": [
           "CAMERA",
@@ -1083,9 +1083,9 @@
           "SMG"
         ],
         "secondary": [
+          "MP",
           "HG",
-          "HG",
-          "MP"
+          "HG"
         ],
         "gadgets": [
           "BARBED",
@@ -1104,8 +1104,8 @@
       "name": "Jäger",
       "loadout": {
         "primary": [
-          "SG",
-          "AR"
+          "AR",
+          "SG"
         ],
         "secondary": [
           "HG"
@@ -1148,16 +1148,16 @@
       "name": "Frost",
       "loadout": {
         "primary": [
-          "SG",
-          "SMG"
-        ],
-        "secondary": [
-          "HG",
+          "SMG",
           "SG"
         ],
+        "secondary": [
+          "SG",
+          "HG"
+        ],
         "gadgets": [
-          "CAMERA",
-          "SHIELD"
+          "SHIELD",
+          "CAMERA"
         ]
       },
       "roles": [
@@ -1216,16 +1216,16 @@
       "name": "Echo",
       "loadout": {
         "primary": [
-          "SG",
-          "SMG"
+          "SMG",
+          "SG"
         ],
         "secondary": [
           "HG",
           "MP"
         ],
         "gadgets": [
-          "IMPACT",
-          "SHIELD"
+          "SHIELD",
+          "IMPACT"
         ]
       },
       "roles": [
@@ -1243,12 +1243,12 @@
           "SG"
         ],
         "secondary": [
-          "HG",
-          "SG"
+          "SG",
+          "HG"
         ],
         "gadgets": [
-          "BEEPER",
-          "C4"
+          "C4",
+          "BEEPER"
         ]
       },
       "roles": [
@@ -1262,12 +1262,12 @@
       "name": "Lesion",
       "loadout": {
         "primary": [
-          "SG",
-          "SMG"
+          "SMG",
+          "SG"
         ],
         "secondary": [
-          "HG",
-          "SG"
+          "SG",
+          "HG"
         ],
         "gadgets": [
           "BLOCKER",
@@ -1292,9 +1292,9 @@
           "HG"
         ],
         "gadgets": [
-          "BARBED",
           "SHIELD",
-          "IMPACT"
+          "IMPACT",
+          "BARBED"
         ]
       },
       "roles": [
@@ -1316,8 +1316,8 @@
           "MP"
         ],
         "gadgets": [
-          "CAMERA",
-          "IMPACT"
+          "IMPACT",
+          "CAMERA"
         ]
       },
       "roles": [
@@ -1359,8 +1359,8 @@
           "SSG"
         ],
         "secondary": [
-          "REV",
-          "BAI"
+          "BAI",
+          "REV"
         ],
         "gadgets": [
           "BEEPER",
@@ -1381,14 +1381,13 @@
           "SH"
         ],
         "secondary": [
-          "SG",
           "MP",
+          "SG",
           "HG"
         ],
         "gadgets": [
           "BARBED",
-          "IMPACT",
-          "SHIELD"
+          "IMPACT"
         ]
       },
       "roles": [
@@ -1407,12 +1406,12 @@
         ],
         "secondary": [
           "REV",
-          "REV"
+          "HG"
         ],
         "gadgets": [
-          "C4",
           "BARBED",
-          "BLOCKER"
+          "BLOCKER",
+          "C4"
         ]
       },
       "roles": [
@@ -1453,8 +1452,8 @@
           "SMG"
         ],
         "secondary": [
-          "HG",
-          "MP"
+          "MP",
+          "HG"
         ],
         "gadgets": [
           "SHIELD",
@@ -1480,9 +1479,9 @@
           "HG"
         ],
         "gadgets": [
+          "IMPACT",
           "BEEPER",
-          "CAMERA",
-          "IMPACT"
+          "CAMERA"
         ]
       },
       "roles": [
@@ -1523,8 +1522,8 @@
           "SG"
         ],
         "secondary": [
-          "BAI",
-          "HG"
+          "HG",
+          "BAI"
         ],
         "gadgets": [
           "BARBED",
@@ -1545,8 +1544,8 @@
           "SG"
         ],
         "secondary": [
-          "HG",
-          "SG"
+          "SG",
+          "HG"
         ],
         "gadgets": [
           "CAMERA",
@@ -1591,13 +1590,13 @@
         ],
         "secondary": [
           "MP",
-          "HG",
-          "SG"
+          "SG",
+          "HG"
         ],
         "gadgets": [
+          "SHIELD",
           "BARBED",
-          "CAMERA",
-          "SHIELD"
+          "CAMERA"
         ]
       },
       "roles": [
@@ -1614,8 +1613,8 @@
           "SG"
         ],
         "secondary": [
-          "HG",
-          "MP"
+          "MP",
+          "HG"
         ],
         "gadgets": [
           "SHIELD",
