@@ -65,7 +65,7 @@
     "title": "A Song of Ice and Fire",
     "tagline": "The lyrics are \"Ow\".",
     "rules": [
-      "Kill enemies that are frozen by Tubarão with fire."
+      "Kill enemies that are frozen by Tubarão with fire from Tachanka, Goyo or an explosive pipe."
     ],
     "operators": [
       "*TACHANKA",
@@ -514,7 +514,17 @@
       [
         {
           "property": "loadout.secondary[some].key",
-          "value": "REV"
+          "method": "included",
+          "value": [
+            "REV",
+            "BAI"
+          ]
+        }
+      ],
+      [
+        {
+          "property": "key",
+          "value": "NOMAD"
         }
       ]
     ]
@@ -756,15 +766,10 @@
         "text": "Place your Armor Plates outside the building for the attackers to take.",
         "operator": "ROOK"
       },
-      {
-        "text": "Place your Kona Stations outside the building for the attackers to use.",
-        "operator": "THUNDERBIRD"
-      },
       "Let the attackers use the gifts unhindered. No camping the presents."
     ],
     "operators": [
-      "*ROOK",
-      "*THUNDERBIRD"
+      "*ROOK"
     ],
     "side": "DEF"
   },
@@ -1030,5 +1035,12 @@
       "BANDIT"
     ],
     "side": "DEF"
+  },
+  {
+    "title": "The Stanley Parable",
+    "tagline": "This is the story of a man named Stanley.",
+    "rules": [
+      "Narrate everything you do in third person."
+    ]
   }
 ]
