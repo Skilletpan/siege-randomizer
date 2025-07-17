@@ -17,10 +17,10 @@
     "CUP": {
       "name": "Siege Cup",
       "maps": [
-        "KAFE",
         "CLUBHOUSE",
         "BANK",
-        "CONSULATE"
+        "KAFE",
+        "BORDER"
       ],
       "disabled": true
     }
@@ -133,7 +133,6 @@
         "MUTE",
         "ASH",
         "THERMITE",
-        "CASTLE",
         "PULSE",
         "MONTAGNE",
         "TWITCH",
@@ -142,22 +141,23 @@
         "FUZE",
         "KAPKAN",
         "IQ",
-        "BANDIT",
+        "JAGER",
         "FROST",
         "VALKYRIE",
         "CAPITAO",
         "HIBANA",
         "LESION",
         "ELA",
-        "VIGIL",
         "MAESTRO",
         "MAVERICK",
         "NOMAD",
         "WARDEN",
+        "NOKK",
         "AMARU",
         "KALI",
         "WAMAI",
         "MELUSI",
+        "ARUNI",
         "OSA",
         "AZAMI",
         "SENS",
