@@ -1737,6 +1737,29 @@
       ],
       "speed": 2,
       "squad": "WOLFGUARD"
+    },
+    "DENARI": {
+      "name": "Denari",
+      "loadout": {
+        "primary": [
+          "SMG",
+          "SMG"
+        ],
+        "secondary": [
+          "SSG",
+          "HG"
+        ],
+        "gadgets": [
+          "BLOCKER",
+          "SHIELD"
+        ]
+      },
+      "roles": [
+        "ANTIENTRY",
+        "CROWDCONTROL"
+      ],
+      "speed": 3,
+      "squad": "NIGHTHAVEN"
     }
   }
 }
