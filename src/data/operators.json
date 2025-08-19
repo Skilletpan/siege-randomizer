@@ -5,7 +5,8 @@
       "loadout": {
         "primary": [
           "AR",
-          "LMG"
+          "LMG",
+          "DMR"
         ],
         "secondary": [
           "SG",
@@ -34,6 +35,7 @@
           "SG"
         ],
         "secondary": [
+          "MP",
           "HG"
         ],
         "gadgets": [
@@ -380,7 +382,8 @@
           "SG"
         ],
         "secondary": [
-          "HG"
+          "HG",
+          "MP"
         ],
         "gadgets": [
           "HARDBREACH",
@@ -889,7 +892,8 @@
       "loadout": {
         "primary": [
           "AR",
-          "SG"
+          "SG",
+          "SSG"
         ],
         "secondary": [
           "MP",
@@ -988,6 +992,7 @@
           "SG"
         ],
         "secondary": [
+          "MP",
           "HG",
           "HG"
         ],
@@ -1038,12 +1043,13 @@
         ],
         "secondary": [
           "REV",
-          "HG"
+          "HG",
+          "MP"
         ],
         "gadgets": [
           "BEEPER",
           "IMPACT",
-          "BLOCKER"
+          "C4"
         ]
       },
       "roles": [
@@ -1232,7 +1238,7 @@
         "INTEL",
         "CROWDCONTROL"
       ],
-      "speed": 1,
+      "speed": 2,
       "squad": "VIPERSTRIKE"
     },
     "MIRA": {
@@ -1266,7 +1272,6 @@
           "SG"
         ],
         "secondary": [
-          "SG",
           "HG"
         ],
         "gadgets": [
@@ -1500,7 +1505,8 @@
         ],
         "secondary": [
           "REV",
-          "HG"
+          "HG",
+          "SG"
         ],
         "gadgets": [
           "IMPACT",
@@ -1523,7 +1529,8 @@
         ],
         "secondary": [
           "HG",
-          "BAI"
+          "BAI",
+          "MP"
         ],
         "gadgets": [
           "BARBED",
@@ -1680,7 +1687,6 @@
           "SG"
         ],
         "secondary": [
-          "BAI",
           "HG"
         ],
         "gadgets": [
