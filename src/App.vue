@@ -21,6 +21,9 @@
     <v-main>
       <router-view />
     </v-main>
+
+    <!-- Loading Dialog -->
+    <loading-dialog />
   </v-app>
 </template>
 
