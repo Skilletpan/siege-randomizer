@@ -7,9 +7,11 @@ Siege Randomizer is a small web-app with several tools to randomize your Siege-e
 Siege Randomizer is built with [Vue 3](https://vuejs.org) and [Vuetify](https://vuetifyjs.com).
 
 ### Commands
+
 ```shell
 npm install       # Install packages
 npm run dev       # Run a development build
+npm run host      # Run a development build and expose the port to the local network
 npm run build     # Create an app build
 npm run preview   # Preview an app build
 ```
