@@ -99,7 +99,8 @@
             "THORN",
             "AZAMI",
             "FENRIR",
-            "TUBARAO"
+            "TUBARAO",
+            "DENARI"
           ]
         },
         {
@@ -229,7 +230,8 @@
       "!RAM",
       "!DEIMOS",
       "!SKOPOS",
-      "!RAUORA"
+      "!RAUORA",
+      "!DENARI"
     ]
   },
   {
@@ -816,7 +818,8 @@
       "GOYO",
       "MELUSI",
       "THORN",
-      "FENRIR"
+      "FENRIR",
+      "DENARI"
     ],
     "side": "DEF"
   },
@@ -1041,6 +1044,20 @@
     "tagline": "This is the story of a man named Stanley.",
     "rules": [
       "Narrate everything you do in third person."
+    ]
+  },
+  {
+    "title": "Remote Work",
+    "tagline": "This could have been an email.",
+    "rules": [
+      "Don't kill people that are in the same room as you. The higher the distance, the better."
+    ]
+  },
+  {
+    "title": "Rat King",
+    "tagline": "The more the merrier.",
+    "rules": [
+      "Always move as a group. Move through the same doors, windows, hallways etc."
     ]
   }
 ]
