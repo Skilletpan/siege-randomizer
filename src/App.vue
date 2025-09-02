@@ -29,6 +29,14 @@
         :items="NAV_ITEMS"
         nav
       />
+
+      <!-- Bottom Navigation Items -->
+      <template #append>
+        <v-list
+          :items="BOTTOM_NAV_ITEMS"
+          nav
+        />
+      </template>
     </v-navigation-drawer>
 
     <!-- Main Content -->
@@ -55,7 +63,11 @@ const APP_VERSION = import.meta.env.VITE_VERSION;
 // Navigation Items
 const NAV_ITEMS = [
   { title: 'Home', props: { prependIcon: 'mdi-home', to: '/' } },
-  { type: 'divider' },
+  { type: 'divider' }
+];
+
+// Navigation Items at the bottom of the sidebar
+const BOTTOM_NAV_ITEMS = [
   { title: 'GitHub', props: { prependIcon: 'mdi-github', href: 'https://github.com/Skilletpan/siege-randomizer', target: '_blank' } }
 ];
 
