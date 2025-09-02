@@ -4,24 +4,19 @@
       "name": "Pro League",
       "maps": [
         "CLUBHOUSE",
-        "CONSULATE",
         "BANK",
         "CHALET",
         "KAFE",
         "BORDER",
         "SKYSCRAPER",
+        "CONSULATE",
         "LABS",
         "LAIR"
       ]
     },
     "CUP": {
       "name": "Siege Cup",
-      "maps": [
-        "CLUBHOUSE",
-        "BANK",
-        "KAFE",
-        "BORDER"
-      ],
+      "maps": [],
       "disabled": true
     }
   },
@@ -109,13 +104,8 @@
     },
     "DISCOVERY": {
       "name": "Discovery",
-      "maps": [
-        "BANK",
-        "BORDER",
-        "CHALET",
-        "KAFE",
-        "CLUBHOUSE"
-      ]
+      "maps": [],
+      "disabled": true
     }
   },
   "DUAL_FRONT": {
@@ -127,41 +117,42 @@
       "operators": [
         "STRIKER",
         "SENTRY",
-        "SLEDGE",
-        "THATCHER",
         "SMOKE",
         "MUTE",
+        "SLEDGE",
+        "THATCHER",
+        "CASTLE",
         "ASH",
-        "THERMITE",
         "PULSE",
-        "MONTAGNE",
         "TWITCH",
-        "DOC",
         "GLAZ",
         "FUZE",
         "KAPKAN",
-        "IQ",
+        "TACHANKA",
         "JAGER",
+        "BANDIT",
         "FROST",
         "VALKYRIE",
         "CAPITAO",
         "HIBANA",
         "LESION",
         "ELA",
+        "VIGIL",
         "MAESTRO",
         "MAVERICK",
+        "CLASH",
         "NOMAD",
-        "WARDEN",
         "NOKK",
-        "AMARU",
-        "KALI",
-        "WAMAI",
+        "WARDEN",
+        "ORYX",
+        "ACE",
         "MELUSI",
         "ARUNI",
         "OSA",
-        "AZAMI",
         "SENS",
-        "GRIM"
+        "SOLIS",
+        "RAUORA",
+        "DENARI"
       ]
     }
   },
@@ -199,16 +190,16 @@
     "F4A": {
       "name": "Free for All",
       "maps": [
-        "CLOSEQUARTER",
-        "LABS",
-        "CONSULATE",
-        "VILLA",
-        "THEMEPARK",
-        "LAIR",
-        "ALPHA",
-        "BORDER",
         "OREGON",
-        "COASTLINE"
+        "BORDER",
+        "COASTLINE",
+        "THEMEPARK",
+        "VILLA",
+        "CLOSEQUARTER",
+        "ALPHA",
+        "CONSULATE",
+        "LABS",
+        "LAIR"
       ],
       "operators": [
         "!MONTAGNE",
@@ -220,16 +211,16 @@
     "TDM": {
       "name": "Team Deathmatch",
       "maps": [
-        "CONSULATE",
-        "LAIR",
+        "CLUBHOUSE",
+        "BORDER",
         "SKYSCRAPER",
-        "CLOSEQUARTER",
         "THEMEPARK",
         "VILLA",
-        "LABS",
+        "CLOSEQUARTER",
         "ALPHA",
-        "BORDER",
-        "CLUBHOUSE"
+        "CONSULATE",
+        "LABS",
+        "LAIR"
       ],
       "operators": [
         "!MONTAGNE",
@@ -307,14 +298,16 @@
     "FIELD": {
       "name": "Field Training",
       "maps": [
-        "OREGON",
         "CLUBHOUSE",
-        "CONSULATE",
+        "OREGON",
         "BANK",
         "CHALET",
         "KAFE",
+        "CONSULATE",
+        "LABS",
         "COASTLINE",
-        "LABS"
+        "LAIR",
+        "BORDER"
       ],
       "operators": [
         "STRIKER",
@@ -324,6 +317,7 @@
         "MUTE",
         "ASH",
         "THERMITE",
+        "CASTLE",
         "PULSE",
         "MONTAGNE",
         "DOC",
@@ -336,25 +330,34 @@
         "JAGER",
         "BANDIT",
         "BUCK",
+        "FROST",
         "BLACKBEARD",
         "VALKYRIE",
         "HIBANA",
         "JACKAL",
         "YING",
+        "LESION",
+        "ELA",
+        "ZOFIA",
+        "DOKKAEBI",
         "VIGIL",
         "LION",
         "FINKA",
         "CLASH",
         "KAID",
+        "GRIDLOCK",
         "WARDEN",
         "WAMAI",
         "IANA",
+        "ORYX",
         "ACE",
         "THUNDERBIRD",
         "THORN",
+        "SOLIS",
         "DEIMOS",
         "SKOPOS",
-        "RAUORA"
+        "RAUORA",
+        "DENARI"
       ]
     }
   }
