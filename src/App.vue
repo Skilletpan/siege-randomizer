@@ -12,20 +12,29 @@
           @click="showNav = !showNav"
         />
       </template>
+
+      <!-- Settings Button -->
+      <template #append>
+        <v-btn
+          :active="false"
+          icon="mdi-cog"
+          @click="showSettings = true"
+        />
+      </template>
     </v-app-bar>
 
     <!-- Side Navigation -->
     <v-navigation-drawer v-model="showNav">
-      <!-- Name and Version -->
-      <v-list-item class="pb-4 pt-3">
+      <!-- App Name -->
+      <v-list-item class="py-4">
         <v-list-item-title class="font-weight-bold text-h5">{{ APP_NAME }}</v-list-item-title>
-        <v-list-item-subtitle>{{ APP_VERSION }}</v-list-item-subtitle>
       </v-list-item>
 
       <v-divider />
 
       <!-- Navigation Items -->
       <v-list
+        class="nav-list"
         :items="NAV_ITEMS"
         nav
       />
@@ -33,9 +42,15 @@
       <!-- Bottom Navigation Items -->
       <template #append>
         <v-list
+          class="nav-list"
           :items="BOTTOM_NAV_ITEMS"
           nav
         />
+
+        <!-- Name and Version -->
+        <v-list-item class="text-caption text-medium-emphasis">
+          {{ APP_NAME }} v{{ APP_VERSION }}
+        </v-list-item>
       </template>
     </v-navigation-drawer>
 
@@ -46,6 +61,9 @@
 
     <!-- Loading Dialog -->
     <loading-dialog />
+
+    <!-- Settings Dialog -->
+    <settings-dialog v-model="showSettings" />
   </v-app>
 </template>
 
@@ -68,9 +86,26 @@ const NAV_ITEMS = [
 
 // Navigation Items at the bottom of the sidebar
 const BOTTOM_NAV_ITEMS = [
-  { title: 'GitHub', props: { prependIcon: 'mdi-github', href: 'https://github.com/Skilletpan/siege-randomizer', target: '_blank' } }
+  { title: 'GitHub', props: { prependIcon: 'mdi-github', href: 'https://github.com/Skilletpan/siege-randomizer', target: '_blank' } },
+  { type: 'divider' },
+  { title: 'Settings', props: { active: false, prependIcon: 'mdi-cog', onClick: () => { showSettings.value = true } } }
 ];
 
 /** Whether the side navigation should be displayed. */
 const showNav = shallowRef<boolean>(!mobile.value);
+
+/** Whether the settings dialog should be displayed. */
+const showSettings = shallowRef<boolean>(false);
 </script>
+
+<style lang="scss" scoped>
+.nav-list {
+  :deep(.v-divider) {
+    margin-bottom: 4px;
+  }
+
+  :deep(.v-list-item:last-child) {
+    margin-bottom: 0;
+  }
+}
+</style>
