@@ -3,7 +3,7 @@
     <!-- App Bar (mobile only) -->
     <v-app-bar
       v-if="mobile"
-      :title="APP_NAME"
+      :title="Env.APP_NAME"
     >
       <!-- Side Navigation Toggle -->
       <template #prepend>
@@ -27,7 +27,7 @@
     <v-navigation-drawer v-model="showNav">
       <!-- App Name -->
       <v-list-item class="py-4">
-        <v-list-item-title class="font-weight-bold text-h5">{{ APP_NAME }}</v-list-item-title>
+        <v-list-item-title class="font-weight-bold text-h5">{{ Env.APP_NAME }}</v-list-item-title>
       </v-list-item>
 
       <v-divider />
@@ -49,7 +49,7 @@
 
         <!-- Name and Version -->
         <v-list-item class="text-caption text-medium-emphasis">
-          {{ APP_NAME }} v{{ APP_VERSION }}
+          {{ Env.APP_NAME }} v{{ Env.APP_VERSION }}
         </v-list-item>
       </template>
     </v-navigation-drawer>
@@ -71,24 +71,31 @@
 import { shallowRef } from 'vue';
 import { useDisplay } from 'vuetify';
 
+import { Env } from '@/utils';
+
 // Display Breakpoints
 const { mobile } = useDisplay();
 
-// App Information
-const APP_NAME = 'Siege Randomizer';
-const APP_VERSION = import.meta.env.VITE_VERSION;
-
 // Navigation Items
 const NAV_ITEMS = [
-  { title: 'Home', props: { prependIcon: 'mdi-home', to: '/' } },
+  {
+    title: 'Home',
+    props: { prependIcon: 'mdi-home', to: '/' }
+  },
   { type: 'divider' }
 ];
 
 // Navigation Items at the bottom of the sidebar
 const BOTTOM_NAV_ITEMS = [
-  { title: 'GitHub', props: { prependIcon: 'mdi-github', href: 'https://github.com/Skilletpan/siege-randomizer', target: '_blank' } },
+  {
+    title: 'GitHub',
+    props: { prependIcon: 'mdi-github', href: Env.APP_REPOSITORY, target: '_blank' }
+  },
   { type: 'divider' },
-  { title: 'Settings', props: { active: false, prependIcon: 'mdi-cog', onClick: () => { showSettings.value = true } } }
+  {
+    title: 'Settings',
+    props: { active: false, prependIcon: 'mdi-cog', onClick: () => { showSettings.value = true } }
+  }
 ];
 
 /** Whether the side navigation should be displayed. */

@@ -7,11 +7,11 @@ import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 
 export default defineConfig(({ mode }) => {
   // Load envs
-  const env = loadEnv(mode, process.cwd());
-  process.env.VITE_VERSION = process.env.npm_package_version;
+  const env = loadEnv(mode, process.cwd(), 'SERVER_');
+  process.env.VITE_APP_VERSION = process.env.npm_package_version;
 
   return {
-    base: env.VITE_HOST_URI ?? '/',
+    base: env.SERVER_BASE_URI ?? '/',
     plugins: [
       Vue({ template: { transformAssetUrls } }),
       Vuetify(),
@@ -43,7 +43,7 @@ export default defineConfig(({ mode }) => {
       ]
     },
     server: {
-      port: Number(env.VITE_HOST_PORT) || 3000
+      port: Number(env.SERVER_PORT) || 3000
     },
     css: {
       preprocessorOptions: {
