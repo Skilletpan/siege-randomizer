@@ -10,11 +10,6 @@ jobs:
     name: Test Build and Type Check
     runs-on: ubuntu-latest
     steps:
-      - name: Env Test
-        env:
-          APP_NAME: ${{ vars.APP_NAME }}
-        run: echo "$APP_NAME"
-
       - name: Setup NodeJS
         uses: actions/setup-node@v5
         with:
