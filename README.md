@@ -17,6 +17,8 @@ These only need to be installed if you're testing github workflows locally (usin
 * [Docker](https://www.docker.com/)
 * [Act](https://github.com/nektos/act)
 
+---
+
 ### Environment Variables
 
 Variable Name     | Default Value                       | Description
@@ -25,7 +27,9 @@ Variable Name     | Default Value                       | Description
 `APP_REPOSITORY`  |                                     | The link to the GitHub project.
 `APP_VERSION`     | `version` value from `package.json` | The version number of the app.
 `SERVER_PORT`     | `3000`                              | The port to host the development server on.
-`SERVER_BASE_URI` | `/`                                 | The base URL of the server. Should start end end with a `/` (ex `/siege-randomizer/`).
+`SERVER_BASE_URI` | `/`                                 | The base URL of the server. Should start end end with a `/` (ex. `/siege-randomizer/`).
+
+---
 
 ### Commands
 
