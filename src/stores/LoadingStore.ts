@@ -1,11 +1,5 @@
 import { defineStore } from 'pinia';
-import { ref, shallowRef } from 'vue';
-
-type Step = {
-  title?: string;
-  runner: Function;
-  args?: unknown[];
-};
+import { shallowRef } from 'vue';
 
 export default defineStore('dialog', () => {
   /** Whether the loading dialog is visible. */
@@ -14,40 +8,27 @@ export default defineStore('dialog', () => {
   /** The title of the dialog. */
   const dialogTitle = shallowRef<string>();
 
-  /** The queue of steps to run. */
-  const queue = ref<Step[]>([]);
-
-  /** The current step. */
-  const currentStep = ref<Step>();
-
-  /** The display name of the current step. */
-  const currentStepName = shallowRef<string>();
+  /** The title of the current step. */
+  const dialogStep = shallowRef<string>();
 
   /**
-   * Runs all steps in the queue.
+   * Displays the dialog for the duration of a function.
    * 
-   * @param title The dialog title to display.
+   * @param runner The function to run.
+   * @param title  The title of the dialog.
+   * @param step   The title of the initial step.
+   * 
+   * @returns The result of the runner function.
    */
-  async function run(title: string = 'Loading…') {
-    // Don't run if queue is empty
-    if (!queue.value.length) {
-      console.warn('Tried to run a loading dialog with an empty queue!');
-      return;
-    }
+  async function run(runner: () => Promise<unknown>, title: string = 'Loading…', step?: string) {
+    // Set text display values
+    dialogTitle.value = title;
+    dialogStep.value = step;
 
     try {
-      // Set title and open dialog
-      dialogTitle.value = title;
+      // Open dialog and run function
       isLoading.value = true;
-
-      // Run every step in the queue
-      while (queue.value.length > 0) {
-        currentStep.value = queue.value.shift();
-        currentStepName.value = currentStep.value!.title;
-
-        const args = currentStep.value!.args ?? [];
-        await currentStep.value!.runner(...args);
-      }
+      return await runner();
     } finally {
       // Close dialog
       isLoading.value = false;
@@ -55,8 +36,7 @@ export default defineStore('dialog', () => {
       // Cleanup
       setTimeout(() => {
         dialogTitle.value = undefined;
-        currentStep.value = undefined;
-        currentStepName.value = undefined;
+        dialogStep.value = undefined;
       }, 300);
     }
   }
@@ -64,9 +44,7 @@ export default defineStore('dialog', () => {
   return {
     isLoading,
     dialogTitle,
-    queue,
-    currentStep,
-    currentStepName,
+    dialogStep,
 
     run
   };
