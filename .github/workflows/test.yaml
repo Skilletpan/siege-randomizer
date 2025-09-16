@@ -1,0 +1,37 @@
+name: Test Build App
+
+on:
+  pull_request:
+    branches: [ master, develop ]
+  workflow_call:
+
+jobs:
+  test-build:
+    name: Test Build and Type Check
+    runs-on: ubuntu-latest
+    steps:
+      - name: Env Test
+        env:
+          APP_NAME: ${{ vars.APP_NAME }}
+        run: echo "$APP_NAME"
+
+      - name: Setup NodeJS
+        uses: actions/setup-node@v5
+        with:
+          node-version: 22.x
+
+      - name: Checkout repository
+        uses: actions/checkout@v5
+        with:
+          ref: ${{ github.ref }}
+
+      - name: Install NodeJS packages
+        run: npm install
+
+      - name: Build and type-check
+        run: npm run build
+        env:
+          APP_NAME: ${{ vars.APP_NAME }}
+          VITE_APP_NAME: ${{ vars.APP_NAME }}
+          APP_REPOSITORY: ${{ vars.APP_REPOSITORY }}
+          APP_VERSION: ${{ vars.APP_VERSION }}
