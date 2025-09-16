@@ -6,6 +6,16 @@ Siege Randomizer is a small web-app with several tools to randomize your Siege-e
 
 Siege Randomizer is built with [Vue 3](https://vuejs.org) and [Vuetify](https://vuetifyjs.com).
 
+### Environment Variables
+
+Variable Name     | Default Value                       | Description
+----------------- | ----------------------------------- | -----------
+`APP_NAME`        | `Siege Randomizer`                  | The display name of the app.
+`APP_REPOSITORY`  |                                     | The link to the GitHub project.
+`APP_VERSION`     | `version` value from `package.json` | The version number of the app.
+`SERVER_PORT`     | `3000`                              | The port to host the development server on.
+`SERVER_BASE_URI` | `/`                                 | The base URL of the server. Should start end end with a `/` (ex `/siege-randomizer/`).
+
 ### Commands
 
 ```shell
