@@ -7,5 +7,8 @@ export default Object.freeze({
   APP_REPOSITORY: import.meta.env.VITE_APP_REPOSITORY,
 
   /** The version of the app. */
-  APP_VERSION: import.meta.env.VITE_APP_VERSION
+  APP_VERSION: import.meta.env.VITE_APP_VERSION,
+
+  /** The URL where application data is hosted. */
+  REMOTE_DATA_HOST: import.meta.env.VITE_REMOTE_DATA_HOST
 });

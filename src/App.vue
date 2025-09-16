@@ -71,10 +71,14 @@
 import { shallowRef } from 'vue';
 import { useDisplay } from 'vuetify';
 
+import { useSiegeStore } from '@/stores';
 import { Env } from '@/utils';
 
 // Display Breakpoints
 const { mobile } = useDisplay();
+
+// Stores
+const SiegeStore = useSiegeStore();
 
 // Navigation Items
 const NAV_ITEMS = [
@@ -103,6 +107,9 @@ const showNav = shallowRef<boolean>(!mobile.value);
 
 /** Whether the settings dialog should be displayed. */
 const showSettings = shallowRef<boolean>(false);
+
+// Load Siege data
+SiegeStore.fetchSiegeData();
 </script>
 
 <style lang="scss" scoped>
