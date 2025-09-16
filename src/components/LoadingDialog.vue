@@ -8,7 +8,7 @@
       <v-card-text>
         <!-- Loader -->
         <v-progress-linear
-          :class="{ 'mb-1': LoadingStore.currentStepName }"
+          :class="{ 'mb-1': LoadingStore.dialogStep }"
           color="primary"
           indeterminate
           rounded
@@ -17,10 +17,10 @@
 
         <!-- Step Text -->
         <span
-          v-if="LoadingStore.currentStepName"
+          v-if="LoadingStore.dialogStep"
           class="text-caption text-medium-emphasis"
         >
-          {{ LoadingStore.currentStepName }}
+          {{ LoadingStore.dialogStep }}
         </span>
       </v-card-text>
     </v-card>
