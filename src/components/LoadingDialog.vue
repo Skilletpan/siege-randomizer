@@ -1,14 +1,14 @@
 <template>
   <v-dialog
-    v-model="DialogStore.isLoading"
+    v-model="LoadingStore.isLoading"
     persistent
     width="300"
   >
-    <v-card :title="DialogStore.dialogTitle">
+    <v-card :title="LoadingStore.dialogTitle">
       <v-card-text>
         <!-- Loader -->
         <v-progress-linear
-          :class="{ 'mb-1': DialogStore.currentStep?.title }"
+          :class="{ 'mb-1': LoadingStore.currentStepName }"
           color="primary"
           indeterminate
           rounded
@@ -17,10 +17,10 @@
 
         <!-- Step Text -->
         <span
-          v-if="DialogStore.currentStep?.title"
+          v-if="LoadingStore.currentStepName"
           class="text-caption text-medium-emphasis"
         >
-          {{ DialogStore.currentStep.title }}
+          {{ LoadingStore.currentStepName }}
         </span>
       </v-card-text>
     </v-card>
@@ -28,7 +28,7 @@
 </template>
 
 <script setup lang="ts">
-import { useDialogStore } from '@/stores';
+import { useLoadingStore } from '@/stores';
 
-const DialogStore = useDialogStore();
+const LoadingStore = useLoadingStore();
 </script>

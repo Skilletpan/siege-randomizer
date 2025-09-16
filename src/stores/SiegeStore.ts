@@ -1,10 +1,10 @@
 import { defineStore } from 'pinia';
 import { computed, ref, shallowRef } from 'vue';
 
-import { useDialogStore } from '@/stores';
+import { useLoadingStore } from '@/stores';
 
 export default defineStore('siege', () => {
-  const DialogStore = useDialogStore();
+  const LoadingStore = useLoadingStore();
 
   /** Whether Siege data has been fetched. */
   const isFetched = shallowRef<boolean>(false);

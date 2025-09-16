@@ -20,6 +20,9 @@ export default defineStore('dialog', () => {
   /** The current step. */
   const currentStep = ref<Step>();
 
+  /** The display name of the current step. */
+  const currentStepName = shallowRef<string>();
+
   /**
    * Runs all steps in the queue.
    * 
@@ -40,6 +43,7 @@ export default defineStore('dialog', () => {
       // Run every step in the queue
       while (queue.value.length > 0) {
         currentStep.value = queue.value.shift();
+        currentStepName.value = currentStep.value!.title;
 
         const args = currentStep.value!.args ?? [];
         await currentStep.value!.runner(...args);
@@ -52,6 +56,7 @@ export default defineStore('dialog', () => {
       setTimeout(() => {
         dialogTitle.value = undefined;
         currentStep.value = undefined;
+        currentStepName.value = undefined;
       }, 300);
     }
   }
@@ -61,6 +66,7 @@ export default defineStore('dialog', () => {
     dialogTitle,
     queue,
     currentStep,
+    currentStepName,
 
     run
   };
