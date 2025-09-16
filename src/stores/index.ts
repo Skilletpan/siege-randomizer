@@ -1,7 +1,7 @@
-import useDialogStore from './DialogStore';
+import useLoadingStore from './LoadingStore';
 import useSiegeStore from './SiegeStore';
 
 export {
-  useDialogStore,
+  useLoadingStore,
   useSiegeStore
 }
