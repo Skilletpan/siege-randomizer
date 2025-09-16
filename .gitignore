@@ -24,3 +24,6 @@ pnpm-debug.log*
 
 # Local workflow build artifacts
 .artifacts
+
+# Local data
+src/data

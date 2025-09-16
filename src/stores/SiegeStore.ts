@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 import { computed, ref, shallowRef } from 'vue';
 
 import { useLoadingStore } from '@/stores';
+import { Env } from '@/utils';
 
 export default defineStore('siege', () => {
   const LoadingStore = useLoadingStore();
@@ -13,6 +14,19 @@ export default defineStore('siege', () => {
   async function fetchSiegeData() {
     // Cancel if already fetched
     if (isFetched.value) return;
+
+    // Show loading dialog
+    await LoadingStore.run(
+      async () => {
+        // Fetch data
+        const [] = await Promise.all([]);
+      },
+      `Preparing ${Env.APP_NAME}…`,
+      'Fetching Data…'
+    );
+
+    // Set fetched status
+    isFetched.value = true;
   }
 
   return {
