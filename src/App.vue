@@ -89,7 +89,7 @@ const NAV_ITEMS = [
 const BOTTOM_NAV_ITEMS = [
   {
     title: 'GitHub',
-    props: { prependIcon: 'mdi-github', href: Env.APP_REPOSITORY, target: '_blank' }
+    props: { disabled: !Env.APP_REPOSITORY, prependIcon: 'mdi-github', href: Env.APP_REPOSITORY, target: '_blank' }
   },
   { type: 'divider' },
   {
