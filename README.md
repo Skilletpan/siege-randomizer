@@ -4,7 +4,18 @@ Siege Randomizer is a small web-app with several tools to randomize your Siege-e
 
 ##  Technical Stuff
 
-Siege Randomizer is built with [Vue 3](https://vuejs.org) and [Vuetify](https://vuetifyjs.com).
+Siege Randomizer is built with [TypeScript](https://www.typescriptlang.org), [Vue 3](https://vuejs.org) and [Vuetify](https://vuetifyjs.com).
+
+### Dependencies
+
+* [NodeJS](https://nodejs.org/)
+
+####  Optional Dependencies
+
+These only need to be installed if you're testing github workflows locally (using the `workflow`-scripts).
+
+* [Docker](https://www.docker.com/)
+* [Act](https://github.com/nektos/act)
 
 ### Environment Variables
 
@@ -19,11 +30,18 @@ Variable Name     | Default Value                       | Description
 ### Commands
 
 ```shell
-npm install       # Install packages
-npm run dev       # Run a development build
-npm run host      # Run a development build and expose the port to the local network
-npm run build     # Create an app build
-npm run preview   # Preview an app build
+npm install          # Install packages
+npm run dev          # Run a development build
+npm run host         # Run a development build and expose the port to the local network
+npm run build        # Create an app build and type-check the project
+npm run build-only   # Create an app build
+npm run type-check   # Type-check the project
+npm run preview      # Preview an app build
+
+# The following require Docker and Act to be installed (see optional dependencies)
+npm run workflow-test     # Run the test workflow
+npm run workflow-build    # Run the build workflow
+npm run workflow-deploy   # Run the deploy workflow
 ```
 
 ##  Disclaimer
