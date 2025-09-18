@@ -1,10 +1,12 @@
 import { defineStore } from 'pinia';
 import { computed, ref, shallowRef, toRaw } from 'vue';
 
-import { Season, Weapon } from '@/models';
+import { Gadget, Season, Weapon } from '@/models';
 import { WEAPON_CLASSES } from '@/models/siege/Weapon';
 import { useLoadingStore } from '@/stores';
 import { DataFetcher, Env } from '@/utils';
+
+type RawGadgets = Record<string, { name: string, amount?: number, features: Record<string, true> }>;
 
 type RawSeasons = Record<string, string>;
 
@@ -12,6 +14,12 @@ type RawWeapons = Record<string, Record<string, string>>;
 
 export default defineStore('siege', () => {
   const LoadingStore = useLoadingStore();
+
+  /** The collection of gadgets. */
+  const GADGETS = ref<Record<string, Gadget>>({});
+
+  /** The list of gadgets. */
+  const GADGET_LIST = computed(() => Object.values(GADGETS.value));
 
   /** The collection of seasons. */
   const SEASONS = ref<Record<string, Season>>({});
@@ -38,9 +46,11 @@ export default defineStore('siege', () => {
       async () => {
         // Fetch data
         const [
+          rawGadgets,
           rawSeasons,
           rawWeapons
         ] = await Promise.all([
+          DataFetcher.fetchData<RawGadgets>('gadgets.json'),
           DataFetcher.fetchData<RawSeasons>('seasons.json'),
           DataFetcher.fetchData<RawWeapons>('weapons.json')
         ]);
@@ -59,6 +69,16 @@ export default defineStore('siege', () => {
           });
         });
         console.debug(toRaw(WEAPONS.value));
+
+        // Mapping gadgets
+        LoadingStore.dialogStep = 'Mapping Gadgets…';
+        Object.entries(rawGadgets).forEach(([key, rawGadget]) => GADGETS.value[key] = new Gadget(
+          key,
+          rawGadget.name,
+          rawGadget.amount,
+          rawGadget.features
+        ));
+        console.debug(toRaw(GADGETS.value));
       },
       `Preparing ${Env.APP_NAME}…`,
       'Fetching Data…'
@@ -69,6 +89,9 @@ export default defineStore('siege', () => {
   }
 
   return {
+    GADGETS,
+    GADGET_LIST,
+
     SEASONS,
     SEASON_LIST,
 
