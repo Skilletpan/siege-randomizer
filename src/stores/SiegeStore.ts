@@ -1,12 +1,19 @@
 import { defineStore } from 'pinia';
 import { computed, ref, shallowRef, toRaw } from 'vue';
 
-import { Gadget, Season, Weapon } from '@/models';
+import { Gadget, Level, Season } from '@/models'
+import type { Weapon } from '@/models';
 import { WEAPON_CLASSES } from '@/models/siege/Weapon';
 import { useLoadingStore } from '@/stores';
 import { DataFetcher, Env } from '@/utils';
 
 type RawGadgets = Record<string, { name: string, amount?: number, features: Record<string, true> }>;
+
+type RawLevel = Record<string, {
+  name: string,
+  location: string,
+  metadata: { disabled?: boolean, released: string, reworked?: string, modernized?: string }
+}>;
 
 type RawSeasons = Record<string, string>;
 
@@ -20,6 +27,22 @@ export default defineStore('siege', () => {
 
   /** The list of gadgets. */
   const GADGET_LIST = computed(() => Object.values(GADGETS.value));
+
+  /** The collection of levels. */
+  const LEVELS = ref<Record<string, Level>>({});
+
+  /** The list of levels. */
+  const LEVEL_LIST = computed(() => Object.values(LEVELS.value));
+
+  /** The list of level locations. */
+  const LEVEL_LOCATIONS = computed(() => LEVEL_LIST.value.reduce<string[]>((locations, level) => {
+    // Get level locations
+    const location = level.location.split(', ').at(-1)!;
+
+    // Add level location to list if not present
+    if (!locations.includes(location)) locations.push(location);
+    return locations;
+  }, []).sort());
 
   /** The collection of seasons. */
   const SEASONS = ref<Record<string, Season>>({});
@@ -47,10 +70,12 @@ export default defineStore('siege', () => {
         // Fetch data
         const [
           rawGadgets,
+          rawLevels,
           rawSeasons,
           rawWeapons
         ] = await Promise.all([
           DataFetcher.fetchData<RawGadgets>('gadgets.json'),
+          DataFetcher.fetchData<RawLevel>('levels.json'),
           DataFetcher.fetchData<RawSeasons>('seasons.json'),
           DataFetcher.fetchData<RawWeapons>('weapons.json')
         ]);
@@ -59,6 +84,24 @@ export default defineStore('siege', () => {
         LoadingStore.dialogStep = 'Mapping Seasons…';
         Object.entries(rawSeasons).forEach(([key, name], id) => SEASONS.value[key] = new Season(id, key, name));
         console.debug(toRaw(SEASONS.value));
+
+        // Mapping levels
+        LoadingStore.dialogStep = 'Mapping Levels…';
+        Object.entries(rawLevels).forEach(([key, rawLevel]) => {
+          // Map level metadata
+          const { disabled, released, reworked, modernized } = rawLevel.metadata;
+          const metadata = {
+            disabled,
+            released: SEASONS.value[released],
+            reworked: reworked ? SEASONS.value[reworked] : undefined,
+            modernized: modernized ? SEASONS.value[modernized] : undefined
+          };
+
+          // Create level instance
+          LEVELS.value[key] = new Level(key, rawLevel.name, rawLevel.location, metadata);
+        });
+        console.debug(toRaw(LEVELS.value));
+        console.debug(LEVEL_LOCATIONS.value);
 
         // Mapping weapons
         LoadingStore.dialogStep = 'Mapping Weapons…';
@@ -91,6 +134,10 @@ export default defineStore('siege', () => {
   return {
     GADGETS,
     GADGET_LIST,
+
+    LEVELS,
+    LEVEL_LIST,
+    LEVEL_LOCATIONS,
 
     SEASONS,
     SEASON_LIST,
