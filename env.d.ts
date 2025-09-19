@@ -5,6 +5,7 @@ interface ImportMetaEnv {
   readonly VITE_APP_REPOSITORY: string;
   readonly VITE_APP_VERSION: string;
 
+  readonly VITE_REMOTE_ASSETS_HOST: string;
   readonly VITE_REMOTE_DATA_HOST: string;
 }
 

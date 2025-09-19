@@ -4,6 +4,19 @@ import Env from './env';
 const LOCAL_URL = new URL(import.meta.url).origin + import.meta.env.BASE_URL + 'src';
 console.debug(LOCAL_URL);
 
+/**
+ * Builds an URL pointing to an image asset.
+ * 
+ * @param path The path to the asset.
+ * 
+ * @returns The URL pointing to the asset.
+ */
+export function buildAssetUrl(...path: string[]): URL {
+  // Build URL
+  const base = Env.REMOTE_ASSETS_HOST ?? (LOCAL_URL + '/assets/');
+  return new URL(path.join('/'), base);
+}
+
 export async function fetchData<T>(...path: string[]): Promise<T> {
   // Build URL
   const base = Env.REMOTE_DATA_HOST ?? (LOCAL_URL + '/data/');
