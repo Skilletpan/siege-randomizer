@@ -17,6 +17,13 @@ export function buildAssetUrl(...path: string[]): URL {
   return new URL(path.join('/'), base);
 }
 
+/**
+ * Fetches data from the app data host.
+ * 
+ * @param path The path to the data file.
+ * 
+ * @returns The fetched data.
+ */
 export async function fetchData<T>(...path: string[]): Promise<T> {
   // Build URL
   const base = Env.REMOTE_DATA_HOST ?? (LOCAL_URL + '/data/');
