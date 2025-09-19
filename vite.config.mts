@@ -14,11 +14,11 @@ export default defineConfig(({ mode }) => {
     process.env,
     {
       VITE_APP_NAME: env.APP_NAME || 'Siege Randomizer',
-      VITE_APP_REPOSITORY: env.APP_REPOSITORY,
+      VITE_APP_REPOSITORY: env.APP_REPOSITORY ?? '',
       VITE_APP_VERSION: env.APP_VERSION || process.env.npm_package_version,
 
-      VITE_REMOTE_ASSETS_HOST: env.REMOTE_ASSETS_HOST,
-      VITE_REMOTE_DATA_HORT: env.REMOTE_DATA_HOST
+      VITE_REMOTE_ASSETS_HOST: env.REMOTE_ASSETS_HOST ?? '',
+      VITE_REMOTE_DATA_HOST: env.REMOTE_DATA_HOST ?? ''
     }
   );
 
