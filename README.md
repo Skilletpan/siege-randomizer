@@ -21,14 +21,15 @@ These only need to be installed if you're testing github workflows locally (usin
 
 ### Environment Variables
 
-Variable Name      | Default Value                       | Description
-:----------------  |:----------------------------------- |:-----------
-`APP_NAME`         | `Siege Randomizer`                  | The display name of the app.
-`APP_REPOSITORY`   |                                     | The link to the GitHub project.
-`APP_VERSION`      | `version` value from `package.json` | The version number of the app.
-`SERVER_PORT`      | `3000`                              | The port to host the development server on.
-`SERVER_BASE_URI`  | `/`                                 | The base URL of the server. Should start end end with a `/` (ex. `/siege-randomizer/`).
-`REMOTE_DATA_HOST` | the local `src/data` folder         | The URL where app data is hosted
+Variable Name        | Default Value                       | Description
+:------------------- |:----------------------------------- |:-----------
+`APP_NAME`           | `Siege Randomizer`                  | The display name of the app.
+`APP_REPOSITORY`     |                                     | The link to the GitHub project.
+`APP_VERSION`        | `version` value from `package.json` | The version number of the app.
+`SERVER_PORT`        | `3000`                              | The port to host the development server on.
+`SERVER_BASE_URI`    | `/`                                 | The base URL of the server. Should start end end with a `/` (ex. `/siege-randomizer/`).
+`REMOTE_ASSETS_HOST` | the local `src/assets` folder       | The URL where app assets are hosted
+`REMOTE_DATA_HOST`   | the local `src/data` folder         | The URL where app data is hosted
 
 ---
 
