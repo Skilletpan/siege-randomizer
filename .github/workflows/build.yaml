@@ -1,11 +1,13 @@
 name: Build App
 
 on:
+  pull_request:
+    branches: [ master, develop ]
   workflow_call:
 
 jobs:
   build:
-    name: Build and Upload Pages Artifact
+    name: Build App
     runs-on: ubuntu-latest
     steps:
       - name: Setup NodeJS
@@ -14,18 +16,20 @@ jobs:
           node-version: 22.x
 
       - name: Setup GitHub Pages
+        if: github.event_name != 'pull_request'
         id: pagesSetup
         uses: actions/configure-pages@v5
 
-      - name: Checkout repository
+      - name: Checkout Repository
         uses: actions/checkout@v5
-        with:
-          ref: ${{ github.ref }}
 
-      - name: Install packages
+      - name: Install Packages
         run: npm install
 
-      - name: Build project
+      - name: Type-Check Project
+        run: npm run type-check
+
+      - name: Build Project
         run: npm run build-only
         env:
           APP_NAME: ${{ vars.APP_NAME }}
@@ -33,8 +37,11 @@ jobs:
           APP_REPOSITORY: ${{ vars.APP_REPOSITORY }}
           APP_VERSION: ${{ vars.APP_VERSION }}
           SERVER_BASE_URI: ${{ steps.pagesSetup.outputs.base_path }}/
+          REMOTE_ASSETS_HOST: ${{ vars.REMOTE_DATA_HOST }}
+          REMOVE_DATA_HOST: ${{ vars.REMOTE_DATA_HOST }}
 
-      - name: Upload artifact
+      - name: Upload Build Artifact
+        if: github.event_name != 'pull_request'
         uses: actions/upload-pages-artifact@v4
         with:
           path: dist/
