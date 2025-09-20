@@ -10,9 +10,9 @@
     "preview": "vite preview",
     "build-only": "vite build",
     "type-check": "vue-tsc --build --force",
-    "workflow-test": "act -W ./.github/workflows/test.yaml -j test-build",
-    "workflow-build": "act -W ./.github/workflows/build.yaml -j build --artifact-server-path .artifacts",
-    "workflow-deploy": "act -W ./.github/workflows/deploy.yaml -j deploy --artifact-server-path .artifacts"
+    "workflow-build": "act pull_request -W ./.github/workflows/build.yaml",
+    "workflow-build-artifact": "act workflow_call -W ./.github/workflows/build.yaml --artifact-server-path .artifacts",
+    "workflow-deploy": "act -W ./.github/workflows/deploy.yaml --artifact-server-path .artifacts"
   },
   "dependencies": {
     "@mdi/font": "7.4.47",

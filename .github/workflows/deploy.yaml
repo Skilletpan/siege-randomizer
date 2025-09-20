@@ -5,13 +5,8 @@ on:
     branches: [ master ]
 
 jobs:
-  test-build:
-    name: Test Build and Type Check
-    uses: ./.github/workflows/test.yaml
-
   build:
-    name: Build and Upload Pages Artifact
-    needs: test-build
+    name: Build and Upload Artifact
     uses: ./.github/workflows/build.yaml
 
   deploy:
