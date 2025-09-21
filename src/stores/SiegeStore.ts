@@ -1,7 +1,7 @@
 import { defineStore } from 'pinia';
 import { computed, ref, shallowRef, toRaw } from 'vue';
 
-import { Gadget, Level, Season } from '@/models'
+import { Gadget, Level, Season, Side } from '@/models'
 import type { Weapon } from '@/models';
 import { WEAPON_CLASSES } from '@/models/siege/Weapon';
 import { useLoadingStore } from '@/stores';
@@ -49,6 +49,15 @@ export default defineStore('siege', () => {
 
   /** The list of seasons. */
   const SEASON_LIST = computed(() => Object.values(SEASONS.value));
+
+  /** The collection of sides. */
+  const SIDES = ref<Record<string, Side>>({
+    ATT: new Side('ATT', 'Attack', 'Attacker', 'mdi-sword-cross', 'blue'),
+    DEF: new Side('DEF', 'Defense', 'Defender', 'mdi-chess-rook', 'orange')
+  });
+
+  /** The list of sides. */
+  const SIDE_LIST = computed(() => Object.values(SIDES.value));
 
   /** The collection of weapons. */
   const WEAPONS = ref<Record<string, Weapon>>({});
@@ -141,6 +150,9 @@ export default defineStore('siege', () => {
 
     SEASONS,
     SEASON_LIST,
+
+    SIDES,
+    SIDE_LIST,
 
     WEAPONS,
     WEAPON_LIST,
