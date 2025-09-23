@@ -11,34 +11,34 @@ export default class Gadget {
   /** The gadget features. */
   readonly features: {
     /** Whether the gadget is bulletproof to an extent. */
-    bulletproof?: true;
+    bulletproof?: boolean;
 
     /** Whether the gadget is electric and can be disabled with EMPs. */
-    electric?: true;
+    electric?: boolean;
 
     /** Whether the gadget deals significant damage to the environment and can create rotates. */
-    environmentDamage?: true;
+    environmentDamage?: boolean;
 
     /** Whether the gadget deals damage to deployed gadgets. */
-    gadgetDamage?: true;
+    gadgetDamage?: boolean;
 
     /** Whether the gadget can be hacked. */
-    hackable?: true;
+    hackable?: boolean;
 
     /** Whether the gadget deals significant damage to players. */
-    playerDamage?: true;
+    playerDamage?: boolean;
 
     /** Whether the gadget features a recharge component. */
-    rechargable?: true;
+    rechargable?: boolean;
 
     /** Whether the gadget can be placed and retrieved. */
-    retrievable?: true;
+    retrievable?: boolean;
 
     /** Whether players can take control of the gadget. */
-    steerable?: true;
+    steerable?: boolean;
 
     /** Whether the gadget can be thrown. */
-    throwable?: true;
+    throwable?: boolean;
   };
 
   /**
@@ -49,10 +49,22 @@ export default class Gadget {
    * @param amount   The amount of items/charges/ammunition of the gadget players get.
    * @param features The gadget features.
    */
-  constructor(key: string, name: string, amount: number = 1, features: Record<string, true>) {
+  constructor(key: string, name: string, amount: number = 1, features: Array<keyof Gadget['features']>) {
     this.key = key;
     this.name = name;
     this.amount = amount;
-    this.features = { ...features };
+    this.features = features.reduce((prev, feature) => Object.assign(prev, { [feature]: true }), {});
   }
 }
+
+/** The raw gadget data. */
+export type RawGadget = {
+  /** The gadget name. */
+  name: string;
+
+  /** The amount of items/charges/ammunition of the gadget players get. */
+  amount?: number;
+
+  /** The gadget features. */
+  features: Array<keyof Gadget['features']>;
+};
