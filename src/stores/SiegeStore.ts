@@ -1,18 +1,12 @@
 import { defineStore } from 'pinia';
 import { computed, ref, shallowRef, toRaw } from 'vue';
 
-import { Level, Season, Side } from '@/models';
+import { Season, Side, type Weapon } from '@/models';
 import Gadget, { type RawGadget } from '@/models/siege/Gadget';
-import type { Weapon } from '@/models';
+import Level, { type RawLevel } from '@/models/siege/Level';
 import { WEAPON_CLASSES } from '@/models/siege/Weapon';
 import { useLoadingStore } from '@/stores';
 import { DataFetcher, Env } from '@/utils';
-
-type RawLevel = Record<string, {
-  name: string,
-  location: string,
-  metadata: { disabled?: boolean, released: string, reworked?: string, modernized?: string }
-}>;
 
 type RawSeasons = Record<string, string>;
 
@@ -83,7 +77,7 @@ export default defineStore('siege', () => {
           rawWeapons
         ] = await Promise.all([
           DataFetcher.fetchData<Record<string, RawGadget>>('gadgets.json'),
-          DataFetcher.fetchData<RawLevel>('levels.json'),
+          DataFetcher.fetchData<Record<string, RawLevel>>('levels.json'),
           DataFetcher.fetchData<RawSeasons>('seasons.json'),
           DataFetcher.fetchData<RawWeapons>('weapons.json')
         ]);
@@ -97,9 +91,8 @@ export default defineStore('siege', () => {
         LoadingStore.dialogStep = 'Mapping Levels…';
         Object.entries(rawLevels).forEach(([key, rawLevel]) => {
           // Map level metadata
-          const { disabled, released, reworked, modernized } = rawLevel.metadata;
+          const { released, reworked, modernized } = rawLevel.metadata;
           const metadata = {
-            disabled,
             released: SEASONS.value[released],
             reworked: reworked ? SEASONS.value[reworked] : undefined,
             modernized: modernized ? SEASONS.value[modernized] : undefined

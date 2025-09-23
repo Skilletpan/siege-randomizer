@@ -13,16 +13,13 @@ export default class Level {
 
   /** The level metadata. */
   readonly metadata: {
-    /** Whether the level is disabled (inaccessible in-game). */
-    disabled?: boolean;
-
-    /** Season the level was released in. */
+    /** The season the level was released in. */
     released: Season;
 
     /** The (last) season the level was reworked in. */
     reworked?: Season;
 
-    /** The season the level was modernized for. */
+    /** The season the level was modernized in. */
     modernized?: Season;
   };
 
@@ -43,3 +40,24 @@ export default class Level {
   /** The level thumbnail URL. */
   get thumbnail() { return DataFetcher.buildAssetUrl('levels', `${this.key}.jpg`); }
 }
+
+/** The raw level data. */
+export type RawLevel = {
+  /** The level name. */
+  name: string;
+
+  /** The level location. */
+  location: string;
+
+  /** The level metadata. */
+  metadata: {
+    /** The key of the season the level was released in. */
+    released: string;
+
+    /** The key of the (last) season the level was reworked in. */
+    reworked?: string;
+
+    /** The key of the season the level was modernized in. */
+    modernized?: string;
+  };
+};
