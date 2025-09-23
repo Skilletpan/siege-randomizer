@@ -8,10 +8,6 @@ import { WEAPON_CLASSES } from '@/models/siege/Weapon';
 import { useLoadingStore } from '@/stores';
 import { DataFetcher, Env } from '@/utils';
 
-type RawSeasons = Record<string, string>;
-
-type RawWeapons = Record<string, Record<string, string>>;
-
 export default defineStore('siege', () => {
   const LoadingStore = useLoadingStore();
 
@@ -78,8 +74,8 @@ export default defineStore('siege', () => {
         ] = await Promise.all([
           DataFetcher.fetchData<Record<string, RawGadget>>('gadgets.json'),
           DataFetcher.fetchData<Record<string, RawLevel>>('levels.json'),
-          DataFetcher.fetchData<RawSeasons>('seasons.json'),
-          DataFetcher.fetchData<RawWeapons>('weapons.json')
+          DataFetcher.fetchData<Record<string, string>>('seasons.json'),
+          DataFetcher.fetchData<Record<string, Record<string, string>>>('weapons.json')
         ]);
 
         // Mapping seasons
