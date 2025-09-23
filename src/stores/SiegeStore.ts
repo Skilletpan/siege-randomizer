@@ -1,13 +1,12 @@
 import { defineStore } from 'pinia';
 import { computed, ref, shallowRef, toRaw } from 'vue';
 
-import { Gadget, Level, Season, Side } from '@/models'
+import { Level, Season, Side } from '@/models';
+import Gadget, { type RawGadget } from '@/models/siege/Gadget';
 import type { Weapon } from '@/models';
 import { WEAPON_CLASSES } from '@/models/siege/Weapon';
 import { useLoadingStore } from '@/stores';
 import { DataFetcher, Env } from '@/utils';
-
-type RawGadgets = Record<string, { name: string, amount?: number, features: Record<string, true> }>;
 
 type RawLevel = Record<string, {
   name: string,
@@ -83,7 +82,7 @@ export default defineStore('siege', () => {
           rawSeasons,
           rawWeapons
         ] = await Promise.all([
-          DataFetcher.fetchData<RawGadgets>('gadgets.json'),
+          DataFetcher.fetchData<Record<string, RawGadget>>('gadgets.json'),
           DataFetcher.fetchData<RawLevel>('levels.json'),
           DataFetcher.fetchData<RawSeasons>('seasons.json'),
           DataFetcher.fetchData<RawWeapons>('weapons.json')
