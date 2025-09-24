@@ -1,9 +1,14 @@
 import { defineStore } from 'pinia';
 import { computed, ref, shallowRef, toRaw } from 'vue';
 
-import { Season, Side, type Weapon } from '@/models';
-import Gadget, { type RawGadget } from '@/models/siege/Gadget';
-import Level, { type RawLevel } from '@/models/siege/Level';
+import {
+  Gadget, type RawGadget,
+  Level, type RawLevel,
+  Operator, type RawOperator,
+  Season,
+  Side,
+  type Weapon
+} from '@/models';
 import { WEAPON_CLASSES } from '@/models/siege/Weapon';
 import { useLoadingStore } from '@/stores';
 import { DataFetcher, Env } from '@/utils';
@@ -31,6 +36,25 @@ export default defineStore('siege', () => {
     // Add level location to list if not present
     if (!locations.includes(location)) locations.push(location);
     return locations;
+  }, []).sort());
+
+  /** The collection of operators. */
+  const OPERATORS = ref<Record<string, Operator>>({});
+
+  /** The list of operators. */
+  const OPERATOR_LIST = computed(() => Object.values(OPERATORS.value));
+
+  /** The list of operator birthplaces. */
+  const OPERATOR_BIRTHPLACES = computed(() => OPERATOR_LIST.value.reduce<string[]>((birthplaces, operator) => {
+    // Skip operators without birthplace
+    if (!operator.biography.birthplace) return birthplaces;
+
+    // Get operator birthplace
+    const birthplace = operator.biography.birthplace.split(', ').at(-1)!;
+
+    // Add operator birthplace to list if not present
+    if (!birthplaces.includes(birthplace)) birthplaces.push(birthplace);
+    return birthplaces;
   }, []).sort());
 
   /** The collection of seasons. */
@@ -69,11 +93,13 @@ export default defineStore('siege', () => {
         const [
           rawGadgets,
           rawLevels,
+          rawOperators,
           rawSeasons,
           rawWeapons
         ] = await Promise.all([
           DataFetcher.fetchData<Record<string, RawGadget>>('gadgets.json'),
           DataFetcher.fetchData<Record<string, RawLevel>>('levels.json'),
+          DataFetcher.fetchData<Record<string, RawOperator>>('operators.json'),
           DataFetcher.fetchData<Record<string, string>>('seasons.json'),
           DataFetcher.fetchData<Record<string, Record<string, string>>>('weapons.json')
         ]);
@@ -88,11 +114,9 @@ export default defineStore('siege', () => {
         Object.entries(rawLevels).forEach(([key, rawLevel]) => {
           // Map level metadata
           const { released, reworked, modernized } = rawLevel.metadata;
-          const metadata = {
-            released: SEASONS.value[released],
-            reworked: reworked ? SEASONS.value[reworked] : undefined,
-            modernized: modernized ? SEASONS.value[modernized] : undefined
-          };
+          const metadata: Level['metadata'] = { released: SEASONS.value[released] };
+          if (reworked) metadata.reworked = SEASONS.value[reworked];
+          if (modernized) metadata.modernized = SEASONS.value[modernized];
 
           // Create level instance
           LEVELS.value[key] = new Level(key, rawLevel.name, rawLevel.location, metadata);
@@ -119,6 +143,38 @@ export default defineStore('siege', () => {
           rawGadget.features
         ));
         console.debug(toRaw(GADGETS.value));
+
+        // Mapping operators
+        LoadingStore.dialogStep = 'Mapping Operators…';
+        Object.entries(rawOperators).forEach(([key, rawOperator]) => {
+          // Map operator side
+          const side = SIDES.value[rawOperator.side];
+
+          // Map operator loadout
+          const { shield, primaries, secondaries, gadgets } = rawOperator.loadout;
+          const loadout: Operator['loadout'] = { gadgets: gadgets.map((key) => GADGETS.value[key]) };
+          if (shield) loadout.shield = WEAPONS.value[shield];
+          if (primaries) loadout.primaries = primaries.map((key) => WEAPONS.value[key]);
+          if (secondaries) loadout.secondaries = secondaries.map((key) => WEAPONS.value[key]);
+
+          // Map operator metadata
+          const { released, reworked } = rawOperator.metadata;
+          const metadata: Operator['metadata'] = { released: SEASONS.value[released] };
+          if (reworked) metadata.reworked = SEASONS.value[reworked];
+
+          // Create operator instance
+          OPERATORS.value[key] = new Operator(
+            key,
+            rawOperator.alias,
+            side,
+            rawOperator.speed,
+            rawOperator.roles,
+            rawOperator.biography,
+            loadout,
+            metadata
+          )
+        });
+        console.debug(toRaw(OPERATORS.value));
       },
       `Preparing ${Env.APP_NAME}…`,
       'Fetching Data…'
@@ -135,6 +191,10 @@ export default defineStore('siege', () => {
     LEVELS,
     LEVEL_LIST,
     LEVEL_LOCATIONS,
+
+    OPERATORS,
+    OPERATOR_LIST,
+    OPERATOR_BIRTHPLACES,
 
     SEASONS,
     SEASON_LIST,
