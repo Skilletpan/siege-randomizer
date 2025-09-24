@@ -103,6 +103,12 @@ export default class Operator {
       icon: DataFetcher.buildAssetUrl('squads', `${biography.squad.toUpperCase()}.png`)
     };
   }
+
+  /** The operator emblem URL. */
+  get emblem() { return DataFetcher.buildAssetUrl('operators', this.key, 'emblem.png'); }
+
+  /** The operator portrait URL. */
+  get portrait() { return DataFetcher.buildAssetUrl('operators', this.key, 'portrait.png'); }
 }
 
 /** The raw operator data. */
