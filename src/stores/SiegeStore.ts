@@ -175,6 +175,7 @@ export default defineStore('siege', () => {
           )
         });
         console.debug(toRaw(OPERATORS.value));
+        console.debug(OPERATOR_BIRTHPLACES.value);
       },
       `Preparing ${Env.APP_NAME}…`,
       'Fetching Data…'
