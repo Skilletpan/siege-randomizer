@@ -1,3 +1,4 @@
+import { merge, unset } from 'lodash';
 import { defineStore } from 'pinia';
 import { computed, ref, shallowRef, toRaw } from 'vue';
 
@@ -5,6 +6,7 @@ import {
   Gadget, type RawGadget,
   Level, type RawLevel,
   Operator, type RawOperator,
+  Playlist, type RawPlaylistCategory,
   Season,
   Side,
   type Weapon
@@ -57,6 +59,12 @@ export default defineStore('siege', () => {
     return birthplaces;
   }, []).sort());
 
+  /** The collection of playlists. */
+  const PLAYLISTS = ref<Record<string, Playlist>>({});
+
+  /** The list of playlists. */
+  const PLAYLIST_LIST = computed(() => Object.values(PLAYLISTS.value));
+
   /** The collection of seasons. */
   const SEASONS = ref<Record<string, Season>>({});
 
@@ -94,12 +102,14 @@ export default defineStore('siege', () => {
           rawGadgets,
           rawLevels,
           rawOperators,
+          rawPlaylistCategories,
           rawSeasons,
           rawWeapons
         ] = await Promise.all([
           DataFetcher.fetchData<Record<string, RawGadget>>('gadgets.json'),
           DataFetcher.fetchData<Record<string, RawLevel>>('levels.json'),
           DataFetcher.fetchData<Record<string, RawOperator>>('operators.json'),
+          DataFetcher.fetchData<Array<RawPlaylistCategory>>('playlists.json'),
           DataFetcher.fetchData<Record<string, string>>('seasons.json'),
           DataFetcher.fetchData<Record<string, Record<string, string>>>('weapons.json')
         ]);
@@ -176,6 +186,73 @@ export default defineStore('siege', () => {
         });
         console.debug(toRaw(OPERATORS.value));
         console.debug(OPERATOR_BIRTHPLACES.value);
+
+        // Mapping playlists
+        LoadingStore.dialogStep = 'Mapping Playlists…';
+
+        function mapPlaylistCategory(rawCategory: RawPlaylistCategory, parent?: RawPlaylistCategory) {
+          // Skip disabled categories
+          if (rawCategory.settings?.disabled) return;
+
+          // Map playlists
+          if (rawCategory.playlists) {
+            Object.entries(rawCategory.playlists).forEach(([key, rawPlaylist]) => {
+              // Skip disabled playlists
+              if (rawPlaylist.settings?.disabled) return;
+
+              // Merge parent category, category and playlist settings
+              const settings = merge(
+                {},
+                parent?.settings,
+                rawCategory.settings,
+                rawPlaylist.settings
+              );
+
+              // Map playlist levels
+              if (settings.levels?.enabled || settings.levels?.disabled) {
+                const { disabled, enabled } = settings.levels;
+
+                const levels = enabled
+                  ? enabled.map((key) => LEVELS.value[key])
+                  : LEVEL_LIST.value.filter((level) => !disabled!.includes(level.key));
+
+                merge(settings, { levels: { list: levels } });
+                unset(settings, 'levels.disabled');
+                unset(settings, 'levels.enabled');
+              }
+
+              // Map playlist operators
+              if (settings.operators?.disabled || settings.operators?.enabled) {
+                const { disabled, enabled } = settings.operators;
+
+                const operators = enabled
+                  ? enabled.map((key) => OPERATORS.value[key])
+                  : OPERATOR_LIST.value.filter((operator) => !disabled!.includes(operator.key));
+
+                merge(settings, { operators: { list: operators } });
+                unset(settings, 'operators.disabled');
+                unset(settings, 'operators.enabled');
+              }
+
+              // Create playlist instance
+              PLAYLISTS.value[key] = new Playlist(
+                key,
+                rawPlaylist.name,
+                parent ? `${parent.name} - ${rawCategory.name}` : rawCategory.name,
+                settings
+              );
+            });
+          }
+
+          // Map subcategories
+          if (rawCategory.subcategories) {
+            rawCategory.subcategories.forEach((subcategory) => mapPlaylistCategory(subcategory, rawCategory));
+          }
+        }
+
+        // Map playlist categories
+        rawPlaylistCategories.forEach((category) => mapPlaylistCategory(category));
+        console.debug(toRaw(PLAYLISTS.value));
       },
       `Preparing ${Env.APP_NAME}…`,
       'Fetching Data…'
@@ -196,6 +273,9 @@ export default defineStore('siege', () => {
     OPERATORS,
     OPERATOR_LIST,
     OPERATOR_BIRTHPLACES,
+
+    PLAYLISTS,
+    PLAYLIST_LIST,
 
     SEASONS,
     SEASON_LIST,
