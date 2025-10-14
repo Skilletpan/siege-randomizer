@@ -1114,6 +1114,7 @@
           "SG"
         ],
         "secondary": [
+          "HG",
           "HG"
         ],
         "gadgets": [
@@ -1136,6 +1137,7 @@
           "SG"
         ],
         "secondary": [
+          "REV",
           "HG"
         ],
         "gadgets": [
@@ -1669,7 +1671,7 @@
         ],
         "gadgets": [
           "BEEPER",
-          "CAMERA"
+          "IMPACT"
         ]
       },
       "roles": [
