@@ -21,15 +21,17 @@ These only need to be installed if you're testing github workflows locally (usin
 
 ### Environment Variables
 
-Variable Name        | Default Value                       | Description
-:------------------- |:----------------------------------- |:-----------
-`APP_NAME`           | `Siege Randomizer`                  | The display name of the app.
-`APP_REPOSITORY`     |                                     | The link to the GitHub project.
-`APP_VERSION`        | `version` value from `package.json` | The version number of the app.
-`SERVER_PORT`        | `3000`                              | The port to host the development server on.
-`SERVER_BASE_URI`    | `/`                                 | The base URL of the server. Should start end end with a `/` (ex. `/siege-randomizer/`).
-`REMOTE_ASSETS_HOST` | the local `src/assets` folder       | The URL where app assets are hosted
-`REMOTE_DATA_HOST`   | the local `src/data` folder         | The URL where app data is hosted
+Variable Name     | Default Value                       | Description
+:---------------- |:----------------------------------- |:-----------
+`APP_NAME`        | `Siege Randomizer`                  | The display name of the app.
+`APP_DESCRIPTION` |                                     | The description of the app (used in `meta`-header).
+`APP_VERSION`     | `version` value from `package.json` | The version number of the app.
+`SERVER_PORT`     | `3000`                              | The port to host the development server on.
+`SERVER_BASE_URI` | `/`                                 | The base URL of the server. Should start end end with a `/` (ex. `/siege-randomizer/`).
+`URL_ASSETS`      | `http://localhost:3000/src/assets`  | The URL where application assets (images) are hosted.
+`URL_DATA`        | `http://localhost:3000/src/data`    | The URL where application data is hosted.
+`URL_NOTES`       |                                     | The URL where the change log is hosted.
+`URL_REPOSITORY`  |                                     | The URL where the project repository is hosted.
 
 ---
 
