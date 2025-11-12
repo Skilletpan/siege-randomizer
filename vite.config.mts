@@ -7,18 +7,20 @@ import Vuetify, { transformAssetUrls } from 'vite-plugin-vuetify';
 
 export default defineConfig(({ mode }) => {
   // Load envs
-  const env = loadEnv(mode, process.cwd(), ['APP_', 'SERVER_', 'REMOTE_']);
+  const env = loadEnv(mode, process.cwd(), ['APP_', 'SERVER_', 'URL_']);
 
   // Set envs
   Object.assign(
     process.env,
     {
       VITE_APP_NAME: env.APP_NAME || 'Siege Randomizer',
-      VITE_APP_REPOSITORY: env.APP_REPOSITORY ?? '',
-      VITE_APP_VERSION: env.APP_VERSION || process.env.npm_package_version,
+      VITE_APP_DESCRIPTION: env.APP_DESCRIPTION || undefined,
+      VITE_APP_VERSION: env.APP_VERSION || process.env.npm_package_version || undefined,
 
-      VITE_REMOTE_ASSETS_HOST: env.REMOTE_ASSETS_HOST ?? '',
-      VITE_REMOTE_DATA_HOST: env.REMOTE_DATA_HOST ?? ''
+      VITE_URL_ASSETS: env.URL_ASSETS || undefined,
+      VITE_URL_DATA: env.URL_DATA || undefined,
+      VITE_URL_NOTES: env.URL_NOTES || undefined,
+      VITE_URL_REPOSITORY: env.URL_REPOSITORY || undefined
     }
   );
 

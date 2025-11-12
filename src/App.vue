@@ -3,7 +3,7 @@
     <!-- App Bar (mobile only) -->
     <v-app-bar
       v-if="mobile"
-      :title="Env.APP_NAME"
+      :title="Env.APP.NAME"
     >
       <!-- Side Navigation Toggle -->
       <template #prepend>
@@ -27,7 +27,7 @@
     <v-navigation-drawer v-model="showNav">
       <!-- App Name -->
       <v-list-item class="py-4">
-        <v-list-item-title class="font-weight-bold text-h5">{{ Env.APP_NAME }}</v-list-item-title>
+        <v-list-item-title class="font-weight-bold text-h5">{{ Env.APP.NAME }}</v-list-item-title>
       </v-list-item>
 
       <v-divider />
@@ -49,7 +49,7 @@
 
         <!-- Name and Version -->
         <v-list-item class="text-caption text-medium-emphasis">
-          {{ Env.APP_NAME }} v{{ Env.APP_VERSION }}
+          {{ Env.APP.NAME }} v{{ Env.APP.VERSION }}
         </v-list-item>
       </template>
     </v-navigation-drawer>
@@ -93,7 +93,7 @@ const NAV_ITEMS = [
 const BOTTOM_NAV_ITEMS = [
   {
     title: 'GitHub',
-    props: { disabled: !Env.APP_REPOSITORY, prependIcon: 'mdi-github', href: Env.APP_REPOSITORY, target: '_blank' }
+    props: { disabled: !Env.URL.REPOSITORY, prependIcon: 'mdi-github', href: Env.URL.REPOSITORY, target: '_blank' }
   },
   { type: 'divider' },
   {

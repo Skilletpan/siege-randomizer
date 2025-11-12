@@ -13,7 +13,7 @@ console.debug(LOCAL_URL);
  */
 export function buildAssetUrl(...path: string[]): URL {
   // Build URL
-  const base = Env.REMOTE_ASSETS_HOST ?? (LOCAL_URL + '/assets/');
+  const base = Env.URL.ASSETS ?? (LOCAL_URL + '/assets/');
   return new URL(path.join('/'), base);
 }
 
@@ -26,7 +26,7 @@ export function buildAssetUrl(...path: string[]): URL {
  */
 export async function fetchData<T>(...path: string[]): Promise<T> {
   // Build URL
-  const base = Env.REMOTE_DATA_HOST ?? (LOCAL_URL + '/data/');
+  const base = Env.URL.DATA ?? (LOCAL_URL + '/data/');
   const url = new URL(path.join('/'), base);
   console.debug(url);
 

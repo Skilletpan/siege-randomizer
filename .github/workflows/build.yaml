@@ -34,11 +34,14 @@ jobs:
         env:
           APP_NAME: ${{ vars.APP_NAME }}
           VITE_APP_NAME: ${{ vars.APP_NAME }}
-          APP_REPOSITORY: ${{ vars.APP_REPOSITORY }}
+          APP_DESCRIPTION: ${{ vars.APP_DESCRIPTION }}
+          VITE_APP_DESCRIPTION: ${{ vars.APP_DESCRIPTION }}
           APP_VERSION: ${{ vars.APP_VERSION }}
           SERVER_BASE_URI: ${{ steps.pagesSetup.outputs.base_path }}/
-          REMOTE_ASSETS_HOST: ${{ vars.REMOTE_DATA_HOST }}
-          REMOVE_DATA_HOST: ${{ vars.REMOTE_DATA_HOST }}
+          URL_ASSETS: ${{ vars.URL_ASSETS }}
+          URL_DATA: ${{ vars.URL_DATA }}
+          URL_NOTES: ${{ vars.URL_NOTES }}
+          URL_REPOSITORY: ${{ vars.URL_REPOSITORY }}
 
       - name: Upload Build Artifact
         if: github.event_name != 'pull_request'
