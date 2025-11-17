@@ -254,7 +254,7 @@ export default defineStore('siege', () => {
         rawPlaylistCategories.forEach((category) => mapPlaylistCategory(category));
         console.debug(toRaw(PLAYLISTS.value));
       },
-      `Preparing ${Env.APP_NAME}…`,
+      `Preparing ${Env.APP.NAME}…`,
       'Fetching Data…'
     );
 

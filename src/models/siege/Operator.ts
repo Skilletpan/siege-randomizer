@@ -162,5 +162,5 @@ export type RawOperator = {
 
     /** The key of the (last) season the operator was reworked in. */
     reworked?: string;
-  }
+  };
 };
