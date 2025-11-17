@@ -8,10 +8,10 @@
         "CHALET",
         "KAFE",
         "BORDER",
-        "SKYSCRAPER",
         "CONSULATE",
         "LABS",
-        "LAIR"
+        "LAIR",
+        "FORTRESS"
       ]
     },
     "CUP": {
@@ -36,8 +36,8 @@
         "COASTLINE",
         "THEMEPARK",
         "VILLA",
+        "FORTRESS",
         "OUTBACK",
-        "EMERALD",
         "LABS",
         "LAIR"
       ]
@@ -121,35 +121,35 @@
         "MUTE",
         "SLEDGE",
         "THATCHER",
+        "THERMITE",
         "CASTLE",
-        "ASH",
-        "PULSE",
         "TWITCH",
         "GLAZ",
         "FUZE",
-        "KAPKAN",
+        "TACHANKA",
+        "IQ",
+        "JAGER",
         "BANDIT",
-        "FROST",
+        "BUCK",
+        "BLACKBEARD",
         "VALKYRIE",
-        "CAPITAO",
-        "HIBANA",
-        "MAESTRO",
+        "ECHO",
+        "MIRA",
+        "ZOFIA",
+        "VIGIL",
         "ALIBI",
-        "MAVERICK",
         "CLASH",
-        "NOMAD",
         "KAID",
-        "WARDEN",
+        "NOKK",
         "GOYO",
-        "WAMAI",
+        "KALI",
         "ORYX",
-        "ACE",
-        "ARUNI",
+        "MELUSI",
+        "ZERO",
         "THUNDERBIRD",
-        "OSA",
         "THORN",
-        "AZAMI",
         "SENS",
+        "GRIM",
         "SOLIS",
         "RAUORA",
         "DENARI"
@@ -260,8 +260,8 @@
         "YACHT"
       ]
     },
-    "TARGET": {
-      "name": "Target Drill",
+    "CLEAR_HOUSE": {
+      "name": "Clear House",
       "maps": [
         "LAIR",
         "CLUBHOUSE",
@@ -359,6 +359,12 @@
         "RAUORA",
         "DENARI"
       ]
+    }
+  },
+  "EXPERIMENTAL": {
+    "TESTING_GROUNDS": {
+      "name": "Testing Grounds",
+      "maps": []
     }
   }
 }
