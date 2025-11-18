@@ -1,9 +1,5 @@
 import Env from './env';
 
-// Builds the data host URL
-const LOCAL_URL = new URL(import.meta.url).origin + import.meta.env.BASE_URL + 'src';
-console.debug(LOCAL_URL);
-
 /**
  * Builds an URL pointing to an image asset.
  * 
@@ -13,8 +9,9 @@ console.debug(LOCAL_URL);
  */
 export function buildAssetUrl(...path: string[]): URL {
   // Build URL
-  const base = Env.URL.ASSETS ?? (LOCAL_URL + '/assets/');
-  return new URL(path.join('/'), base);
+  const url = Env.URL.ASSETS ? new URL(Env.URL.ASSETS) : new URL('@/assets', import.meta.url);
+  url.pathname += '/' + path.join('/');
+  return url;
 }
 
 /**
@@ -26,8 +23,8 @@ export function buildAssetUrl(...path: string[]): URL {
  */
 export async function fetchData<T>(...path: string[]): Promise<T> {
   // Build URL
-  const base = Env.URL.DATA ?? (LOCAL_URL + '/data/');
-  const url = new URL(path.join('/'), base);
+  const url = Env.URL.DATA ? new URL(Env.URL.DATA) : new URL('@/data', import.meta.url);
+  url.pathname += '/' + path.join('/');
   console.debug(url);
 
   // Call URL
