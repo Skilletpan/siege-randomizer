@@ -51,7 +51,7 @@ export default class Operator {
     secondaries?: Weapon[];
 
     /** The gadgets. */
-    gadgets?: Gadget[];
+    gadgets: Gadget[];
   };
 
   /** The operator metadata. */

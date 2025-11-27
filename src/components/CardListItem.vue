@@ -40,6 +40,6 @@ defineProps<{
   label: string;
 
   /** The text of the item. */
-  text?: string;
+  text?: string | number;
 }>();
 </script>
