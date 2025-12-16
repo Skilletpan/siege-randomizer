@@ -21,24 +21,11 @@
         position="center top"
         :src="operator.portrait.href"
       >
-        <!-- Namecard -->
-        <v-card-item class="inspector-nameplate px-2 py-3">
-          <!-- Emblem -->
-          <template #prepend>
-            <v-avatar
-              :image="operator.emblem.href"
-              rounded="0"
-            />
-          </template>
-
-          <!-- Alias -->
-          <v-card-title class="font-weight-bold text-center">{{ operator.alias }}</v-card-title>
-
-          <!-- Side Icon -->
-          <template #append>
-            <v-avatar :icon="operator.side.icon" />
-          </template>
-        </v-card-item>
+        <!-- Nameplate -->
+        <operator-nameplate
+          class="inspector-nameplate"
+          :operator
+        />
 
         <!-- Details -->
         <v-expand-transition>

@@ -11,6 +11,7 @@ declare module 'vue' {
     DisplayChip: typeof import('./src/components/DisplayChip.vue')['default']
     LoadingDialog: typeof import('./src/components/LoadingDialog.vue')['default']
     OperatorInspector: typeof import('./src/components/OperatorInspector.vue')['default']
+    OperatorNameplate: typeof import('./src/components/OperatorNameplate.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SettingsDialog: typeof import('./src/components/SettingsDialog.vue')['default']
