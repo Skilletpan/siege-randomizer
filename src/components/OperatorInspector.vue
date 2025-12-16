@@ -164,8 +164,8 @@
                   <!-- Birthplace -->
                   <card-list-item
                     v-if="operator.biography.birthplace"
-                    label="Birthplace"
                     :chips="[{ prefix: birthplace!.prefix, text: birthplace!.text }]"
+                    label="Birthplace"
                   />
 
                   <v-divider v-if="operator.biography.name || operator.biography.birthplace" />
@@ -211,16 +211,17 @@
 </template>
 
 <script setup lang="ts">
+import { storeToRefs } from 'pinia';
 import { computed, ref } from 'vue';
 
-import type { Operator } from '@/models';
-import { useSiegeStore } from '@/stores';
+import { useModalStore, useSiegeStore } from '@/stores';
 
 // Composables
+const ModalStore = useModalStore();
 const SiegeStore = useSiegeStore();
 
 /** The operator to inspect. */
-const operator = defineModel<Operator>();
+const { inspectOperator: operator } = storeToRefs(ModalStore);
 
 /** Controls visibility of operator details. */
 const showDetails = ref(false);

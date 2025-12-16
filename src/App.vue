@@ -64,6 +64,9 @@
 
     <!-- Settings Dialog -->
     <settings-dialog v-model="showSettings" />
+
+    <!-- Operator Inspector -->
+    <operator-inspector />
   </v-app>
 </template>
 
