@@ -74,7 +74,7 @@ export default defineStore('siege', () => {
   /** The collection of sides. */
   const SIDES = ref<Record<string, Side>>({
     ATT: new Side('ATT', 'Attack', 'Attacker', 'mdi-sword-cross', 'blue'),
-    DEF: new Side('DEF', 'Defense', 'Defender', 'mdi-chess-rook', 'orange')
+    DEF: new Side('DEF', 'Defense', 'Defender', 'mdi-chess-rook', 'orange-darken-1')
   });
 
   /** The list of sides. */

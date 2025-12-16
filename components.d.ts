@@ -10,6 +10,7 @@ declare module 'vue' {
     CardListItem: typeof import('./src/components/CardListItem.vue')['default']
     DisplayChip: typeof import('./src/components/DisplayChip.vue')['default']
     LoadingDialog: typeof import('./src/components/LoadingDialog.vue')['default']
+    OperatorInspector: typeof import('./src/components/OperatorInspector.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
     SettingsDialog: typeof import('./src/components/SettingsDialog.vue')['default']
