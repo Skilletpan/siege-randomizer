@@ -95,13 +95,17 @@ const NAV_ITEMS = [
 // Navigation Items at the bottom of the sidebar
 const BOTTOM_NAV_ITEMS = [
   {
-    title: 'GitHub',
-    props: { disabled: !Env.URL.REPOSITORY, prependIcon: 'mdi-github', href: Env.URL.REPOSITORY, target: '_blank' }
+    title: 'Settings',
+    props: { active: false, prependIcon: 'mdi-cog', onClick: () => { showSettings.value = true } }
   },
   { type: 'divider' },
   {
-    title: 'Settings',
-    props: { active: false, prependIcon: 'mdi-cog', onClick: () => { showSettings.value = true } }
+    title: 'GitHub',
+    props: { disabled: !Env.URL.REPOSITORY, prependIcon: 'mdi-github', href: Env.URL.REPOSITORY, target: '_blank' }
+  },
+  {
+    title: 'Change Log',
+    props: { disabled: !Env.URL.NOTES, prependIcon: 'mdi-creation', href: Env.URL.NOTES, subtitle: `v${Env.APP.VERSION}`, target: '_blank' }
   }
 ];
 
