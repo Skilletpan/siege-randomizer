@@ -1,7 +1,6 @@
 <template>
   <v-dialog
     :model-value="!!operator"
-    height="450"
     width="300"
     @after-leave="cleanup"
   >
@@ -16,6 +15,7 @@
 
       <!-- Portrait -->
       <v-img
+        :aspect-ratio="2 / 3"
         content-class="d-flex flex-column justify-end"
         cover
         position="center top"
@@ -23,7 +23,7 @@
       >
         <!-- Nameplate -->
         <operator-nameplate
-          class="inspector-nameplate"
+          class="inspector-nameplate px-2 py-3"
           :operator
         />
 
@@ -42,156 +42,130 @@
               density="compact"
               fixed-tabs
               :items="TABS"
-            />
-
-            <v-divider />
-
-            <v-tabs-window v-model="tab">
-              <!-- Details -->
-              <v-tabs-window-item :value="1">
-                <v-card-text class="d-flex flex-column ga-3 pa-3">
-                  <!-- Speed & Armor Icons -->
-                  <card-list-item
-                    v-if="false"
-                    label="Speed | Armor"
-                  >
-                    <v-icon
-                      v-for="i in operator.speed"
-                      color="green"
-                      icon="mdi-run-fast"
-                      size="20"
-                    />
-
-                    <v-divider vertical />
-
-                    <v-icon
-                      v-for="i in 4 - operator.speed"
-                      color="blue"
-                      icon="mdi-shield-half-full"
-                      size="20"
-                    />
-                  </card-list-item>
-
-                  <template v-else>
-                    <!-- Speed -->
-                    <card-list-item label="Speed">
-                      <v-icon
-                        v-for="i in operator.speed"
-                        color="green"
-                        icon="mdi-run-fast"
-                        size="20"
-                      />
-                    </card-list-item>
-
-                    <!-- Armor -->
-                    <card-list-item label="Armor">
-                      <v-icon
-                        v-for="i in 4 - operator.speed"
-                        color="blue"
-                        icon="mdi-shield-half-full"
-                        size="20"
-                      />
-                    </card-list-item>
-                  </template>
-
-                  <!-- Roles -->
-                  <card-list-item
-                    :chips="operator.roles"
-                    label="Roles"
-                  />
-
+            >
+              <template #item="{ item }">
+                <!-- Details -->
+                <v-tabs-window-item :value="item.value">
                   <v-divider />
+                  <v-card-text class="d-flex flex-column ga-3 pa-3">
+                    <!-- Details -->
+                    <template v-if="item.value === 1">
+                      <!-- Speed -->
+                      <card-list-item label="Speed">
+                        <v-icon
+                          v-for="i in operator.speed"
+                          color="green"
+                          icon="mdi-run-fast"
+                          size="20"
+                        />
+                      </card-list-item>
 
-                  <!-- Release -->
-                  <card-list-item
-                    :chips="[{ prefix: operator.metadata.released.key, text: operator.metadata.released.name }]"
-                    label="Release"
-                  />
+                      <!-- Armor -->
+                      <card-list-item label="Armor">
+                        <v-icon
+                          v-for="i in 4 - operator.speed"
+                          color="blue"
+                          icon="mdi-shield-half-full"
+                          size="20"
+                        />
+                      </card-list-item>
 
-                  <!-- Rework -->
-                  <card-list-item
-                    v-if="operator.metadata.reworked"
-                    :chips="[{ prefix: operator.metadata.reworked.key, text: operator.metadata.reworked.name }]"
-                    label="Rework"
-                  />
-                </v-card-text>
-              </v-tabs-window-item>
+                      <!-- Roles -->
+                      <card-list-item
+                        :chips="operator.roles"
+                        label="Roles"
+                      />
 
-              <!-- Loadout -->
-              <v-tabs-window-item :value="2">
-                <v-card-text class="d-flex flex-column ga-3 pa-3">
-                  <!-- Shield -->
-                  <card-list-item
-                    v-if="operator.loadout.shield"
-                    :chips="[{ prefix: operator.loadout.shield.category.key, text: operator.loadout.shield.name }]"
-                    label="Shield"
-                  />
+                      <v-divider />
 
-                  <!-- Primary Weapons -->
-                  <card-list-item
-                    v-if="operator.loadout.primaries"
-                    :chips="operator.loadout.primaries.map((w) => ({ prefix: w.category.key, text: w.name }))"
-                    label="Primaries"
-                  />
+                      <!-- Release -->
+                      <card-list-item
+                        :chips="[{ prefix: operator.metadata.released.key, text: operator.metadata.released.name }]"
+                        label="Release"
+                      />
 
-                  <!-- Secondary Weapons -->
-                  <card-list-item
-                    v-if="operator.loadout.secondaries"
-                    :chips="operator.loadout.secondaries.map((w) => ({ prefix: w.category.key, text: w.name }))"
-                    label="Secondaries"
-                  />
+                      <!-- Rework -->
+                      <card-list-item
+                        v-if="operator.metadata.reworked"
+                        :chips="[{ prefix: operator.metadata.reworked.key, text: operator.metadata.reworked.name }]"
+                        label="Rework"
+                      />
+                    </template>
 
-                  <v-divider />
+                    <!-- Loadout -->
+                    <template v-else-if="item.value === 2">
+                      <!-- Shield -->
+                      <card-list-item
+                        v-if="operator.loadout.shield"
+                        :chips="[{ prefix: operator.loadout.shield.category.key, text: operator.loadout.shield.name }]"
+                        label="Shield"
+                      />
 
-                  <!-- Gadgets -->
-                  <card-list-item
-                    :chips="gadgets"
-                    label="Gadgets"
-                  />
-                </v-card-text>
-              </v-tabs-window-item>
+                      <!-- Primary Weapons -->
+                      <card-list-item
+                        v-if="operator.loadout.primaries"
+                        :chips="operator.loadout.primaries.map((w) => ({ prefix: w.category.key, text: w.name }))"
+                        label="Primaries"
+                      />
 
-              <!-- Bio -->
-              <v-tabs-window-item :value="3">
-                <v-card-text class="d-flex flex-column ga-3 pa-3">
-                  <!-- Name -->
-                  <card-list-item
-                    v-if="operator.biography.name"
-                    :chips="[operator.biography.name]"
-                    label="Name"
-                  />
+                      <!-- Secondary Weapons -->
+                      <card-list-item
+                        v-if="operator.loadout.secondaries"
+                        :chips="operator.loadout.secondaries.map((w) => ({ prefix: w.category.key, text: w.name }))"
+                        label="Secondaries"
+                      />
 
-                  <!-- Birthplace -->
-                  <card-list-item
-                    v-if="operator.biography.birthplace"
-                    :chips="[{ prefix: birthplace!.prefix, text: birthplace!.text }]"
-                    label="Birthplace"
-                  />
+                      <v-divider />
 
-                  <v-divider v-if="operator.biography.name || operator.biography.birthplace" />
+                      <!-- Gadgets -->
+                      <card-list-item
+                        :chips="gadgets"
+                        label="Gadgets"
+                      />
+                    </template>
 
-                  <!-- Organization -->
-                  <card-list-item
-                    v-if="operator.biography.organization"
-                    :chips="[operator.biography.organization]"
-                    label="Organization"
-                  />
+                    <!-- Bio -->
+                    <template v-else>
+                      <!-- Name -->
+                      <card-list-item
+                        v-if="operator.biography.name"
+                        :chips="[operator.biography.name]"
+                        label="Name"
+                      />
 
-                  <!-- Squad -->
-                  <card-list-item
-                    v-if="operator.biography.squad"
-                    label="Squad"
-                  >
-                    <v-chip
-                      label
-                      :prepend-avatar="operator.biography.squad.icon.href"
-                      size="x-small"
-                      :text="operator.biography.squad.name"
-                    />
-                  </card-list-item>
-                </v-card-text>
-              </v-tabs-window-item>
-            </v-tabs-window>
+                      <!-- Birthplace -->
+                      <card-list-item
+                        v-if="operator.biography.birthplace"
+                        :chips="[{ prefix: birthplace!.prefix, text: birthplace!.text }]"
+                        label="Birthplace"
+                      />
+
+                      <v-divider v-if="operator.biography.name || operator.biography.birthplace" />
+
+                      <!-- Organization -->
+                      <card-list-item
+                        v-if="operator.biography.organization"
+                        :chips="[operator.biography.organization]"
+                        label="Organization"
+                      />
+
+                      <!-- Squad -->
+                      <card-list-item
+                        v-if="operator.biography.squad"
+                        label="Squad"
+                      >
+                        <v-chip
+                          label
+                          :prepend-avatar="operator.biography.squad.icon.href"
+                          size="x-small"
+                          :text="operator.biography.squad.name"
+                        />
+                      </card-list-item>
+                    </template>
+                  </v-card-text>
+                </v-tabs-window-item>
+              </template>
+            </v-tabs>
           </div>
         </v-expand-transition>
 

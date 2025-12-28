@@ -1,5 +1,5 @@
 <template>
-  <v-card-item class="px-2 py-3">
+  <v-card-item>
     <!-- Emblem -->
     <template #prepend>
       <v-avatar
@@ -27,8 +27,8 @@
 import type { Operator } from '@/models';
 
 // Props
-defineProps<{
+const { operator } = defineProps<{
   /** The operator to display. */
-  operator: Operator
+  operator: Operator;
 }>();
 </script>
