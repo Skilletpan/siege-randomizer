@@ -20,7 +20,7 @@ export default defineStore('dialog', () => {
    * 
    * @returns The result of the runner function.
    */
-  async function run(runner: () => Promise<unknown>, title: string = 'Loading…', step?: string) {
+  async function run<R>(runner: () => Promise<R>, title: string = 'Loading…', step?: string) {
     // Set text display values
     dialogTitle.value = title;
     dialogStep.value = step;
