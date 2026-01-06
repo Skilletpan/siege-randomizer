@@ -59,6 +59,12 @@ export default defineStore('siege', () => {
     return birthplaces;
   }, []).sort());
 
+  /** The list of operator roles. */
+  const OPERATOR_ROLES = computed(() => {
+    const roles = OPERATOR_LIST.value.map((operator) => operator.roles).flat().sort();
+    return Array.from(new Set(roles));
+  });
+
   /** The collection of playlists. */
   const PLAYLISTS = ref<Record<string, Playlist>>({});
 
@@ -186,6 +192,7 @@ export default defineStore('siege', () => {
         });
         console.debug(toRaw(OPERATORS.value));
         console.debug(OPERATOR_BIRTHPLACES.value);
+        console.debug(OPERATOR_ROLES.value);
 
         // Mapping playlists
         LoadingStore.dialogStep = 'Mapping Playlists…';
@@ -272,6 +279,7 @@ export default defineStore('siege', () => {
 
     OPERATORS,
     OPERATOR_LIST,
+    OPERATOR_ROLES,
     OPERATOR_BIRTHPLACES,
 
     PLAYLISTS,
