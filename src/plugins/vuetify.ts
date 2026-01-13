@@ -3,6 +3,11 @@ import { createVuetify } from 'vuetify';
 import 'vuetify/styles';
 
 export default createVuetify({
+  icons: {
+    aliases: {
+      'settings': 'mdi-cog'
+    }
+  },
   theme: {
     defaultTheme: 'dark'
   }

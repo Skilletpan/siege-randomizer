@@ -12,7 +12,7 @@ export default class Side {
   readonly icon: string;
 
   /** The side color. */
-  readonly color: string;
+  color: string;
 
   /**
    * Creates a new Side instance.

@@ -16,9 +16,8 @@
       <!-- Settings Button -->
       <template #append>
         <v-btn
-          :active="false"
-          icon="mdi-cog"
-          @click="showSettings = true"
+          icon="$settings"
+          @click="SettingsStore.show = true"
         />
       </template>
     </v-app-bar>
@@ -62,8 +61,8 @@
     <!-- Loading Dialog -->
     <loading-dialog />
 
-    <!-- Settings Dialog -->
-    <settings-dialog v-model="showSettings" />
+    <!-- Settings Modal -->
+    <settings-modal />
 
     <!-- Operator Inspector -->
     <operator-inspector />
@@ -74,13 +73,14 @@
 import { shallowRef } from 'vue';
 import { useDisplay } from 'vuetify';
 
-import { useSiegeStore } from '@/stores';
+import { useSettingsStore, useSiegeStore } from '@/stores';
 import { Env } from '@/utils';
 
 // Display Breakpoints
 const { mobile } = useDisplay();
 
 // Stores
+const SettingsStore = useSettingsStore();
 const SiegeStore = useSiegeStore();
 
 // Navigation Items
@@ -96,7 +96,7 @@ const NAV_ITEMS = [
 const BOTTOM_NAV_ITEMS = [
   {
     title: 'Settings',
-    props: { active: false, prependIcon: 'mdi-cog', onClick: () => { showSettings.value = true } }
+    props: { prependIcon: '$settings', onClick: () => { SettingsStore.show = true; } }
   },
   { type: 'divider' },
   {
@@ -111,9 +111,6 @@ const BOTTOM_NAV_ITEMS = [
 
 /** Whether the side navigation should be displayed. */
 const showNav = shallowRef<boolean>(!mobile.value);
-
-/** Whether the settings dialog should be displayed. */
-const showSettings = shallowRef<boolean>(false);
 
 // Load Siege data
 SiegeStore.fetchSiegeData();

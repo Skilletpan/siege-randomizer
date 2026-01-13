@@ -8,12 +8,13 @@ export {}
 declare module 'vue' {
   export interface GlobalComponents {
     CardListItem: typeof import('./src/components/CardListItem.vue')['default']
+    CardListSection: typeof import('./src/components/CardListSection.vue')['default']
     DisplayChip: typeof import('./src/components/DisplayChip.vue')['default']
     LoadingDialog: typeof import('./src/components/LoadingDialog.vue')['default']
     OperatorInspector: typeof import('./src/components/OperatorInspector.vue')['default']
     OperatorNameplate: typeof import('./src/components/OperatorNameplate.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']
     RouterView: typeof import('vue-router')['RouterView']
-    SettingsDialog: typeof import('./src/components/SettingsDialog.vue')['default']
+    SettingsModal: typeof import('./src/components/modals/SettingsModal.vue')['default']
   }
 }
