@@ -75,7 +75,10 @@ const AppSettings = useAppSettings();
 const TEAM_COLORS = [
   { name: 'Blue', value: COLORS.blue.darken2 },
   { name: 'Orange', value: COLORS.orange.darken2 },
-  { name: 'Red', value: COLORS.red.darken1 }
+  { name: 'Red', value: COLORS.red.darken1 },
+  { name: 'Green', value: COLORS.green.darken2 },
+  { name: 'Yellow', value: COLORS.yellow.darken1 },
+  { name: 'Purple', value: COLORS.purple.darken1 }
 ];
 
 /**
