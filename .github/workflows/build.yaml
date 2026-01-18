@@ -1,40 +1,50 @@
 name: Build App
 
 on:
+  pull_request:
+    branches: [ master, develop ]
   workflow_call:
-    inputs:
-      create-build-artifact:
-        default: false
-        type: boolean
-
-env:
-  UV_USE_IO_URING: 0
 
 jobs:
   build:
+    name: Build App
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
-
       - name: Setup NodeJS
-        uses: actions/setup-node@v3
+        uses: actions/setup-node@v5
         with:
-          node-version: 18.x
-      
-      - name: Install NodeJS packages
+          node-version: 22.x
+
+      - name: Setup GitHub Pages
+        if: github.event_name != 'pull_request'
+        id: pagesSetup
+        uses: actions/configure-pages@v5
+
+      - name: Checkout Repository
+        uses: actions/checkout@v5
+
+      - name: Install Packages
         run: npm install
 
-      - name: Build project
-        run: npm run build
+      - name: Type-Check Project
+        run: npm run type-check
 
-      - name: Create build artifact
-        if: ${{ inputs.create-build-artifact }}
-        uses: actions/upload-artifact@v4
+      - name: Build Project
+        run: npm run build-only
+        env:
+          APP_NAME: ${{ vars.APP_NAME }}
+          VITE_APP_NAME: ${{ vars.APP_NAME }}
+          APP_DESCRIPTION: ${{ vars.APP_DESCRIPTION }}
+          VITE_APP_DESCRIPTION: ${{ vars.APP_DESCRIPTION }}
+          APP_VERSION: ${{ vars.APP_VERSION }}
+          SERVER_BASE_URI: ${{ steps.pagesSetup.outputs.base_path }}/
+          URL_ASSETS: ${{ vars.URL_ASSETS }}
+          URL_DATA: ${{ vars.URL_DATA }}
+          URL_NOTES: ${{ vars.URL_NOTES }}
+          URL_REPOSITORY: ${{ vars.URL_REPOSITORY }}
+
+      - name: Upload Build Artifact
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-pages-artifact@v4
         with:
-          name: siege-randomizer-build
-          path: dist
-          overwrite: true
-          retention-days: 1
+          path: dist/
