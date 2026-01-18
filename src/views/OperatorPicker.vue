@@ -62,16 +62,23 @@
               cols="6"
             >
               <!-- Operator Card -->
-              <v-hover v-slot="{ isHovering, props }">
+              <v-hover #="{ isHovering, props }">
                 <v-card
                   v-bind="props"
                   :color="AppSettings.colors[operator.side.key]"
-                  :prepend-avatar="operator.emblem"
                   :title="operator.name"
                   @click="previewOperator(operator.key)"
                 >
+                  <!-- Operator Emblem -->
+                  <template #prepend>
+                    <v-avatar
+                      :image="operator.emblem"
+                      tile
+                    />
+                  </template>
+
                   <!-- Ban Button -->
-                  <template v-slot:append>
+                  <template #append>
                     <v-btn
                       v-show="isHovering"
                       variant="text"

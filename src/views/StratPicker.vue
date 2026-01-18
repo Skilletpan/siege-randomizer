@@ -63,7 +63,7 @@
           :title="strat.title"
           @click="previewDialog.strat = strat.id; previewDialog.show = true;"
         >
-          <template v-slot:append>
+          <template #append>
             <v-icon :icon="strat.side?.icon || '$siege-side-all'" />
           </template>
         </v-card>
