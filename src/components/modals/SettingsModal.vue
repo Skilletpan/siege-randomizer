@@ -65,6 +65,9 @@ const SiegeStore = useSiegeStore();
 const COLOR_LIST = Object.freeze([
   { title: 'Blue', value: 'blue' },
   { title: 'Orange', value: 'orange-darken-1' },
-  { title: 'Red', value: 'red' }
+  { title: 'Red', value: 'red' },
+  { title: 'Green', value: 'green-darken-2' },
+  { title: 'Yellow', value: 'yellow-darken-1' },
+  { title: 'Purple', value: 'purple-darken-1' }
 ]);
 </script>
