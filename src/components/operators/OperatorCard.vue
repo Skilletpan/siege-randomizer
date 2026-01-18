@@ -2,18 +2,16 @@
   <v-card>
     <!-- Operator Portrait -->
     <v-hover :disabled="!onRepick">
-      <template #default="{ isHovering, props: p }">
+      <template #="{ isHovering, props: p }">
         <v-img
           alt="Operator portrait"
+          content-class="d-flex flex-column justify-end"
           cover
           :src="{ aspect: 3 / 5, src: portrait }"
           :style="portraitBackground"
           v-bind="p"
         >
-          <div
-            v-if="!!operator"
-            class="d-flex flex-column h-100"
-          >
+          <template v-if="!!operator">
             <!-- Repick Button -->
             <v-btn
               v-show="isHovering"
@@ -45,18 +43,15 @@
               <!-- Player Name -->
               <v-card-subtitle v-if="player">{{ player }}</v-card-subtitle>
             </v-card-item>
-          </div>
+          </template>
 
           <!-- Randomize Icon -->
-          <div
+          <v-icon
             v-else
-            class="align-center d-flex flex-column h-100 justify-center portrait-randomize-icon-background"
-          >
-            <v-icon
-              icon="$randomize"
-              size="80"
-            />
-          </div>
+            class="h-100 portrait-randomize-icon-background w-100"
+            icon="$randomize"
+            size="80"
+          />
         </v-img>
       </template>
     </v-hover>
@@ -68,6 +63,7 @@
       <!-- Operator Details Tabs -->
       <v-tabs
         v-model="detailTab"
+        :color="AppSettings.colors[operator.side.key]"
         density="comfortable"
         grow
         :items="DETAIL_TABS"
