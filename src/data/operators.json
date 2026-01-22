@@ -64,8 +64,8 @@
           "HG"
         ],
         "gadgets": [
-          "BREACH",
-          "CLAYMORE"
+          "CLAYMORE",
+          "BREACH"
         ]
       },
       "roles": [
@@ -513,7 +513,6 @@
         "gadgets": [
           "CLAYMORE",
           "STUN",
-          "SMOKE",
           "FRAG"
         ]
       },
@@ -1444,7 +1443,8 @@
           "SMG"
         ],
         "secondary": [
-          "HG"
+          "HG",
+          "SG"
         ],
         "gadgets": [
           "BARBED",
