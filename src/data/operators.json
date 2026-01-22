@@ -57,6 +57,7 @@
         "primary": [
           "AR",
           "AR",
+          "DMR",
           "SG"
         ],
         "secondary": [
@@ -106,7 +107,8 @@
         ],
         "secondary": [
           "HG",
-          "HG"
+          "HG",
+          "SG"
         ],
         "gadgets": [
           "SMOKE",
@@ -308,7 +310,8 @@
       "loadout": {
         "primary": [
           "AR",
-          "LMG"
+          "LMG",
+          "DMR"
         ],
         "secondary": [
           "HG",
@@ -332,7 +335,8 @@
       "loadout": {
         "primary": [
           "AR",
-          "SG"
+          "SG",
+          "DMR"
         ],
         "secondary": [
           "MP",
@@ -340,7 +344,8 @@
         ],
         "gadgets": [
           "BREACH",
-          "STUN"
+          "STUN",
+          "CLAYMORE"
         ]
       },
       "roles": [
@@ -502,12 +507,13 @@
           "DMR"
         ],
         "secondary": [
-          "HG"
+          "HG",
+          "MP"
         ],
         "gadgets": [
           "CLAYMORE",
           "STUN",
-          "SMOKE"
+          "FRAG"
         ]
       },
       "roles": [
@@ -569,7 +575,8 @@
       "loadout": {
         "primary": [
           "SMG",
-          "SG"
+          "SG",
+          "DMR"
         ],
         "secondary": [
           "HG",
@@ -671,14 +678,14 @@
         ],
         "gadgets": [
           "CLAYMORE",
-          "BREACH"
+          "STUN"
         ]
       },
       "roles": [
         "BREACH",
         "ANTIGADGET"
       ],
-      "speed": 2,
+      "speed": 1,
       "squad": "NIGHTHAVEN"
     },
     "ZERO": {
@@ -957,7 +964,7 @@
         "ANTIGADGET",
         "CROWDCONTROL"
       ],
-      "speed": 1,
+      "speed": 2,
       "squad": "VIPERSTRIKE"
     },
     "CASTLE": {
@@ -1436,7 +1443,8 @@
           "SMG"
         ],
         "secondary": [
-          "HG"
+          "HG",
+          "SG"
         ],
         "gadgets": [
           "BARBED",

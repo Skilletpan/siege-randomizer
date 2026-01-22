@@ -8,10 +8,10 @@
         "CHALET",
         "KAFE",
         "BORDER",
-        "SKYSCRAPER",
         "CONSULATE",
         "LABS",
-        "LAIR"
+        "LAIR",
+        "FORTRESS"
       ]
     },
     "CUP": {
@@ -24,6 +24,7 @@
     "RANKED": {
       "name": "Ranked",
       "maps": [
+        "FORTRESS",
         "OREGON",
         "CLUBHOUSE",
         "CONSULATE",
@@ -37,7 +38,6 @@
         "THEMEPARK",
         "VILLA",
         "OUTBACK",
-        "EMERALD",
         "LABS",
         "LAIR"
       ]
@@ -45,6 +45,7 @@
     "UNRANKED": {
       "name": "Unranked",
       "maps": [
+        "FORTRESS",
         "HOUSE",
         "OREGON",
         "CLUBHOUSE",
@@ -62,7 +63,6 @@
         "THEMEPARK",
         "TOWER",
         "VILLA",
-        "FORTRESS",
         "OUTBACK",
         "EMERALD",
         "BRAVO",
@@ -76,6 +76,7 @@
     "QUICKMATCH": {
       "name": "Quick Match",
       "maps": [
+        "FORTRESS",
         "HOUSE",
         "OREGON",
         "CLUBHOUSE",
@@ -93,7 +94,6 @@
         "THEMEPARK",
         "TOWER",
         "VILLA",
-        "FORTRESS",
         "OUTBACK",
         "EMERALD",
         "BRAVO",
@@ -117,40 +117,40 @@
       "operators": [
         "STRIKER",
         "SENTRY",
-        "SMOKE",
         "MUTE",
         "SLEDGE",
         "THATCHER",
-        "CASTLE",
-        "ASH",
-        "PULSE",
+        "THERMITE",
         "TWITCH",
+        "MONTAGNE",
         "GLAZ",
         "FUZE",
         "KAPKAN",
+        "TACHANKA",
+        "IQ",
+        "JAGER",
         "BANDIT",
-        "FROST",
+        "BUCK",
+        "BLACKBEARD",
         "VALKYRIE",
-        "CAPITAO",
-        "HIBANA",
-        "MAESTRO",
-        "ALIBI",
+        "ECHO",
+        "MIRA",
+        "YING",
+        "ZOFIA",
         "MAVERICK",
         "CLASH",
-        "NOMAD",
         "KAID",
-        "WARDEN",
-        "GOYO",
+        "AMARU",
         "WAMAI",
         "ORYX",
+        "IANA",
         "ACE",
+        "MELUSI",
+        "ZERO",
         "ARUNI",
         "THUNDERBIRD",
-        "OSA",
-        "THORN",
-        "AZAMI",
-        "SENS",
         "SOLIS",
+        "RAM",
         "RAUORA",
         "DENARI"
       ]
@@ -199,7 +199,8 @@
         "ALPHA",
         "CONSULATE",
         "LABS",
-        "LAIR"
+        "LAIR",
+        "FORTRESS"
       ],
       "operators": [
         "!MONTAGNE",
@@ -220,7 +221,8 @@
         "ALPHA",
         "CONSULATE",
         "LABS",
-        "LAIR"
+        "LAIR",
+        "FORTRESS"
       ],
       "operators": [
         "!MONTAGNE",
@@ -234,6 +236,7 @@
     "LANDMARK": {
       "name": "Landmark Drill",
       "maps": [
+        "FORTRESS",
         "LAIR",
         "CLUBHOUSE",
         "BANK",
@@ -252,7 +255,6 @@
         "EMERALD",
         "TOWER",
         "BRAVO",
-        "FORTRESS",
         "HOUSE",
         "ALPHA",
         "FAVELA",
@@ -260,9 +262,10 @@
         "YACHT"
       ]
     },
-    "TARGET": {
-      "name": "Target Drill",
+    "CLEAR_HOUSE": {
+      "name": "Clear House",
       "maps": [
+        "FORTRESS",
         "LAIR",
         "CLUBHOUSE",
         "BANK",
@@ -281,7 +284,6 @@
         "EMERALD",
         "TOWER",
         "BRAVO",
-        "FORTRESS",
         "HOUSE",
         "ALPHA",
         "FAVELA",
@@ -298,22 +300,23 @@
     "FIELD": {
       "name": "Field Training",
       "maps": [
-        "CLUBHOUSE",
         "OREGON",
+        "CLUBHOUSE",
+        "CONSULATE",
         "BANK",
         "CHALET",
         "KAFE",
-        "CONSULATE",
-        "LABS",
+        "BORDER",
         "COASTLINE",
-        "LAIR",
-        "BORDER"
+        "LABS",
+        "LAIR"
       ],
       "operators": [
         "STRIKER",
         "SENTRY",
         "SLEDGE",
         "THATCHER",
+        "SMOKE",
         "MUTE",
         "ASH",
         "THERMITE",
@@ -325,6 +328,7 @@
         "GLAZ",
         "FUZE",
         "KAPKAN",
+        "TACHANKA",
         "BLITZ",
         "IQ",
         "JAGER",
@@ -333,6 +337,7 @@
         "FROST",
         "BLACKBEARD",
         "VALKYRIE",
+        "CAPITAO",
         "HIBANA",
         "JACKAL",
         "YING",
@@ -343,14 +348,17 @@
         "VIGIL",
         "LION",
         "FINKA",
+        "ALIBI",
         "CLASH",
         "KAID",
         "GRIDLOCK",
         "WARDEN",
+        "GOYO",
         "WAMAI",
         "IANA",
         "ORYX",
         "ACE",
+        "MELUSI",
         "THUNDERBIRD",
         "THORN",
         "SOLIS",
@@ -359,6 +367,13 @@
         "RAUORA",
         "DENARI"
       ]
+    }
+  },
+  "EXPERIMENTAL": {
+    "TESTING_GROUNDS": {
+      "name": "Testing Grounds",
+      "maps": [],
+      "disabled": true
     }
   }
 }
