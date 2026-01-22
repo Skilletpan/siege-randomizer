@@ -24,6 +24,7 @@
     "RANKED": {
       "name": "Ranked",
       "maps": [
+        "FORTRESS",
         "OREGON",
         "CLUBHOUSE",
         "CONSULATE",
@@ -36,7 +37,6 @@
         "COASTLINE",
         "THEMEPARK",
         "VILLA",
-        "FORTRESS",
         "OUTBACK",
         "LABS",
         "LAIR"
@@ -45,6 +45,7 @@
     "UNRANKED": {
       "name": "Unranked",
       "maps": [
+        "FORTRESS",
         "HOUSE",
         "OREGON",
         "CLUBHOUSE",
@@ -62,7 +63,6 @@
         "THEMEPARK",
         "TOWER",
         "VILLA",
-        "FORTRESS",
         "OUTBACK",
         "EMERALD",
         "BRAVO",
@@ -76,6 +76,7 @@
     "QUICKMATCH": {
       "name": "Quick Match",
       "maps": [
+        "FORTRESS",
         "HOUSE",
         "OREGON",
         "CLUBHOUSE",
@@ -93,7 +94,6 @@
         "THEMEPARK",
         "TOWER",
         "VILLA",
-        "FORTRESS",
         "OUTBACK",
         "EMERALD",
         "BRAVO",
@@ -117,15 +117,15 @@
       "operators": [
         "STRIKER",
         "SENTRY",
-        "SMOKE",
         "MUTE",
         "SLEDGE",
         "THATCHER",
         "THERMITE",
-        "CASTLE",
         "TWITCH",
+        "MONTAGNE",
         "GLAZ",
         "FUZE",
+        "KAPKAN",
         "TACHANKA",
         "IQ",
         "JAGER",
@@ -135,22 +135,22 @@
         "VALKYRIE",
         "ECHO",
         "MIRA",
+        "YING",
         "ZOFIA",
-        "VIGIL",
-        "ALIBI",
+        "MAVERICK",
         "CLASH",
         "KAID",
-        "NOKK",
-        "GOYO",
-        "KALI",
+        "AMARU",
+        "WAMAI",
         "ORYX",
+        "IANA",
+        "ACE",
         "MELUSI",
         "ZERO",
+        "ARUNI",
         "THUNDERBIRD",
-        "THORN",
-        "SENS",
-        "GRIM",
         "SOLIS",
+        "RAM",
         "RAUORA",
         "DENARI"
       ]
@@ -199,7 +199,8 @@
         "ALPHA",
         "CONSULATE",
         "LABS",
-        "LAIR"
+        "LAIR",
+        "FORTRESS"
       ],
       "operators": [
         "!MONTAGNE",
@@ -220,7 +221,8 @@
         "ALPHA",
         "CONSULATE",
         "LABS",
-        "LAIR"
+        "LAIR",
+        "FORTRESS"
       ],
       "operators": [
         "!MONTAGNE",
@@ -234,6 +236,7 @@
     "LANDMARK": {
       "name": "Landmark Drill",
       "maps": [
+        "FORTRESS",
         "LAIR",
         "CLUBHOUSE",
         "BANK",
@@ -252,7 +255,6 @@
         "EMERALD",
         "TOWER",
         "BRAVO",
-        "FORTRESS",
         "HOUSE",
         "ALPHA",
         "FAVELA",
@@ -263,6 +265,7 @@
     "CLEAR_HOUSE": {
       "name": "Clear House",
       "maps": [
+        "FORTRESS",
         "LAIR",
         "CLUBHOUSE",
         "BANK",
@@ -281,7 +284,6 @@
         "EMERALD",
         "TOWER",
         "BRAVO",
-        "FORTRESS",
         "HOUSE",
         "ALPHA",
         "FAVELA",
@@ -298,22 +300,23 @@
     "FIELD": {
       "name": "Field Training",
       "maps": [
-        "CLUBHOUSE",
         "OREGON",
+        "CLUBHOUSE",
+        "CONSULATE",
         "BANK",
         "CHALET",
         "KAFE",
-        "CONSULATE",
-        "LABS",
+        "BORDER",
         "COASTLINE",
-        "LAIR",
-        "BORDER"
+        "LABS",
+        "LAIR"
       ],
       "operators": [
         "STRIKER",
         "SENTRY",
         "SLEDGE",
         "THATCHER",
+        "SMOKE",
         "MUTE",
         "ASH",
         "THERMITE",
@@ -325,6 +328,7 @@
         "GLAZ",
         "FUZE",
         "KAPKAN",
+        "TACHANKA",
         "BLITZ",
         "IQ",
         "JAGER",
@@ -333,6 +337,7 @@
         "FROST",
         "BLACKBEARD",
         "VALKYRIE",
+        "CAPITAO",
         "HIBANA",
         "JACKAL",
         "YING",
@@ -343,14 +348,17 @@
         "VIGIL",
         "LION",
         "FINKA",
+        "ALIBI",
         "CLASH",
         "KAID",
         "GRIDLOCK",
         "WARDEN",
+        "GOYO",
         "WAMAI",
         "IANA",
         "ORYX",
         "ACE",
+        "MELUSI",
         "THUNDERBIRD",
         "THORN",
         "SOLIS",
@@ -364,7 +372,8 @@
   "EXPERIMENTAL": {
     "TESTING_GROUNDS": {
       "name": "Testing Grounds",
-      "maps": []
+      "maps": [],
+      "disabled": true
     }
   }
 }
