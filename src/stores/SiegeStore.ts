@@ -31,14 +31,11 @@ export default defineStore('siege', () => {
   const LEVEL_LIST = computed(() => Object.values(LEVELS.value));
 
   /** The list of level locations. */
-  const LEVEL_LOCATIONS = computed(() => LEVEL_LIST.value.reduce<string[]>((locations, level) => {
-    // Get level locations
-    const location = level.location.split(', ').at(-1)!;
-
-    // Add level location to list if not present
-    if (!locations.includes(location)) locations.push(location);
-    return locations;
-  }, []).sort());
+  const LEVEL_LOCATIONS = computed(() => Array.from(new Set(Object
+    .values(LEVELS.value)
+    .flatMap((level) => level.location.split(', ').at(-1) ?? [])
+    .sort()
+  )));
 
   /** The collection of operators. */
   const OPERATORS = ref<Record<string, Operator>>({});
@@ -46,24 +43,19 @@ export default defineStore('siege', () => {
   /** The list of operators. */
   const OPERATOR_LIST = computed(() => Object.values(OPERATORS.value));
 
-  /** The list of operator birthplaces. */
-  const OPERATOR_BIRTHPLACES = computed(() => OPERATOR_LIST.value.reduce<string[]>((birthplaces, operator) => {
-    // Skip operators without birthplace
-    if (!operator.biography.birthplace) return birthplaces;
-
-    // Get operator birthplace
-    const birthplace = operator.biography.birthplace.split(', ').at(-1)!;
-
-    // Add operator birthplace to list if not present
-    if (!birthplaces.includes(birthplace)) birthplaces.push(birthplace);
-    return birthplaces;
-  }, []).sort());
-
   /** The list of operator roles. */
-  const OPERATOR_ROLES = computed(() => {
-    const roles = OPERATOR_LIST.value.map((operator) => operator.roles).flat().sort();
-    return Array.from(new Set(roles));
-  });
+  const OPERATOR_SPECIALTIES = computed(() => Array.from(new Set(Object
+    .values(OPERATORS.value)
+    .flatMap((operator) => operator.gameplay.specialties)
+    .sort()
+  )));
+
+  /** The list of operator nationalities. */
+  const OPERATOR_NATIONALITIES = computed(() => Array.from(new Set(Object
+    .values(OPERATORS.value)
+    .flatMap((operator) => operator.lore.biography?.nationality ?? [])
+    .sort()
+  )));
 
   /** The collection of playlists. */
   const PLAYLISTS = ref<Record<string, Playlist>>({});
@@ -163,36 +155,46 @@ export default defineStore('siege', () => {
         // Mapping operators
         LoadingStore.dialogStep = 'Mapping Operators…';
         Object.entries(rawOperators).forEach(([key, rawOperator]) => {
-          // Map operator side
-          const side = SIDES.value[rawOperator.side];
+          // Map gameplay information
+          const gameplay = {
+            ...rawOperator.gameplay,
+            side: SIDES.value[rawOperator.gameplay.side]
+          };
 
-          // Map operator loadout
-          const { shield, primaries, secondaries, gadgets } = rawOperator.loadout;
-          const loadout: Operator['loadout'] = { gadgets: gadgets.map((key) => GADGETS.value[key]) };
-          if (shield) loadout.shield = WEAPONS.value[shield];
-          if (primaries) loadout.primaries = primaries.map((key) => WEAPONS.value[key]);
-          if (secondaries) loadout.secondaries = secondaries.map((key) => WEAPONS.value[key]);
+          // Map loadout
+          const { weapons, gadgets } = rawOperator.loadout;
+          const loadout = {
+            weapons: {
+              shield: weapons.shield ? WEAPONS.value[weapons.shield] : undefined,
+              primary: weapons.primary?.map((key) => WEAPONS.value[key]),
+              secondary: weapons.secondary?.map((key) => WEAPONS.value[key])
+            },
+            gadgets: {
+              primary: gadgets.primary,
+              secondary: gadgets.secondary.map((key) => GADGETS.value[key])
+            }
+          };
 
           // Map operator metadata
           const { released, reworked } = rawOperator.metadata;
-          const metadata: Operator['metadata'] = { released: SEASONS.value[released] };
-          if (reworked) metadata.reworked = SEASONS.value[reworked];
+          const metadata = {
+            released: SEASONS.value[released],
+            reworked: reworked ? SEASONS.value[reworked] : undefined
+          };
 
           // Create operator instance
           OPERATORS.value[key] = new Operator(
             key,
             rawOperator.alias,
-            side,
-            rawOperator.speed,
-            rawOperator.roles,
-            rawOperator.biography,
+            gameplay,
             loadout,
+            rawOperator.lore,
             metadata
           )
         });
         console.debug(toRaw(OPERATORS.value));
-        console.debug(OPERATOR_BIRTHPLACES.value);
-        console.debug(OPERATOR_ROLES.value);
+        console.debug(OPERATOR_SPECIALTIES.value);
+        console.debug(OPERATOR_NATIONALITIES.value);
 
         // Mapping playlists
         LoadingStore.dialogStep = 'Mapping Playlists…';
@@ -279,8 +281,8 @@ export default defineStore('siege', () => {
 
     OPERATORS,
     OPERATOR_LIST,
-    OPERATOR_ROLES,
-    OPERATOR_BIRTHPLACES,
+    OPERATOR_SPECIALTIES,
+    OPERATOR_NATIONALITIES,
 
     PLAYLISTS,
     PLAYLIST_LIST,

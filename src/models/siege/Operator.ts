@@ -1,166 +1,156 @@
-import type { Gadget, Season, Side, Weapon } from '@/models';
+import { type Gadget, type Season, type Side, Weapon } from '@/models';
 import type { Shield } from '@/models/siege/Weapon';
 import { DataFetcher } from '@/utils';
 
 export default class Operator {
-  /** The operator key. */
+  /** The unique key of the operator. */
   readonly key: string;
 
-  /** The operator alias. */
+  /** The alias of the operator. */
   readonly alias: string;
 
-  /** The operator side. */
-  readonly side: Side;
+  /** The gameplay information of the operator. */
+  readonly gameplay: Gameplay;
 
-  /** The operator speed. */
-  readonly speed: 1 | 2 | 3;
+  /** The loadout of the operator. */
+  readonly loadout: Loadout;
 
-  /** The operator roles. */
-  readonly roles: string[];
+  /** The lore information of the operator. */
+  readonly lore: Lore;
 
-  /** The operator biography. */
-  readonly biography: {
-    /** The operator name. */
-    name?: string;
-
-    /** The operator birthplace. */
-    birthplace?: string;
-
-    /** The operator organization. */
-    organization?: string;
-
-    /** The operator squad. */
-    squad?: {
-      /** The squad name. */
-      name: string;
-
-      /** The squad icon URL. */
-      icon: URL;
-    };
-  };
-
-  /** The operator loadout. */
-  readonly loadout: {
-    /** The shield. */
-    shield?: Shield;
-
-    /** The primary weapons. */
-    primaries?: Weapon[];
-
-    /** The secondary weapons. */
-    secondaries?: Weapon[];
-
-    /** The gadgets. */
-    gadgets: Gadget[];
-  };
-
-  /** The operator metadata. */
-  readonly metadata: {
-    /** The season the operator was released in. */
-    released: Season;
-
-    /** The (last) season the operator was reworked in. */
-    reworked?: Season;
-  };
+  /** The metadata of the operator. */
+  readonly metadata: Metadata;
 
   /**
    * Creates a new Operator instance.
    * 
-   * @param key       The operator key.
-   * @param alias     The operator alias.
-   * @param side      The operator side.
-   * @param speed     The operator speed.
-   * @param roles     The operator roles.
-   * @param biography The operator biography.
-   * @param loadout   The operator loadout.
-   * @param metadata  The operator metadata.
+   * @param key      The unique key of the operator.
+   * @param alias    The alias of the operator.
+   * @param gameplay The gameplay information of the operator.
+   * @param loadout  The loadout of the operator.
+   * @param lore     The lore information of the operator.
+   * @param metadata The metadata of the operator.
    */
   constructor(
     key: string,
     alias: string,
-    side: Side,
-    speed: 1 | 2 | 3,
-    roles: string[],
-    biography: RawOperator['biography'],
-    loadout: Operator['loadout'],
-    metadata: Operator['metadata']
+    gameplay: Gameplay,
+    loadout: Loadout,
+    lore: Lore,
+    metadata: Metadata
   ) {
     this.key = key;
     this.alias = alias;
-    this.side = side;
-    this.speed = speed;
-    this.roles = Array.from(roles);
-    this.biography = {};
-    this.loadout = { ...loadout };
-    this.metadata = { ...metadata };
-
-    // Map biography
-    if (biography.name) this.biography.name = biography.name;
-    if (biography.birthplace) this.biography.birthplace = biography.birthplace;
-    if (biography.organization) this.biography.organization = biography.organization;
-    if (biography.squad) this.biography.squad = {
-      name: biography.squad,
-      icon: DataFetcher.buildAssetUrl('squads', `${biography.squad.toUpperCase()}.png`)
-    };
+    this.gameplay = gameplay;
+    this.loadout = loadout;
+    this.lore = lore;
+    this.metadata = metadata;
   }
 
-  /** The operator emblem URL. */
+  /** The URL to the emblem of the operator. */
   get emblem() { return DataFetcher.buildAssetUrl('operators', this.key, 'emblem.png'); }
 
-  /** The operator portrait URL. */
+  /** The URL to the portrait of the operator. */
   get portrait() { return DataFetcher.buildAssetUrl('operators', this.key, 'portrait.png'); }
+
+  /** The URL to the emblem of the squad the operator is assigned to. */
+  get squadEmblem() {
+    if (!this.lore.affiliations?.squad) return null;
+    return DataFetcher.buildAssetUrl('squads', `${this.lore.affiliations?.squad?.toUpperCase()}.png`);
+  }
 }
 
 /** The raw operator data. */
 export type RawOperator = {
-  /** The operator alias. */
+  /** The alias of the operator. */
   alias: string;
 
-  /** The key of the operator side. */
-  side: 'ATT' | 'DEF';
+  /** The raw gameplay information of the operator. */
+  gameplay: Gameplay<true>;
 
-  /** The operator speed. */
+  /** The raw loadout of the operator. */
+  loadout: Loadout<true>;
+
+  /** The raw lore information of the operator. */
+  lore: Lore;
+
+  /** The raw metadata of the operator. */
+  metadata: Metadata<true>;
+};
+
+type Gameplay<isRaw = false> = {
+  /** The side/role of the operator. */
+  side: isRaw extends false ? Side : 'ATT' | 'DEF';
+
+  /** The specialties of the operator. */
+  specialties: string[];
+
+  /** The speed of the operator. */
   speed: 1 | 2 | 3;
+};
 
-  /** The operator roles. */
-  roles: string[];
+type Loadout<isRaw = false> = {
+  /** The weapons of the operator. */
+  weapons: {
+    /** The shield of the operator. */
+    shield?: isRaw extends false ? Shield : string;
 
-  /** The operator biography. */
-  biography: {
-    /** The operator name. */
-    name?: string;
+    /** The primary weapons of the operator. */
+    primary?: Array<isRaw extends false ? Weapon : string>;
 
-    /** The operator birthplace. */
+    /** The secondary weapons of the operator. */
+    secondary?: Array<isRaw extends false ? Weapon : string>;
+  };
+
+  /** The gadgets of the operator. */
+  gadgets: {
+    /** The primary gadget (unique ability) of the operator. */
+    primary: string;
+
+    /** The secondary gadgets of the operator. */
+    secondary: Array<isRaw extends false ? Gadget : string>;
+  };
+};
+
+type Lore = {
+  /** The biographical information of the operator. */
+  biography?: {
+    /** The given name(s) of the operator. */
+    givenName?: string;
+
+    /** The given name(s) of the operator when the family name comes first. */
+    givenNameRight?: string;
+
+    /** The last name of the operator. */
+    lastName?: string;
+
+    /** The birthplace of the operator. */
     birthplace?: string;
 
-    /** The operator organization. */
+    /** The nationality of the operator. */
+    nationality?: string;
+
+    /** The birthday of the operator. */
+    birthday?: string;
+
+    /** The age of the operator. */
+    age?: number;
+  };
+
+  /** The affiliations of the operator. */
+  affiliations?: {
+    /** The organization the operator belonged to. */
     organization?: string;
 
-    /** The operator squad. */
+    /** The squad the operator is assigned to. */
     squad?: string;
   };
+};
 
-  /** The raw operator loadout. */
-  loadout: {
-    /** The key of the shield. */
-    shield?: string;
+type Metadata<isRaw = false> = {
+  /** The season the operator was released in. */
+  released: isRaw extends false ? Season : string;
 
-    /** The keys of the primary weapons. */
-    primaries?: string[];
-
-    /** The keys of the secondary weapons. */
-    secondaries?: string[];
-
-    /** The keys of the gadgets. */
-    gadgets: string[];
-  };
-
-  /** The raw operator metadata. */
-  metadata: {
-    /** The key of the season the operator was released in. */
-    released: string;
-
-    /** The key of the (last) season the operator was reworked in. */
-    reworked?: string;
-  };
+  /** The season the operator was (last) reworked in. */
+  reworked?: isRaw extends false ? Season : string;
 };
