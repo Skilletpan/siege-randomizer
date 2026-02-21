@@ -72,6 +72,7 @@
                   <!-- Operator Emblem -->
                   <template #prepend>
                     <v-avatar
+                      color="transparent"
                       :image="operator.emblem"
                       tile
                     />

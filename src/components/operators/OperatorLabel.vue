@@ -3,9 +3,17 @@
     class="font-weight-bold"
     :color="negative ? 'error' : null"
     label
-    :prepend-avatar="operator.emblem"
     :text="operator.name"
-  />
+  >
+    <template #prepend>
+      <v-avatar
+        color="transparent"
+        :image="operator.emblem"
+        start
+        tile
+      />
+    </template>
+  </v-chip>
 </template>
 
 <script setup>
