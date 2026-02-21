@@ -81,7 +81,7 @@
         @click="pickDuplicates = !pickDuplicates"
       >
         <template #prepend>
-          <v-list-item-action>
+          <v-list-item-action end>
             <v-switch
               v-model="pickDuplicates"
               color="primary"
@@ -99,7 +99,7 @@
         @click="useSquad = !useSquad"
       >
         <template #prepend>
-          <v-list-item-action>
+          <v-list-item-action end>
             <v-switch
               v-model="useSquad"
               color="primary"
