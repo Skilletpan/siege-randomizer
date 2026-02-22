@@ -13,9 +13,10 @@
       v-if="picked"
     >
       <v-avatar
+        color="transparent"
         :image="Squad[picked].emblem"
-        rounded="0"
         size="small"
+        tile
       />
     </template>
 
@@ -24,9 +25,10 @@
       <v-list-item v-bind="props">
         <template #append>
           <v-avatar
+            color="transparent"
             :image="item.raw.emblem"
-            rounded="0"
             size="small"
+            tile
           />
         </template>
       </v-list-item>

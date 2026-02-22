@@ -27,8 +27,9 @@
             <!-- Operator Emblem -->
             <v-avatar
               class="align-self-center portrait-emblem"
+              color="transparent"
               :image="operator.emblem"
-              rounded="0"
+              tile
             />
 
             <v-card-item class="portrait-text py-2 text-center">
@@ -125,9 +126,10 @@
 
             <template #append>
               <v-avatar
+                color="transparent"
                 :image="operator.squad.emblem"
-                rounded="0"
                 size="small"
+                tile
               />
             </template>
           </v-card-item>

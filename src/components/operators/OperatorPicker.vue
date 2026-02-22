@@ -17,8 +17,9 @@
       v-if="picked && !multiple"
     >
       <v-avatar
+        color="transparent"
         :image="Operator[picked].emblem"
-        rounded="0"
+        tile
       />
     </template>
 
@@ -47,8 +48,9 @@
       <v-list-item v-bind="p">
         <template #prepend>
           <v-avatar
+            color="transparent"
             :image="toRaw(item.raw).emblem"
-            rounded="0"
+            tile
           />
         </template>
       </v-list-item>

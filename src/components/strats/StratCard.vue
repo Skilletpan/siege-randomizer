@@ -74,9 +74,10 @@
     >
       <template #prepend>
         <v-avatar
+          color="transparent"
           icon="$siege-operators"
           :image="rule.operator?.emblem"
-          rounded="0"
+          tile
         />
       </template>
 
