@@ -8,7 +8,7 @@
       <!-- Side Navigation Toggle -->
       <template #prepend>
         <v-btn
-          icon="mdi-menu"
+          icon="$menu"
           @click="showNav = !showNav"
         />
       </template>
@@ -34,7 +34,7 @@
       <!-- Navigation Items -->
       <v-list
         class="nav-list"
-        :items="NAV_ITEMS"
+        :items="NAVIGATION_ITEMS.main"
         nav
       />
 
@@ -42,7 +42,7 @@
       <template #append>
         <v-list
           class="nav-list"
-          :items="BOTTOM_NAV_ITEMS"
+          :items="NAVIGATION_ITEMS.bottom"
           nav
         />
 
@@ -83,31 +83,51 @@ const { mobile } = useDisplay();
 const SettingsStore = useSettingsStore();
 const SiegeStore = useSiegeStore();
 
-// Navigation Items
-const NAV_ITEMS = [
-  {
-    title: 'Home',
-    props: { prependIcon: 'mdi-home', to: '/' }
-  },
-  { type: 'divider' }
-];
+// Side navigation items
+const NAVIGATION_ITEMS = {
+  // Main navigation items
+  main: [
+    {
+      title: 'Home',
+      props: {
+        prependIcon: '$home',
+        to: '/'
+      }
+    },
+    { type: 'divider' }
+  ],
 
-// Navigation Items at the bottom of the sidebar
-const BOTTOM_NAV_ITEMS = [
-  {
-    title: 'Settings',
-    props: { prependIcon: '$settings', onClick: () => { SettingsStore.show = true; } }
-  },
-  { type: 'divider' },
-  {
-    title: 'GitHub',
-    props: { disabled: !Env.URL.REPOSITORY, prependIcon: 'mdi-github', href: Env.URL.REPOSITORY, target: '_blank' }
-  },
-  {
-    title: 'Change Log',
-    props: { disabled: !Env.URL.NOTES, prependIcon: 'mdi-creation', href: Env.URL.NOTES, subtitle: `v${Env.APP.VERSION}`, target: '_blank' }
-  }
-];
+  // Bottom navigation items
+  bottom: [
+    {
+      title: 'Settings',
+      props: {
+        prependIcon: '$settings',
+        onClick: () => { SettingsStore.show = true; }
+      }
+    },
+    { type: 'divider' },
+    {
+      title: 'GitHub',
+      props: {
+        disabled: !Env.URL.REPOSITORY,
+        prependIcon: 'mdi-github',
+        href: Env.URL.REPOSITORY,
+        target: '_blank'
+      }
+    },
+    {
+      title: 'Release Notes',
+      props: {
+        disabled: !Env.URL.NOTES,
+        prependIcon: 'mdi-creation',
+        subtitle: `v${Env.APP.VERSION}`,
+        href: Env.URL.NOTES,
+        target: '_blank'
+      }
+    }
+  ]
+};
 
 /** Whether the side navigation should be displayed. */
 const showNav = shallowRef<boolean>(!mobile.value);
@@ -119,11 +139,7 @@ SiegeStore.fetchSiegeData();
 <style lang="scss" scoped>
 .nav-list {
   :deep(.v-divider) {
-    margin-bottom: 4px;
-  }
-
-  :deep(.v-list-item:last-child) {
-    margin-bottom: 0;
+    margin-top: 4px;
   }
 }
 </style>
