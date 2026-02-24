@@ -3,6 +3,7 @@
     <!-- Emblem -->
     <template #prepend>
       <v-avatar
+        color="transparent"
         :image="operator.emblem.href"
         tile
       />
@@ -14,8 +15,8 @@
     <!-- Side Icon -->
     <template #append>
       <v-avatar
-        :color="operator.side.color"
-        :icon="operator.side.icon"
+        :color="operator.gameplay.side.color"
+        :icon="operator.gameplay.side.icon"
         tile
         variant="text"
       />
