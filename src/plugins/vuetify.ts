@@ -5,6 +5,7 @@ import 'vuetify/styles';
 export default createVuetify({
   icons: {
     aliases: {
+      'home': 'mdi-home',
       'settings': 'mdi-cog'
     }
   },
