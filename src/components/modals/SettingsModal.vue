@@ -12,7 +12,7 @@
 
       <v-card-text class="d-flex flex-column ga-3 pa-3">
         <!-- Colors -->
-        <card-list-section label="Colors">
+        <card-list-section label="Team Colors">
           <!-- Side Colors -->
           <div class="d-flex flex-wrap ga-3">
             <v-select
@@ -21,7 +21,7 @@
               density="comfortable"
               hide-details="auto"
               :items="COLOR_LIST"
-              :label="`${side.name} Color`"
+              :label="side.name"
               min-width="200"
               variant="outlined"
               width="1"

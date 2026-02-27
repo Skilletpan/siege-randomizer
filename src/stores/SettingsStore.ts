@@ -3,10 +3,10 @@ import { shallowRef, watchEffect } from 'vue';
 
 import { useSiegeStore } from '@/stores';
 
-export default defineStore('settings', () => {
-  // Get current settings from localStorage
-  const localSettings = JSON.parse(localStorage.getItem('settings') ?? '{}');
+// Get current settings from localStorage
+const localSettings = JSON.parse(localStorage.getItem('settings') ?? '{}');
 
+export default defineStore('settings', () => {
   // Dependency stores
   const SiegeStore = useSiegeStore();
 
