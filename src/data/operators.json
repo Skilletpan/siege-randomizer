@@ -891,6 +891,30 @@
       ],
       "speed": 2,
       "squad": "VIPERSTRIKE"
+    },
+    "SNAKE": {
+      "name": "Solid Snake",
+      "loadout": {
+        "primary": [
+          "AR",
+          "DMR"
+        ],
+        "secondary": [
+          "HG"
+        ],
+        "gadgets": [
+          "FRAG",
+          "STUN",
+          "EMP",
+          "SMOKE",
+          "BREACH"
+        ]
+      },
+      "roles": [
+        "INTEL",
+        "FRONTLINE"
+      ],
+      "speed": 3
     }
   },
   "DEF": {
