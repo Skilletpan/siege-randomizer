@@ -231,7 +231,8 @@
       "!DEIMOS",
       "!SKOPOS",
       "!RAUORA",
-      "!DENARI"
+      "!DENARI",
+      "!SNAKE"
     ]
   },
   {
@@ -352,7 +353,7 @@
   },
   {
     "title": "G2 vs TT9",
-    "tagline": "\"They can only drone us if we move!\" -Alemao, probably",
+    "tagline": "\"They can only drone us if we move!\" -Alem4o, probably",
     "rules": [
       "Don't move during preparation phase. No walking, no turning, no reinforcing, no shooting drones."
     ],
@@ -546,7 +547,8 @@
       "!WARDEN",
       "!ORYX",
       "!SOLIS",
-      "!SKOPOS"
+      "!SKOPOS",
+      "!SNAKE"
     ],
     "side": "DEF"
   },
@@ -872,8 +874,9 @@
       }
     ],
     "operators": [
-      "*ZERO",
       "*CAVEIRA",
+      "*ZERO",
+      "*SNAKE",
       [
         {
           "property": "loadout.secondary[some].key",
@@ -895,24 +898,29 @@
         "operator": "DOKKAEBI"
       },
       {
-        "text": "Scan them.",
+        "text": "Stop them.",
         "operator": "LION"
       },
       {
-        "operator": "GRIM",
-        "text": "Bee them."
+        "text": "Bee them.",
+        "operator": "GRIM"
       },
       {
-        "operator": "DEIMOS",
-        "text": "Hunt them."
+        "text": "Hunt them.",
+        "operator": "DEIMOS"
+      },
+      {
+        "text": "Scan them.",
+        "operator": "SNAKE"
       }
     ],
     "operators": [
-      "*JACKAL",
-      "*DOKKAEBI",
-      "*LION",
-      "*GRIM",
-      "*DEIMOS"
+      "JACKAL",
+      "DOKKAEBI",
+      "LION",
+      "GRIM",
+      "DEIMOS",
+      "SNAKE"
     ],
     "side": "ATT"
   },
@@ -941,7 +949,8 @@
       "Only shoot at people through punch holes."
     ],
     "operators": [
-      "!ARUNI"
+      "!ARUNI",
+      "!SKOPOS"
     ],
     "side": "DEF"
   },
@@ -969,6 +978,9 @@
     "rules": [
       "Inside the building, you are only allowed to move while prone.",
       "You may stand up to shoot, but need to go prone again to continue moving."
+    ],
+    "operators": [
+      "*SNAKE"
     ],
     "side": "ATT"
   },
