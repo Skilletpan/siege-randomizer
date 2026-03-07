@@ -716,7 +716,8 @@
       "loadout": {
         "primary": [
           "AR",
-          "DMR"
+          "DMR",
+          "LMG"
         ],
         "secondary": [
           "HG"
@@ -1775,7 +1776,7 @@
         "INTEL",
         "SUPPORT"
       ],
-      "speed": 2,
+      "speed": 3,
       "squad": "WOLFGUARD"
     },
     "DENARI": {
