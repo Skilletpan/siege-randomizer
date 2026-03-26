@@ -9,6 +9,11 @@ export default createRouter({
       path: '/',
       name: 'Home',
       component: Views.HomeView
+    },
+    {
+      path: '/operators',
+      name: 'Operators',
+      component: Views.OperatorView
     }
   ]
 });

@@ -94,7 +94,14 @@ const NAVIGATION_ITEMS = {
         to: '/'
       }
     },
-    { type: 'divider' }
+    { type: 'divider' },
+    {
+      title: 'Operators',
+      props: {
+        prependIcon: 'mdi-account-group',
+        to: '/operators'
+      }
+    }
   ],
 
   // Bottom navigation items
