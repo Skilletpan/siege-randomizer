@@ -369,7 +369,8 @@
         ],
         "gadgets": [
           "CLAYMORE",
-          "SMOKE"
+          "SMOKE",
+          "FRAG"
         ]
       },
       "roles": [
@@ -959,7 +960,8 @@
         ],
         "gadgets": [
           "BARBED",
-          "BEEPER"
+          "BEEPER",
+          "SHIELD"
         ]
       },
       "roles": [
