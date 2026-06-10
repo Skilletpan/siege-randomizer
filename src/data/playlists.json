@@ -1,6 +1,6 @@
 {
   "COMPETITIVE": {
-    "PRO": {
+    "PRO_LEAGUE": {
       "name": "Pro League",
       "maps": [
         "CLUBHOUSE",
@@ -8,23 +8,18 @@
         "CHALET",
         "KAFE",
         "BORDER",
+        "FORTRESS",
         "CONSULATE",
         "LABS",
-        "LAIR",
-        "FORTRESS"
+        "LAIR"
       ]
-    },
-    "CUP": {
-      "name": "Siege Cup",
-      "maps": [],
-      "disabled": true
     }
   },
-  "TACTICAL": {
+  "ESSENTIALS": {
     "RANKED": {
       "name": "Ranked",
       "maps": [
-        "EMERALD",
+        "CALYPSO",
         "OREGON",
         "CLUBHOUSE",
         "CONSULATE",
@@ -33,8 +28,9 @@
         "KAFE",
         "BORDER",
         "COASTLINE",
-        "VILLA",
         "FORTRESS",
+        "OUTBACK",
+        "EMERALD",
         "LABS",
         "LAIR"
       ]
@@ -42,6 +38,7 @@
     "UNRANKED": {
       "name": "Unranked",
       "maps": [
+        "CALYPSO",
         "HOUSE",
         "OREGON",
         "CLUBHOUSE",
@@ -67,12 +64,11 @@
         "LAIR",
         "ALPHA"
       ]
-    }
-  },
-  "QUICKPLAY": {
+    },
     "QUICKMATCH": {
       "name": "Quick Match",
       "maps": [
+        "CALYPSO",
         "HOUSE",
         "OREGON",
         "CLUBHOUSE",
@@ -97,210 +93,44 @@
         "LABS",
         "LAIR",
         "ALPHA"
-      ]
-    },
-    "DISCOVERY": {
-      "name": "Discovery",
-      "maps": [],
-      "disabled": true
-    }
-  },
-  "DUAL_FRONT": {
-    "DUAL_FRONT": {
-      "name": "Dual Front",
-      "maps": [
-        "DISTRICT"
-      ],
-      "operators": [
-        "STRIKER",
-        "SENTRY",
-        "SLEDGE",
-        "THATCHER",
-        "SMOKE",
-        "MUTE",
-        "ASH",
-        "THERMITE",
-        "CASTLE",
-        "PULSE",
-        "TWITCH",
-        "MONTAGNE",
-        "DOC",
-        "GLAZ",
-        "FUZE",
-        "KAPKAN",
-        "TACHANKA",
-        "BLITZ",
-        "IQ",
-        "JAGER",
-        "BANDIT",
-        "BUCK",
-        "FROST",
-        "BLACKBEARD",
-        "VALKYRIE",
-        "CAPITAO",
-        "HIBANA",
-        "ECHO",
-        "MIRA",
-        "YING",
-        "LESION",
-        "ELA",
-        "ZOFIA",
-        "VIGIL",
-        "MAESTRO",
-        "ALIBI",
-        "MAVERICK",
-        "CLASH",
-        "NOMAD",
-        "KAID",
-        "NOKK",
-        "WARDEN",
-        "AMARU",
-        "GOYO",
-        "KALI",
-        "WAMAI",
-        "IANA",
-        "ORYX",
-        "ACE",
-        "MELUSI",
-        "ZERO",
-        "ARUNI",
-        "FLORES",
-        "THUNDERBIRD",
-        "OSA",
-        "THORN",
-        "AZAMI",
-        "SENS",
-        "GRIM",
-        "SOLIS",
-        "RAM",
-        "RAUORA",
-        "DENARI"
-      ]
-    }
-  },
-  "ARCADE": {
-    "GOLDEN_GUN": {
-      "name": "Golden Gun",
-      "maps": [
-        "CLOSEQUARTER",
-        "BRAVO",
-        "FAVELA",
-        "EMERALD",
-        "SKYSCRAPER",
-        "LAIR",
-        "ALPHA",
-        "COASTLINE",
-        "OUTBACK"
-      ]
-    },
-    "ROULETTE": {
-      "name": "Weapon Roulette",
-      "maps": [
-        "CLOSEQUARTER",
-        "COASTLINE",
-        "FAVELA",
-        "LABS",
-        "THEMEPARK",
-        "LAIR",
-        "ALPHA",
-        "BRAVO",
-        "OUTBACK"
-      ]
-    }
-  },
-  "DEATHMATCH": {
-    "F4A": {
-      "name": "Free for All",
-      "maps": [
-        "OREGON",
-        "CLUBHOUSE",
-        "CONSULATE",
-        "BANK",
-        "KANAL",
-        "CHALET",
-        "KAFE",
-        "BORDER",
-        "SKYSCRAPER",
-        "COASTLINE",
-        "THEMEPARK",
-        "VILLA",
-        "FORTRESS",
-        "OUTBACK",
-        "EMERALD",
-        "LABS",
-        "CLOSEQUARTER",
-        "LAIR"
-      ],
-      "operators": [
-        "!MONTAGNE",
-        "!BLITZ",
-        "!BLACKBEARD",
-        "!CLASH"
-      ]
-    },
-    "TDM": {
-      "name": "Team Deathmatch",
-      "maps": [
-        "OREGON",
-        "CLUBHOUSE",
-        "CONSULATE",
-        "BANK",
-        "KANAL",
-        "CHALET",
-        "KAFE",
-        "BORDER",
-        "SKYSCRAPER",
-        "COASTLINE",
-        "THEMEPARK",
-        "VILLA",
-        "FORTRESS",
-        "OUTBACK",
-        "EMERALD",
-        "LABS",
-        "CLOSEQUARTER",
-        "LAIR"
-      ],
-      "operators": [
-        "!MONTAGNE",
-        "!BLITZ",
-        "!BLACKBEARD",
-        "!CLASH"
       ]
     }
   },
   "TRAINING": {
-    "LANDMARK": {
-      "name": "Landmark Drill",
+    "DEATHMATCH": {
+      "name": "Deathmatch",
       "maps": [
-        "LAIR",
+        "OREGON",
         "CLUBHOUSE",
-        "BANK",
         "CONSULATE",
+        "BANK",
+        "KANAL",
         "CHALET",
         "KAFE",
-        "OREGON",
-        "LABS",
-        "SKYSCRAPER",
         "BORDER",
+        "SKYSCRAPER",
         "COASTLINE",
-        "KANAL",
-        "OUTBACK",
-        "VILLA",
         "THEMEPARK",
-        "EMERALD",
-        "TOWER",
-        "BRAVO",
+        "VILLA",
         "FORTRESS",
-        "HOUSE",
-        "ALPHA",
-        "FAVELA",
-        "PLANE",
-        "YACHT"
+        "OUTBACK",
+        "EMERALD",
+        "LABS",
+        "CLOSEQUARTER",
+        "LAIR",
+        "CALYPSO"
+      ],
+      "operators": [
+        "!MONTAGNE",
+        "!BLITZ",
+        "!BLACKBEARD",
+        "!CLASH"
       ]
     },
     "CLEAR_HOUSE": {
       "name": "Clear House",
       "maps": [
+        "CALYPSO",
         "LAIR",
         "CLUBHOUSE",
         "BANK",
@@ -327,92 +157,34 @@
         "YACHT"
       ]
     },
-    "ENLISTED": {
-      "name": "Enlisted",
-      "maps": [],
-      "operators": [],
-      "disabled": true
-    },
-    "FIELD": {
+    "FIELD_TRAINING": {
       "name": "Field Training",
       "maps": [
         "OREGON",
         "CLUBHOUSE",
         "CONSULATE",
         "BANK",
+        "KANAL",
         "CHALET",
         "KAFE",
         "BORDER",
+        "SKYSCRAPER",
         "COASTLINE",
+        "THEMEPARK",
+        "FORTRESS",
+        "OUTBACK",
         "LABS",
         "LAIR"
       ],
       "operators": [
-        "STRIKER",
-        "SENTRY",
-        "SLEDGE",
-        "THATCHER",
-        "SMOKE",
-        "MUTE",
-        "ASH",
-        "THERMITE",
-        "CASTLE",
-        "PULSE",
-        "TWITCH",
-        "MONTAGNE",
-        "DOC",
-        "ROOK",
-        "GLAZ",
-        "FUZE",
-        "KAPKAN",
-        "TACHANKA",
-        "BLITZ",
-        "IQ",
-        "JAGER",
-        "BANDIT",
-        "BUCK",
-        "FROST",
-        "BLACKBEARD",
-        "VALKYRIE",
-        "CAPITAO",
-        "HIBANA",
-        "JACKAL",
-        "YING",
-        "LESION",
-        "ELA",
-        "ZOFIA",
-        "DOKKAEBI",
-        "VIGIL",
-        "LION",
-        "FINKA",
-        "ALIBI",
-        "MAVERICK",
-        "CLASH",
-        "NOMAD",
-        "KAID",
-        "GRIDLOCK",
-        "NOKK",
-        "WARDEN",
-        "AMARU",
-        "GOYO",
-        "KALI",
-        "WAMAI",
-        "IANA",
-        "ORYX",
-        "ACE",
-        "MELUSI",
-        "ZERO",
-        "FLORES",
-        "THUNDERBIRD",
-        "THORN",
-        "SENS",
-        "GRIM",
-        "SOLIS",
-        "DEIMOS",
-        "SKOPOS",
-        "RAUORA",
-        "DENARI",
-        "SNAKE"
+        "!MIRA",
+        "!MAESTRO",
+        "!MOZZIE",
+        "!ARUNI",
+        "!OSA",
+        "!BRAVA",
+        "!RAM",
+        "!TUBARAO"
       ]
     }
   }

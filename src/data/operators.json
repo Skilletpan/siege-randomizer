@@ -422,13 +422,14 @@
         "BREACH",
         "ANTIGADGET"
       ],
-      "speed": 1,
+      "speed": 2,
       "squad": "GHOSTEYES"
     },
     "DOKKAEBI": {
       "name": "Dokkaebi",
       "loadout": {
         "primary": [
+          "AR",
           "DMR",
           "SSG"
         ],
@@ -439,13 +440,12 @@
         ],
         "gadgets": [
           "SMOKE",
-          "EMP",
-          "STUN"
+          "EMP"
         ]
       },
       "roles": [
         "INTEL",
-        "MAPCONTROL"
+        "FRONTLINE"
       ],
       "speed": 3,
       "squad": "VIPERSTRIKE"
@@ -763,6 +763,7 @@
       "loadout": {
         "primary": [
           "AR",
+          "AR",
           "DMR"
         ],
         "secondary": [
@@ -875,6 +876,7 @@
       "name": "Rauora",
       "loadout": {
         "primary": [
+          "AR",
           "DMR",
           "LMG"
         ],

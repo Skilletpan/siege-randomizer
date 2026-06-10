@@ -45,11 +45,7 @@ const props = defineProps({
  */
 const subheaders = computed(() => ({
   [props.items.findIndex((playlist) => playlist.isCompetitive)]: 'Competitive',
-  [props.items.findIndex((playlist) => playlist.isTactical)]: 'Tactical',
-  [props.items.findIndex((playlist) => playlist.isQuickplay)]: 'Quickplay',
-  [props.items.findIndex((playlist) => playlist.isDualFront)]: 'Dual Front',
-  [props.items.findIndex((playlist) => playlist.isArcade)]: 'Arcade',
-  [props.items.findIndex((playlist) => playlist.isDeathmatch)]: 'Deathmatch',
+  [props.items.findIndex((playlist) => playlist.isEssential)]: 'Essentials',
   [props.items.findIndex((playlist) => playlist.isTraining)]: 'Training'
 }));
 </script>
