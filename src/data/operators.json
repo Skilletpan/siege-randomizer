@@ -429,6 +429,7 @@
       "name": "Dokkaebi",
       "loadout": {
         "primary": [
+          "AR",
           "DMR",
           "SSG"
         ],
@@ -439,13 +440,12 @@
         ],
         "gadgets": [
           "SMOKE",
-          "EMP",
-          "STUN"
+          "EMP"
         ]
       },
       "roles": [
         "INTEL",
-        "MAPCONTROL"
+        "FRONTLINE"
       ],
       "speed": 3,
       "squad": "VIPERSTRIKE"
