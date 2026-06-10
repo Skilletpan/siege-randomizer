@@ -422,7 +422,7 @@
         "BREACH",
         "ANTIGADGET"
       ],
-      "speed": 1,
+      "speed": 2,
       "squad": "GHOSTEYES"
     },
     "DOKKAEBI": {
@@ -763,6 +763,7 @@
       "loadout": {
         "primary": [
           "AR",
+          "AR",
           "DMR"
         ],
         "secondary": [
@@ -875,6 +876,7 @@
       "name": "Rauora",
       "loadout": {
         "primary": [
+          "AR",
           "DMR",
           "LMG"
         ],
