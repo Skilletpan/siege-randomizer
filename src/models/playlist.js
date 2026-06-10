@@ -46,20 +46,8 @@ export default class Playlist {
   /** @returns {boolean} Whether this playlist belongs to the `COMPETITIVE` category. */
   get isCompetitive() { return this.#category === 'COMPETITIVE'; }
 
-  /** @returns {boolean} Whether this playlist belongs to the `TACTICAL` category. */
-  get isTactical() { return this.#category === 'TACTICAL'; }
-
-  /** @returns {boolean} Whether this playlist belongs to the `QUICKPLAY` category. */
-  get isQuickplay() { return this.#category === 'QUICKPLAY' || this.#category === 'ARCADE'; }
-
-  /** @returns {boolean} Whether this playlist belongs to the `QUICKPLAY` category. */
-  get isDualFront() { return this.#category === 'DUAL_FRONT'; }
-
-  /** @returns {boolean} Whether this playlist belongs to the `ARCADE` category. */
-  get isArcade() { return this.#category === 'ARCADE'; }
-
-  /** @returns {boolean} Whether this playlist belongs to the `DEATHMATCH` category. */
-  get isDeathmatch() { return this.#category === 'DEATHMATCH'; }
+  /** @returns {boolean} Whether this playlist belongs to the `ESSENTIALS` category. */
+  get isEssential() { return this.#category === 'ESSENTIALS'; }
 
   /** @returns {boolean} Whether this playlist belongs to the `TRAINING` category. */
   get isTraining() { return this.#category === 'TRAINING'; }
