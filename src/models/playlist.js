@@ -6,7 +6,7 @@ import Operator from './operator';
 /**
  * @typedef Category The category keys of the playlist.
  * 
- * @type {"COMPETITIVE"|"TACTICAL"|"QUICKPLAY"|"ARCADE"|"DEATHMATCH"|"TRAINING"}
+ * @type {"COMPETITIVE"|"ESSENTIALS"|"TRAINING"}
  */
 
 export default class Playlist {
