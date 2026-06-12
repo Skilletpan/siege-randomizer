@@ -1,7 +1,6 @@
 {
   "HOUSE": "House",
   "OREGON": "Oregon",
-  "HEREFORD": "Hereford Base",
   "CLUBHOUSE": "Club House",
   "PLANE": "Presidential Plane",
   "CONSULATE": "Consulate",
@@ -25,6 +24,5 @@
   "BRAVO": "Stadium Bravo",
   "LABS": "Nighthaven Labs",
   "LAIR": "Lair",
-  "DISTRICT": "District",
   "CALYPSO": "Calypso Casino"
 }
