@@ -1162,7 +1162,7 @@
         "ANTIGADGET",
         "SUPPORT"
       ],
-      "speed": 2,
+      "speed": 3,
       "squad": "VIPERSTRIKE"
     },
     "BANDIT": {
@@ -1548,8 +1548,9 @@
           "SG"
         ],
         "gadgets": [
-          "IMPACT",
-          "BEEPER"
+          "SHIELD",
+          "BEEPER",
+          "C4"
         ]
       },
       "roles": [
