@@ -1,14 +1,13 @@
 <template>
   <v-autocomplete
     v-model="picked"
-    v-model:search="search"
-    auto-select-first
     clearable
     :clear-on-select="multiple"
-    :items="items"
+    :items="pickerItems"
     item-title="name"
     item-value="key"
     label="Operator"
+    :list-props="{ class: 'pt-0' }"
     :multiple="multiple"
   >
     <!-- Operator Avatar -->
@@ -34,17 +33,16 @@
       </template>
     </template>
 
-    <template #item="{ index, item, props: p }">
-      <!-- Operator Side Subheader -->
-      <template v-if="subheaders[index]">
-        <v-divider v-if="index > 0" />
-        <v-list-subheader
-          class="mb-n2"
-          :title="subheaders[index]"
-        />
-      </template>
+    <!-- Side Subheaders (Picker List) -->
+    <template #subheader="{ props: p }">
+      <v-list-subheader
+        v-bind="p"
+        sticky
+      />
+    </template>
 
-      <!-- Operator Item -->
+    <!-- Operator Avatar (Picker List) -->
+    <template #item="{ item, props: p }">
       <v-list-item v-bind="p">
         <template #prepend>
           <v-avatar
@@ -59,13 +57,13 @@
 </template>
 
 <script setup>
-import { computed, shallowRef, toRaw } from 'vue';
+import { computed, toRaw } from 'vue';
 
-import { Operator, Side } from '@/models';
+import { Operator } from '@/models';
 
 /**
  * The key(s) of the picked operator(s).
- * @type {import('vue').ModelRef<String | String[]>}
+ * @type {import('vue').ModelRef<string | string[]>}
  */
 const picked = defineModel({
   default: (_props) => {
@@ -98,24 +96,16 @@ const props = defineProps({
 });
 
 /**
- * The current search value.
- * @type {import('vue').ShallowRef<String>}
+ * The items to render in the picker list.
+ * @type {Operator | [{ title: string, type: 'subheader' }, Operator]}
  */
-const search = shallowRef(null);
+const pickerItems = computed(() => props.items.flatMap((operator, index, items) => {
+  // Add subheader when operator side changes
+  if (operator.side !== items[index - 1]?.side) return [
+    { title: operator.side.name, type: 'subheader' },
+    operator
+  ];
 
-/**
- * The subheaders and their index for the selection list.
- * @type {import('vue').ComputedRef<{ [index: number]: string }>}
- */
-const subheaders = computed(() => {
-  // Filter selection by search value
-  const searchValue = search.value?.toLowerCase() || '';
-  const selection = props.items.filter((operator) => operator.name.toLowerCase().includes(searchValue));
-
-  // Find and return subheaders
-  return {
-    [selection.findIndex((operator) => operator.side === Side.ATT)]: 'Attackers',
-    [selection.findIndex((operator) => operator.side === Side.DEF)]: 'Defenders'
-  }
-});
+  return operator;
+}));
 </script>
