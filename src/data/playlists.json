@@ -19,7 +19,9 @@
     "RANKED": {
       "name": "Ranked",
       "maps": [
-        "CALYPSO",
+        "KANAL",
+        "THEMEPARK",
+        "VILLA",
         "OREGON",
         "CLUBHOUSE",
         "CONSULATE",
@@ -27,12 +29,10 @@
         "CHALET",
         "KAFE",
         "BORDER",
-        "COASTLINE",
         "FORTRESS",
-        "OUTBACK",
-        "EMERALD",
         "LABS",
-        "LAIR"
+        "LAIR",
+        "CALYPSO"
       ]
     },
     "UNRANKED": {
@@ -93,6 +93,24 @@
         "LABS",
         "LAIR",
         "ALPHA"
+      ]
+    }
+  },
+  "ARCADE": {
+    "DUEL": {
+      "name": "1v1",
+      "maps": [
+        "OREGON",
+        "CLUBHOUSE",
+        "COASTLINE",
+        "CONSULATE",
+        "OUTBACK"
+      ],
+      "operators": [
+        "!MONTAGNE",
+        "!BLITZ",
+        "!BLACKBEARD",
+        "!CLASH"
       ]
     }
   },

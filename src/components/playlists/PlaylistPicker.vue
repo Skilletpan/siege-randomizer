@@ -1,23 +1,19 @@
 <template>
   <v-select
     clearable
-    :items="items"
+    :items="categories ? pickerList : items"
     item-title="name"
     item-value="key"
     label="Playlist"
+    :list-props="{ class: 'pt-0' }"
   >
-    <template #item="{ index, props: p }">
-      <!-- Playlist Category Subheader -->
-      <template v-if="subheaders[index]">
-        <v-divider v-if="index > 0" />
-        <v-list-subheader
-          class="mb-n2"
-          :title="subheaders[index]"
-        />
-      </template>
-
-      <!-- Playlist Item -->
-      <v-list-item v-bind="p" />
+    <!-- Category Subheaders (Picker List) -->
+    <template #subheader="{ props: p }">
+      <v-list-subheader
+        v-bind="p"
+        sticky
+        :title="p.title[0].toUpperCase() + p.title.slice(1).toLowerCase()"
+      />
     </template>
   </v-select>
 </template>
@@ -29,9 +25,16 @@ import { Playlist } from '@/models';
 
 /**
  * The component props.
- * @type {{ readonly items: Playlist[] }}
+ * @type {{ readonly categories: boolean, readonly items: Playlist[] }}
  */
 const props = defineProps({
+  /** Whether to render playlist category subheaders. */
+  categories: {
+    default: true,
+    type: Boolean
+  },
+
+  /** The playlist items to pick from. */
   items: {
     default: Playlist.LIST,
     type: Array,
@@ -40,12 +43,16 @@ const props = defineProps({
 });
 
 /**
- * The subheaders to display in the selection list and the indexes where to display them.
- * @type {import('vue').ComputedRef<{ [index: number]: string }>}
+ * The items to render in the picker list.
+ * @type {(Playlist | { title: string, type: 'subheader' })[]}
  */
-const subheaders = computed(() => ({
-  [props.items.findIndex((playlist) => playlist.isCompetitive)]: 'Competitive',
-  [props.items.findIndex((playlist) => playlist.isEssential)]: 'Essentials',
-  [props.items.findIndex((playlist) => playlist.isTraining)]: 'Training'
+const pickerList = computed(() => props.items.flatMap((playlist, index, items) => {
+  // Add subheader when playlist category changes
+  if (playlist.category !== items[index - 1]?.category) return [
+    { title: playlist.category, type: 'subheader' },
+    playlist
+  ];
+
+  return playlist;
 }));
 </script>
