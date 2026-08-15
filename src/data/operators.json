@@ -1806,6 +1806,28 @@
       ],
       "speed": 3,
       "squad": "NIGHTHAVEN"
+    },
+    "NOOR": {
+      "name": "Noor",
+      "loadout": {
+        "primary": [
+          "AR",
+          "LMG"
+        ],
+        "secondary": [
+          "HG",
+          "BAI"
+        ],
+        "gadgets": [
+          "SHIELD",
+          "BARBED"
+        ]
+      },
+      "roles": [
+        "ANTIENTRY",
+        "CROWDCONTROL"
+      ],
+      "speed": 2
     }
   }
 }
