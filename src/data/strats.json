@@ -65,12 +65,13 @@
     "title": "A Song of Ice and Fire",
     "tagline": "The lyrics are \"Ow\".",
     "rules": [
-      "Kill enemies that are frozen by Tubarão with fire from Tachanka, Goyo or an explosive pipe."
+      "Kill enemies that are frozen by Tubarão with fire from Tachanka, Goyo, Noor or an explosive pipe."
     ],
     "operators": [
       "*TACHANKA",
       "*GOYO",
-      "*TUBARAO"
+      "*TUBARAO",
+      "*NOOR"
     ],
     "side": "DEF"
   },
@@ -148,6 +149,10 @@
     "rules": [
       "Remaining operator brings a bulletproof camera.",
       "Place all your cameras on site.",
+      {
+        "text": "Leave your spare shell on site.",
+        "operator": "SKOPOS"
+      },
       "Hide on the other side of the building and watch the enemy on cams.",
       "Red ping the enemy all the time.",
       "You may retake site as soon as the defuser is planted or the hostage or site is being taken."
@@ -156,6 +161,7 @@
       "*VALKYRIE",
       "*ECHO",
       "*MAESTRO",
+      "*SKOPOS",
       [
         {
           "property": "loadout.gadgets[some].key",
@@ -394,9 +400,6 @@
       "Wait on a hatch above site until the objective is being taken or defused.",
       "As soon as the objective is being taken or defused, hot-drop the hatch and retake site."
     ],
-    "operators": [
-      "*ARUNI"
-    ],
     "side": "DEF"
   },
   {
@@ -428,8 +431,11 @@
         "text": "Survive.",
         "operator": "TACHANKA"
       },
+      {
+        "text": "As the leader of the Secret Service, everyone follows your orders.",
+        "operator": "WARDEN"
+      },
       "Protect Tachanka at all costs.",
-      "As the leader of the Secret Service, everyone follows Warden's orders.",
       "If Tachanka dies, the rest commits sudoku or surrenders themselves to the enemy."
     ],
     "operators": [
