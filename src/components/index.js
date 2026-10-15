@@ -14,9 +14,6 @@ import OperatorPicker from './operators/OperatorPicker';
 // Playlists
 import PlaylistPicker from './playlists/PlaylistPicker';
 
-// Squads
-import SquadPicker from './squad/SquadPicker';
-
 // Strats
 import StratCard from './strats/StratCard';
 
@@ -38,7 +35,6 @@ export {
   PlaylistPicker,
   SettingsDialog,
   SquadMenu,
-  SquadPicker,
   StratCard,
   WeaponPicker
 };
