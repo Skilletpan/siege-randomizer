@@ -174,14 +174,6 @@
         />
       </v-list-item>
 
-      <!-- Operator Squad -->
-      <v-list-item>
-        <squad-picker
-          v-model="squad"
-          placeholder="Any"
-        />
-      </v-list-item>
-
       <!-- Loadout Filters -->
       <v-list-subheader
         class="mb-n1"
@@ -251,8 +243,8 @@
 <script setup>
 import { computed, watch, watchEffect } from 'vue';
 
-import { OperatorPicker, PlaylistPicker, SquadPicker, WeaponPicker } from '@/components';
-import { Gadget, Operator, OperatorRole, Playlist, Squad, WeaponClass } from '@/models';
+import { OperatorPicker, PlaylistPicker, WeaponPicker } from '@/components';
+import { Gadget, Operator, OperatorRole, Playlist, WeaponClass } from '@/models';
 import { usePlayers } from '@/stores';
 
 // Register composables
@@ -328,15 +320,6 @@ const roles = defineModel('roles', {
 });
 
 /**
- * The key of the squad of the operators.
- * @type {import('vue').ModelRef<String>}
- */
-const squad = defineModel('squad', {
-  type: String,
-  validator: (v) => Object.keys(Squad).includes(v)
-});
-
-/**
  * The keys of the primary weapons of the operators.
  * @type {import('vue').ModelRef<String[]>}
  */
@@ -401,7 +384,7 @@ watchEffect(() => {
 
 /**
  * Resets all filters to their default value.
- * 
+ *
  * Squad settings are preserved.
  */
 function resetSettings() {
@@ -414,7 +397,6 @@ function resetSettings() {
   bans.value.length = 0;
   speed.value = [1, 2, 3];
   roles.value.length = 0;
-  squad.value = null;
 
   // Loadout filters
   primaryWeapons.value.length = 0;

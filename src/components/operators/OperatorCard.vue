@@ -111,28 +111,6 @@
               />
             </div>
           </v-card-item>
-
-          <!-- Squad -->
-          <v-card-item
-            v-if="operator.squad"
-            class="pb-3 pt-0 px-4"
-          >
-            <v-label
-              class="d-block text-caption"
-              text="Squad"
-            />
-
-            {{ operator.squad.name }}
-
-            <template #append>
-              <v-avatar
-                color="transparent"
-                :image="operator.squad.emblem"
-                size="small"
-                tile
-              />
-            </template>
-          </v-card-item>
         </v-window-item>
 
         <!-- Operator Loadout Tab -->

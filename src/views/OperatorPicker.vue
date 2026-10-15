@@ -112,7 +112,6 @@
     v-model:bans="operatorSettings.bans"
     v-model:speed="operatorSettings.speed"
     v-model:roles="operatorSettings.roles"
-    v-model:squad="operatorSettings.squad"
     v-model:primary-weapons="loadoutSettings.primary"
     v-model:secondary-weapons="loadoutSettings.secondary"
     v-model:gadgets="loadoutSettings.gadgets"
@@ -158,7 +157,7 @@ const pickerSettings = ref({
 
   /**
    * The delay until an operator can be repicked.
-   * @type {number} 
+   * @type {number}
    */
   repickCooldown: 5,
 
@@ -193,13 +192,7 @@ const operatorSettings = ref({
    * The keys of the roles of the operators.
    * @type {string[]}
    */
-  roles: [],
-
-  /**
-   * The key of the squad of the operators.
-   * @type {string}
-   */
-  squad: null
+  roles: []
 });
 
 /** The loadout filter values. */
@@ -252,7 +245,7 @@ const lastPickSide = ref(null);
  */
 const operatorPool = computed(() => {
   const { preset } = pickerSettings.value;
-  const { bans, speed, roles, squad } = operatorSettings.value;
+  const { bans, speed, roles } = operatorSettings.value;
   const { primary, secondary, gadgets } = loadoutSettings.value;
 
   // Set filters
@@ -261,7 +254,6 @@ const operatorPool = computed(() => {
   if (bans.length) filters.push({ property: 'key', method: 'included', value: bans, negative: true });
   if (speed.length < 3) filters.push({ property: 'speed', method: 'included', value: speed });
   roles.forEach((key) => { filters.push({ property: 'roles[some].key', value: key }) });
-  if (squad) filters.push({ property: 'squad.key', value: squad });
   primary.forEach((key) => { filters.push({ property: 'loadout.primary[some].key', value: key }) });
   secondary.forEach((key) => { filters.push({ property: 'loadout.secondary[some].key', value: key }) });
   gadgets.forEach((key) => { filters.push({ property: 'loadout.gadgets[some].key', value: key }) });
@@ -272,7 +264,7 @@ const operatorPool = computed(() => {
 
 /**
  * Handles clicking of an operator card.
- * 
+ *
  * @param {string|number} triggerPlayer The player of the clicked card.
  */
 function onCardClick(triggerPlayer) {
@@ -291,7 +283,7 @@ function onCardClick(triggerPlayer) {
 
 /**
  * Picks a new operator for each active player from the operator pool.
- * 
+ *
  * @param {string} [triggerPlayer=null] The player to pick an operator for.
  */
 function pickOperators(triggerPlayer = null) {
@@ -362,7 +354,7 @@ const previewDialog = ref({
 
 /**
  * Opens a preview dialog for the selected operator.
- * 
+ *
  * @param {String} operatorKey The key of the operator to preview.
  */
 function previewOperator(operatorKey) {

@@ -4,7 +4,6 @@ import loadImage from '@/utils/loadImage';
 import Gadget from './gadget';
 import OperatorRole from './operatorRole';
 import Side from './side';
-import Squad from './squad';
 import WeaponClass from './weaponClass';
 
 export default class Operator {
@@ -15,7 +14,6 @@ export default class Operator {
   #loadoutKeys;
   #roleKeys;
   #speed;
-  #squadKey;
 
   #emblem;
   #portrait;
@@ -32,7 +30,6 @@ export default class Operator {
    * @param {string[]} operatorData.loadout.gadgets   The keys of the gadgets of the operator.
    * @param {string[]} operatorData.roles             The keys of the roles of the operator.
    * @param {number}   operatorData.speed             The speed of the operator.
-   * @param {string}   [operatorData.squad]           The key of the squad of the operator.
    */
   constructor(key, side, operatorData) {
     this.#key = key;
@@ -41,7 +38,6 @@ export default class Operator {
     this.#loadoutKeys = operatorData.loadout;
     this.#roleKeys = Array.from(operatorData.roles);
     this.#speed = operatorData.speed;
-    this.#squadKey = operatorData.squad;
 
     // Load images
     this.#emblem = loadImage('emblems', `${key}.png`);
@@ -72,9 +68,6 @@ export default class Operator {
   /** @returns {number} The speed of the operator. */
   get speed() { return this.#speed; }
 
-  /** @returns {Squad} The squad of the operator. */
-  get squad() { return Squad[this.#squadKey]; }
-
   /** @returns {number} The health of the operator. */
   get health() { return 4 - this.#speed; }
 
@@ -86,7 +79,7 @@ export default class Operator {
 
   /**
    * Has a 1 in 50 chance to return the URL of an easter egg portrait (if the operator has any).
-   * 
+   *
    * @returns {string} The URL of a randomly picked portrait of the operator.
    */
   easterEggPortrait() {
@@ -117,12 +110,12 @@ export default class Operator {
 
   /**
    * Filter operators into `required`, `allowed` and `banned`.
-   * 
+   *
    * Keys of required operators are prefixed with `*`.
    * Keys of banned operators are prefixed with `!`.
-   * 
+   *
    * @param {string[]} operatorList The list of operator keys to build the lists from.
-   * 
+   *
    * @returns {{ required?: Operator[], allowed: Operator[], banned: Operator[] }} The final operator lists.
    */
   static findOperatorsByList(operatorList) {
