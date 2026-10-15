@@ -48,8 +48,7 @@
         "BREACH",
         "ANTIGADGET"
       ],
-      "speed": 2,
-      "squad": "REDHAMMER"
+      "speed": 2
     },
     "THATCHER": {
       "name": "Thatcher",
@@ -72,8 +71,7 @@
         "ANTIGADGET",
         "SUPPORT"
       ],
-      "speed": 1,
-      "squad": "VIPERSTRIKE"
+      "speed": 1
     },
     "ASH": {
       "name": "Ash",
@@ -95,8 +93,7 @@
         "BREACH",
         "FRONTLINE"
       ],
-      "speed": 3,
-      "squad": "REDHAMMER"
+      "speed": 3
     },
     "THERMITE": {
       "name": "Thermite",
@@ -119,8 +116,7 @@
         "BREACH",
         "SUPPORT"
       ],
-      "speed": 2,
-      "squad": "REDHAMMER"
+      "speed": 2
     },
     "TWITCH": {
       "name": "Twitch",
@@ -143,8 +139,7 @@
         "ANTIGADGET",
         "INTEL"
       ],
-      "speed": 2,
-      "squad": "WOLFGUARD"
+      "speed": 2
     },
     "MONTAGNE": {
       "name": "Montagne",
@@ -166,8 +161,7 @@
         "INTEL",
         "SUPPORT"
       ],
-      "speed": 1,
-      "squad": "WOLFGUARD"
+      "speed": 1
     },
     "GLAZ": {
       "name": "Glaz",
@@ -190,8 +184,7 @@
         "INTEL",
         "SUPPORT"
       ],
-      "speed": 3,
-      "squad": "GHOSTEYES"
+      "speed": 3
     },
     "FUZE": {
       "name": "Fuze",
@@ -214,8 +207,7 @@
       "roles": [
         "ANTIGADGET"
       ],
-      "speed": 1,
-      "squad": "REDHAMMER"
+      "speed": 1
     },
     "BLITZ": {
       "name": "Blitz",
@@ -235,8 +227,7 @@
         "FRONTLINE",
         "MAPCONTROL"
       ],
-      "speed": 2,
-      "squad": "VIPERSTRIKE"
+      "speed": 2
     },
     "IQ": {
       "name": "IQ",
@@ -259,8 +250,7 @@
         "INTEL",
         "SUPPORT"
       ],
-      "speed": 3,
-      "squad": "NIGHTHAVEN"
+      "speed": 3
     },
     "BUCK": {
       "name": "Buck",
@@ -281,8 +271,7 @@
         "BREACH",
         "SUPPORT"
       ],
-      "speed": 2,
-      "squad": "REDHAMMER"
+      "speed": 2
     },
     "BLACKBEARD": {
       "name": "Blackbeard",
@@ -302,8 +291,7 @@
         "BREACH",
         "FRONTLINE"
       ],
-      "speed": 1,
-      "squad": "REDHAMMER"
+      "speed": 1
     },
     "CAPITAO": {
       "name": "Capitão",
@@ -327,8 +315,7 @@
         "FRONTLINE",
         "MAPCONTROL"
       ],
-      "speed": 3,
-      "squad": "VIPERSTRIKE"
+      "speed": 3
     },
     "HIBANA": {
       "name": "Hibana",
@@ -352,8 +339,7 @@
         "BREACH",
         "FRONTLINE"
       ],
-      "speed": 3,
-      "squad": "VIPERSTRIKE"
+      "speed": 3
     },
     "JACKAL": {
       "name": "Jackal",
@@ -377,8 +363,7 @@
         "INTEL",
         "MAPCONTROL"
       ],
-      "speed": 2,
-      "squad": "VIPERSTRIKE"
+      "speed": 2
     },
     "YING": {
       "name": "Ying",
@@ -400,8 +385,7 @@
         "FRONTLINE",
         "MAPCONTROL"
       ],
-      "speed": 2,
-      "squad": "WOLFGUARD"
+      "speed": 2
     },
     "ZOFIA": {
       "name": "Zofia",
@@ -422,8 +406,7 @@
         "BREACH",
         "ANTIGADGET"
       ],
-      "speed": 2,
-      "squad": "GHOSTEYES"
+      "speed": 2
     },
     "DOKKAEBI": {
       "name": "Dokkaebi",
@@ -440,15 +423,14 @@
         ],
         "gadgets": [
           "SMOKE",
-          "EMP"
+          "BREACH"
         ]
       },
       "roles": [
         "INTEL",
         "FRONTLINE"
       ],
-      "speed": 3,
-      "squad": "VIPERSTRIKE"
+      "speed": 3
     },
     "LION": {
       "name": "Lion",
@@ -472,8 +454,7 @@
         "INTEL",
         "MAPCONTROL"
       ],
-      "speed": 2,
-      "squad": "WOLFGUARD"
+      "speed": 2
     },
     "FINKA": {
       "name": "Finka",
@@ -497,8 +478,7 @@
         "FRONTLINE",
         "SUPPORT"
       ],
-      "speed": 2,
-      "squad": "NIGHTHAVEN"
+      "speed": 2
     },
     "MAVERICK": {
       "name": "Maverick",
@@ -521,8 +501,7 @@
         "BREACH",
         "FRONTLINE"
       ],
-      "speed": 3,
-      "squad": "GHOSTEYES"
+      "speed": 3
     },
     "NOMAD": {
       "name": "Nomad",
@@ -544,8 +523,7 @@
         "FRONTLINE",
         "MAPCONTROL"
       ],
-      "speed": 2,
-      "squad": "WOLFGUARD"
+      "speed": 2
     },
     "GRIDLOCK": {
       "name": "Gridlock",
@@ -568,8 +546,7 @@
         "SUPPORT",
         "MAPCONTROL"
       ],
-      "speed": 1,
-      "squad": "REDHAMMER"
+      "speed": 1
     },
     "NOKK": {
       "name": "Nøkk",
@@ -593,8 +570,7 @@
         "FRONTLINE",
         "MAPCONTROL"
       ],
-      "speed": 2,
-      "squad": "GHOSTEYES"
+      "speed": 2
     },
     "AMARU": {
       "name": "Amaru",
@@ -617,8 +593,7 @@
         "FRONTLINE",
         "MAPCONTROL"
       ],
-      "speed": 2,
-      "squad": "REDHAMMER"
+      "speed": 2
     },
     "KALI": {
       "name": "Kali",
@@ -641,8 +616,7 @@
         "ANTIGADGET",
         "SUPPORT"
       ],
-      "speed": 2,
-      "squad": "NIGHTHAVEN"
+      "speed": 2
     },
     "IANA": {
       "name": "Iana",
@@ -664,8 +638,7 @@
         "FRONTLINE",
         "INTEL"
       ],
-      "speed": 2,
-      "squad": "GHOSTEYES"
+      "speed": 2
     },
     "ACE": {
       "name": "Ace",
@@ -686,8 +659,7 @@
         "BREACH",
         "ANTIGADGET"
       ],
-      "speed": 1,
-      "squad": "NIGHTHAVEN"
+      "speed": 1
     },
     "ZERO": {
       "name": "Zero",
@@ -709,8 +681,7 @@
         "ANTIGADGET",
         "INTEL"
       ],
-      "speed": 3,
-      "squad": "GHOSTEYES"
+      "speed": 3
     },
     "FLORES": {
       "name": "Flores",
@@ -732,8 +703,7 @@
         "ANTIGADGET",
         "INTEL"
       ],
-      "speed": 2,
-      "squad": "GHOSTEYES"
+      "speed": 2
     },
     "OSA": {
       "name": "Osa",
@@ -755,8 +725,7 @@
         "INTEL",
         "SUPPORT"
       ],
-      "speed": 1,
-      "squad": "NIGHTHAVEN"
+      "speed": 1
     },
     "SENS": {
       "name": "Sens",
@@ -779,8 +748,7 @@
         "SUPPORT",
         "MAPCONTROL"
       ],
-      "speed": 3,
-      "squad": "WOLFGUARD"
+      "speed": 3
     },
     "GRIM": {
       "name": "Grim",
@@ -803,8 +771,7 @@
         "FRONTLINE",
         "MAPCONTROL"
       ],
-      "speed": 3,
-      "squad": "NIGHTHAVEN"
+      "speed": 3
     },
     "BRAVA": {
       "name": "Brava",
@@ -826,8 +793,7 @@
         "ANTIGADGET",
         "INTEL"
       ],
-      "speed": 3,
-      "squad": "VIPERSTRIKE"
+      "speed": 3
     },
     "RAM": {
       "name": "Ram",
@@ -848,8 +814,7 @@
         "BREACH",
         "ANTIGADGET"
       ],
-      "speed": 1,
-      "squad": "REDHAMMER"
+      "speed": 1
     },
     "DEIMOS": {
       "name": "Deimos",
@@ -893,8 +858,7 @@
         "SUPPORT",
         "MAPCONTROL"
       ],
-      "speed": 2,
-      "squad": "VIPERSTRIKE"
+      "speed": 2
     },
     "SNAKE": {
       "name": "Solid Snake",
@@ -970,8 +934,7 @@
         "ANTIENTRY",
         "TRAPPER"
       ],
-      "speed": 2,
-      "squad": "NIGHTHAVEN"
+      "speed": 2
     },
     "MUTE": {
       "name": "Mute",
@@ -993,8 +956,7 @@
         "ANTIGADGET",
         "CROWDCONTROL"
       ],
-      "speed": 2,
-      "squad": "VIPERSTRIKE"
+      "speed": 2
     },
     "CASTLE": {
       "name": "Castle",
@@ -1017,8 +979,7 @@
         "ANTIENTRY",
         "SUPPORT"
       ],
-      "speed": 2,
-      "squad": "WOLFGUARD"
+      "speed": 2
     },
     "PULSE": {
       "name": "Pulse",
@@ -1042,8 +1003,7 @@
         "INTEL",
         "SUPPORT"
       ],
-      "speed": 3,
-      "squad": "NIGHTHAVEN"
+      "speed": 3
     },
     "DOC": {
       "name": "Doc",
@@ -1066,8 +1026,7 @@
       "roles": [
         "SUPPORT"
       ],
-      "speed": 1,
-      "squad": "WOLFGUARD"
+      "speed": 1
     },
     "ROOK": {
       "name": "Rook",
@@ -1091,8 +1050,7 @@
       "roles": [
         "SUPPORT"
       ],
-      "speed": 1,
-      "squad": "VIPERSTRIKE"
+      "speed": 1
     },
     "KAPKAN": {
       "name": "Kapkan",
@@ -1114,8 +1072,7 @@
         "ANTIENTRY",
         "TRAPPER"
       ],
-      "speed": 2,
-      "squad": "REDHAMMER"
+      "speed": 2
     },
     "TACHANKA": {
       "name": "Tachanka",
@@ -1139,8 +1096,7 @@
         "ANTIENTRY",
         "CROWDCONTROL"
       ],
-      "speed": 1,
-      "squad": "REDHAMMER"
+      "speed": 1
     },
     "JAGER": {
       "name": "Jäger",
@@ -1162,8 +1118,7 @@
         "ANTIGADGET",
         "SUPPORT"
       ],
-      "speed": 3,
-      "squad": "VIPERSTRIKE"
+      "speed": 3
     },
     "BANDIT": {
       "name": "Bandit",
@@ -1185,8 +1140,7 @@
         "ANTIENTRY",
         "ANTIGADGET"
       ],
-      "speed": 3,
-      "squad": "WOLFGUARD"
+      "speed": 3
     },
     "FROST": {
       "name": "Frost",
@@ -1208,8 +1162,7 @@
         "ANTIENTRY",
         "TRAPPER"
       ],
-      "speed": 2,
-      "squad": "WOLFGUARD"
+      "speed": 2
     },
     "VALKYRIE": {
       "name": "Valkyrie",
@@ -1219,7 +1172,8 @@
           "SG"
         ],
         "secondary": [
-          "DE"
+          "DE",
+          "SSG"
         ],
         "gadgets": [
           "IMPACT",
@@ -1230,8 +1184,7 @@
         "INTEL",
         "SUPPORT"
       ],
-      "speed": 2,
-      "squad": "GHOSTEYES"
+      "speed": 2
     },
     "CAVEIRA": {
       "name": "Caveira",
@@ -1253,8 +1206,7 @@
         "INTEL",
         "CROWDCONTROL"
       ],
-      "speed": 3,
-      "squad": "GHOSTEYES"
+      "speed": 3
     },
     "ECHO": {
       "name": "Echo",
@@ -1276,8 +1228,7 @@
         "INTEL",
         "CROWDCONTROL"
       ],
-      "speed": 2,
-      "squad": "VIPERSTRIKE"
+      "speed": 2
     },
     "MIRA": {
       "name": "Mira",
@@ -1299,8 +1250,7 @@
         "INTEL",
         "SUPPORT"
       ],
-      "speed": 1,
-      "squad": "VIPERSTRIKE"
+      "speed": 1
     },
     "LESION": {
       "name": "Lesion",
@@ -1321,8 +1271,7 @@
         "ANTIENTRY",
         "TRAPPER"
       ],
-      "speed": 2,
-      "squad": "GHOSTEYES"
+      "speed": 2
     },
     "ELA": {
       "name": "Ela",
@@ -1344,8 +1293,7 @@
         "CROWDCONTROL",
         "TRAPPER"
       ],
-      "speed": 2,
-      "squad": "NIGHTHAVEN"
+      "speed": 2
     },
     "VIGIL": {
       "name": "Vigil",
@@ -1367,8 +1315,7 @@
         "ANTIGADGET",
         "CROWDCONTROL"
       ],
-      "speed": 3,
-      "squad": "GHOSTEYES"
+      "speed": 3
     },
     "MAESTRO": {
       "name": "Maestro",
@@ -1391,8 +1338,7 @@
         "ANTIGADGET",
         "INTEL"
       ],
-      "speed": 1,
-      "squad": "VIPERSTRIKE"
+      "speed": 1
     },
     "ALIBI": {
       "name": "Alibi",
@@ -1414,8 +1360,7 @@
         "INTEL",
         "TRAPPER"
       ],
-      "speed": 3,
-      "squad": "VIPERSTRIKE"
+      "speed": 3
     },
     "CLASH": {
       "name": "Clash",
@@ -1437,8 +1382,7 @@
         "INTEL",
         "CROWDCONTROL"
       ],
-      "speed": 1,
-      "squad": "WOLFGUARD"
+      "speed": 1
     },
     "KAID": {
       "name": "Kaid",
@@ -1461,8 +1405,7 @@
         "ANTIENTRY",
         "ANTIGADGET"
       ],
-      "speed": 1,
-      "squad": "REDHAMMER"
+      "speed": 1
     },
     "MOZZIE": {
       "name": "Mozzie",
@@ -1485,8 +1428,7 @@
         "ANTIGADGET",
         "INTEL"
       ],
-      "speed": 2,
-      "squad": "GHOSTEYES"
+      "speed": 2
     },
     "WARDEN": {
       "name": "Warden",
@@ -1509,8 +1451,7 @@
         "ANTIGADGET",
         "INTEL"
       ],
-      "speed": 1,
-      "squad": "GHOSTEYES"
+      "speed": 1
     },
     "GOYO": {
       "name": "Goyo",
@@ -1532,8 +1473,7 @@
         "ANTIENTRY",
         "TRAPPER"
       ],
-      "speed": 2,
-      "squad": "REDHAMMER"
+      "speed": 2
     },
     "WAMAI": {
       "name": "Wamai",
@@ -1557,8 +1497,7 @@
         "ANTIGADGET",
         "TRAPPER"
       ],
-      "speed": 2,
-      "squad": "NIGHTHAVEN"
+      "speed": 2
     },
     "ORYX": {
       "name": "Oryx",
@@ -1580,8 +1519,7 @@
       "roles": [
         "SUPPORT"
       ],
-      "speed": 2,
-      "squad": "REDHAMMER"
+      "speed": 2
     },
     "MELUSI": {
       "name": "Melusi",
@@ -1603,8 +1541,7 @@
         "INTEL",
         "CROWDCONTROL"
       ],
-      "speed": 1,
-      "squad": "WOLFGUARD"
+      "speed": 1
     },
     "ARUNI": {
       "name": "Aruni",
@@ -1625,8 +1562,7 @@
         "ANTIENTRY",
         "ANTIGADGET"
       ],
-      "speed": 1,
-      "squad": "NIGHTHAVEN"
+      "speed": 1
     },
     "THUNDERBIRD": {
       "name": "Thunderbird",
@@ -1649,8 +1585,7 @@
       "roles": [
         "SUPPORT"
       ],
-      "speed": 2,
-      "squad": "WOLFGUARD"
+      "speed": 2
     },
     "THORN": {
       "name": "Thorn",
@@ -1672,8 +1607,7 @@
         "ANTIENTRY",
         "TRAPPER"
       ],
-      "speed": 2,
-      "squad": "REDHAMMER"
+      "speed": 2
     },
     "AZAMI": {
       "name": "Azami",
@@ -1694,8 +1628,7 @@
         "ANTIENTRY",
         "SUPPORT"
       ],
-      "speed": 2,
-      "squad": "VIPERSTRIKE"
+      "speed": 2
     },
     "SOLIS": {
       "name": "Solis",
@@ -1716,8 +1649,7 @@
         "INTEL",
         "SUPPORT"
       ],
-      "speed": 2,
-      "squad": "GHOSTEYES"
+      "speed": 2
     },
     "FENRIR": {
       "name": "Fenrir",
@@ -1738,8 +1670,7 @@
         "CROWDCONTROL",
         "TRAPPER"
       ],
-      "speed": 2,
-      "squad": "REDHAMMER"
+      "speed": 2
     },
     "TUBARAO": {
       "name": "Tubarão",
@@ -1760,8 +1691,7 @@
         "ANTIGADGET",
         "CROWDCONTROL"
       ],
-      "speed": 2,
-      "squad": "WOLFGUARD"
+      "speed": 2
     },
     "SKOPOS": {
       "name": "Skopós",
@@ -1781,8 +1711,7 @@
         "INTEL",
         "SUPPORT"
       ],
-      "speed": 3,
-      "squad": "WOLFGUARD"
+      "speed": 3
     },
     "DENARI": {
       "name": "Denari",
@@ -1804,8 +1733,7 @@
         "ANTIENTRY",
         "CROWDCONTROL"
       ],
-      "speed": 3,
-      "squad": "NIGHTHAVEN"
+      "speed": 3
     },
     "NOOR": {
       "name": "Noor",
