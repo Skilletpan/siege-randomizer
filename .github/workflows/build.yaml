@@ -1,40 +1,42 @@
 name: Build App
 
 on:
-  workflow_call:
-    inputs:
-      create-build-artifact:
-        default: false
-        type: boolean
+  pull_request:
+    paths:
+      - index.html
+      - package.json
+      - package-lock.json
+      - public/**
+      - src/**
 
-env:
-  UV_USE_IO_URING: 0
+  workflow_call:
 
 jobs:
   build:
+    name: Build App
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-        with:
-          ref: ${{ github.ref }}
+      - id: checkout
+        name: Checkout repository
+        uses: actions/checkout@v7
 
-      - name: Setup NodeJS
-        uses: actions/setup-node@v3
+      - id: setup
+        name: Setup NodeJS
+        uses: actions/setup-node@v7
         with:
-          node-version: 18.x
-      
-      - name: Install NodeJS packages
+          node-version: 24
+
+      - id: install
+        name: Install NPM packages
         run: npm install
 
-      - name: Build project
+      - id: build
+        name: Build app
         run: npm run build
 
-      - name: Create build artifact
-        if: ${{ inputs.create-build-artifact }}
-        uses: actions/upload-artifact@v4
+      - id: upload
+        name: Create build artifact
+        if: ${{ github.event_name == 'workflow_call' }}
+        uses: actions/upload-artifact@v5
         with:
-          name: siege-randomizer-build
           path: dist
-          overwrite: true
-          retention-days: 1
