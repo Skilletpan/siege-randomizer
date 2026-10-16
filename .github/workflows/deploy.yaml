@@ -11,6 +11,8 @@ on:
       - public/**
       - src/**
 
+  workflow_dispatch:
+
 jobs:
   build:
     name: Build app and upload build artifact
