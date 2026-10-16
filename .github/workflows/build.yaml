@@ -10,6 +10,10 @@ on:
       - src/**
 
   workflow_call:
+    inputs:
+      upload_artifact:
+        default: false
+        type: boolean
 
 jobs:
   build:
@@ -36,7 +40,7 @@ jobs:
 
       - id: upload
         name: Create build artifact
-        if: ${{ github.event_name == 'workflow_call' }}
+        if: ${{ inputs.upload_artifact }}
         uses: actions/upload-artifact@v5
         with:
           path: dist
